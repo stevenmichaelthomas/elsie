@@ -1,7 +1,7 @@
 lcbo
 ====
 
-A Windows frontend to a lovely LCBO API.
+A Windows frontend to a lovely LCBO API (http://lcboapi.com/).
 
 More details coming soon.
 
