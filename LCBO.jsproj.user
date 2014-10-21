@@ -3,4 +3,8 @@
   <PropertyGroup>
     <ReferenceCachePath>C:\Users\get_000\AppData\Local\Temp\LCBO_refcache</ReferenceCachePath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebuggerFlavor>WindowsPhoneEmulatorDebugger</DebuggerFlavor>
+    <WindowsPhoneEmulatorID>33D7CE1E-0D98-4E5C-89B9-4AD2183E2DB6;Emulator 8.1 1080P 5.5 inch</WindowsPhoneEmulatorID>
+  </PropertyGroup>
 </Project>
