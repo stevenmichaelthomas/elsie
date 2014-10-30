@@ -1,0 +1,37 @@
+{
+  "name": "lcbo",
+  "version": "0.0.1",
+  "description": "A Windows frontend to a beautiful LCBO API.",
+  "main": "server.js",
+  "dependencies": {
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt": "~0.4.5",
+    "grunt-sass": "~0.16.0",
+    "grunt-contrib-copy": "~0.7.0",
+    "node-sass": "~0.7.0",
+    "winjs": "~3.0.1",
+    "node-static": "~0.7.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dougestey/lcbo.git"
+  },
+  "keywords": [
+    "lcbo",
+    "toronto",
+    "ontario",
+    "beer",
+    "wine"
+  ],
+  "author": "Doug Estey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dougestey/lcbo/issues"
+  },
+  "homepage": "https://github.com/dougestey/lcbo"
+}
