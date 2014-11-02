@@ -20,6 +20,7 @@ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
+        services.getLocation();
     },
     // Bind Event Listeners
     //
@@ -33,7 +34,14 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+        console.log('device ready')
         app.receivedEvent('deviceready');
+        var searchBox = document.getElementById("searchBoxId");
+        searchBox.addEventListener("suggestionsrequested", suggestionsRequestedHandler);
+        searchBox.addEventListener("querysubmitted", querySubmittedHandler);
+
+        // winjs init
+        WinJS.UI.processAll();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -47,3 +55,6 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+
+// cordova init
+app.initialize();
