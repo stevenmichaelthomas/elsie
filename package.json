@@ -13,7 +13,8 @@
     "load-grunt-tasks": "^1.0.0",
     "node-sass": "~0.7.0",
     "node-static": "~0.7.6",
-    "winjs": "~3.0.1"
+    "winjs": "~3.0.1",
+    "foundation": "^4.2.1-1"
   },
   "devDependencies": {},
   "scripts": {
