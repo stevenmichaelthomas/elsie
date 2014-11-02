@@ -1,0 +1,21 @@
+doctype
+html(ng-app="lcboApp")
+  head
+    meta(charset='utf8')
+    meta(name="format-detection",content="telephone=no")
+    meta(name="msapplication-tap-highlight",content="no")
+    meta(name="viewport",content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi")
+    title LCBO
+    //link(rel='stylesheet', href='css/foundation.css')
+    link(rel='stylesheet', href='css/lib/ui-dark.css')
+    link(rel='stylesheet', href='css/app.css')
+    script(src='js/lib/base.min.js')
+    script(src='js/lib/ui.min.js')
+    script(src='js/lib/WinJS.js')
+    script(src='js/app.js')
+  body
+    include partials/search.jade
+    script.
+        (function() {
+            ready();
+        })();

@@ -1,6 +1,18 @@
 module.exports = function(grunt) {
+  require('load-grunt-tasks')(grunt);
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    concat: {
+      options: {
+        banner: '/* <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+      },
+      build: {
+        src: 'src/js/*.js',
+        dest: 'www/js/app.js'
+      }
+    },
  
     sass: {
       options: {
@@ -11,23 +23,57 @@ module.exports = function(grunt) {
           outputStyle: 'compressed'
         },
         files: {
-          'www/css/foundation.css': 'scss/foundation.scss',
-          'www/css/app.css': 'scss/app.scss',
-          'www/css/ui-dark.min.css': 'node_modules/winjs/css/ui-dark.min.css'
+          'www/css/foundation.css': 'src/scss/foundation.scss',
+          'www/css/app.css': 'src/scss/app.scss'
         }        
       }
     },
  
-    /*copy: {
-      main: {
+    copy: {
+      css: {
         expand: true,
         flatten: true,
-        cwd: 'bower_components',
-        src: ['angular/*.js', 'angular-route/*.js', 'foundation/js/*.js', 'jquery/dist/*.js'],
-        dest: 'public/js/lib'
+        cwd: 'node_modules',
+        src: ['winjs/css/*.css'],
+        dest: 'www/css/lib'
+      },
+      fonts: {
+        expand: true,
+        flatten: true,
+        cwd: 'node_modules',
+        src: ['winjs/fonts/*.ttf'],
+        dest: 'www/css/fonts'
+      },
+      js: {
+        expand: true,
+        flatten: true,
+        cwd: 'node_modules',
+        src: ['winjs/js/*.js'],
+        dest: 'www/js/lib'
       }
-    },*/
+    },
  
+    includes: {
+      build: {
+        flatten: true,
+        src: 'src/jade/index.jade',
+        dest: 'build/',
+        options: {
+          includePath: 'src/jade/partials'
+        }
+      }
+    },
+
+    jade: {
+      build: {
+        expand: true,
+        flatten: true,
+        src: 'src/jade/index.jade',
+        dest: 'www/',
+        ext: '.html'
+      }
+    },
+
     watch: {
       options: {
         livereload: true
@@ -45,7 +91,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
  
-  grunt.registerTask('build', ['sass']);
-  grunt.registerTask('default', ['sass', 'watch']);
+  grunt.registerTask('build', ['concat', 'sass', 'copy', 'includes', 'jade']);
+  grunt.registerTask('default', ['build', 'watch']);
  
 }
