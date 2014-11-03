@@ -10,9 +10,10 @@ function suggestionsRequested(args) {
                 function (element, index, array) {
                     var name = element.name.toLocaleLowerCase();
                     if (name.indexOf(query) > -1){
-                        suggestionCollection.appendResultSuggestion(element.name, null, element.id, null, null);
+                        suggestionCollection.appendResultSuggestion(element.name, null, element.id, WinJS.UI.SearchBox.createResultSuggestionImage(element.image_thumb_url), null);
                     }
-                });
+                }
+            );
         }
     });
     args.detail.setPromise(promise);
