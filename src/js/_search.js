@@ -11,7 +11,8 @@ function suggestionsRequested(args) {
             data.searchResults.forEach(
                 function (element, index, array) {
                     if (element.name.substr(0, query.length).toLocaleLowerCase() === query) {
-                        suggestionCollection.appendQuerySuggestion(element.name);
+                        //suggestionCollection.appendQuerySuggestion(element.name);
+                        suggestionCollection.appendResultSuggestion(element.name, null, element.id, null, null);
                     }
                 });
         }
@@ -21,7 +22,8 @@ function suggestionsRequested(args) {
 
 function suggestionChosen(args) {
     //we chose a product, now let's do something with it
-    console.log(args)
+    console.log("id:" + args.detail.tag);
+    var productId = args.detail.tag;
 }
 
 function querySubmittedHandler(eventObject) {
