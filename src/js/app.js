@@ -28,6 +28,10 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        // pseudo-ready
+        setTimeout(function(){
+            app.onDeviceReady();
+        }, 500)
     },
     // deviceready Event Handler
     //
@@ -35,24 +39,18 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         console.log('device ready')
-        app.receivedEvent('deviceready');
-        var searchBox = document.getElementById("searchBoxId");
-        searchBox.addEventListener("suggestionsrequested", suggestionsRequestedHandler);
-        searchBox.addEventListener("querysubmitted", querySubmittedHandler);
-
-        // winjs init
-        WinJS.UI.processAll();
+        app.receivedEvent('app');
+        services.bootstrapUI();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+        //var listeningElement = parentElement.querySelector('.listening');
+        //var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+        //listeningElement.setAttribute('style', 'display:none;');
+        //receivedElement.setAttribute('style', 'display:block;');
 
-        console.log('Received Event: ' + id);
     }
 };
 

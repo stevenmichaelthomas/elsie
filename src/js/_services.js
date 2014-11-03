@@ -36,3 +36,50 @@ services.getLocation = function(){
 services.returnLocation = function(){
 	return data.location;
 }
+
+services.getNearestStores = function(){
+	var options = {
+	    url: 'http://lcboapi.com/stores?lat=' + data.location.latitude + '&lon=' + data.location.longitude,
+	    type: 'GET'
+	};
+	WinJS.xhr(options).done(
+	    function (result) {
+	        data.stores = result.result;
+	        services.getNearestStores();
+	    },
+	    function (result) {
+	    	 //error
+	    }
+	);
+}
+
+services.searchForProduct = function(product){
+	//master for a search process
+	if (data.stores){
+		for (i = 0; i < data.stores.length; i++) {
+			var options = {
+			    url: 'http://lcboapi.com/stores/' + data.stores[i].id + '/products',
+			    type: 'GET'
+			};
+			WinJS.xhr(options).done(
+			    function (result) {
+			        console.log(result)
+			    },
+			    function (result) {
+			    	 //error
+			    }
+			);
+		}
+	} else {
+		//do something to tell the user that we haven't got their location yet
+	}
+}
+
+services.bootstrapUI = function(){
+	var searchBox = document.getElementById("searchBoxId");
+    searchBox.addEventListener("suggestionsrequested", suggestionsRequestedHandler);
+    searchBox.addEventListener("querysubmitted", querySubmittedHandler);
+
+    // winjs init
+    WinJS.UI.processAll();
+}
