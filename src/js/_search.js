@@ -1,5 +1,3 @@
-var statusEl = document.getElementById("status");
-
 function suggestionsRequested(args) {
     var query = args.detail.queryText.toLocaleLowerCase();
     var promise = services.searchProducts(query);
@@ -24,7 +22,11 @@ function suggestionChosen(args) {
     //we chose a product, now let's do something with it
     var productId = args.detail.tag;
     services.findNearbyStoresWithProduct(productId).then(function(){
-        console.log(data.nearbyStoresWithProduct);
+        //console.log(data.nearbyStoresWithProduct);
+        var resultEl = document.getElementById("results");
+        resultEl.innerHTML += "Nearest store: " + data.nearbyStoresWithProduct[0].name;
+        resultEl.innerHTML += "<br>";
+        resultEl.innerHTML += "Products remaining: " + data.nearbyStoresWithProduct[0].quantity;
     });
 }
 
