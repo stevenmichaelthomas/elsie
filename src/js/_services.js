@@ -72,6 +72,26 @@ services.searchProducts = function(query){
 	});
 }
 
+services.findNearbyStoresWithProduct = function(id){
+	data.selectedProduct = id;
+	return new WinJS.Promise(function (complete) {
+		if (data.location && data.selectedProduct){
+			var options = {
+			    url: 'http://lcboapi.com/products/' + data.selectedProduct + '/stores?lat=' + data.location.latitude + '&lon=' + data.location.longitude,
+			    type: 'GET',
+			    responseType: 'json'
+			};
+			WinJS.xhr(options).done(
+			    function (result) {
+			    	 var json = result.response;
+			        data.nearbyStoresWithProduct = json.result;
+			        complete(data.searchResults);
+			    }
+			);
+		}
+	});
+}
+
 services.bootstrapUI = function(){
 	var searchBox = document.getElementById("searchBoxId");
    	searchBox.addEventListener("suggestionsrequested", suggestionsRequested);

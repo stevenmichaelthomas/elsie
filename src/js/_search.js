@@ -22,33 +22,16 @@ function suggestionsRequested(args) {
 
 function suggestionChosen(args) {
     //we chose a product, now let's do something with it
-    console.log("id:" + args.detail.tag);
     var productId = args.detail.tag;
+    services.findNearbyStoresWithProduct(productId).then(function(){
+        console.log(data.nearbyStoresWithProduct);
+    });
 }
 
 function querySubmittedHandler(eventObject) {
     var queryText = eventObject.detail.queryText;
     WinJS.log && WinJS.log(queryText, "sample", "status");
 }
-
-// example
-/*
-function onQuerySubmitted(e)
-  {
-    var queryText = e.detail.queryText;
-
-    var promise = FlickrSearchLibrary.FlickrSearcher.searchAsync(queryText);
-
-    promise.done(
-      function (results)
-      {
-        var bindingList = new WinJS.Binding.List(results);
-        var listControl = document.getElementById('listView').winControl;
-        listControl.itemDataSource = bindingList.dataSource;
-      }
-    );
-  }
-*/
 
 WinJS.log = function (msg, source, type) {
     if (type === "status") {
