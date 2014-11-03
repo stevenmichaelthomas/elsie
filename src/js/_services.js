@@ -74,7 +74,8 @@ services.searchProducts = function(query){
 
 services.bootstrapUI = function(){
 	var searchBox = document.getElementById("searchBoxId");
-    searchBox.addEventListener("suggestionsrequested", suggestionsRequestedHandler);
+    searchBox.addEventListener("suggestionsrequested", suggestionsRequested);
+    searchBox.addEventListener("resultsuggestionchosen", suggestionChosen);
     //searchBox.addEventListener("querysubmitted", querySubmittedHandler);
 
     // winjs init

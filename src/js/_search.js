@@ -1,6 +1,6 @@
 var statusEl = document.getElementById("status");
 
-function suggestionsRequestedHandler(args) {
+function suggestionsRequested(args) {
     var query = args.detail.queryText.toLocaleLowerCase();
     var promise = services.searchProducts(query);
     promise.done(function(){
@@ -17,6 +17,11 @@ function suggestionsRequestedHandler(args) {
         }
     });
     args.detail.setPromise(promise);
+}
+
+function suggestionChosen(args) {
+    //we chose a product, now let's do something with it
+    console.log(args)
 }
 
 function querySubmittedHandler(eventObject) {
