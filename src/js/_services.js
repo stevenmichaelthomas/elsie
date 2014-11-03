@@ -53,32 +53,29 @@ services.getNearestStores = function(){
 	);
 }
 
-services.searchForProduct = function(product){
-	//master for a search process
-	if (data.stores){
-		for (i = 0; i < data.stores.length; i++) {
+services.searchProducts = function(query){
+	return new WinJS.Promise(function (complete) {
+		if (data.location){
 			var options = {
-			    url: 'http://lcboapi.com/stores/' + data.stores[i].id + '/products',
-			    type: 'GET'
+			    url: 'http://lcboapi.com/products?q=' + query,
+			    type: 'GET',
+			    responseType: 'json'
 			};
 			WinJS.xhr(options).done(
 			    function (result) {
-			        console.log(result)
-			    },
-			    function (result) {
-			    	 //error
+			    	 var json = result.response;
+			        data.searchResults = json.result;
+			        complete(data.searchResults);
 			    }
 			);
 		}
-	} else {
-		//do something to tell the user that we haven't got their location yet
-	}
+	});
 }
 
 services.bootstrapUI = function(){
 	var searchBox = document.getElementById("searchBoxId");
     searchBox.addEventListener("suggestionsrequested", suggestionsRequestedHandler);
-    searchBox.addEventListener("querysubmitted", querySubmittedHandler);
+    //searchBox.addEventListener("querysubmitted", querySubmittedHandler);
 
     // winjs init
     WinJS.UI.processAll();
