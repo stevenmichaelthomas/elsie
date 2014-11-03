@@ -7,7 +7,6 @@ Elsie is a Windows frontend to a lovely LCBO API (http://lcboapi.com/).
 
 * `$ npm install`
 * `$ grunt build`
-* 
 
 ## Running ##
 
