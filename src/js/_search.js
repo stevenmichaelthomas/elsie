@@ -8,8 +8,8 @@ function suggestionsRequested(args) {
         if (query.length > 0 && data.searchResults) {
             data.searchResults.forEach(
                 function (element, index, array) {
-                    if (element.name.substr(0, query.length).toLocaleLowerCase() === query) {
-                        //suggestionCollection.appendQuerySuggestion(element.name);
+                    var name = element.name.toLocaleLowerCase();
+                    if (name.indexOf(query) > -1){
                         suggestionCollection.appendResultSuggestion(element.name, null, element.id, null, null);
                     }
                 });
