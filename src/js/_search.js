@@ -31,7 +31,7 @@ function suggestionChosen(args) {
         WinJS.Namespace.define("NearbyStoresWithProduct", storesList);
         var resultsEl = document.getElementById("storeResults");
         resultsEl.winControl.itemDataSource = NearbyStoresWithProduct.itemList.dataSource;
-
+        ui.searchMode();
     });
 }
 

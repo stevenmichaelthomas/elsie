@@ -86,5 +86,10 @@ services.bootstrapUI = function(){
 }
 
 services.processUI = function(){
-	WinJS.UI.processAll();
+	WinJS.UI.processAll().then(function(){
+		var height = window.innerHeight - 32;
+		//var width = window.innerWidth - 20;
+		document.getElementById("storeResults").style.height = height + "px";
+		//document.getElementById("searchBoxId").style.width = width + "px";
+	});
 }

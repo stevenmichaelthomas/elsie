@@ -1,14 +1,24 @@
+#brand {
+    &.tucked {
+        text-transform: uppercase;
+    }
+}
+
 .win-searchbox {
-	//margin: 50px auto;
+    margin: 150px 10px 10px;
+    transition: margin 0.3s;
+    width: auto;
+    &.win-searchbox-input-focus {
+        margin-top: 10px;
+    }
+}
+
+.win-searchbox-suggestion-result-text {
     width: auto;
 }
 
 .win-searchbox-suggestion-result-detailed-text > span {
 	opacity: 0.5;
-}
-
-.win-listview {
-    height: auto;
 }
 
 .listItem {
