@@ -1,7 +1,31 @@
 .win-searchbox {
-	margin: 50px auto;
+	//margin: 50px auto;
+    width: auto;
 }
 
 .win-searchbox-suggestion-result-detailed-text > span {
 	opacity: 0.5;
+}
+
+.win-listview {
+    height: auto;
+}
+
+.listItem {
+    width: 100%;
+    height: 70px;
+    padding: 5px;
+    overflow: hidden;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    img.listItem-Image {
+        width: 60px;
+        height: 60px;
+        margin: 5px;
+        margin-right:20px;
+    }
+    .listItem-Detail {
+        margin: 5px;
+    }
 }
