@@ -6,14 +6,6 @@ services.getLocation = function(){
 	var response;
 
 	var onSuccess = function(position) {
-	    /*console.log('Latitude: '          + position.coords.latitude          + '\n' +
-	          'Longitude: '         + position.coords.longitude         + '\n' +
-	          'Altitude: '          + position.coords.altitude          + '\n' +
-	          'Accuracy: '          + position.coords.accuracy          + '\n' +
-	          'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-	          'Heading: '           + position.coords.heading           + '\n' +
-	          'Speed: '             + position.coords.speed             + '\n' +
-	          'Timestamp: '         + position.timestamp                + '\n');*/
 	    var location = {
 	    	latitude: position.coords.latitude,
 	    	longitude: position.coords.longitude
@@ -31,10 +23,6 @@ services.getLocation = function(){
 
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
-}
-
-services.returnLocation = function(){
-	return data.location;
 }
 
 services.getNearestStores = function(){
@@ -98,6 +86,9 @@ services.bootstrapUI = function(){
 	searchBox.addEventListener("resultsuggestionchosen", suggestionChosen);
 	//searchBox.addEventListener("querysubmitted", querySubmittedHandler);
 
-    // winjs init
-    WinJS.UI.processAll();
+    services.processUI();
+}
+
+services.processUI = function(){
+	WinJS.UI.processAll();
 }

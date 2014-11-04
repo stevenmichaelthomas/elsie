@@ -10,7 +10,7 @@ function suggestionsRequested(args) {
                 function (element, index, array) {
                     var name = element.name.toLocaleLowerCase();
                     if (name.indexOf(query) > -1){
-                        suggestionCollection.appendResultSuggestion(element.name, null, element.id, WinJS.UI.SearchBox.createResultSuggestionImage(element.image_thumb_url), null);
+                        suggestionCollection.appendResultSuggestion(element.name, element.package, element.id, WinJS.UI.SearchBox.createResultSuggestionImage(element.image_thumb_url), null);
                     }
                 }
             );
@@ -23,17 +23,23 @@ function suggestionChosen(args) {
     //we chose a product, now let's do something with it
     var productId = args.detail.tag;
     services.findNearbyStoresWithProduct(productId).then(function(){
-        //console.log(data.nearbyStoresWithProduct);
-        var resultEl = document.getElementById("results");
-        resultEl.innerHTML += "Nearest store: " + data.nearbyStoresWithProduct[0].name;
-        resultEl.innerHTML += "<br>";
-        resultEl.innerHTML += "Products remaining: " + data.nearbyStoresWithProduct[0].quantity;
+        var itemList = new WinJS.Binding.List(data.nearbyStoresWithProduct);
+        var storesList =
+            {
+                itemList: itemList
+            };
+        WinJS.Namespace.define("NearbyStoresWithProduct", storesList);
+        var resultsEl = document.getElementById("storeResults");
+        resultsEl.winControl.itemDataSource = NearbyStoresWithProduct.itemList.dataSource;
+
     });
 }
 
-function querySubmittedHandler(eventObject) {
+function querySubmitted(eventObject) {
     var queryText = eventObject.detail.queryText;
     WinJS.log && WinJS.log(queryText, "sample", "status");
+
+    var resultList = new WinJS.Binding.List(data.searchResults);
 }
 
 WinJS.log = function (msg, source, type) {

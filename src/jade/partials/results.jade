@@ -1,1 +1,6 @@
-#results
+#storeResultsTemplate(data-win-control="WinJS.Binding.Template")
+    .store
+        span(data-win-bind="innerText:name")
+        span(data-win-bind="innerText:address_line_1")
+
+#storeResults(data-win-control="WinJS.UI.ListView",data-win-options="{itemTemplate: select('#storeResultsTemplate'), layout : {type: WinJS.UI.ListLayout}}")
