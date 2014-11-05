@@ -1,16 +1,19 @@
 #brand {
+    margin: 150px 10px 0;
     &.tucked {
+        margin-top: 10px;
         text-transform: uppercase;
     }
 }
 
 .win-searchbox {
-    margin: 150px 10px 10px;
+    margin: 10px;
     transition: margin 0.3s;
     width: auto;
-    &.win-searchbox-input-focus {
-        margin-top: 10px;
-    }
+}
+
+.win-searchbox-suggestion-selected {
+    color: white;
 }
 
 .win-searchbox-suggestion-result-text {
@@ -37,5 +40,17 @@
     }
     .listItem-Detail {
         margin: 5px;
+    }
+}
+
+.expandedProduct {
+    .expandedProduct-ImageContainer {
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+    }
+    .expandedProduct-Image {
+        width: 100%;
+        margin-top: -50%;
     }
 }

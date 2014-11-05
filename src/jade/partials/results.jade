@@ -4,4 +4,12 @@
 			h4(data-win-bind="textContent:name")
 			h6(data-win-bind="textContent:address_line_1")
 
-#storeResults(data-win-control="WinJS.UI.ListView",data-win-options="{itemTemplate: select('#storeResultsTemplate'), layout : {type: WinJS.UI.ListLayout}}")
+#productPivot(data-win-control="WinJS.UI.Pivot",data-win-options="{ title: 'NAV', selectedIndex: 1 }")
+	.listviewpivotitem(data-win-control="WinJS.UI.PivotItem",data-win-options="{ 'header': 'similar' }")
+		span sup
+	.listviewpivotitem(data-win-control="WinJS.UI.PivotItem",data-win-options="{ 'header': 'details' }")
+		#storeResults(data-win-control="WinJS.UI.ListView",data-win-options="{itemTemplate: select('#storeResultsTemplate'), layout : {type: WinJS.UI.ListLayout}, selectionMode: 'none'}")
+
+//.expandedProduct(data-win-control="WinJS.UI.ViewBox",data-win-options="{}")
+			.expandedProduct-ImageContainer
+				img(src="#",class="expandedProduct-Image",data-win-bind="src: data.selectedProduct.image_url")

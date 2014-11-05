@@ -29,7 +29,7 @@ services.getNearestStores = function(){
 	WinJS.xhr(options).done(
 		function (result) {
 			data.stores = JSON.parse(result.responseText).result;
-			complete(data.stores);
+			complete();
 		}
 	);
 }
@@ -44,7 +44,7 @@ services.searchProducts = function(query){
 			WinJS.xhr(options).done(
 				function (result) {
 					data.searchResults = JSON.parse(result.responseText).result;
-					complete(data.searchResults);
+					complete();
 				}
 			);
 		}
@@ -52,17 +52,19 @@ services.searchProducts = function(query){
 }
 
 services.findNearbyStoresWithProduct = function(id){
-	data.selectedProduct = id;
+	data.selectedProductId = id;
 	return new WinJS.Promise(function (complete) {
-		if (data.location && data.selectedProduct){
+		if (data.location && data.selectedProductId){
 			var options = {
-				url: 'http://lcboapi.com/products/' + data.selectedProduct + '/stores?lat=' + data.location.latitude + '&lon=' + data.location.longitude,
+				url: 'http://lcboapi.com/products/' + data.selectedProductId + '/stores?lat=' + data.location.latitude + '&lon=' + data.location.longitude,
 				type: 'GET'
 			};
 			WinJS.xhr(options).done(
 				function (result) {
-					data.nearbyStoresWithProduct = JSON.parse(result.responseText).result;
-					complete(data.nearbyStoresWithProduct);
+					var returnedBlob = JSON.parse(result.responseText);
+					data.selectedProduct = returnedBlob.product;
+					data.nearbyStoresWithProduct = returnedBlob.result;
+					complete();
 				}
 			);
 		}
