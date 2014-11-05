@@ -15,15 +15,11 @@ module.exports = function(grunt) {
     },
  
     sass: {
-      options: {
-        includePaths: ['node_modules/foundation/scss']
-      },
       dist: {
         options: {
           outputStyle: 'compressed'
         },
         files: {
-          'www/css/foundation.css': 'src/scss/foundation.scss',
           'www/css/app.css': 'src/scss/app.scss'
         }        
       }

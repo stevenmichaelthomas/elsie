@@ -40,7 +40,7 @@ var app = {
     onDeviceReady: function() {
         console.log('device ready')
         app.receivedEvent('app');
-        services.bootstrapUI();
+        ui.init();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

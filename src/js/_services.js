@@ -27,12 +27,9 @@ services.getNearestStores = function(){
 		type: 'GET'
 	};
 	WinJS.xhr(options).done(
-	    function (result) {
-			data.stores = result.result;
-			services.getNearestStores();
-		},
 		function (result) {
-			//error
+			data.stores = JSON.parse(result.responseText).result;
+			complete(data.stores);
 		}
 	);
 }
@@ -42,13 +39,11 @@ services.searchProducts = function(query){
 		if (data.location){
 			var options = {
 				url: 'http://lcboapi.com/products?q=' + query,
-				type: 'GET',
-				//responseType: 'json'
+				type: 'GET'
 			};
 			WinJS.xhr(options).done(
 				function (result) {
 					data.searchResults = JSON.parse(result.responseText).result;
-					//console.log(JSON.stringify(data))
 					complete(data.searchResults);
 				}
 			);
@@ -62,34 +57,14 @@ services.findNearbyStoresWithProduct = function(id){
 		if (data.location && data.selectedProduct){
 			var options = {
 				url: 'http://lcboapi.com/products/' + data.selectedProduct + '/stores?lat=' + data.location.latitude + '&lon=' + data.location.longitude,
-				type: 'GET',
-				responseType: 'json'
+				type: 'GET'
 			};
 			WinJS.xhr(options).done(
 				function (result) {
-					var json = result.response;
-					data.nearbyStoresWithProduct = json.result;
-					complete(data.searchResults);
+					data.nearbyStoresWithProduct = JSON.parse(result.responseText).result;
+					complete(data.nearbyStoresWithProduct);
 				}
 			);
 		}
-	});
-}
-
-services.bootstrapUI = function(){
-	var searchBox = document.getElementById("searchBoxId");
-	searchBox.addEventListener("suggestionsrequested", suggestionsRequested);
-	searchBox.addEventListener("resultsuggestionchosen", suggestionChosen);
-	//searchBox.addEventListener("querysubmitted", querySubmittedHandler);
-
-	services.processUI();
-}
-
-services.processUI = function(){
-	WinJS.UI.processAll().then(function(){
-		var height = window.innerHeight - 32;
-		//var width = window.innerWidth - 20;
-		document.getElementById("storeResults").style.height = height + "px";
-		//document.getElementById("searchBoxId").style.width = width + "px";
 	});
 }

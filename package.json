@@ -1,9 +1,8 @@
 {
-  "name": "lcbo",
-  "version": "0.0.1",
+  "name": "elsie",
+  "version": "0.0.2",
   "description": "A Windows frontend to a beautiful LCBO API.",
   "dependencies": {
-    "foundation": "^4.2.1-1",
     "grunt": "~0.4.5",
     "grunt-contrib-concat": "^0.5.0",
     "grunt-contrib-copy": "~0.7.0",
@@ -23,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dougestey/lcbo.git"
+    "url": "https://github.com/dougestey/elsie.git"
   },
   "keywords": [
     "lcbo",
@@ -35,7 +34,7 @@
   "author": "Doug Estey",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dougestey/lcbo/issues"
+    "url": "https://github.com/dougestey/elsie/issues"
   },
-  "homepage": "https://github.com/dougestey/lcbo"
+  "homepage": "https://github.com/dougestey/elsie"
 }
