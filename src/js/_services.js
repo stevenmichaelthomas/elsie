@@ -43,12 +43,12 @@ services.searchProducts = function(query){
 			var options = {
 				url: 'http://lcboapi.com/products?q=' + query,
 				type: 'GET',
-				responseType: 'json'
+				//responseType: 'json'
 			};
 			WinJS.xhr(options).done(
 				function (result) {
-					var json = result.response;
-					data.searchResults = json.result;
+					data.searchResults = JSON.parse(result.responseText).result;
+					//console.log(JSON.stringify(data))
 					complete(data.searchResults);
 				}
 			);
