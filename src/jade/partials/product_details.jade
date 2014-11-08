@@ -1,18 +1,18 @@
 .details
-  .image
+  .image#productImage
     img(data-win-bind="src: data.selectedProduct.image_url")
   .glance
     .fact
-      span.value.win-type-xx-large(data-win-bind="innerText: data.selectedProduct.alcohol_content")
+      span.value.win-type-x-large(data-win-bind="innerText: data.selectedProduct.alcohol_content")
       br
       span.key.win-type-large ABV
     .fact
-      span.value.win-type-xx-large(data-win-bind="innerText: data.selectedProduct.package_unit_volume_in_milliliters")
+      span.value.win-type-x-large(data-win-bind="innerText: data.selectedProduct.package_unit_volume_in_milliliters")
       br
       span.key.win-type-large 
         | ML X 
         span(data-win-bind="innerText: data.selectedProduct.total_package_units")
     .fact
-      span.value.win-type-xx-large(data-win-bind="innerText: data.selectedProduct.price_in_cents")
+      span.value.win-type-x-large(data-win-bind="innerText: data.selectedProduct.price_in_cents")
       br
       span.key.win-type-large Price

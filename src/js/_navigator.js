@@ -63,8 +63,8 @@ WinJS.Namespace.define("Application", {
                 element.style.position = "absolute";
                 element.style.visibility = "hidden";
                 element.style.width = "100%";
-                element.style.height = "100%";
-                return element;
+                element.style.height = "99%";
+                return element;               
             },
 
             // Retrieves a list of animation elements for the current page.

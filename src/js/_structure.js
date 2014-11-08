@@ -6,7 +6,7 @@ structure.productConstructor = WinJS.UI.Pages.define("./product.html", {
     // the resulting elements have been parented to the DOM. 
     ready: function (element, options) {
     	 console.log('product page is go!')
-        WinJS.Binding.processAll()
+        WinJS.Binding.processAll();
     }
 
 });
