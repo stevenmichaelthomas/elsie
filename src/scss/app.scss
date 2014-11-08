@@ -7,6 +7,13 @@
     }
 }
 
+.elsie-title {
+    font-size: 14pt;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+// win-searchbox
 .win-searchbox {
     margin: 2%;
     transition: 0.5s;
@@ -30,6 +37,11 @@
 	opacity: 0.5;
 }
 
+// win-pivot
+.win-pivot-title {
+    text-transform: uppercase;
+}
+
 .listItem {
     width: 100%;
     height: 70px;
@@ -49,14 +61,13 @@
     }
 }
 
-.expandedProduct {
-    .expandedProduct-ImageContainer {
-        width: 100%;
-        height: 300px;
+.details {
+    .image {
+        width: 30%;
+        max-height: 300px;
         overflow: hidden;
-    }
-    .expandedProduct-Image {
-        width: 100%;
-        margin-top: -50%;
+        img {
+            width: 100%;
+        }
     }
 }
