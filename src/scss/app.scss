@@ -11,6 +11,7 @@
     font-size: 14pt;
     font-weight: 600;
     text-transform: uppercase;
+    clear: both;
 }
 
 // win-searchbox
@@ -66,8 +67,24 @@
         width: 30%;
         max-height: 300px;
         overflow: hidden;
+        float: left;
         img {
             width: 100%;
+        }
+    }
+    .glance {
+        width: 65%;
+        margin-left: 5%;
+        float: left;
+        .fact {
+            margin-top: 10px;
+            width: 50%;
+            float: left;
+            .value,
+            .key {
+                text-transform: uppercase;
+                font-weight: 300;
+            }
         }
     }
 }
