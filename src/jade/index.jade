@@ -13,7 +13,4 @@ html
     script(src='js/lib/WinJS.js')
     script(src='js/app.js')
   body
-    #app
-        include partials/brand.jade
-        include partials/search.jade
-        include partials/results.jade
+    #app(data-win-control="Application.PageControlNavigator",data-win-options="{home: './home.html', product: './product.html'}")

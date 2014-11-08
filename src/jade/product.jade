@@ -1,0 +1,10 @@
+doctype
+html
+  body#product
+    #productPivot(data-win-control="WinJS.UI.Pivot",data-win-options="{ title: 'NAV', selectedIndex: 1 }")
+      .listviewpivotitem(data-win-control="WinJS.UI.PivotItem",data-win-options="{ 'header': 'similar' }")
+        include partials/product_similar.jade
+      .listviewpivotitem(data-win-control="WinJS.UI.PivotItem",data-win-options="{ 'header': 'details' }")
+        //div(data-win-control="structure.productConstructor")
+        include partials/product_details.jade
+        include partials/product_stores.jade

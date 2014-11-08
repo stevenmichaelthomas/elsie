@@ -33,14 +33,7 @@ search.selectSuggestion = function(args) {
                 itemList: itemList
             };
         WinJS.Namespace.define("NearbyStoresWithProduct", storesList);
-
-        // bind List object to the listView control
-        var resultsEl = document.getElementById("storeResults");
-        resultsEl.winControl.itemDataSource = NearbyStoresWithProduct.itemList.dataSource;
-
-        var pivotEl = document.getElementById("productPivot");
-        pivotEl.winControl.title = data.selectedProduct.name;
-
+        WinJS.Navigation.navigate("./product.html");
     });
 }
 
