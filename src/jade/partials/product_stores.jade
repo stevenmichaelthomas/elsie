@@ -4,4 +4,4 @@
       h4(data-win-bind="textContent:name")
       h6(data-win-bind="textContent:address_line_1")
 
-#storeResults(data-win-control="WinJS.UI.ListView",data-win-options="{itemTemplate: select('#storeResultsTemplate'), layout : {type: WinJS.UI.ListLayout}, selectionMode: 'none'}")
+#storeResults(data-win-control="WinJS.UI.ListView",data-win-options="{itemTemplate: select('#storeResultsTemplate'), layout : {type: WinJS.UI.ListLayout}, selectionMode: 'none', itemDataSource: NearbyStoresWithProduct.itemList.dataSource}")

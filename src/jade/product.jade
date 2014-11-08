@@ -1,7 +1,7 @@
 doctype
 html
   body#product
-    #productPivot(data-win-control="WinJS.UI.Pivot",data-win-options="{ title: 'NAV', selectedIndex: 1 }")
+    #productPivot(data-win-control="WinJS.UI.Pivot",data-win-options="{ title: data.selectedProduct.name, selectedIndex: 1 }")
       .listviewpivotitem(data-win-control="WinJS.UI.PivotItem",data-win-options="{ 'header': 'similar' }")
         include partials/product_similar.jade
       .listviewpivotitem(data-win-control="WinJS.UI.PivotItem",data-win-options="{ 'header': 'details' }")

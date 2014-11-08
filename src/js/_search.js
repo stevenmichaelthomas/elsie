@@ -26,12 +26,11 @@ search.selectSuggestion = function(args) {
     //we chose a product, now let's do something with it
     var productId = args.detail.tag;
     services.findNearbyStoresWithProduct(productId).then(function(){
-        // create a List object
+         // create a List object
         var itemList = new WinJS.Binding.List(data.nearbyStoresWithProduct);
-        var storesList =
-            {
-                itemList: itemList
-            };
+        var storesList = {
+            itemList: itemList
+        };
         WinJS.Namespace.define("NearbyStoresWithProduct", storesList);
         WinJS.Navigation.navigate("./product.html");
     });

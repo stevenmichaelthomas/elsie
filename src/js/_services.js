@@ -52,7 +52,9 @@ services.searchProducts = function(query){
 }
 
 services.findNearbyStoresWithProduct = function(id){
+	// this is a bit redundant
 	data.selectedProductId = id;
+	
 	return new WinJS.Promise(function (complete) {
 		if (data.location && data.selectedProductId){
 			var options = {
