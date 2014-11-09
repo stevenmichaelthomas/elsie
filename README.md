@@ -8,6 +8,7 @@ A simple v1 release is slated for later this year.
 
 * `$ npm install`
 * `$ grunt build`
+* `$ cordova platform add wp8`
 
 ## Running ##
 
