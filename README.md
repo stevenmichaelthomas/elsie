@@ -8,11 +8,11 @@ A simple v1 release is slated for later this year.
 
 * `$ npm install`
 * `$ grunt build`
-* `$ cordova platform add wp8`
+* `$ cordova platform add windows`
 
 ## Running ##
 
-* `$ cordova emulate wp8`
+* `$ cordova emulate windows --phone` 
 
 Deploy to a WP 8.1 phone using the Visual Studio project created by Cordova.
 
