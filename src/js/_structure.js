@@ -13,8 +13,14 @@ structure.productConstructor = WinJS.UI.Pages.define("./product.html", {
 
 structure.homeConstructor = WinJS.UI.Pages.define("./home.html", {
     ready: function (element, options) {
-    	 console.log('home page is go!')
-        var searchBox = document.getElementById("searchBoxId");
+    	console.log('home page is go!');
+        var searchBoxOptions = {
+            chooseSuggestionOnEnter: true, 
+            focusOnKeyboardInput: true, 
+            placeholderText: 'Search for a product'
+        };
+        var searchBox = new WinJS.UI.SearchBox(document.getElementById("searchBoxContainer"), searchBoxOptions);
+        //var searchBox = document.getElementById("searchBoxId");
         searchBox.addEventListener("suggestionsrequested", search.requestSuggestions);
         searchBox.addEventListener("resultsuggestionchosen", search.selectSuggestion);
         //searchBox.addEventListener("querysubmitted", search.submitQuery);
