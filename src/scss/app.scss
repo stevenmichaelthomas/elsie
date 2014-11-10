@@ -1,6 +1,13 @@
 #brand {
     //margin: 150px 10px 0;
-    padding: 10px;
+    background: url('../img/logo.png') no-repeat;
+    background-size: 163px 109px;
+    background-position: center top;
+    width: 75%;
+    min-height: 109px;
+    margin: 30% auto;
+    padding-top: 109px;
+    text-align: center;
     &.tucked {
         margin-top: 10px;
         text-transform: uppercase;

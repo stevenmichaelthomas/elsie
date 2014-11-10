@@ -40,6 +40,13 @@ module.exports = function(grunt) {
         src: ['winjs/fonts/*.ttf'],
         dest: 'www/css/fonts'
       },
+      img: {
+        expand: true,
+        flatten: true,
+        cwd: 'src/img',
+        src: ['*'],
+        dest: 'www/img'
+      },
       js: {
         expand: true,
         flatten: true,
