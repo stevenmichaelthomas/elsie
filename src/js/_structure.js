@@ -20,10 +20,14 @@
             var searchBox = document.getElementById("searchBoxId");
             searchBox.addEventListener("keyup", Elsie.Search.requestSuggestions);
             searchBox.addEventListener("focus", function(){
-                document.getElementById("searchBoxContainer").classList.add("win-searchbox-focus")
+                document.getElementById("searchBoxContainer").classList.add("win-searchbox-focus");
+                document.getElementById("brand").style.display = "none";
             });
             searchBox.addEventListener("blur", function(){
-                document.getElementById("searchBoxContainer").classList.remove("win-searchbox-focus")
+                if (!Elsie.Data.searchResults){
+                    document.getElementById("brand").style.display = "block";
+                    document.getElementById("searchBoxContainer").classList.remove("win-searchbox-focus");
+                }
             });
             //searchBox.addEventListener("resultsuggestionchosen", search.selectSuggestion);
         },
