@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
     "use strict";
 
     var nav = WinJS.Navigation;
@@ -24,11 +24,6 @@
 
                 addRemovableEventListener(nav, 'navigating', this._navigating.bind(this), false);
                 addRemovableEventListener(nav, 'navigated', this._navigated.bind(this), false);
-                // Event listener for resource context changes.
-                // If app resources get localized or variants exist for high-contrast 
-                // modes or scales, then the contextChanged event will occur at runtime 
-                // when language, scale, or high contrast changes. 
-                addRemovableEventListener(WinJS.Resources, "contextchanged", this._contextChanged.bind(this), false);
 
                 window.onresize = this._resized.bind(this);
 
@@ -64,20 +59,6 @@
                     this._eventHandlerRemover = null;
                 },
 
-                _contextChanged: function (e) {
-                    /// <summary>
-                    /// Responds to resource context changes and calls page-specific 
-                    /// implementations of updateResources to reload app resources.
-                    /// </summary>
-                    if (this.pageControl && this.pageControl.updateResources) {
-                        // Could test e.detail.qualifier here to filter for changes on 
-                        // specific resource qualifiers (e.g., scale, language, contrast).
-                        // Instead, we pass e to the page-specific implementations of 
-                        // updateResources for finer control.
-                        this.pageControl.updateResources.call(this.pageControl, this.pageElement, e);
-                    }
-                },
-
                 // Creates a container for a new page to be loaded into.
                 _createPageElement: function () {
                     var element = document.createElement("div");
@@ -98,18 +79,12 @@
                     return this.pageElement;
                 },
 
-                // Occurs after navigation has taken place. 
                 _navigated: function () {
                     this.pageElement.style.visibility = "";
                     WinJS.UI.Animation.enterPage(this._getAnimationElements()).done();
-                    // Overload light dismiss and hide the nav and app bars on page navigation.
-                    var appBar = document.getElementById("appBar").winControl;
-                    appBar.hide();
-                    var navBar = document.getElementById("navBar").winControl;
-                    navBar.hide();
                 },
 
-                // Responds to navigation by adding new pages to the DOM.
+                // Responds to navigation by adding new pages to the DOM. 
                 _navigating: function (args) {
                     var newElement = this._createPageElement();
                     this._element.appendChild(newElement);
@@ -117,25 +92,30 @@
                     this._lastNavigationPromise.cancel();
 
                     var that = this;
+
+                    function cleanup() {
+                        if (that._element.childElementCount > 1) {
+                            var oldElement = that._element.firstElementChild;
+                            // Cleanup and remove previous element 
+                            if (oldElement.winControl) {
+                                if (oldElement.winControl.unload) {
+                                    oldElement.winControl.unload();
+                                }
+                                oldElement.winControl.dispose();
+                            }
+                            oldElement.parentNode.removeChild(oldElement);
+                            oldElement.innerText = "";
+                        }
+                    }
+
                     this._lastNavigationPromise = WinJS.Promise.as().then(function () {
                         return WinJS.UI.Pages.render(args.detail.location, newElement, args.detail.state);
-                    }).then(function parentElement(control) {
-                        var oldElement = that.pageElement;
-                        // Cleanup and remove previous element
-                        if (oldElement.winControl) {
-                            if (oldElement.winControl.unload) {
-                                oldElement.winControl.unload();
-                            }
-                            oldElement.winControl.dispose();
-                        }
-                        oldElement.parentNode.removeChild(oldElement);
-                        oldElement.innerText = "";
-                    });
+                    }).then(cleanup, cleanup);
 
                     args.detail.setPromise(this._lastNavigationPromise);
                 },
 
-                // Responds to resize events with call to updateLayout function
+                // Responds to resize events and call the updateLayout function
                 // on the currently loaded page.
                 _resized: function (args) {
                     if (this.pageControl && this.pageControl.updateLayout) {
