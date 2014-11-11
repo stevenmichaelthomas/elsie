@@ -18,8 +18,13 @@
         ready: function (element, options) {
         	console.log('home page is go!');
             var searchBox = document.getElementById("searchBoxId");
-            searchBox.addEventListener("change", Elsie.Search.requestSuggestions);
-            searchBox.addEventListener("focus", searchBox.classList.add("win-searchbox-input-focus"));
+            searchBox.addEventListener("keyup", Elsie.Search.requestSuggestions);
+            searchBox.addEventListener("focus", function(){
+                document.getElementById("searchBoxContainer").classList.add("win-searchbox-focus")
+            });
+            searchBox.addEventListener("blur", function(){
+                document.getElementById("searchBoxContainer").classList.remove("win-searchbox-focus")
+            });
             //searchBox.addEventListener("resultsuggestionchosen", search.selectSuggestion);
         },
     });
