@@ -1,11 +1,21 @@
-var app = WinJS.Application;
+(function () {
 
-var deviceReady = function(){
-    services.getLocation();
-    ui.init();
-    app.start();
-}
+    "use strict";
 
-var onLoad = function(){
-    document.addEventListener("deviceready", deviceReady);
-}
+    var app = WinJS.Application;
+
+    WinJS.Namespace.define("Elsie", {
+        Data: {}
+    });
+
+    var deviceReady = function(){
+        Elsie.Services.getLocation();
+        Elsie.Interface.initialize();
+        app.start();
+    }
+
+    window.onLoad = function(){
+        document.addEventListener("deviceready", deviceReady);
+    }
+    
+})();

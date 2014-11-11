@@ -5,9 +5,17 @@ html
     title Elsie
     link(rel='stylesheet', href='css/lib/ui-light.css')
     link(rel='stylesheet', href='css/app.css')
+    // WinJS 3.0.1
     script(src="js/lib/base.js")
     script(src="js/lib/ui.js")
+    // Cordova 4.0.0
     script(src='cordova.js')
+    // Elsie 0.2
+    script(src='js/_navigator.js')
+    script(src='js/_search.js')
+    script(src='js/_services.js')
+    script(src='js/_structure.js')
+    script(src='js/_ui.js')
     script(src='js/app.js')
-  body(onload="onLoad()")
+  body(onload="window.onLoad()")
     #app(data-win-control="Application.PageControlNavigator",data-win-options="{home: './home.html', product: './product.html'}")

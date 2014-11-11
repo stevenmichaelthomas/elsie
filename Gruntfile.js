@@ -3,16 +3,6 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-
-    concat: {
-      options: {
-        banner: '/* <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-      },
-      build: {
-        src: 'src/js/*.js',
-        dest: 'www/js/app.js'
-      }
-    },
  
     sass: {
       dist: {
@@ -47,12 +37,19 @@ module.exports = function(grunt) {
         src: ['*'],
         dest: 'www/img'
       },
-      js: {
+      winjs: {
         expand: true,
         flatten: true,
         cwd: 'node_modules',
         src: ['winjs/js/*.js'],
         dest: 'www/js/lib'
+      },
+      js: {
+        expand: true,
+        flatten: true,
+        cwd: 'src/js',
+        src: '*.js',
+        dest: 'www/js'
       }
     },
  
@@ -94,7 +91,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
  
-  grunt.registerTask('build', ['concat', 'sass', 'copy', 'includes', 'jade']);
+  grunt.registerTask('build', ['sass', 'copy', 'includes', 'jade']);
   grunt.registerTask('default', ['build', 'watch']);
  
 }
