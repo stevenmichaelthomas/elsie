@@ -1,3 +1,7 @@
+body {
+    font-size: 1.1em;
+}
+
 #brand {
     //margin: 150px 10px 0;
     background: url('../img/logo.png') no-repeat;
@@ -15,7 +19,7 @@
 }
 
 #productResults {
-    margin-top: 30px;
+    margin-top: 56px;
 }
 
 .elsie-title {
@@ -33,6 +37,7 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+    height: 56px;
 }
 
 .win-searchbox-focus {
