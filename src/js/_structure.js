@@ -29,7 +29,7 @@
                     document.getElementById("searchBoxContainer").classList.remove("win-searchbox-focus");
                 }
             });
-            var listView = document.getElementById("productResults");
+            var listView = document.getElementById("productResults").winControl;
             listView.addEventListener("iteminvoked", function(evt){
                     //console.log(evt.detail.itemPromise);
                     //console.log(evt.detail.itemPromise._value.data.id);

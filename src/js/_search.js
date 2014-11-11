@@ -4,6 +4,7 @@
     var search = {};
 
     search.requestSuggestions = function() {
+        console.log('requestSuggestions called')
         var query = document.getElementById("searchBoxId").value.toLocaleLowerCase();
         var promise = Elsie.Services.searchProducts(query);
         if (query.length > 0){
