@@ -19,10 +19,10 @@ structure.homeConstructor = WinJS.UI.Pages.define("./home.html", {
             focusOnKeyboardInput: true, 
             placeholderText: 'Search for a product'
         };
-        var searchBox = new WinJS.UI.SearchBox(document.getElementById("searchBoxContainer"), searchBoxOptions);
-        //var searchBox = document.getElementById("searchBoxId");
-        searchBox.addEventListener("suggestionsrequested", search.requestSuggestions);
-        searchBox.addEventListener("resultsuggestionchosen", search.selectSuggestion);
+        //var searchBox = new WinJS.UI.SearchBox(document.getElementById("searchBoxContainer"), searchBoxOptions);
+        var searchBox = document.getElementById("searchBoxId");
+        searchBox.addEventListener("change", search.requestSuggestions);
+        //searchBox.addEventListener("resultsuggestionchosen", search.selectSuggestion);
         //searchBox.addEventListener("querysubmitted", search.submitQuery);
     },
 });

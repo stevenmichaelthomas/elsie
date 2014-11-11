@@ -1,24 +1,31 @@
 var search = {};
 
-search.requestSuggestions = function(args) {
-    var query = args.detail.queryText.toLocaleLowerCase();
+search.requestSuggestions = function() {
+    var query = document.getElementById("searchBoxId").value.toLocaleLowerCase();
     var promise = services.searchProducts(query);
     promise.done(function(){
-        // retrieve the system-supplied suggestions (i.e. previous searches performed by this user)
-        var suggestionCollection = args.detail.searchSuggestionCollection;
+        var suggestionCollection = [];
         // check that the query is at least one character & that we have data from the API
         if (query.length > 0 && data.searchResults) {
             data.searchResults.forEach(
                 function (element, index, array) {
                     var name = element.name.toLocaleLowerCase();
                     if (name.indexOf(query) > -1){
-                        suggestionCollection.appendResultSuggestion(element.name, element.package, element.id, WinJS.UI.SearchBox.createResultSuggestionImage(element.image_thumb_url), null);
+                        //suggestionCollection.appendResultSuggestion(element.name, element.package, element.id, WinJS.UI.SearchBox.createResultSuggestionImage(element.image_thumb_url), null);
+                        var searchResult = {
+                            name: element.name,
+                            package: element.package,
+                            id: element.id,
+                            image: element.image_thumb_url
+                        };
+                        suggestionCollection.push(searchResult);
                     }
                 }
             );
+            console.log(suggestionCollection);
         }
     });
-    args.detail.setPromise(promise);
+    //args.detail.setPromise(promise);
     data.query = query;
 }
 
