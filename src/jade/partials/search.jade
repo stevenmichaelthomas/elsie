@@ -4,7 +4,7 @@
       h4(data-win-bind="textContent:name")
       h6(data-win-bind="textContent:package")
 
-#productResults(data-win-control="WinJS.UI.ListView",data-win-options="{itemTemplate: select('#productResultsTemplate'), layout : {type: WinJS.UI.ListLayout}}")
+#productResults(data-win-control="WinJS.UI.ListView",data-win-options="{itemTemplate: select('#productResultsTemplate'), selectionMode: 'single', tapBehavior: 'invokeOnly', layout: {type: WinJS.UI.ListLayout}}")
 
 .box
   #searchBoxContainer.win-searchbox

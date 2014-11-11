@@ -29,6 +29,15 @@
                     document.getElementById("searchBoxContainer").classList.remove("win-searchbox-focus");
                 }
             });
+            var listView = document.getElementById("productResults");
+            listView.addEventListener("iteminvoked", function(evt){
+                    //console.log(evt.detail.itemPromise);
+                    //console.log(evt.detail.itemPromise._value.data.id);
+                    //Elsie.Search.selectSuggestion(evt.detail.itemPromise._value.data.id);
+                    evt.detail.itemPromise.then(function itemInvoked(item) {
+                        Elsie.Search.selectSuggestion(item.data.id)
+                    });
+                });
             //searchBox.addEventListener("resultsuggestionchosen", search.selectSuggestion);
         },
     });

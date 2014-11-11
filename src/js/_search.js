@@ -17,18 +17,15 @@
                 //itemDataSource: SuggestedProducts.itemList.dataSource
                 var listView = document.getElementById("productResults").winControl;
                 listView.itemDataSource = SuggestedProducts.itemList.dataSource;
-                listView.addEventListener("iteminvoked", function(eventInfo){
-                    console.log(eventInfo);
-                });
             });
         }
         //args.detail.setPromise(promise);
         Elsie.Data.query = query;
     }
 
-    search.selectSuggestion = function(args) {
+    search.selectSuggestion = function(id) {
         //we chose a product, now let's do something with it
-        var productId = args.detail.tag;
+        var productId = id;
         Elsie.Services.findNearbyStoresWithProduct(productId).then(function(){
              // create a List object
             var itemList = new WinJS.Binding.List(Elsie.Data.nearbyStoresWithProduct);
