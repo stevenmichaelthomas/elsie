@@ -17,6 +17,9 @@
                 //itemDataSource: SuggestedProducts.itemList.dataSource
                 var listView = document.getElementById("productResults").winControl;
                 listView.itemDataSource = SuggestedProducts.itemList.dataSource;
+                listView.addEventListener("iteminvoked", function(eventInfo){
+                    console.log(eventInfo);
+                });
             });
         }
         //args.detail.setPromise(promise);
