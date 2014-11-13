@@ -37,6 +37,13 @@
         });
     }
 
+    search.selectStore = function(data) {
+        //we chose a store
+        var store = data;
+        Elsie.Data.selectedStore = store;
+        WinJS.Navigation.navigate("./store.html");
+    }
+
     WinJS.Namespace.define("Elsie", {
         Search: search
     });

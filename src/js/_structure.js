@@ -10,8 +10,20 @@
         ready: function (element, options) {
         	 console.log('product page is go!')
             WinJS.Binding.processAll();
+            var listView = element.querySelector("#storeResults");
+                listView.addEventListener("iteminvoked", function(evt){
+                    evt.detail.itemPromise.then(function itemInvoked(item) {
+                        Elsie.Search.selectStore(item.data);
+                    });
+                });
         }
+    });
 
+    structure.storeConstructor = WinJS.UI.Pages.define("./store.html", {
+        ready: function (element, options) {
+            console.log('store page is go!');
+            WinJS.Binding.processAll();
+        }
     });
 
     structure.homeConstructor = WinJS.UI.Pages.define("./home.html", {
@@ -19,25 +31,25 @@
         	console.log('home page is go!');
             var listHeight = window.innerHeight - 56;
             listHeight = listHeight + "px";
-            document.getElementById("productResults").style.height = listHeight;
-            var searchBox = document.getElementById("searchBoxId");
+            element.querySelector("#productResults").style.height = listHeight;
+            var searchBox = element.querySelector("#searchBoxId");
             searchBox.addEventListener("keyup", Elsie.Search.requestSuggestions);
             searchBox.addEventListener("focus", function(){
-                document.getElementById("searchBoxContainer").classList.add("win-searchbox-focus");
-                document.getElementById("brand").style.display = "none";
+                element.querySelector("#searchBoxContainer").classList.add("win-searchbox-focus");
+                element.querySelector("#brand").style.display = "none";
             });
             searchBox.addEventListener("blur", function(){
                 if (!Elsie.Data.searchResults){
-                    document.getElementById("brand").style.display = "block";
-                    document.getElementById("searchBoxContainer").classList.remove("win-searchbox-focus");
+                    element.querySelector("#brand").style.display = "block";
+                    element.querySelector("#searchBoxContainer").classList.remove("win-searchbox-focus");
                 }
             });
-            var listView = document.getElementById("productResults").winControl;
+            var listView = element.querySelector("#productResults");
             listView.addEventListener("iteminvoked", function(evt){
-                    evt.detail.itemPromise.then(function itemInvoked(item) {
-                        Elsie.Search.selectSuggestion(item.data.id);
-                    });
+                evt.detail.itemPromise.then(function itemInvoked(item) {
+                    Elsie.Search.selectSuggestion(item.data.id);
                 });
+            });
         },
     });
 

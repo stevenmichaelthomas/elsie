@@ -74,7 +74,28 @@
 			});
 		}
 
-	    WinJS.Namespace.define("Elsie", {
-	        Services: services
-	    });
+		services.storeDetails = function(id){
+			// this is a bit redundant
+			Elsie.Data.selectedStoreId = id;
+			
+			return new WinJS.Promise(function (complete) {
+				if (Elsie.Data.location && Elsie.Data.selectedProductId){
+					var options = {
+						url: 'http://lcboapi.com/stores/' + Elsie.Data.selectedStoreId,
+						type: 'GET'
+					};
+					WinJS.xhr(options).done(
+						function (result) {
+							var returnedBlob = JSON.parse(result.responseText);
+							Elsie.Data.selectedStore = returnedBlob.result;
+							complete();
+						}
+					);
+				}
+			});
+		}
+
+    WinJS.Namespace.define("Elsie", {
+        Services: services
+    });
 })();
