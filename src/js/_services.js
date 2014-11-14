@@ -38,6 +38,7 @@
 		}
 
 		services.searchProducts = function(query){
+			if (!query || query == "") return;
 			return new WinJS.Promise(function (complete) {
 					var options = {
 						url: 'http://lcboapi.com/products?q=' + query,

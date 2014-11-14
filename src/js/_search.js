@@ -2,11 +2,12 @@
     "use strict";
 
     var search = {};
+    var timer;
 
     search.requestSuggestions = function() {
-        var query = document.getElementById("searchBoxId").value.toLocaleLowerCase();
-        var promise = Elsie.Services.searchProducts(query);
-        if (query.length > 0){
+        clearTimeout(timer);
+        timer = setTimeout(function(){
+            var query = document.getElementById("searchBoxId").value.toLocaleLowerCase();
             Elsie.Services.searchProducts(query).then(function(){
                  // create a List object
                 var itemList = new WinJS.Binding.List(Elsie.Data.searchResults);
@@ -18,9 +19,9 @@
                 var listView = document.getElementById("productResults").winControl;
                 listView.itemDataSource = SuggestedProducts.itemList.dataSource;
             });
-        }
-        //args.detail.setPromise(promise);
-        Elsie.Data.query = query;
+            //args.detail.setPromise(promise);
+            Elsie.Data.query = query;
+        },500);
     }
 
     search.selectSuggestion = function(id) {
