@@ -2,6 +2,14 @@ body {
     font-size: 1.1em;
 }
 
+h4 {
+    font-size: 14pt;
+}
+
+h6 {
+    font-size: 11pt;
+}
+
 #brand {
     //margin: 150px 10px 0;
     background: url('../img/logo.png') no-repeat;
@@ -38,6 +46,9 @@ body {
     bottom: 0;
     width: 100%;
     height: 56px;
+    input {
+        font-size: 14pt;
+    }
 }
 
 .win-searchbox-focus {
