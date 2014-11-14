@@ -12,8 +12,9 @@ A simple v1 release is slated for later this year.
 
 ## Running ##
 
-* `$ cordova emulate windows --phone` 
+* `$ cordova build windows --phone` 
+* Run VS and run the app (on either an emulator or a phone.)
 
-Deploy to a WP 8.1 phone using the Visual Studio project created by Cordova.
+## Known Issues ##
 
-This README created on a lunch break.
+* Occasionally, the app can't get a location on a new project build. If this is the case, you need to remove and re-add the geolocation plugin.
