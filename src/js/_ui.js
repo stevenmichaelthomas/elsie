@@ -18,7 +18,23 @@
 
     };
 
-    ui.displayMessage = function(text, link){
+    ui.displayMessage = function(text, button){
+
+        var message = text;
+        var confirmCallback = function(buttonIndex){
+            if (buttonIndex == 2){
+                Elsie.Services.getLocation();
+            } else {
+                //do nothing
+            }
+        };
+        var title = "Location error";
+        var buttonLabels = ["Forget it","Retry"];
+        navigator.notification.confirm(message, confirmCallback, title, buttonLabels);
+
+    };
+
+    ui.displayMessageOld = function(text, link){
 
         ui.clearMessage();
 

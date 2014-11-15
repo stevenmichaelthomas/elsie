@@ -11,7 +11,6 @@
 			var response;
 
 			var onSuccess = function(position) {
-				Elsie.Interface.clearMessage();
 				var location = {
 					latitude: position.coords.latitude,
 					longitude: position.coords.longitude
@@ -20,8 +19,9 @@
 			};
 
 			function onError(error) {
-				var text = "Elsie couldn't get your location.";
-				var link = { label: "Retry", action: Elsie.Services.getLocation };
+				var text = "Elsie couldn't get your location. She won't be able to do much without it, unfortunately.";
+				var link = { label: "Retry", action: "getLocation" };
+				console.log('sending you to UI');
 				Elsie.Interface.displayMessage(text, link);
 			}
 
