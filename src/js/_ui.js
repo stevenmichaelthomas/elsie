@@ -6,6 +6,10 @@
 
     ui.initialize = function(){
 
+        if (typeof Windows !== 'undefined') {
+            Windows.UI.ViewManagement.StatusBar.getForCurrentView().showAsync();
+        }
+
     	WinJS.UI.processAll().then(function(){
     		WinJS.Navigation.navigate('./home.html');
     	});

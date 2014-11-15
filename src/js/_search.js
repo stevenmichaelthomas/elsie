@@ -6,6 +6,7 @@
 
     search.displayRecentProducts = function() {
         if (Elsie.Data.recentProducts){
+            document.getElementById("recent").style.display = "block";
             var itemList = new WinJS.Binding.List(Elsie.Data.recentProducts);
             var productsList = {
                 itemList: itemList

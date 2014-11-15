@@ -61,16 +61,16 @@
 		}
 
 		services.getRecentProducts = function(){
-			 if (localStorage["Elsie_recentProducts"]){
+			if (localStorage["Elsie_recentProducts"]){
 			 	var retrievedItmes = JSON.parse(localStorage["Elsie_recentProducts"]);
 			 	var endOfArr = retrievedItmes.length;
 			 	if (endOfArr >= 4){
 			 		var fourBack = endOfArr - 4;
 			 		retrievedItmes = retrievedItmes.slice(fourBack, endOfArr);
-			 		retrievedItmes.reverse();
 			 	}
-	     Elsie.Data.recentProducts = retrievedItmes;
-   		 }
+			 	retrievedItmes.reverse();
+	    	 	Elsie.Data.recentProducts = retrievedItmes;
+   			}
 		};
 
 		services.findNearbyStoresWithProduct = function(id){
@@ -102,6 +102,7 @@
 								favouriteProducts.push(Elsie.Data.selectedProduct);
 								localStorage["Elsie_recentProducts"] = JSON.stringify(favouriteProducts);
 							}
+							services.getRecentProducts();
 							complete();
 						}
 					);

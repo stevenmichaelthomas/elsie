@@ -11,14 +11,15 @@ h6 {
     background-size: 163px 109px;
     background-position: center top;
     width: 75%;
-    margin: 5% auto;
+    margin: 5% auto 10%;
     padding-top: 109px;
     text-align: center;
 }
 
 #recent {
-    width: 95%;
+    width: 90%;
     margin: 0 auto;
+    display: none;
 }
 
 #status {
@@ -26,7 +27,6 @@ h6 {
 }
 
 #productResults {
-    width: 95%;
     margin: 56px auto 0;
 }
 
