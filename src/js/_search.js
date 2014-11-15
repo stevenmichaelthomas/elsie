@@ -15,7 +15,6 @@
                     itemList: itemList
                 };
                 WinJS.Namespace.define("SuggestedProducts", productsList);
-                //itemDataSource: SuggestedProducts.itemList.dataSource
                 var listView = document.getElementById("productResults").winControl;
                 listView.itemDataSource = SuggestedProducts.itemList.dataSource;
             });

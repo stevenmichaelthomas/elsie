@@ -85,6 +85,14 @@ h6 {
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
+    .block {
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        color: white;
+        margin-right: 10px;
+        float: left;
+    }
     img.listItem-Image {
         height: 60px;
         margin: 5px;
