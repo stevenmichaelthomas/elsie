@@ -1,11 +1,4 @@
-#productResultsTemplate.listBox(data-win-control="WinJS.Binding.Template")
-  .product.listItem
-    img.listItem-Image(data-win-bind="src:image_thumb_url")
-    .listItem-Detail
-      h4(data-win-bind="textContent:name")
-      h6(data-win-bind="textContent:package")
-
-#productResults(data-win-control="WinJS.UI.ListView",data-win-options="{itemTemplate: select('#productResultsTemplate'), selectionMode: 'single', tapBehavior: 'invokeOnly', layout: {type: WinJS.UI.ListLayout}}")
+#productResults(data-win-control="WinJS.UI.ListView",data-win-options="{itemTemplate: select('#productResultsTemplate'), selectionMode: 'none', layout: {type: WinJS.UI.ListLayout}}")
 
 .box
   #searchBoxContainer.win-searchbox

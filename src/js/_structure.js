@@ -35,21 +35,23 @@
             searchBox.addEventListener("focus", function(){
                 element.querySelector("#searchBoxContainer").classList.add("win-searchbox-focus");
                 element.querySelector("#brand").style.display = "none";
+                element.querySelector("#recent").style.display = "none";
             });
             searchBox.addEventListener("blur", function(){
-                if (!Elsie.Data.searchResults){
+                if (!Elsie.Data.searchResults || Elsie.Data.searchResults.length == 0){
                     element.querySelector("#brand").style.display = "block";
+                    element.querySelector("#recent").style.display = "block";
                     element.querySelector("#searchBoxContainer").classList.remove("win-searchbox-focus");
                 }
             });
 
             // recent products bindings
-            /*var recentProducts = element.querySelector("#recentProducts");
+            var recentProducts = element.querySelector("#recentProducts");
             recentProducts.addEventListener("iteminvoked", function(evt){
                 evt.detail.itemPromise.then(function itemInvoked(item) {
                     Elsie.Search.selectSuggestion(item.data.id);
                 });
-            });*/
+            });
 
             // results bindings
             var listView = element.querySelector("#productResults");
@@ -59,7 +61,7 @@
                 });
             });
 
-            //Elsie.Search.getRecentProducts();
+            Elsie.Search.displayRecentProducts();
 
         },
     });

@@ -4,15 +4,16 @@
     var search = {};
     var timer;
 
-    search.getRecentProducts = function() {
-        // create a List object
-        var itemList = new WinJS.Binding.List(blob.result);
-        var productsList = {
-            itemList: itemList
-        };
-        WinJS.Namespace.define("RecentProducts", productsList);
-        var listView = document.getElementById("recentProducts").winControl;
-        listView.itemDataSource = RecentProducts.itemList.dataSource;
+    search.displayRecentProducts = function() {
+        if (Elsie.Data.recentProducts){
+            var itemList = new WinJS.Binding.List(Elsie.Data.recentProducts);
+            var productsList = {
+                itemList: itemList
+            };
+            WinJS.Namespace.define("RecentProducts", productsList);
+            var listView = document.getElementById("recentProducts").winControl;
+            listView.itemDataSource = RecentProducts.itemList.dataSource;
+        }
     };
 
     search.requestSuggestions = function() {

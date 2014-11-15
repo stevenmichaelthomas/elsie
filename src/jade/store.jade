@@ -1,6 +1,7 @@
 doctype
 html
   body
+    include templates.jade
     #storePivot(data-win-control="WinJS.UI.Pivot",data-win-options="{ title: Elsie.Data.selectedStore.name, selectedIndex: 0 }")
       .listviewpivotitem(data-win-control="WinJS.UI.PivotItem",data-win-options="{ 'header': 'details' }")
         include partials/store_details.jade

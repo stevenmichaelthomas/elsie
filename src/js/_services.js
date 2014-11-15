@@ -41,8 +41,12 @@
 		}
 
 		services.searchProducts = function(query){
-			if (!query || query == "") return;
 			return new WinJS.Promise(function (complete) {
+					if (!query || query == "") {
+						Elsie.Data.searchResults.length = 0;
+						complete();
+						return;
+					}
 					var options = {
 						url: 'http://lcboapi.com/products?q=' + query,
 						type: 'GET'
@@ -55,6 +59,19 @@
 					);
 			});
 		}
+
+		services.getRecentProducts = function(){
+			 if (localStorage["Elsie_recentProducts"]){
+			 	var retrievedItmes = JSON.parse(localStorage["Elsie_recentProducts"]);
+			 	var endOfArr = retrievedItmes.length;
+			 	if (endOfArr >= 4){
+			 		var fourBack = endOfArr - 4;
+			 		retrievedItmes = retrievedItmes.slice(fourBack, endOfArr);
+			 		retrievedItmes.reverse();
+			 	}
+	     Elsie.Data.recentProducts = retrievedItmes;
+   		 }
+		};
 
 		services.findNearbyStoresWithProduct = function(id){
 			// this is a bit redundant
@@ -75,14 +92,16 @@
 							if (localStorage["Elsie_recentProducts"]){
 								var favouriteProducts = JSON.parse(localStorage["Elsie_recentProducts"]);
 								//favouriteProducts.shift();
-								favouriteProducts.push(Elsie.Data.selectedProduct);
-								localStorage["Elsie_recentProducts"] = JSON.stringify(favouriteProducts);
+								var checkForProduct = JSON.stringify(favouriteProducts).indexOf(JSON.stringify(returnedBlob.product.name));
+								if (checkForProduct == -1){
+									favouriteProducts.push(Elsie.Data.selectedProduct);
+									localStorage["Elsie_recentProducts"] = JSON.stringify(favouriteProducts);
+								}
 							} else {
 								var favouriteProducts = [];
 								favouriteProducts.push(Elsie.Data.selectedProduct);
 								localStorage["Elsie_recentProducts"] = JSON.stringify(favouriteProducts);
 							}
-
 							complete();
 						}
 					);
@@ -109,7 +128,18 @@
 					);
 				}
 			});
-		}
+		};
+
+		services.contains = function(obj, array){
+			var i;
+			for (i = 0; i < array.length; i++) {
+			  if (array[i] === obj) {
+			      return true;
+			  }
+			}
+
+			return false;
+		};
 
     WinJS.Namespace.define("Elsie", {
         Services: services

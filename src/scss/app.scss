@@ -7,19 +7,18 @@ h6 {
 }
 
 #brand {
-    //margin: 150px 10px 0;
     background: url('../img/logo.png') no-repeat;
     background-size: 163px 109px;
     background-position: center top;
     width: 75%;
-    min-height: 109px;
-    margin: 30% auto 10%;
+    margin: 5% auto;
     padding-top: 109px;
     text-align: center;
-    &.tucked {
-        margin-top: 10px;
-        text-transform: uppercase;
-    }
+}
+
+#recent {
+    width: 95%;
+    margin: 0 auto;
 }
 
 #status {
@@ -27,7 +26,8 @@ h6 {
 }
 
 #productResults {
-    margin-top: 56px;
+    width: 95%;
+    margin: 56px auto 0;
 }
 
 .elsie-title {
@@ -46,6 +46,7 @@ h6 {
     bottom: 0;
     width: 100%;
     height: 56px;
+    transition: 0.5s;
     input {
         font-size: 14pt;
     }
@@ -129,8 +130,4 @@ h6 {
             margin-left: 0;
         }
     }
-}
-
-#store .details {
-    
 }

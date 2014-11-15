@@ -10,6 +10,7 @@
 
     var deviceReady = function(){
         Elsie.Services.getLocation();
+        Elsie.Services.getRecentProducts();
         Elsie.Interface.initialize();
         app.start();
     }
