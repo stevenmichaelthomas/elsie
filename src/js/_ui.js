@@ -18,23 +18,27 @@
 
     };
 
-    ui.displayMessage = function(text, button){
+    ui.displayDialog = function(text, link){
 
         var message = text;
         var confirmCallback = function(buttonIndex){
             if (buttonIndex == 2){
-                Elsie.Services.getLocation();
+                if (link.action == 'getLocation'){
+                    Elsie.Services.getLocation();
+                }
             } else {
-                //do nothing
+                var homeText = "Elsie couldn't get your location. :(";
+                var homeLink = { label: "Retry", action: Elsie.Services.getLocation };
+                ui.displayHomeMessage(homeText, homeLink);
             }
         };
         var title = "Location error";
-        var buttonLabels = ["Forget it","Retry"];
+        var buttonLabels = ["Cancel", link.label];
         navigator.notification.confirm(message, confirmCallback, title, buttonLabels);
 
     };
 
-    ui.displayMessageOld = function(text, link){
+    ui.displayHomeMessage = function(text, link){
 
         ui.clearMessage();
 
