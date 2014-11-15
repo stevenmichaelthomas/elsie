@@ -6,8 +6,6 @@
 
 		services.getLocation = function(){
 
-			console.log('getting location')
-
 			var response;
 
 			var onSuccess = function(position) {
@@ -71,8 +69,20 @@
 					WinJS.xhr(options).done(
 						function (result) {
 							var returnedBlob = JSON.parse(result.responseText);
-							Elsie.Data.selectedProduct = returnedBlob.product;
+							Elsie.Data.selectedProduct = returnedBlob.product;							
 							Elsie.Data.nearbyStoresWithProduct = returnedBlob.result;
+
+							if (localStorage["Elsie_recentProducts"]){
+								var favouriteProducts = JSON.parse(localStorage["Elsie_recentProducts"]);
+								//favouriteProducts.shift();
+								favouriteProducts.push(Elsie.Data.selectedProduct);
+								localStorage["Elsie_recentProducts"] = JSON.stringify(favouriteProducts);
+							} else {
+								var favouriteProducts = [];
+								favouriteProducts.push(Elsie.Data.selectedProduct);
+								localStorage["Elsie_recentProducts"] = JSON.stringify(favouriteProducts);
+							}
+
 							complete();
 						}
 					);

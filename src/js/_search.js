@@ -4,6 +4,17 @@
     var search = {};
     var timer;
 
+    search.getRecentProducts = function() {
+        // create a List object
+        var itemList = new WinJS.Binding.List(blob.result);
+        var productsList = {
+            itemList: itemList
+        };
+        WinJS.Namespace.define("RecentProducts", productsList);
+        var listView = document.getElementById("recentProducts").winControl;
+        listView.itemDataSource = RecentProducts.itemList.dataSource;
+    };
+
     search.requestSuggestions = function() {
         clearTimeout(timer);
         timer = setTimeout(function(){
@@ -21,7 +32,7 @@
             //args.detail.setPromise(promise);
             Elsie.Data.query = query;
         },500);
-    }
+    };
 
     search.selectSuggestion = function(id) {
         //we chose a product, now let's do something with it
