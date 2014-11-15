@@ -6,9 +6,12 @@
 
 		services.getLocation = function(){
 
+			console.log('getting location')
+
 			var response;
 
 			var onSuccess = function(position) {
+				Elsie.Interface.clearMessage();
 				var location = {
 					latitude: position.coords.latitude,
 					longitude: position.coords.longitude
@@ -17,7 +20,9 @@
 			};
 
 			function onError(error) {
-				console.log(error);
+				var text = "Elsie couldn't get your location.";
+				var link = { label: "Retry", action: Elsie.Services.getLocation };
+				Elsie.Interface.displayMessage(text, link);
 			}
 
 			navigator.geolocation.getCurrentPosition(onSuccess, onError);
