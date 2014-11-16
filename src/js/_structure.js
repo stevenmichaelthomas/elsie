@@ -6,6 +6,7 @@
     structure.productConstructor = WinJS.UI.Pages.define("./product.html", {
         ready: function (element, options) {
             WinJS.Binding.processAll();
+            document.getElementById("button-home").winControl.disabled = false;
             var listView = element.querySelector("#storeResults");
                 listView.addEventListener("iteminvoked", function(evt){
                     evt.detail.itemPromise.then(function itemInvoked(item) {
@@ -18,6 +19,7 @@
     structure.storeConstructor = WinJS.UI.Pages.define("./store.html", {
         ready: function (element, options) {
             WinJS.Binding.processAll();
+            document.getElementById("button-home").winControl.disabled = false;
         }
     });
 
@@ -34,16 +36,20 @@
             searchBox.addEventListener("keyup", Elsie.Search.requestSuggestions);
             searchBox.addEventListener("focus", function(){
                 element.querySelector("#searchBoxContainer").classList.add("win-searchbox-focus");
+                element.querySelector("#productResults").style.display = "block";
                 element.querySelector("#brand").style.display = "none";
                 element.querySelector("#recent").style.display = "none";
             });
             searchBox.addEventListener("blur", function(){
                 if (!Elsie.Data.searchResults || Elsie.Data.searchResults.length == 0){
+                    element.querySelector("#productResults").style.display = "none";
                     element.querySelector("#brand").style.display = "block";
                     element.querySelector("#recent").style.display = "block";
                     element.querySelector("#searchBoxContainer").classList.remove("win-searchbox-focus");
                 }
             });
+
+            document.getElementById("button-home").winControl.disabled = true;
 
             // recent products bindings
             var recentProducts = element.querySelector("#recentProducts");

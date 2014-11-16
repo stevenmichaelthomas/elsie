@@ -11,7 +11,8 @@
         }
 
     	WinJS.UI.processAll().then(function(){
-    		WinJS.Navigation.navigate('./home.html');
+            ui.goHome();            
+            document.getElementById("button-home").addEventListener("click", ui.goHome);
     	});
     }
 
@@ -59,6 +60,10 @@
         statusBox.appendChild(message);
         statusBox.appendChild(linkButton);
 
+    };
+
+    ui.goHome = function(){
+        WinJS.Navigation.navigate('./home.html');
     };
 
     WinJS.Namespace.define("Elsie", {
