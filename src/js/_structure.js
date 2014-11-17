@@ -8,6 +8,7 @@
             WinJS.Binding.processAll();
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = false;
+            document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
             var listView = element.querySelector("#storeResults");
                 listView.addEventListener("iteminvoked", function(evt){
                     evt.detail.itemPromise.then(function itemInvoked(item) {
@@ -22,6 +23,7 @@
             WinJS.Binding.processAll();
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = false;
+            document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
         }
     });
 
@@ -29,6 +31,7 @@
         ready: function (element, options) {
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = true;
+            document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
         }
     });
 
@@ -68,6 +71,7 @@
 
             document.getElementById("button-home").winControl.disabled = true;
             document.getElementById("button-about").winControl.disabled = false;
+            document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
 
             // recent products bindings
             var recentProducts = element.querySelector("#recentProducts");
