@@ -65,10 +65,12 @@
 
     ui.goHome = function(){
         WinJS.Navigation.navigate('./home.html');
+        document.getElementById("appBar").winControl.hide();
     };
 
     ui.goAbout = function(){
         WinJS.Navigation.navigate('./about.html');
+        document.getElementById("appBar").winControl.hide();
     };
 
     ui.showLoadingAnimation = function(){
