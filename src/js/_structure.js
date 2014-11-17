@@ -7,6 +7,7 @@
         ready: function (element, options) {
             WinJS.Binding.processAll();
             document.getElementById("button-home").winControl.disabled = false;
+            document.getElementById("button-about").winControl.disabled = false;
             var listView = element.querySelector("#storeResults");
                 listView.addEventListener("iteminvoked", function(evt){
                     evt.detail.itemPromise.then(function itemInvoked(item) {
@@ -20,6 +21,14 @@
         ready: function (element, options) {
             WinJS.Binding.processAll();
             document.getElementById("button-home").winControl.disabled = false;
+            document.getElementById("button-about").winControl.disabled = false;
+        }
+    });
+
+    structure.aboutConstructor = WinJS.UI.Pages.define("./about.html", {
+        ready: function (element, options) {
+            document.getElementById("button-home").winControl.disabled = false;
+            document.getElementById("button-about").winControl.disabled = true;
         }
     });
 
@@ -35,6 +44,10 @@
             var searchBox = element.querySelector("#searchBoxId");
             searchBox.addEventListener("keyup", Elsie.Search.requestSuggestions);
             searchBox.addEventListener("focus", function(){
+                // global elements
+                document.getElementById("appBar").winControl.closedDisplayMode = 'none';
+
+                // home elements
                 element.querySelector("#searchBoxContainer").classList.add("win-searchbox-focus");
                 element.querySelector("#productResults").style.display = "block";
                 element.querySelector("#brand").style.display = "none";
@@ -42,6 +55,10 @@
             });
             searchBox.addEventListener("blur", function(){
                 if (!Elsie.Data.searchResults || Elsie.Data.searchResults.length == 0){
+                    // global elements
+                    document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
+
+                    // home elements
                     element.querySelector("#productResults").style.display = "none";
                     element.querySelector("#brand").style.display = "block";
                     element.querySelector("#recent").style.display = "block";
@@ -50,6 +67,7 @@
             });
 
             document.getElementById("button-home").winControl.disabled = true;
+            document.getElementById("button-about").winControl.disabled = false;
 
             // recent products bindings
             var recentProducts = element.querySelector("#recentProducts");

@@ -31,6 +31,10 @@ h6 {
     display: none;
 }
 
+#about {
+    padding: 5%;
+}
+
 .elsie-title {
     font-size: 14pt;
     font-weight: 600;
@@ -46,7 +50,6 @@ h6 {
     bottom: 0;
     width: 90%;
     height: 56px;
-    transition: 0.5s;
     input {
         font-size: 14pt;
     }

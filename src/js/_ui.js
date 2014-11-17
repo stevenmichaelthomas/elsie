@@ -13,6 +13,7 @@
     	WinJS.UI.processAll().then(function(){
             ui.goHome();            
             document.getElementById("button-home").addEventListener("click", ui.goHome);
+            document.getElementById("button-about").addEventListener("click", ui.goAbout);
     	});
     }
 
@@ -64,6 +65,10 @@
 
     ui.goHome = function(){
         WinJS.Navigation.navigate('./home.html');
+    };
+
+    ui.goAbout = function(){
+        WinJS.Navigation.navigate('./about.html');
     };
 
     WinJS.Namespace.define("Elsie", {

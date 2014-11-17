@@ -1,2 +1,3 @@
-div(data-win-control="WinJS.UI.AppBar", data-win-options="{placement:'bottom', layout:'commands'}")
-  button#button-home(data-win-control="WinJS.UI.AppBarCommand",data-win-options="{id:'home', type:'button', label:'Home', icon: 'home'}")
+#appBar(data-win-control="WinJS.UI.AppBar",data-win-options="{closedDisplayMode: 'compact'}")
+  button#button-home(data-win-control="WinJS.UI.AppBarCommand",data-win-options="{id:'home', type:'button', label:'home', icon: 'home', section: 'selection'}")
+  button#button-about(data-win-control="WinJS.UI.AppBarCommand",data-win-options="{id:'about', type:'button', label:'about', icon: 'help', section: 'selection'}")
