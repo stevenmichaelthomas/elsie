@@ -18,9 +18,10 @@
     };
 
     search.requestSuggestions = function() {
-        Elsie.Interface.showLoadingAnimation();
+        Elsie.Interface.hideLoadingAnimation();
         clearTimeout(timer);
         timer = setTimeout(function(){
+            Elsie.Interface.showLoadingAnimation();
             var query = document.getElementById("searchBoxId").value.toLocaleLowerCase();
             Elsie.Services.searchProducts(query).then(function(){
                  // create a List object
