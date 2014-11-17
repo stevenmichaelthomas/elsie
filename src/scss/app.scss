@@ -81,6 +81,10 @@ h6 {
 	opacity: 0.5;
 }
 
+.win-appbar button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:focus .win-appbar-ellipsis, .win-appbar button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:focus .win-appbar-ellipsis {
+    border-color: transparent;
+}
+
 // win-pivot
 .win-pivot-title {
     text-transform: uppercase;
