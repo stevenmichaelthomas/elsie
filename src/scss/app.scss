@@ -1,9 +1,14 @@
 h4 {
     font-size: 14pt;
+    font-weight: 200;
 }
 
 h6 {
     font-size: 11pt;
+}
+
+p {
+    font-size: 12pt;
 }
 
 .left {
@@ -88,6 +93,11 @@ h6 {
 // win-pivot
 .win-pivot-title {
     text-transform: uppercase;
+}
+
+.win-pivot button.win-pivot-header,
+.win-pivot button.win-pivot-header:hover:active {
+    font-weight: 200;
 }
 
 .listItem {
