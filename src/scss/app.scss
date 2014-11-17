@@ -6,6 +6,14 @@ h6 {
     font-size: 11pt;
 }
 
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
 #brand {
     background: url('../img/logo.png') no-repeat;
     background-size: 163px 109px;
@@ -88,11 +96,13 @@ h6 {
     display: flex;
     .block {
         width: 50px;
-        height: 50px;
+        height: 42px;
         background-color: black;
         color: white;
         margin-right: 10px;
         float: left;
+        text-align: center;
+        padding: 4px 0;
     }
     img.listItem-Image {
         height: 60px;
@@ -100,6 +110,7 @@ h6 {
     }
     .listItem-Detail {
         margin: 5px;
+        width: 100%;
     }
 }
 

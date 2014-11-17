@@ -71,6 +71,12 @@
         WinJS.Navigation.navigate('./about.html');
     };
 
+    ui.convertMetersToKilometers = WinJS.Binding.converter(function (meters) {
+        var kilometers = meters / 100;
+        kilometers = kilometers + " km";
+        return kilometers;
+    });
+
     WinJS.Namespace.define("Elsie", {
         Interface: ui
     });

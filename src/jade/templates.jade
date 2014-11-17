@@ -8,5 +8,6 @@
 #storeResultsTemplate.listBox(data-win-control="WinJS.Binding.Template")
   .store.listItem
     .listItem-Detail
+      .block(data-win-bind="textContent: distance_in_meters Elsie.Interface.convertMetersToKilometers")
       h4(data-win-bind="textContent:name")
       h6(data-win-bind="textContent:address_line_1")
