@@ -1,6 +1,9 @@
+h1 {
+    font-weight: 200;
+}
+
 h4 {
     font-size: 14pt;
-    font-weight: 200;
 }
 
 h6 {
@@ -9,6 +12,11 @@ h6 {
 
 p {
     font-size: 12pt;
+}
+
+progress {
+    top: 0;
+    position: fixed;
 }
 
 .left {
@@ -29,6 +37,11 @@ p {
     text-align: center;
 }
 
+#mini-brand {
+    display: none;
+    margin: 2%;
+}
+
 #recent {
     width: 90%;
     margin: 0 auto;
@@ -40,7 +53,7 @@ p {
 }
 
 #productResults {
-    margin: 56px auto 0;
+    margin: 70px auto 0;
     display: none;
 }
 
@@ -70,7 +83,7 @@ p {
 
 .win-searchbox-focus {
     position: fixed;
-    top: 0;
+    top: 40px;
     width: 100%;
 }
 
@@ -96,6 +109,7 @@ p {
 }
 
 .win-pivot button.win-pivot-header,
+.win-pivot button.win-pivot-header:hover,
 .win-pivot button.win-pivot-header:hover:active {
     font-weight: 200;
 }

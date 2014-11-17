@@ -39,7 +39,7 @@
         ready: function (element, options) {
             
             // control size adjustments
-            var listHeight = window.innerHeight - 56;
+            var listHeight = window.innerHeight * 0.895035;
             listHeight = listHeight + "px";
             element.querySelector("#productResults").style.height = listHeight;
 
@@ -54,6 +54,7 @@
                 element.querySelector("#searchBoxContainer").classList.add("win-searchbox-focus");
                 element.querySelector("#productResults").style.display = "block";
                 element.querySelector("#brand").style.display = "none";
+                element.querySelector("#mini-brand").style.display = "block";
                 element.querySelector("#recent").style.display = "none";
             });
             searchBox.addEventListener("blur", function(){
@@ -64,6 +65,7 @@
                     // home elements
                     element.querySelector("#productResults").style.display = "none";
                     element.querySelector("#brand").style.display = "block";
+                    element.querySelector("#mini-brand").style.display = "none";
                     element.querySelector("#recent").style.display = "block";
                     element.querySelector("#searchBoxContainer").classList.remove("win-searchbox-focus");
                 }
