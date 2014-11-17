@@ -72,7 +72,8 @@
     };
 
     ui.convertMetersToKilometers = WinJS.Binding.converter(function (meters) {
-        var kilometers = meters / 100;
+        var kilometers = meters / 1000;
+        kilometers = Math.round(kilometers * 100) / 100;
         kilometers = kilometers + " km";
         return kilometers;
     });
