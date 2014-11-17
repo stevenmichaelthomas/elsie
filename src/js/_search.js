@@ -18,6 +18,7 @@
     };
 
     search.requestSuggestions = function() {
+        Elsie.Interface.showLoadingAnimation();
         clearTimeout(timer);
         timer = setTimeout(function(){
             var query = document.getElementById("searchBoxId").value.toLocaleLowerCase();
@@ -30,6 +31,7 @@
                 WinJS.Namespace.define("SuggestedProducts", productsList);
                 var listView = document.getElementById("productResults").winControl;
                 listView.itemDataSource = SuggestedProducts.itemList.dataSource;
+                Elsie.Interface.hideLoadingAnimation();
             });
             //args.detail.setPromise(promise);
             Elsie.Data.query = query;
@@ -39,12 +41,14 @@
     search.selectSuggestion = function(id) {
         //we chose a product, now let's do something with it
         var productId = id;
+        Elsie.Interface.showLoadingAnimation();
         Elsie.Services.findNearbyStoresWithProduct(productId).then(function(){
              // create a List object
             var itemList = new WinJS.Binding.List(Elsie.Data.nearbyStoresWithProduct);
             var storesList = {
                 itemList: itemList
             };
+            Elsie.Interface.hideLoadingAnimation();
             WinJS.Namespace.define("NearbyStoresWithProduct", storesList);
             WinJS.Navigation.navigate("./product.html");
         });

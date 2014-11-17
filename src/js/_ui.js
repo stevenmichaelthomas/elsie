@@ -71,6 +71,17 @@
         WinJS.Navigation.navigate('./about.html');
     };
 
+    ui.showLoadingAnimation = function(){
+        // this will probably not work on platforms other than winRT
+        var progress = document.createElement("progress");
+        progress.id = "loading";
+        document.getElementById("app").appendChild(progress);
+    };
+
+    ui.hideLoadingAnimation = function(){
+        document.getElementById("loading").remove();
+    };
+
     ui.convertMetersToKilometers = WinJS.Binding.converter(function (meters) {
         var kilometers = meters / 1000;
         kilometers = Math.round(kilometers * 100) / 100;
