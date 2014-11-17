@@ -9,7 +9,7 @@
 			var response;
 
 			var onSuccess = function(position) {
-				Elsie.Interface.clearMessage();
+				//Elsie.Interface.clearMessage();
 				var location = {
 					latitude: position.coords.latitude,
 					longitude: position.coords.longitude

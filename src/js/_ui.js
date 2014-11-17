@@ -33,9 +33,9 @@
                     Elsie.Services.getLocation();
                 }
             } else {
-                var homeText = "Elsie couldn't get your location. :(";
-                var homeLink = { label: "Retry", action: Elsie.Services.getLocation };
-                ui.displayHomeMessage(homeText, homeLink);
+                //var homeText = "Elsie couldn't get your location. :(";
+                //var homeLink = { label: "Retry", action: Elsie.Services.getLocation };
+                //ui.displayHomeMessage(homeText, homeLink);
             }
         };
         var title = "Location error";
@@ -81,7 +81,9 @@
     };
 
     ui.hideLoadingAnimation = function(){
-        document.getElementById("loading").remove();
+        if(document.getElementById("loading")){
+            document.getElementById("loading").remove();
+        }
     };
 
     ui.convertMetersToKilometers = WinJS.Binding.converter(function (meters) {

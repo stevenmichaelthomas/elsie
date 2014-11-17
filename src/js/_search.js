@@ -18,9 +18,7 @@
     };
 
     search.requestSuggestions = function() {
-        if (document.getElementById("loading")){
-            Elsie.Interface.hideLoadingAnimation();
-        };
+        Elsie.Interface.hideLoadingAnimation();
         clearTimeout(timer);
         timer = setTimeout(function(){
             Elsie.Interface.showLoadingAnimation();
