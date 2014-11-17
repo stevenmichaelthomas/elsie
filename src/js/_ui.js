@@ -81,8 +81,9 @@
     };
 
     ui.hideLoadingAnimation = function(){
-        if(document.getElementById("loading")){
-            document.getElementById("loading").remove();
+        var loader = document.getElementById("loading");
+        if(loader){
+            loader.parentNode.removeChild(loader);
         }
     };
 
