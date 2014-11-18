@@ -20,12 +20,21 @@
 
     structure.storeConstructor = WinJS.UI.Pages.define("./store.html", {
         ready: function (element, options) {
-            document.getElementById("mapDiv").innerHTML = "";
             WinJS.Binding.processAll();
+
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = false;
             document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
-            Elsie.Interface.renderBingMap();
+            
+            Elsie.Interface.renderBingMap(element);
+
+            var listView = element.querySelector("#nearbyStores");
+                listView.style.height = window.innerHeight - 130 + "px";
+                listView.addEventListener("iteminvoked", function(evt){
+                    evt.detail.itemPromise.then(function itemInvoked(item) {
+                        Elsie.Search.selectStore(item.data);
+                    });
+                });
         }
     });
 

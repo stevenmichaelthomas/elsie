@@ -59,7 +59,19 @@
         //we chose a store
         var store = data;
         Elsie.Data.selectedStore = store;
-        WinJS.Navigation.navigate("./store.html");
+        var storeLocation = {
+            latitude: Elsie.Data.selectedStore.latitude,
+            longitude: Elsie.Data.selectedStore.longitude,
+        };
+        Elsie.Services.getNearbyStores(storeLocation).then(function(){
+            //Elsie.Data.nearbyStores
+            var itemList = new WinJS.Binding.List(Elsie.Data.nearbyStores);
+            var storesList = {
+                itemList: itemList
+            };
+            WinJS.Namespace.define("NearbyStoresToStore", storesList);
+            WinJS.Navigation.navigate("./store.html");
+        });
     }
 
     WinJS.Namespace.define("Elsie", {

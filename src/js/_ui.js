@@ -87,7 +87,7 @@
         }
     };
 
-    ui.renderBingMap = function(){
+    ui.renderBingMap = function(element){
 
         var key = "AnafmzzTy228kzIf7tq7FjhJ52k1U7PmiR76KVnDdZdftx6OwmjoJs2fxTtm3DmI";
         var centerPoint = Elsie.Data.selectedStore.latitude + "," + Elsie.Data.selectedStore.longitude;
@@ -99,7 +99,7 @@
         var url = "http://dev.virtualearth.net/REST/v1/Imagery/Map/" + imagerySet + "/" + centerPoint + "/"+ zoomLevel +"?mapSize=" + mapSize + "&pushpin=" + pushpin + "&key=" + key + "&format=png";
 
         var mapObject = "<img src='" + url + "' />";
-        document.getElementById("mapDiv").innerHTML = mapObject;
+        element.querySelector("#mapDiv").innerHTML = mapObject;
     
     };
 

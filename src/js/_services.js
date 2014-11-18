@@ -27,17 +27,20 @@
 
 		}
 
-		services.getNearestStores = function(){
-			var options = {
-				url: 'http://lcboapi.com/stores?lat=' + Elsie.Data.location.latitude + '&lon=' + Elsie.Data.location.longitude,
-				type: 'GET'
-			};
-			WinJS.xhr(options).done(
-				function (result) {
-					Elsie.Data.stores = JSON.parse(result.responseText).result;
-					complete();
-				}
-			);
+		services.getNearbyStores = function(location){
+			return new WinJS.Promise(function (complete) {
+					var options = {
+						url: 'http://lcboapi.com/stores?lat=' + location.latitude + '&lon=' + location.longitude,
+						type: 'GET'
+					};
+					WinJS.xhr(options).done(
+						function (result) {
+							Elsie.Data.nearbyStores = JSON.parse(result.responseText).result;
+							Elsie.Data.nearbyStores.shift();
+							complete();
+						}
+					);
+			});
 		}
 
 		services.searchProducts = function(query){
@@ -63,14 +66,9 @@
 		services.getRecentProducts = function(){
 			if (localStorage["Elsie_recentProducts"]){
 			 	var retrievedItmes = JSON.parse(localStorage["Elsie_recentProducts"]);
-			 	var endOfArr = retrievedItmes.length;
-			 	if (endOfArr >= 4){
-			 		var fourBack = endOfArr - 4;
-			 		retrievedItmes = retrievedItmes.slice(fourBack, endOfArr);
-			 	}
 			 	retrievedItmes.reverse();
-	    	 	Elsie.Data.recentProducts = retrievedItmes;
-   			}
+	    	Elsie.Data.recentProducts = retrievedItmes;
+   		}
 		};
 
 		services.findNearbyStoresWithProduct = function(id){
