@@ -3,7 +3,7 @@
     img(data-win-bind="src: Elsie.Data.selectedProduct.image_url")
   .glance
     .fact
-      span.value.win-type-x-large(data-win-bind="innerText: Elsie.Data.selectedProduct.alcohol_content")
+      span.value.win-type-x-large(data-win-bind="innerText: Elsie.Data.selectedProduct.alcohol_content Elsie.Interface.convertABVtoPercentage")
       br
       span.key.win-type-large ABV
     .fact
@@ -13,6 +13,6 @@
         | ML X 
         span(data-win-bind="innerText: Elsie.Data.selectedProduct.total_package_units")
     .fact
-      span.value.win-type-x-large(data-win-bind="innerText: Elsie.Data.selectedProduct.price_in_cents")
+      span.value.win-type-x-large(data-win-bind="innerText: Elsie.Data.selectedProduct.price_in_cents Elsie.Interface.convertCentsToDollars")
       br
       span.key.win-type-large Price

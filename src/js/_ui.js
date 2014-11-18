@@ -94,6 +94,18 @@
         return kilometers;
     });
 
+    ui.convertABVtoPercentage = WinJS.Binding.converter(function (abv) {
+        var abv_percentage = abv / 100;
+        abv_percentage = abv_percentage + "%";
+        return abv_percentage;
+    });
+
+    ui.convertCentsToDollars = WinJS.Binding.converter(function (cents) {
+        var dollars = cents / 100;
+        dollars = "$" + dollars;
+        return dollars;
+    });
+
     WinJS.Namespace.define("Elsie", {
         Interface: ui
     });
