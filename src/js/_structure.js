@@ -64,7 +64,7 @@
                 // home elements
                 element.querySelector("#searchBoxContainer").classList.add("win-searchbox-focus");
                 element.querySelector("#productResults").style.display = "block";
-                element.querySelector("#brand").style.display = "none";
+                element.querySelector("#brand-container").style.display = "none";
                 element.querySelector("#mini-brand").style.display = "block";
                 element.querySelector("#recent").style.display = "none";
             });
@@ -75,7 +75,7 @@
 
                     // home elements
                     element.querySelector("#productResults").style.display = "none";
-                    element.querySelector("#brand").style.display = "block";
+                    element.querySelector("#brand-container").style.display = "block";
                     element.querySelector("#mini-brand").style.display = "none";
                     element.querySelector("#recent").style.display = "block";
                     element.querySelector("#searchBoxContainer").classList.remove("win-searchbox-focus");
