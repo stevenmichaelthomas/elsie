@@ -25,7 +25,7 @@
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = false;
             document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
-            Elsie.Interface.getBingThemes();
+            Elsie.Interface.renderBingMap();
         }
     });
 

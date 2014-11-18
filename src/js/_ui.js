@@ -87,25 +87,20 @@
         }
     };
 
-    ui.getBingThemes = function(){
-        Microsoft.Maps.loadModule('Microsoft.Maps.Themes.BingTheme', { callback: Elsie.Interface.renderBingMap });
-    };
-
     ui.renderBingMap = function(){
-        var map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), {
-            credentials: "AnafmzzTy228kzIf7tq7FjhJ52k1U7PmiR76KVnDdZdftx6OwmjoJs2fxTtm3DmI",
-            center: new Microsoft.Maps.Location(Elsie.Data.selectedStore.latitude, Elsie.Data.selectedStore.longitude),
-            zoom: 14,
-            showScalebar: false,
-            disableUserInput: true,
-            showMapTypeSelector: false,
-            showDashboard: false,
-            disableZooming: true,
-            theme: new Microsoft.Maps.Themes.BingTheme()
-        });
-        var center = new Microsoft.Maps.Location(Elsie.Data.selectedStore.latitude, Elsie.Data.selectedStore.longitude, 37);
-        var pin = new Microsoft.Maps.Pushpin(center); 
-        map.entities.push(pin);
+
+        var key = "AnafmzzTy228kzIf7tq7FjhJ52k1U7PmiR76KVnDdZdftx6OwmjoJs2fxTtm3DmI";
+        var centerPoint = Elsie.Data.selectedStore.latitude + "," + Elsie.Data.selectedStore.longitude;
+        var imagerySet = 'Road';
+        var mapSize = window.innerWidth - 40 + ',200';
+        var pushpin = Elsie.Data.selectedStore.latitude + "," + Elsie.Data.selectedStore.longitude + ";37";
+        var zoomLevel = 15;
+
+        var url = "http://dev.virtualearth.net/REST/v1/Imagery/Map/" + imagerySet + "/" + centerPoint + "/"+ zoomLevel +"?mapSize=" + mapSize + "&pushpin=" + pushpin + "&key=" + key;
+
+        var mapObject = "<img src='" + url + "' />";
+        document.getElementById("mapDiv").innerHTML = mapObject;
+    
     };
 
     ui.convertMetersToKilometers = WinJS.Binding.converter(function (meters) {
