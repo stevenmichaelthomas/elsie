@@ -20,10 +20,12 @@
 
     structure.storeConstructor = WinJS.UI.Pages.define("./store.html", {
         ready: function (element, options) {
+            document.getElementById("mapDiv").innerHTML = "";
             WinJS.Binding.processAll();
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = false;
             document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
+            Elsie.Interface.getBingThemes();
         }
     });
 

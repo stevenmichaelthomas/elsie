@@ -87,6 +87,27 @@
         }
     };
 
+    ui.getBingThemes = function(){
+        Microsoft.Maps.loadModule('Microsoft.Maps.Themes.BingTheme', { callback: Elsie.Interface.renderBingMap });
+    };
+
+    ui.renderBingMap = function(){
+        var map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), {
+            credentials: "AnafmzzTy228kzIf7tq7FjhJ52k1U7PmiR76KVnDdZdftx6OwmjoJs2fxTtm3DmI",
+            center: new Microsoft.Maps.Location(Elsie.Data.selectedStore.latitude, Elsie.Data.selectedStore.longitude),
+            zoom: 14,
+            showScalebar: false,
+            disableUserInput: true,
+            showMapTypeSelector: false,
+            showDashboard: false,
+            disableZooming: true,
+            theme: new Microsoft.Maps.Themes.BingTheme()
+        });
+        var center = new Microsoft.Maps.Location(Elsie.Data.selectedStore.latitude, Elsie.Data.selectedStore.longitude, 37);
+        var pin = new Microsoft.Maps.Pushpin(center); 
+        map.entities.push(pin);
+    };
+
     ui.convertMetersToKilometers = WinJS.Binding.converter(function (meters) {
         var kilometers = meters / 1000;
         kilometers = Math.round(kilometers * 100) / 100;
