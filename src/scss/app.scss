@@ -2,6 +2,10 @@ $primary-color: #F64747; //red
 $secondary-color: #444; //grey
 $background-color: #ecf0f1; //white
 
+body {
+    background: $background-color;
+}
+
 h1 {
     font-weight: 200;
     color: $primary-color;
@@ -40,15 +44,24 @@ progress {
     float: right;
 }
 
+#brand-container {
+    background: $primary-color;
+    margin-bottom: 20px;
+}
+
 #brand {
     width: 90%;
-    margin: 2.5% auto;
+    margin: 0 auto;
     text-align: left;
+    h1 {
+        color: $background-color;
+    }
 }
 
 #mini-brand {
     display: none;
-    margin: 2% 5%;
+    width: 90%;
+    margin: 0 auto 20px;
 }
 
 #recent {
@@ -94,7 +107,7 @@ progress {
 
 .win-searchbox-focus {
     position: fixed;
-    top: 40px;
+    top: 50px;
     left: 5%;
 }
 
