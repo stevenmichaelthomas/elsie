@@ -1,6 +1,6 @@
-$primary-color: #9b59b6;
-$secondary-color: #444;
-$background-color: #ecf0f1;
+$primary-color: #F64747; //red
+$secondary-color: #444; //grey
+$background-color: #ecf0f1; //white
 
 h1 {
     font-weight: 200;
@@ -169,6 +169,14 @@ progress {
         width: 65%;
         margin-left: 5%;
         float: left;
+        &.linear {
+            width: 100%;
+            margin: 0;
+            .fact {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+        }
         .fact {
             margin-bottom: 10px;
             width: 50%;
@@ -181,8 +189,8 @@ progress {
             }
             .value,
             .key {
-                text-transform: uppercase;
-                font-weight: 300;
+                //text-transform: uppercase;
+                font-weight: 200;
             }
         }
     }
