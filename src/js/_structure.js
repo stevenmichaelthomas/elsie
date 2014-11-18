@@ -88,6 +88,7 @@
 
             // recent products bindings
             var recentProducts = element.querySelector("#recentProducts");
+            recentProducts.style.height = window.innerHeight - 200 + "px";
             recentProducts.addEventListener("iteminvoked", function(evt){
                 evt.detail.itemPromise.then(function itemInvoked(item) {
                     Elsie.Search.selectSuggestion(item.data.id);
