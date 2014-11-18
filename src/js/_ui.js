@@ -96,7 +96,7 @@
         var pushpin = Elsie.Data.selectedStore.latitude + "," + Elsie.Data.selectedStore.longitude + ";37";
         var zoomLevel = 15;
 
-        var url = "http://dev.virtualearth.net/REST/v1/Imagery/Map/" + imagerySet + "/" + centerPoint + "/"+ zoomLevel +"?mapSize=" + mapSize + "&pushpin=" + pushpin + "&key=" + key;
+        var url = "http://dev.virtualearth.net/REST/v1/Imagery/Map/" + imagerySet + "/" + centerPoint + "/"+ zoomLevel +"?mapSize=" + mapSize + "&pushpin=" + pushpin + "&key=" + key + "&format=png";
 
         var mapObject = "<img src='" + url + "' />";
         document.getElementById("mapDiv").innerHTML = mapObject;
