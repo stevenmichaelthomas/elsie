@@ -10,6 +10,7 @@
             document.getElementById("button-about").winControl.disabled = false;
             document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
             var listView = element.querySelector("#storeResults");
+                listView.style.height = window.innerHeight - 330 + "px";
                 listView.addEventListener("iteminvoked", function(evt){
                     evt.detail.itemPromise.then(function itemInvoked(item) {
                         Elsie.Search.selectStore(item.data);
@@ -88,7 +89,7 @@
 
             // recent products bindings
             var recentProducts = element.querySelector("#recentProducts");
-            recentProducts.style.height = window.innerHeight - 200 + "px";
+            recentProducts.style.height = window.innerHeight - 240 + "px";
             recentProducts.addEventListener("iteminvoked", function(evt){
                 evt.detail.itemPromise.then(function itemInvoked(item) {
                     Elsie.Search.selectSuggestion(item.data.id);

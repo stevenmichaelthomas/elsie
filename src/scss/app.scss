@@ -31,9 +31,19 @@ p {
     color: $secondary-color;
 }
 
+a:link,
+a:visited,
+a:hover {
+    color: $primary-color;
+}
+
 progress {
     top: 0;
     position: fixed;
+}
+
+progress:indeterminate {
+    color: white;
 }
 
 .left {
@@ -47,7 +57,7 @@ progress {
 #brand-container {
     background: $primary-color;
     margin-bottom: 20px;
-    padding-top: 15px;
+    padding: 10px 0;
 }
 
 #brand {
@@ -56,13 +66,14 @@ progress {
     text-align: left;
     h1 {
         color: white;
+        letter-spacing: -2px;
     }
 }
 
 #mini-brand {
     display: none;
     width: 90%;
-    margin: 0 auto 20px;
+    margin: 20px auto;
 }
 
 #recent {
@@ -76,7 +87,7 @@ progress {
 }
 
 #productResults {
-    margin: 70px auto 0;
+    margin: 0 auto;
     display: none;
     width: 90%;
 }
@@ -86,9 +97,14 @@ progress {
     margin: 0 auto;
 }
 
+#nearbyStores .block {
+    display: none;
+}
+
 .elsie-title {
     font-size: 14pt;
     font-weight: 600;
+    margin: 10px 0 5px;
     text-transform: uppercase;
     clear: both;
     color: $primary-color;
@@ -104,12 +120,6 @@ progress {
     input {
         font-size: 14pt;
     }
-}
-
-.win-searchbox-focus {
-    position: fixed;
-    top: 50px;
-    left: 5%;
 }
 
 .win-searchbox-suggestion-selected {
@@ -134,6 +144,11 @@ progress {
     color: $primary-color;
 }
 
+.win-pivot-item .win-pivot-item-content {
+    width: 90%;
+    padding: 0 5%;
+}
+
 .win-pivot button.win-pivot-header,
 .win-pivot button.win-pivot-header:hover,
 .win-pivot button.win-pivot-header:hover:active {
@@ -141,9 +156,42 @@ progress {
     color: $primary-color;
 }
 
+.win-appbar {
+    background-color: $primary-color;
+    border-color: $primary-color;
+}
+
+.win-appbar button.win-appbar-invokebutton.win-appbar-invokebutton:enabled .win-appbar-ellipsis, .win-appbar button.win-appbar-invokebutton.win-appbar-invokebutton:enabled .win-appbar-ellipsis {
+    color: white;
+}
+
+.win-commandring button:active, .win-commandring,
+.win-appbar button,
+.win-commandimage,
+.win-commandring:hover {
+    color: white;
+}
+
+.win-commandring,
+.win-commandring:hover {
+    border-color: white;
+}
+
+html.win-hoverable button:enabled:hover .win-commandring {
+    border-color: white;
+}
+
+.win-listview > .win-vertical .win-container {
+    margin: 10px 0;
+}
+
+.win-listview .win-itembox {
+    border-left: 5px $primary-color solid;
+}
+
 .listItem {
-    width: 100%;
-    height: 70px;
+    width: 95%;
+    //height: 70px;
     padding: 5px;
     overflow: hidden;
     display: -ms-flexbox;
@@ -153,11 +201,25 @@ progress {
         width: 50px;
         height: 42px;
         background-color: $primary-color;
-        color: $background-color;
         margin-right: 10px;
         float: left;
         text-align: center;
         padding: 4px 0;
+        .quantity {
+            font-size: 17pt;
+            color: white;
+            width: 100%;
+            text-align: center;
+            display: block;
+        }
+        .remaining {
+            font-size: 7pt;
+            text-transform: uppercase;
+            color: white;
+            text-align: center;
+            width: 100%;
+            display: block;
+        }
     }
     img.listItem-Image {
         height: 60px;
@@ -170,6 +232,9 @@ progress {
 }
 
 .details {
+    height: 150px;
+    background: white;
+    border: 2px #ddd solid;
     .image {
         width: 30%;
         max-height: 300px;
@@ -182,6 +247,7 @@ progress {
     .glance {
         width: 65%;
         margin-left: 5%;
+        margin-top: 3%;
         float: left;
         &.linear {
             width: 100%;
