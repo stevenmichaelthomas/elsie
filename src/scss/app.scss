@@ -96,9 +96,26 @@ progress:indeterminate {
     width: 90%;
 }
 
+#about-container {
+    background: url("../img/logo.png") no-repeat center bottom $primary-color;
+    margin: -15px 0 0;
+    width: 100%;
+    height: 100%;
+    background-size: 90%;
+}
+
 #about {
     width: 90%;
     margin: 0 auto;
+    padding-top: 20px;
+    p {
+        color: $background-color;
+    }
+    a:link,
+    a:visited,
+    a:hover {
+        color: $highlight-color;
+    }
 }
 
 #nearbyStores .block {
@@ -191,6 +208,14 @@ html.win-hoverable button:enabled:hover .win-commandring {
 
 .win-listview .win-itembox {
     border-left: 5px $primary-color solid;
+}
+
+//custom
+
+.wordmark {
+    margin: 40px auto;
+    display: block;
+    width: 50%;
 }
 
 .listItem {
