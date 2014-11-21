@@ -1,6 +1,7 @@
-$primary-color: #F64747; //red
+$primary-color: #6f1c24; //burgundy
 $secondary-color: #444; //grey
 $background-color: #ecf0f1; //white
+$highlight-color: #f68f40; //gold
 
 body {
     background: $background-color;
@@ -65,7 +66,7 @@ progress:indeterminate {
     margin: 0 auto;
     text-align: left;
     h1 {
-        color: white;
+        color: $highlight-color;
         letter-spacing: -2px;
     }
 }
