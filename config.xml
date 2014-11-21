@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="dougestey.lcbo" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="Elsie" version="0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Elsie</name>
     <description>
         A Windows frontend to a lovely LCBO API.
@@ -9,4 +9,11 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <platform name="windows">
+      <!--<icon src="res/windows8/logo.png" width="150" height="150" />
+      <icon src="res/windows8/smalllogo.png" width="30" height="30" />
+      <icon src="res/windows8/storelogo.png" width="50" height="50" />
+      <splash src="res/screen/wp8/SplashScreenImage.jpg" width="768" height="1280"/>
+      <splash src="res/screen/wp8/SplashScreenImage-1080p.jpg" width="1080" height="1920"/>-->
+    </platform>
 </widget>
