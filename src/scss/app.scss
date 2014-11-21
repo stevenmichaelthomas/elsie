@@ -59,6 +59,7 @@ progress:indeterminate {
     background: $primary-color;
     margin-bottom: 20px;
     padding: 10px 0;
+    background: url('../img/top.png') no-repeat top center $primary-color;
 }
 
 #brand {
@@ -66,7 +67,7 @@ progress:indeterminate {
     margin: 0 auto;
     text-align: left;
     h1 {
-        color: $highlight-color;
+        color: transparent;
         letter-spacing: -2px;
     }
 }
