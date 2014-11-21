@@ -10,7 +10,7 @@
             document.getElementById("button-about").winControl.disabled = false;
             document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
             var listView = element.querySelector("#storeResults");
-                listView.style.height = window.innerHeight - 330 + "px";
+                setTimeout(function(){ listView.style.height = window.innerHeight - 330 + "px" }, 200);
                 listView.addEventListener("iteminvoked", function(evt){
                     evt.detail.itemPromise.then(function itemInvoked(item) {
                         Elsie.Search.selectStore(item.data);
