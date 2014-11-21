@@ -22,6 +22,6 @@
       <splash src="artwork/windows/SplashScreen.scale-240.png" width="1152" height="1920" />
     </platform>
     <preference name="SplashScreen" value="splash"/>
-    <preference name="SplashScreenDelay" value="15000" />
-    <preference name="auto-hide-splash-screen" value="false" />
+    <preference name="SplashScreenDelay" value="10000" />
+    <preference name="AutoHideSplashScreen" value="false" />
 </widget>
