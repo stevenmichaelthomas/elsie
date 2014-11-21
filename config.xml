@@ -21,5 +21,5 @@
       <splash src="artwork/windows/splashscreen.png" width="620" height="300" />
       <splash src="artwork/windows/SplashScreen.scale-240.png" width="1152" height="1920" />
     </platform>
-    <preference name="SplashScreenDelay" value="2000" />
+    <preference name="SplashScreenDelay" value="6000" />
 </widget>
