@@ -10,7 +10,7 @@ html
     script(src="js/lib/ui.js")
     // Cordova 4.0.0
     script(src='cordova.js')
-    // Elsie 0.3
+    // Elsie 1.0
     script(src='js/_navigator.js')
     script(src='js/_search.js')
     script(src='js/_services.js')
@@ -18,7 +18,7 @@ html
     script(src='js/_ui.js')
     script(src='js/app.js')
   body(onload="window.onLoad()")
-    #app(data-win-control="Application.PageControlNavigator",data-win-options="{home: './home.html', product: './product.html'}")
+    #app(data-win-control="Application.PageControlNavigator")
     include partials/appbar.jade
     include templates.jade
 

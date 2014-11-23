@@ -239,11 +239,16 @@ textarea:focus,
 .win-pivot-title {
     text-transform: uppercase;
     color: $primary-color;
+    display: none;
 }
 
 .win-pivot-item .win-pivot-item-content {
     width: 90%;
     padding: 0 5%;
+}
+
+.win-pivot-headers {
+    z-index: 9000;
 }
 
 .win-pivot button.win-pivot-header,

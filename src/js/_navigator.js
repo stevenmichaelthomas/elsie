@@ -10,7 +10,7 @@
                 this._element = element || document.createElement("div");
                 this._element.appendChild(this._createPageElement());
 
-                this.home = options.home;
+                //this.home = options.home;
 
                 this._eventHandlerRemover = [];
 
@@ -29,7 +29,7 @@
 
                 Application.navigator = this;
             }, {
-                home: "",
+                //home: "",
                 /// <field domElement="true" />
                 _element: null,
                 _lastNavigationPromise: WinJS.Promise.as(),
