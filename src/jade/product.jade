@@ -1,10 +1,9 @@
 doctype
 html
   body
-    include templates.jade
     #productPivot(data-win-control="WinJS.UI.Pivot",data-win-options="{ title: Elsie.Data.selectedProduct.name, selectedIndex: 0 }")
-      .listviewpivotitem(data-win-control="WinJS.UI.PivotItem",data-win-options="{ 'header': 'details', isHeaderStatic: false }")
+      .listviewpivotitem(data-win-control="WinJS.UI.PivotItem",data-win-options="{ 'header': 'details' }")
         include partials/product_details.jade
         include partials/product_stores.jade
-      .listviewpivotitem(data-win-control="WinJS.UI.PivotItem",data-win-options="{ 'header': 'similar', isHeaderStatic: false }")
+      .listviewpivotitem(data-win-control="WinJS.UI.PivotItem",data-win-options="{ 'header': 'similar' }")
         include partials/product_similar.jade
