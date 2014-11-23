@@ -41,6 +41,7 @@ a:hover {
 progress {
     top: 0;
     position: fixed;
+    background-color: transparent;
 }
 
 progress:indeterminate {
