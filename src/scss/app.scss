@@ -141,7 +141,8 @@ button.win-command.win-command:enabled:hover:active, button.win-command.win-comm
 html.win-hoverable.win-appbar.win-appbar-showing button.win-appbar-invokebutton:enabled:hover,
 html.win-hoverable .win-appbar.win-appbar-showing button.win-appbar-invokebutton:enabled:hover,
 html.win-hoverable.win-appbar.win-appbar-shown button.win-appbar-invokebutton:enabled:hover,
-html.win-hoverable .win-appbar.win-appbar-shown button.win-appbar-invokebutton:enabled:hover {
+html.win-hoverable .win-appbar.win-appbar-shown button.win-appbar-invokebutton:enabled:hover,
+html.win-hoverable.win-toolbar button.win-toolbar-overflowbutton:hover, html.win-hoverable .win-toolbar button.win-toolbar-overflowbutton:hover, html.win-hoverable.win-toolbar .win-toolbar-overflowarea button.win-command:hover, html.win-hoverable .win-toolbar .win-toolbar-overflowarea button.win-command:hover {
     background-color: $primary-color;
     color: white;
 }
@@ -162,8 +163,14 @@ button.win-command {
 
 .win-appbar button.win-appbar-invokebutton.win-appbar-invokebutton:enabled .win-appbar-ellipsis, .win-appbar button.win-appbar-invokebutton.win-appbar-invokebutton:enabled .win-appbar-ellipsis,
 html.win-hoverable.win-appbar.win-appbar-hiding button.win-appbar-invokebutton:enabled:hover .win-appbar-ellipsis, html.win-hoverable .win-appbar.win-appbar-hiding button.win-appbar-invokebutton:enabled:hover .win-appbar-ellipsis, html.win-hoverable.win-appbar.win-appbar-hidden button.win-appbar-invokebutton:enabled:hover .win-appbar-ellipsis, html.win-hoverable .win-appbar.win-appbar-hidden button.win-appbar-invokebutton:enabled:hover .win-appbar-ellipsis,
-html.win-hoverable button.win-command:enabled:hover .win-commandglyph {
+html.win-hoverable button.win-command:enabled:hover .win-commandglyph,
+.win-toolbar button.win-toolbar-overflowbutton:enabled .win-toolbar-ellipsis, .win-toolbar button.win-toolbar-overflowbutton:enabled .win-toolbar-ellipsis {
     color: white;
+}
+
+.win-toolbar.win-toolbar-inlinemenu .win-toolbar-overflowbutton {
+    right: 0;
+    position: absolute;
 }
 
 .win-label,

@@ -30,7 +30,7 @@
             Elsie.Interface.renderBingMap(element);
 
             var listView = element.querySelector("#nearbyStores");
-                //listView.style.height = window.innerHeight - 130 + "px";
+                listView.style.height = window.innerHeight - 180 + "px";
                 listView.addEventListener("iteminvoked", function(evt){
                     evt.detail.itemPromise.then(function itemInvoked(item) {
                         Elsie.Search.selectStore(item.data);
