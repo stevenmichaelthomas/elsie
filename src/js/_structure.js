@@ -10,7 +10,7 @@
             document.getElementById("button-about").winControl.disabled = false;
             document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
             var listView = element.querySelector("#storeResults");
-                setTimeout(function(){ listView.style.height = window.innerHeight - 330 + "px" }, 200);
+                setTimeout(function(){ listView.style.height = window.innerHeight - 380 + "px" }, 1000);
                 listView.addEventListener("iteminvoked", function(evt){
                     evt.detail.itemPromise.then(function itemInvoked(item) {
                         Elsie.Search.selectStore(item.data);
@@ -30,7 +30,7 @@
             Elsie.Interface.renderBingMap(element);
 
             var listView = element.querySelector("#nearbyStores");
-                listView.style.height = window.innerHeight - 130 + "px";
+                //listView.style.height = window.innerHeight - 130 + "px";
                 listView.addEventListener("iteminvoked", function(evt){
                     evt.detail.itemPromise.then(function itemInvoked(item) {
                         Elsie.Search.selectStore(item.data);

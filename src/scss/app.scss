@@ -45,6 +45,7 @@ progress {
 
 progress:indeterminate {
     color: white;
+    width: 100%;
 }
 
 .left {
@@ -131,6 +132,64 @@ progress:indeterminate {
     color: $primary-color;
 }
 
+// win-appbar
+.win-appbar,
+.win-toolbar-actionarea,
+html.win-hoverable button.win-command:enabled:hover,
+html.win-hoverable.win-appbar.win-appbar-hiding button.win-appbar-invokebutton:enabled:hover, html.win-hoverable .win-appbar.win-appbar-hiding button.win-appbar-invokebutton:enabled:hover, html.win-hoverable.win-appbar.win-appbar-hidden button.win-appbar-invokebutton:enabled:hover, html.win-hoverable .win-appbar.win-appbar-hidden button.win-appbar-invokebutton:enabled:hover,
+button.win-command.win-command:enabled:hover:active, button.win-command.win-command:enabled:active,
+html.win-hoverable.win-appbar.win-appbar-showing button.win-appbar-invokebutton:enabled:hover,
+html.win-hoverable .win-appbar.win-appbar-showing button.win-appbar-invokebutton:enabled:hover,
+html.win-hoverable.win-appbar.win-appbar-shown button.win-appbar-invokebutton:enabled:hover,
+html.win-hoverable .win-appbar.win-appbar-shown button.win-appbar-invokebutton:enabled:hover {
+    background-color: $primary-color;
+    color: white;
+}
+
+.win-appbar-menu {
+    width: 100%;
+}
+
+.win-toolbar .win-toolbar-actionarea {
+    -webkit-justify-content: center;
+    -ms-flex-align: center;
+    justify-content: center;
+}
+
+button.win-command {
+    left: 15px;
+}
+
+.win-appbar button.win-appbar-invokebutton.win-appbar-invokebutton:enabled .win-appbar-ellipsis, .win-appbar button.win-appbar-invokebutton.win-appbar-invokebutton:enabled .win-appbar-ellipsis,
+html.win-hoverable.win-appbar.win-appbar-hiding button.win-appbar-invokebutton:enabled:hover .win-appbar-ellipsis, html.win-hoverable .win-appbar.win-appbar-hiding button.win-appbar-invokebutton:enabled:hover .win-appbar-ellipsis, html.win-hoverable.win-appbar.win-appbar-hidden button.win-appbar-invokebutton:enabled:hover .win-appbar-ellipsis, html.win-hoverable .win-appbar.win-appbar-hidden button.win-appbar-invokebutton:enabled:hover .win-appbar-ellipsis,
+html.win-hoverable button.win-command:enabled:hover .win-commandglyph {
+    color: white;
+}
+
+.win-label,
+.win-commandimage {
+    color: white;
+    &:hover {
+        color: white;
+    }
+}
+
+/*.win-command:after {
+    border: 1px white solid;
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 600px;
+    content: '';
+    margin-top: -44px;
+    margin-left: 11px;
+}*/
+
+button.win-command:disabled .win-label, button.win-command:disabled:active .win-label,
+button:disabled .win-commandimage, button:disabled:active .win-commandimage {
+    color: rgba(255, 255, 255, 0.4);
+}
+
 // win-searchbox
 .win-searchbox {
     margin: 0 auto 5%;
@@ -140,6 +199,7 @@ progress:indeterminate {
     height: 52px;
     input {
         font-size: 14pt;
+        width: 100%;
     }
 }
 
@@ -155,8 +215,16 @@ progress:indeterminate {
 	opacity: 0.5;
 }
 
-.win-appbar button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:focus .win-appbar-ellipsis, .win-appbar button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:focus .win-appbar-ellipsis {
-    border-color: transparent;
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=number]:focus,
+input[type=tel]:focus,
+input[type=url]:focus,
+input[type=search]:focus,
+textarea:focus,
+.win-textarea:focus {
+    border-color: $primary-color;
 }
 
 // win-pivot
@@ -175,31 +243,6 @@ progress:indeterminate {
 .win-pivot button.win-pivot-header:hover:active {
     font-weight: 200;
     color: $primary-color;
-}
-
-.win-appbar {
-    background-color: $primary-color;
-    border-color: $primary-color;
-}
-
-.win-appbar button.win-appbar-invokebutton.win-appbar-invokebutton:enabled .win-appbar-ellipsis, .win-appbar button.win-appbar-invokebutton.win-appbar-invokebutton:enabled .win-appbar-ellipsis {
-    color: white;
-}
-
-.win-commandring button:active, .win-commandring,
-.win-appbar button,
-.win-commandimage,
-.win-commandring:hover {
-    color: white;
-}
-
-.win-commandring,
-.win-commandring:hover {
-    border-color: white;
-}
-
-html.win-hoverable button:enabled:hover .win-commandring {
-    border-color: white;
 }
 
 .win-listview > .win-vertical .win-container {
