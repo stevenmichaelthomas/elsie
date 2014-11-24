@@ -123,6 +123,12 @@
         return dollars;
     });
 
+    ui.formatTelephoneNumber = WinJS.Binding.converter(function (rawNumber) {
+        var prettyNumber = rawNumber.replace(/\D/g,'');
+        prettyNumber = "tel:" + prettyNumber;
+        return prettyNumber;
+    });
+
     WinJS.Namespace.define("Elsie", {
         Interface: ui
     });
