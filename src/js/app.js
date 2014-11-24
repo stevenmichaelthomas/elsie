@@ -9,9 +9,9 @@
     });
 
     var deviceReady = function(){
-        Elsie.Services.getLocation();
         Elsie.Services.getRecentProducts();
         Elsie.Interface.initialize();
+        Elsie.Services.getLocation();
         app.start();
     }
 

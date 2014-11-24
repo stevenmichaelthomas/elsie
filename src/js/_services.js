@@ -6,10 +6,12 @@
 
 		services.getLocation = function(){
 
+			Elsie.Interface.showLoadingAnimation("Getting your location...");
+
 			var response;
 
 			var onSuccess = function(position) {
-				//Elsie.Interface.clearMessage();
+				Elsie.Interface.hideLoadingAnimation();
 				var location = {
 					latitude: position.coords.latitude,
 					longitude: position.coords.longitude
@@ -18,7 +20,8 @@
 			};
 
 			function onError(error) {
-				var text = "Elsie couldn't get your location. She won't be able to do much without it, unfortunately.";
+				Elsie.Interface.hideLoadingAnimation();
+				var text = "Elsie couldn't get your location. She won't be able to provide you with accurate information until she has it.";
 				var link = { label: "Retry", action: "getLocation" };
 				Elsie.Interface.displayDialog(text, link);
 			}

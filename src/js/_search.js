@@ -42,7 +42,7 @@
     search.selectSuggestion = function(id) {
         //we chose a product, now let's do something with it
         var productId = id;
-        Elsie.Interface.showLoadingAnimation("Getting the details...");
+        Elsie.Interface.showLoadingAnimation("Getting product details...");
         Elsie.Services.findNearbyStoresWithProduct(productId).then(function(){
              // create a List object
             var itemList = new WinJS.Binding.List(Elsie.Data.nearbyStoresWithProduct);
