@@ -78,17 +78,30 @@
         document.getElementById("appBar").winControl.hide();
     };
 
-    ui.showLoadingAnimation = function(){
-        // this will probably not work on platforms other than winRT
-        var progress = document.createElement("progress");
-        progress.id = "loading";
-        document.getElementById("app").appendChild(progress);
+    ui.showLoadingAnimation = function(text){
+        if (typeof Windows !== 'undefined') {
+            var statusBar = Windows.UI.ViewManagement.StatusBar.getForCurrentView();
+            if (text){
+                statusBar.progressIndicator.text = text;
+            }
+            statusBar.progressIndicator.showAsync();
+        } else {
+            var progress = document.createElement("progress");
+            progress.id = "loading";
+            document.getElementById("app").appendChild(progress);
+        }
     };
 
     ui.hideLoadingAnimation = function(){
-        var loader = document.getElementById("loading");
-        if(loader){
-            loader.parentNode.removeChild(loader);
+        if (typeof Windows !== 'undefined') {
+            var statusBar = Windows.UI.ViewManagement.StatusBar.getForCurrentView();
+            statusBar.progressIndicator.text = '';
+            statusBar.progressIndicator.hideAsync();
+        } else {
+            var loader = document.getElementById("loading");
+            if(loader){
+                loader.parentNode.removeChild(loader);
+            }
         }
     };
 
