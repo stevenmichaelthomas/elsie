@@ -11,7 +11,6 @@ Her first planned release is coming soon.
 * `$ cordova platform add windows`
 * `$ cordova plugin add org.apache.cordova.geolocation`
 * `$ cordova plugin add org.apache.cordova.dialogs`
-* `$ cordova plugin add org.apache.cordova.statusbar`
 * `$ grunt build`
 
 ## Running ##
