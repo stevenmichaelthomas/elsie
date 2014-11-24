@@ -7,7 +7,10 @@
     ui.initialize = function(){
 
         if (typeof Windows !== 'undefined') {
-            //Windows.UI.ViewManagement.StatusBar.getForCurrentView().showAsync();
+            var statusBar = Windows.UI.ViewManagement.StatusBar.getForCurrentView();
+            statusBar.backgroundColor = {a: 255, r: 103, g: 65, b: 114};
+            statusBar.backgroundOpacity = 1;
+            statusBar.showAsync();
         }
 
         StatusBar.backgroundColorByHexString("#674172");
