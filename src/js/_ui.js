@@ -118,6 +118,7 @@
 
     ui.convertCentsToDollars = WinJS.Binding.converter(function (cents) {
         var dollars = cents / 100;
+        dollars = dollars.toFixed(2);
         dollars = "$" + dollars;
         return dollars;
     });
