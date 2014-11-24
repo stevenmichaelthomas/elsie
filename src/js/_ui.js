@@ -13,8 +13,6 @@
             statusBar.showAsync();
         }
 
-        StatusBar.backgroundColorByHexString("#674172");
-
     	WinJS.UI.processAll().then(function(){
             ui.goHome();            
             document.getElementById("button-home").addEventListener("click", ui.goHome);
