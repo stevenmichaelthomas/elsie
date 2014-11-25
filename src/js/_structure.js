@@ -5,30 +5,41 @@
 
     structure.productConstructor = WinJS.UI.Pages.define("./product.html", {
         ready: function (element, options) {
+            var listViewFilled = false;
             WinJS.Binding.processAll();
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = false;
             document.getElementById("button-nearby").winControl.disabled = false;
-            document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
+            document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
             var listView = element.querySelector("#storeResults");
-                setTimeout(function(){ listView.style.height = window.innerHeight - 355 + "px" }, 750);
+                listView.style.height = window.innerHeight + "px";
+                setTimeout(function(){ 
+                    listView.style.height = window.innerHeight - 355 + "px";
+                    //listView.winControl.forceLayout();
+                }, 750);
                 listView.addEventListener("iteminvoked", function(evt){
                     evt.detail.itemPromise.then(function itemInvoked(item) {
                         Elsie.Search.selectStore(item.data);
                     });
                 });
-                listView.winControl.forceLayout();
+                listView.addEventListener("loadingstatechanged", function (args) {
+                    if (listView.winControl.loadingState === "complete" && listViewFilled == false){
+                        listView.winControl.itemDataSource = Elsie.Data.processed.nearbyStoresWithProduct.dataSource;
+                        listViewFilled = true;
+                    }
+                });
         },
     });
 
     structure.storeConstructor = WinJS.UI.Pages.define("./store.html", {
         ready: function (element, options) {
             WinJS.Binding.processAll();
+            var listViewFilled = false;
 
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = false;
             document.getElementById("button-nearby").winControl.disabled = false;
-            //document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
+            document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
             
             Elsie.Interface.renderBingMap(element);
 
@@ -39,8 +50,12 @@
                         Elsie.Search.selectStore(item.data);
                     });
                 });
-            listView.winControl.forceLayout();
-
+                listView.addEventListener("loadingstatechanged", function (args) {
+                    if (listView.winControl.loadingState === "complete" && listViewFilled == false){
+                        listView.winControl.itemDataSource = Elsie.Data.processed.nearbyStores.dataSource;
+                        listViewFilled = true;
+                    }
+                });
         }
     });
 
@@ -49,7 +64,7 @@
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = true;
             document.getElementById("button-nearby").winControl.disabled = false;
-            //document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
+            document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
         }
     });
 
@@ -78,7 +93,7 @@
             searchBox.addEventListener("blur", function(){
                 if (!Elsie.Data.searchResults || Elsie.Data.searchResults.length == 0){
                     // global elements
-                    document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
+                    document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
 
                     // home elements
                     element.querySelector("#productResults").style.display = "none";
@@ -92,7 +107,7 @@
             document.getElementById("button-home").winControl.disabled = true;
             document.getElementById("button-about").winControl.disabled = false;
             document.getElementById("button-nearby").winControl.disabled = false;
-            //document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
+            document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
 
             // recent products bindings
             var recentProducts = element.querySelector("#recentProducts");
@@ -118,10 +133,12 @@
 
     structure.storesConstructor = WinJS.UI.Pages.define("./stores.html", {
         ready: function (element, options) {
+            var listViewFilled = false;
+
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = false;
             document.getElementById("button-nearby").winControl.disabled = true;
-            //document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
+            document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
 
             // control size adjustments
             var listHeight = window.innerHeight - 75 + "px";
@@ -133,8 +150,13 @@
                         Elsie.Search.selectStore(item.data);
                     });
                 });
-
-            listView.winControl.forceLayout();
+                listView.addEventListener("loadingstatechanged", function (args) {
+                    if (listView.winControl.loadingState === "complete" && listViewFilled == false){
+                        listView.winControl.itemDataSource = Elsie.Data.processed.closestStores.dataSource;
+                        listViewFilled = true;
+                        listView.winControl.forceLayout();
+                    }
+                });
         }
     });
 

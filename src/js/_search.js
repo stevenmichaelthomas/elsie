@@ -14,6 +14,7 @@
             WinJS.Namespace.define("RecentProducts", productsList);
             var listView = document.getElementById("recentProducts").winControl;
             listView.itemDataSource = RecentProducts.itemList.dataSource;
+            listView.forceLayout();
         }
     };
 
@@ -41,7 +42,7 @@
 
     search.selectSuggestion = function(id) {
         //we chose a product, now let's do something with it
-        clearTimeout(timer);
+        //clearTimeout(timer);
         var productId = id;
         Elsie.Interface.showLoadingAnimation("Getting product details...");
         Elsie.Services.findNearbyStoresWithProduct(productId).then(function(){

@@ -1,12 +1,12 @@
-#templates(style="display:none;")
-  #productResultsTemplate.listBox(data-win-control="WinJS.Binding.Template")
+#templates(style="visibility:hidden; height: 0px;")
+  .productResultsTemplate.listBox(data-win-control="WinJS.Binding.Template")
     .product.listItem
       img.listItem-Image(data-win-bind="src:image_thumb_url")
       .listItem-Detail
         h4(data-win-bind="textContent:name")
         h6(data-win-bind="textContent:package")
 
-  #storeResultsTemplate.listBox(data-win-control="WinJS.Binding.Template")
+  .storeResultsTemplate.listBox(data-win-control="WinJS.Binding.Template")
     .store.listItem
       .listItem-Detail
         h6.right(data-win-bind="textContent: distance_in_meters Elsie.Interface.convertMetersToKilometers")

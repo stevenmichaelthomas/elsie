@@ -98,7 +98,6 @@
 			Elsie.Data.selectedProductId = id;
 			
 			return new WinJS.Promise(function (complete) {
-				if (Elsie.Data.location && Elsie.Data.selectedProductId){
 					var options = {
 						url: 'http://lcboapi.com/products/' + Elsie.Data.selectedProductId + '/stores?lat=' + Elsie.Data.location.latitude + '&lon=' + Elsie.Data.location.longitude,
 						type: 'GET'
@@ -128,7 +127,6 @@
 							complete();
 						}
 					);
-				}
 			});
 		}
 
