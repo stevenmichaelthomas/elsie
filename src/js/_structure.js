@@ -154,7 +154,7 @@
                     if (listView.winControl.loadingState === "complete" && listViewFilled == false){
                         listView.winControl.itemDataSource = Elsie.Data.processed.closestStores.dataSource;
                         listViewFilled = true;
-                        listView.winControl.forceLayout();
+                        //listView.winControl.forceLayout();
                     }
                 });
         }
