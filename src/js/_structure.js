@@ -61,6 +61,7 @@
             // searchBox bindings
             var searchBox = element.querySelector("#searchBoxId");
             searchBox.addEventListener("keyup", Elsie.Search.requestSuggestions);
+            searchBox.addEventListener("change", Elsie.Search.requestSuggestions);
             searchBox.addEventListener("focus", function(){
                 // global elements
                 document.getElementById("appBar").winControl.closedDisplayMode = 'none';
