@@ -17,6 +17,7 @@
                         Elsie.Search.selectStore(item.data);
                     });
                 });
+                listView.winControl.forceLayout();
         },
     });
 
@@ -27,7 +28,7 @@
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = false;
             document.getElementById("button-nearby").winControl.disabled = false;
-            document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
+            //document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
             
             Elsie.Interface.renderBingMap(element);
 
@@ -38,6 +39,8 @@
                         Elsie.Search.selectStore(item.data);
                     });
                 });
+            listView.winControl.forceLayout();
+
         }
     });
 
@@ -46,7 +49,7 @@
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = true;
             document.getElementById("button-nearby").winControl.disabled = false;
-            document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
+            //document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
         }
     });
 
@@ -89,7 +92,7 @@
             document.getElementById("button-home").winControl.disabled = true;
             document.getElementById("button-about").winControl.disabled = false;
             document.getElementById("button-nearby").winControl.disabled = false;
-            document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
+            //document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
 
             // recent products bindings
             var recentProducts = element.querySelector("#recentProducts");
@@ -118,7 +121,7 @@
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = false;
             document.getElementById("button-nearby").winControl.disabled = true;
-            document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
+            //document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
 
             // control size adjustments
             var listHeight = window.innerHeight - 75 + "px";
@@ -130,6 +133,8 @@
                         Elsie.Search.selectStore(item.data);
                     });
                 });
+
+            listView.winControl.forceLayout();
         }
     });
 
