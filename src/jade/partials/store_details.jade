@@ -1,17 +1,17 @@
 .details.store
   .map
-    div#mapDiv(style="position:relative; width: 100%; height:200px;")
+    a#mapDiv(style="position:relative; width: 100%; height:200px;display:block,",data-win-bind="href: Elsie.Data.selectedStore Elsie.Interface.formatAddress")
   br
   .glance.linear
     .fact
-      span.value.win-type-x-large(data-win-bind="innerText: Elsie.Data.selectedStore.address_line_1")
+      a.value.win-type-x-large(data-win-bind="innerText: Elsie.Data.selectedStore.address_line_1; href: Elsie.Data.selectedStore Elsie.Interface.formatAddress")
       br
-      span.key.win-type-medium address
-    .fact
+      span.key.win-type-medium view map
+    //.fact
       span.value.win-type-x-large(data-win-bind="innerText: Elsie.Data.selectedStore.city")
       br
       span.key.win-type-medium city
     .fact
       a.value.win-type-x-large(data-win-bind="innerText: Elsie.Data.selectedStore.telephone; href: Elsie.Data.selectedStore.telephone Elsie.Interface.formatTelephoneNumber")
       br
-      span.key.win-type-medium phone
+      span.key.win-type-medium call store

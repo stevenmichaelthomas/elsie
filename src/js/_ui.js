@@ -152,6 +152,12 @@
         return prettyNumber;
     });
 
+    ui.formatAddress = WinJS.Binding.converter(function (store) {
+        var geoLocation = store.latitude + ',' + store.longitude;
+        geoLocation = "geo:" + geoLocation;
+        return geoLocation;
+    });
+
     WinJS.Namespace.define("Elsie", {
         Interface: ui
     });
