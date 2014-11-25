@@ -154,7 +154,7 @@
 
     ui.formatAddress = WinJS.Binding.converter(function (store) {
         var geoLocation = store.latitude + ',' + store.longitude;
-        geoLocation = "geo:" + geoLocation;
+        geoLocation = "maps:" + geoLocation;
         return geoLocation;
     });
 

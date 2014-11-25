@@ -43,7 +43,7 @@
 							Elsie.Data.nearbyStores = JSON.parse(result.responseText).result;
 							Elsie.Data.nearbyStores.shift();
 							var itemList = new WinJS.Binding.List(Elsie.Data.nearbyStores);
-            Elsie.Data.processed.nearbyStores = itemList;
+            Elsie.Lists.nearbyStores = itemList;
 							complete();
 						}
 					);
@@ -68,7 +68,7 @@
 							if (result.status === 200) {
 								Elsie.Data.closestStores = JSON.parse(result.responseText).result;
 								var itemList = new WinJS.Binding.List(Elsie.Data.closestStores);
-	            Elsie.Data.processed.closestStores = itemList;
+	            Elsie.Lists.closestStores = itemList;
 								complete();
 							} else {
 								console.log('API error');
@@ -145,7 +145,7 @@
 										localStorage["Elsie_recentProducts"] = JSON.stringify(favouriteProducts);
 									}
 									var itemList = new WinJS.Binding.List(Elsie.Data.nearbyStoresWithProduct);
-									Elsie.Data.processed.nearbyStoresWithProduct = itemList;
+									Elsie.Lists.nearbyStoresWithProduct = itemList;
 									services.getRecentProducts();
 									complete();
 								} else {

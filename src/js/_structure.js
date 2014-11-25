@@ -24,7 +24,7 @@
                 });
                 listView.addEventListener("loadingstatechanged", function (args) {
                     if (listView.winControl.loadingState === "complete" && listViewFilled == false){
-                        listView.winControl.itemDataSource = Elsie.Data.processed.nearbyStoresWithProduct.dataSource;
+                        listView.winControl.itemDataSource = Elsie.Lists.nearbyStoresWithProduct.dataSource;
                         listViewFilled = true;
                     }
                 });
@@ -52,7 +52,7 @@
                 });
                 listView.addEventListener("loadingstatechanged", function (args) {
                     if (listView.winControl.loadingState === "complete" && listViewFilled == false){
-                        listView.winControl.itemDataSource = Elsie.Data.processed.nearbyStores.dataSource;
+                        listView.winControl.itemDataSource = Elsie.Lists.nearbyStores.dataSource;
                         listViewFilled = true;
                     }
                 });
@@ -152,7 +152,7 @@
                 });
                 listView.addEventListener("loadingstatechanged", function (args) {
                     if (listView.winControl.loadingState === "complete" && listViewFilled == false){
-                        listView.winControl.itemDataSource = Elsie.Data.processed.closestStores.dataSource;
+                        listView.winControl.itemDataSource = Elsie.Lists.closestStores.dataSource;
                         listViewFilled = true;
                         //listView.winControl.forceLayout();
                     }

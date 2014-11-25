@@ -6,7 +6,8 @@
 
     WinJS.Namespace.define("Elsie", {
         Data: {
-            processed: {}
+        },
+        Lists: {
         }
     });
 
