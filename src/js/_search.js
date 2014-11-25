@@ -65,7 +65,7 @@
             latitude: Elsie.Data.selectedStore.latitude,
             longitude: Elsie.Data.selectedStore.longitude,
         };
-        Elsie.Services.getNearbyStores(storeLocation).then(function(){
+        Elsie.Services.getNearbyStoresForProduct(storeLocation).then(function(){
             //Elsie.Data.nearbyStores
             var itemList = new WinJS.Binding.List(Elsie.Data.nearbyStores);
             var storesList = {

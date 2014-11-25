@@ -30,7 +30,7 @@
 
 		}
 
-		services.getNearbyStores = function(location){
+		services.getNearbyStoresForProduct = function(location){
 			return new WinJS.Promise(function (complete) {
 					var options = {
 						url: 'http://lcboapi.com/stores?lat=' + location.latitude + '&lon=' + location.longitude,
@@ -40,6 +40,21 @@
 						function (result) {
 							Elsie.Data.nearbyStores = JSON.parse(result.responseText).result;
 							Elsie.Data.nearbyStores.shift();
+							complete();
+						}
+					);
+			});
+		}
+
+		services.getClosestStores = function(){
+			return new WinJS.Promise(function (complete) {
+					var options = {
+						url: 'http://lcboapi.com/stores?lat=' + Elsie.Data.location.latitude + '&lon=' + Elsie.Data.location.longitude,
+						type: 'GET'
+					};
+					WinJS.xhr(options).done(
+						function (result) {
+							Elsie.Data.closestStores = JSON.parse(result.responseText).result;
 							complete();
 						}
 					);
