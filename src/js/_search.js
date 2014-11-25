@@ -21,7 +21,7 @@
         Elsie.Interface.hideLoadingAnimation();
         clearTimeout(timer);
         timer = setTimeout(function(){
-            Elsie.Interface.showLoadingAnimation("Searching LCBO product...");
+            Elsie.Interface.showLoadingAnimation("Searching LCBO products...");
             var query = document.getElementById("searchBoxId").value.toLocaleLowerCase();
             Elsie.Services.searchProducts(query).then(function(){
                  // create a List object
@@ -45,13 +45,7 @@
         var productId = id;
         Elsie.Interface.showLoadingAnimation("Getting product details...");
         Elsie.Services.findNearbyStoresWithProduct(productId).then(function(){
-             // create a List object
-            var itemList = new WinJS.Binding.List(Elsie.Data.nearbyStoresWithProduct);
-            var storesList = {
-                itemList: itemList
-            };
             Elsie.Interface.hideLoadingAnimation();
-            WinJS.Namespace.define("NearbyStoresWithProduct", storesList);
             WinJS.Navigation.navigate("./product.html");
         });
     }
@@ -66,13 +60,7 @@
             longitude: Elsie.Data.selectedStore.longitude,
         };
         Elsie.Services.getNearbyStoresForProduct(storeLocation).then(function(){
-            //Elsie.Data.nearbyStores
-            var itemList = new WinJS.Binding.List(Elsie.Data.nearbyStores);
-            var storesList = {
-                itemList: itemList
-            };
             Elsie.Interface.hideLoadingAnimation();
-            WinJS.Namespace.define("NearbyStoresToStore", storesList);
             WinJS.Navigation.navigate("./store.html");
         });
     }

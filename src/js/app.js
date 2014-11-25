@@ -5,7 +5,9 @@
     var app = WinJS.Application;
 
     WinJS.Namespace.define("Elsie", {
-        Data: {}
+        Data: {
+            processed: {}
+        }
     });
 
     var deviceReady = function(){

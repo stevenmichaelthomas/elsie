@@ -81,14 +81,8 @@
     ui.goNearbyStores = function(){
         Elsie.Interface.showLoadingAnimation("Finding your closest stores...");
         Elsie.Services.getClosestStores().then(function(){
-            var itemList = new WinJS.Binding.List(Elsie.Data.closestStores);
-            var storesList = {
-                itemList: itemList
-            };
             Elsie.Interface.hideLoadingAnimation();
-            WinJS.Namespace.define("ClosestStores", storesList);
             WinJS.Navigation.navigate("./stores.html");
-            document.getElementById("appBar").winControl.hide();
         });
     };
 
