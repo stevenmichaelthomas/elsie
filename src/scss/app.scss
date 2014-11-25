@@ -295,6 +295,7 @@ textarea:focus,
 .win-listview > .win-vertical .win-container {
     margin-right: 0;
     margin-left: 0;
+    max-height: 80px !important;
 }
 
 .win-listview .win-itembox {
