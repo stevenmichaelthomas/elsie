@@ -21,7 +21,7 @@
         Elsie.Interface.hideLoadingAnimation();
         clearTimeout(timer);
         timer = setTimeout(function(){
-            Elsie.Interface.showLoadingAnimation("Searching the cellar...");
+            Elsie.Interface.showLoadingAnimation("Searching LCBO product...");
             var query = document.getElementById("searchBoxId").value.toLocaleLowerCase();
             Elsie.Services.searchProducts(query).then(function(){
                  // create a List object
@@ -41,6 +41,7 @@
 
     search.selectSuggestion = function(id) {
         //we chose a product, now let's do something with it
+        clearTimeout(timer);
         var productId = id;
         Elsie.Interface.showLoadingAnimation("Getting product details...");
         Elsie.Services.findNearbyStoresWithProduct(productId).then(function(){

@@ -17,6 +17,7 @@
             ui.goHome();            
             document.getElementById("button-home").addEventListener("click", ui.goHome);
             document.getElementById("button-about").addEventListener("click", ui.goAbout);
+            document.getElementById("button-nearby").addEventListener("click", ui.goNearbyStores);
     	});
     }
 
@@ -74,6 +75,23 @@
     ui.goAbout = function(){
         WinJS.Navigation.navigate('./about.html');
         document.getElementById("appBar").winControl.hide();
+    };
+
+    ui.goNearbyStores = function(){
+        if (Elsie.Data.location){
+            Elsie.Interface.showLoadingAnimation("Finding your closest stores...");
+            Elsie.Services.getNearbyStores(Elsie.Data.location).then(function(){
+                //Elsie.Data.nearbyStores
+                var itemList = new WinJS.Binding.List(Elsie.Data.nearbyStores);
+                var storesList = {
+                    itemList: itemList
+                };
+                Elsie.Interface.hideLoadingAnimation();
+                WinJS.Namespace.define("ClosestStores", storesList);
+                WinJS.Navigation.navigate("./stores.html");
+                document.getElementById("appBar").winControl.hide();
+            });
+        }
     };
 
     ui.showLoadingAnimation = function(text){

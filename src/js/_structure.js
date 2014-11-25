@@ -8,9 +8,10 @@
             WinJS.Binding.processAll();
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = false;
+            document.getElementById("button-nearby").winControl.disabled = false;
             document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
             var listView = element.querySelector("#storeResults");
-                setTimeout(function(){ listView.style.height = window.innerHeight - 380 + "px" }, 1000);
+                setTimeout(function(){ listView.style.height = window.innerHeight - 355 + "px" }, 750);
                 listView.addEventListener("iteminvoked", function(evt){
                     evt.detail.itemPromise.then(function itemInvoked(item) {
                         Elsie.Search.selectStore(item.data);
@@ -28,12 +29,13 @@
 
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = false;
+            document.getElementById("button-nearby").winControl.disabled = false;
             document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
             
             Elsie.Interface.renderBingMap(element);
 
             var listView = element.querySelector("#nearbyStores");
-                listView.style.height = window.innerHeight - 180 + "px";
+                listView.style.height = window.innerHeight - 155 + "px";
                 listView.addEventListener("iteminvoked", function(evt){
                     evt.detail.itemPromise.then(function itemInvoked(item) {
                         Elsie.Search.selectStore(item.data);
@@ -46,6 +48,7 @@
         ready: function (element, options) {
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = true;
+            document.getElementById("button-nearby").winControl.disabled = false;
             document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
         }
     });
@@ -54,7 +57,7 @@
         ready: function (element, options) {
             
             // control size adjustments
-            var listHeight = window.innerHeight * 0.895035;
+            var listHeight = window.innerHeight - 145;
             listHeight = listHeight + "px";
             element.querySelector("#productResults").style.height = listHeight;
 
@@ -89,11 +92,12 @@
 
             document.getElementById("button-home").winControl.disabled = true;
             document.getElementById("button-about").winControl.disabled = false;
+            document.getElementById("button-nearby").winControl.disabled = false;
             document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
 
             // recent products bindings
             var recentProducts = element.querySelector("#recentProducts");
-            recentProducts.style.height = window.innerHeight - 240 + "px";
+            recentProducts.style.height = window.innerHeight - 220 + "px";
             recentProducts.addEventListener("iteminvoked", function(evt){
                 evt.detail.itemPromise.then(function itemInvoked(item) {
                     Elsie.Search.selectSuggestion(item.data.id);
@@ -111,6 +115,26 @@
             Elsie.Search.displayRecentProducts();
 
         },
+    });
+
+    structure.storesConstructor = WinJS.UI.Pages.define("./stores.html", {
+        ready: function (element, options) {
+            document.getElementById("button-home").winControl.disabled = false;
+            document.getElementById("button-about").winControl.disabled = false;
+            document.getElementById("button-nearby").winControl.disabled = true;
+            document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
+
+            // control size adjustments
+            var listHeight = window.innerHeight - 75 + "px";
+            element.querySelector("#closestStores").style.height = listHeight;
+
+            var listView = element.querySelector("#closestStores");
+                listView.addEventListener("iteminvoked", function(evt){
+                    evt.detail.itemPromise.then(function itemInvoked(item) {
+                        Elsie.Search.selectStore(item.data);
+                    });
+                });
+        }
     });
 
     WinJS.Namespace.define("Elsie", {

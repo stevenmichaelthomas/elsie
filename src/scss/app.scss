@@ -57,6 +57,19 @@ progress:indeterminate {
     float: right;
 }
 
+.elsie-title {
+    font-size: 14pt;
+    font-weight: 600;
+    margin: 10px 0 5px;
+    text-transform: uppercase;
+    clear: both;
+    color: $primary-color;
+    &.solo {
+        margin: 15px auto 10px;
+        width: 90%;
+    }
+}
+
 #brand-container {
     background: $primary-color;
     margin-bottom: 20px;
@@ -78,8 +91,6 @@ progress:indeterminate {
 
 #mini-brand {
     display: none;
-    width: 90%;
-    margin: 20px auto;
 }
 
 #recent {
@@ -95,6 +106,11 @@ progress:indeterminate {
 #productResults {
     margin: 0 auto;
     display: none;
+    width: 90%;
+}
+
+#closestStores {
+    margin: 0 auto;
     width: 90%;
 }
 
@@ -120,17 +136,13 @@ progress:indeterminate {
     }
 }
 
-#nearbyStores .block {
-    display: none;
+#nearbyStores {
+    margin-top: -10px;
 }
 
-.elsie-title {
-    font-size: 14pt;
-    font-weight: 600;
-    margin: 10px 0 5px;
-    text-transform: uppercase;
-    clear: both;
-    color: $primary-color;
+#nearbyStores .block,
+#closestStores .block {
+    display: none;
 }
 
 // win-appbar
@@ -143,7 +155,8 @@ html.win-hoverable.win-appbar.win-appbar-showing button.win-appbar-invokebutton:
 html.win-hoverable .win-appbar.win-appbar-showing button.win-appbar-invokebutton:enabled:hover,
 html.win-hoverable.win-appbar.win-appbar-shown button.win-appbar-invokebutton:enabled:hover,
 html.win-hoverable .win-appbar.win-appbar-shown button.win-appbar-invokebutton:enabled:hover,
-html.win-hoverable.win-toolbar button.win-toolbar-overflowbutton:hover, html.win-hoverable .win-toolbar button.win-toolbar-overflowbutton:hover, html.win-hoverable.win-toolbar .win-toolbar-overflowarea button.win-command:hover, html.win-hoverable .win-toolbar .win-toolbar-overflowarea button.win-command:hover {
+html.win-hoverable.win-toolbar button.win-toolbar-overflowbutton:hover, html.win-hoverable .win-toolbar button.win-toolbar-overflowbutton:hover, html.win-hoverable.win-toolbar .win-toolbar-overflowarea button.win-command:hover, html.win-hoverable .win-toolbar .win-toolbar-overflowarea button.win-command:hover,
+html.win-hoverable.win-appbar.win-appbar-showing button.win-appbar-invokebutton:enabled:hover .win-appbar-ellipsis, html.win-hoverable .win-appbar.win-appbar-showing button.win-appbar-invokebutton:enabled:hover .win-appbar-ellipsis, html.win-hoverable.win-appbar.win-appbar-shown button.win-appbar-invokebutton:enabled:hover .win-appbar-ellipsis, html.win-hoverable .win-appbar.win-appbar-shown button.win-appbar-invokebutton:enabled:hover .win-appbar-ellipsis {
     background-color: $primary-color;
     color: white;
 }
@@ -158,14 +171,31 @@ html.win-hoverable.win-toolbar button.win-toolbar-overflowbutton:hover, html.win
     justify-content: center;
 }
 
-button.win-command {
-    //left: 15px;
+.win-commandring,
+html.win-hoverable button:enabled:hover .win-commandring {
+    border-color: white;
+}
+
+button:disabled .win-commandring {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.win-appbar button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:focus .win-appbar-ellipsis, .win-appbar button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:focus .win-appbar-ellipsis {
+    border-color: transparent;
+}
+
+.win-commandlayout .win-primarygroup {
+    -webkit-justify-content: center;
+    justify-content: center;
+    -ms-flex-align: center;
+
 }
 
 .win-appbar button.win-appbar-invokebutton.win-appbar-invokebutton:enabled .win-appbar-ellipsis, .win-appbar button.win-appbar-invokebutton.win-appbar-invokebutton:enabled .win-appbar-ellipsis,
 html.win-hoverable.win-appbar.win-appbar-hiding button.win-appbar-invokebutton:enabled:hover .win-appbar-ellipsis, html.win-hoverable .win-appbar.win-appbar-hiding button.win-appbar-invokebutton:enabled:hover .win-appbar-ellipsis, html.win-hoverable.win-appbar.win-appbar-hidden button.win-appbar-invokebutton:enabled:hover .win-appbar-ellipsis, html.win-hoverable .win-appbar.win-appbar-hidden button.win-appbar-invokebutton:enabled:hover .win-appbar-ellipsis,
 html.win-hoverable button.win-command:enabled:hover .win-commandglyph,
-.win-toolbar button.win-toolbar-overflowbutton:enabled .win-toolbar-ellipsis, .win-toolbar button.win-toolbar-overflowbutton:enabled .win-toolbar-ellipsis {
+.win-toolbar button.win-toolbar-overflowbutton:enabled .win-toolbar-ellipsis, .win-toolbar button.win-toolbar-overflowbutton:enabled .win-toolbar-ellipsis,
+.win-menu button, .win-menu button {
     color: white;
 }
 
@@ -192,6 +222,10 @@ html.win-hoverable button.win-command:enabled:hover .win-commandglyph,
     margin-top: -44px;
     margin-left: 11px;
 }*/
+
+.win-appbar.win-menulayout .win-toolbar, .win-appbar.win-menulayout .win-toolbar {
+    background: $primary-color;
+}
 
 button.win-command:disabled .win-label, button.win-command:disabled:active .win-label,
 button:disabled .win-commandimage, button:disabled:active .win-commandimage {
@@ -265,6 +299,10 @@ textarea:focus,
 
 .win-listview .win-itembox {
     border-left: 5px $primary-color solid;
+}
+
+html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-itemcontainer.win-container:hover {
+    outline: none;
 }
 
 //custom
