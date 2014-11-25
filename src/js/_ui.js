@@ -83,6 +83,7 @@
         Elsie.Services.getClosestStores().then(function(){
             Elsie.Interface.hideLoadingAnimation();
             WinJS.Navigation.navigate("./stores.html");
+            document.getElementById("appBar").winControl.hide();
         });
     };
 

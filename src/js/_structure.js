@@ -17,7 +17,7 @@
                         Elsie.Search.selectStore(item.data);
                     });
                 });
-        }
+        },
     });
 
     structure.storeConstructor = WinJS.UI.Pages.define("./store.html", {
