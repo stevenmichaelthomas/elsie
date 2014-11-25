@@ -37,10 +37,6 @@
                 if (link.action == 'getLocation'){
                     Elsie.Services.getLocation();
                 }
-            } else {
-                //var homeText = "Elsie couldn't get your location. :(";
-                //var homeLink = { label: "Retry", action: Elsie.Services.getLocation };
-                //ui.displayHomeMessage(homeText, homeLink);
             }
         };
         var title = "Location error";

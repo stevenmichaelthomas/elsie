@@ -5,33 +5,35 @@
 		var services = {};
 
 		services.getLocation = function(){
+			return new WinJS.Promise(function (complete) {
+				
+				Elsie.Interface.showLoadingAnimation("Getting your location...");
 
-			Elsie.Interface.showLoadingAnimation("Getting your location...");
-
-			var response;
-
-			var onSuccess = function(position) {
-				Elsie.Interface.hideLoadingAnimation();
-				var location = {
-					latitude: position.coords.latitude,
-					longitude: position.coords.longitude
+				var response;
+				var onSuccess = function(position) {
+					Elsie.Interface.hideLoadingAnimation();
+					var location = {
+						latitude: position.coords.latitude,
+						longitude: position.coords.longitude
+					};
+					Elsie.Data.location = location;
+					complete();
 				};
-				Elsie.Data.location = location;
-			};
+				var onError = function() {
+					Elsie.Interface.hideLoadingAnimation();
+					var text = "Elsie couldn't get your location. She won't be able to provide you with accurate information until she has it.";
+					var link = { label: "Retry", action: "getLocation" };
+					Elsie.Interface.displayDialog(text, link);
+				}
 
-			function onError(error) {
-				Elsie.Interface.hideLoadingAnimation();
-				var text = "Elsie couldn't get your location. She won't be able to provide you with accurate information until she has it.";
-				var link = { label: "Retry", action: "getLocation" };
-				Elsie.Interface.displayDialog(text, link);
-			}
+				navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
-			navigator.geolocation.getCurrentPosition(onSuccess, onError);
-
+			});
 		}
 
 		services.getNearbyStoresForProduct = function(location){
 			return new WinJS.Promise(function (complete) {
+				var makeCall = function(){
 					var options = {
 						url: 'http://lcboapi.com/stores?lat=' + location.latitude + '&lon=' + location.longitude,
 						type: 'GET'
@@ -45,23 +47,41 @@
 							complete();
 						}
 					);
+				};
+				if (Object.keys(Elsie.Data.location).length > 0) {
+					makeCall();
+				} else {
+					services.getLocation().then(makeCall);
+				}
 			});
 		}
 
 		services.getClosestStores = function(){
 			return new WinJS.Promise(function (complete) {
+				var makeCall = function(){
 					var options = {
 						url: 'http://lcboapi.com/stores?lat=' + Elsie.Data.location.latitude + '&lon=' + Elsie.Data.location.longitude,
 						type: 'GET'
 					};
 					WinJS.xhr(options).done(
 						function (result) {
-							Elsie.Data.closestStores = JSON.parse(result.responseText).result;
-							var itemList = new WinJS.Binding.List(Elsie.Data.closestStores);
-            Elsie.Data.processed.closestStores = itemList;
-							complete();
+							if (result.status === 200) {
+								Elsie.Data.closestStores = JSON.parse(result.responseText).result;
+								var itemList = new WinJS.Binding.List(Elsie.Data.closestStores);
+	            Elsie.Data.processed.closestStores = itemList;
+								complete();
+							} else {
+								console.log('API error');
+								console.log(result);
+							}
 						}
 					);
+				};
+				if (Object.keys(Elsie.Data.location).length > 0) {
+					makeCall();
+				} else {
+					services.getLocation().then(makeCall);
+				}
 			});
 		}
 
@@ -98,35 +118,50 @@
 			Elsie.Data.selectedProductId = id;
 			
 			return new WinJS.Promise(function (complete) {
-					var options = {
-						url: 'http://lcboapi.com/products/' + Elsie.Data.selectedProductId + '/stores?lat=' + Elsie.Data.location.latitude + '&lon=' + Elsie.Data.location.longitude,
-						type: 'GET'
-					};
-					WinJS.xhr(options).done(
-						function (result) {
-							var returnedBlob = JSON.parse(result.responseText);
-							Elsie.Data.selectedProduct = returnedBlob.product;							
-							Elsie.Data.nearbyStoresWithProduct = returnedBlob.result;
 
-							if (localStorage["Elsie_recentProducts"]){
-								var favouriteProducts = JSON.parse(localStorage["Elsie_recentProducts"]);
-								//favouriteProducts.shift();
-								var checkForProduct = JSON.stringify(favouriteProducts).indexOf(JSON.stringify(returnedBlob.product.name));
-								if (checkForProduct == -1){
-									favouriteProducts.push(Elsie.Data.selectedProduct);
-									localStorage["Elsie_recentProducts"] = JSON.stringify(favouriteProducts);
+					var makeCall = function(){
+						var options = {
+							url: 'http://lcboapi.com/products/' + Elsie.Data.selectedProductId + '/stores?lat=' + Elsie.Data.location.latitude + '&lon=' + Elsie.Data.location.longitude,
+							type: 'GET'
+						};
+						WinJS.xhr(options).done(
+							function (result) {
+								if (result.status == 200){
+									var returnedBlob = JSON.parse(result.responseText);
+									Elsie.Data.selectedProduct = returnedBlob.product;							
+									Elsie.Data.nearbyStoresWithProduct = returnedBlob.result;
+
+									if (localStorage["Elsie_recentProducts"]){
+										var favouriteProducts = JSON.parse(localStorage["Elsie_recentProducts"]);
+										//favouriteProducts.shift();
+										var checkForProduct = JSON.stringify(favouriteProducts).indexOf(JSON.stringify(returnedBlob.product.name));
+										if (checkForProduct == -1){
+											favouriteProducts.push(Elsie.Data.selectedProduct);
+											localStorage["Elsie_recentProducts"] = JSON.stringify(favouriteProducts);
+										}
+									} else {
+										var favouriteProducts = [];
+										favouriteProducts.push(Elsie.Data.selectedProduct);
+										localStorage["Elsie_recentProducts"] = JSON.stringify(favouriteProducts);
+									}
+									var itemList = new WinJS.Binding.List(Elsie.Data.nearbyStoresWithProduct);
+									Elsie.Data.processed.nearbyStoresWithProduct = itemList;
+									services.getRecentProducts();
+									complete();
+								} else {
+									console.log('API error');
+									console.log(result);
 								}
-							} else {
-								var favouriteProducts = [];
-								favouriteProducts.push(Elsie.Data.selectedProduct);
-								localStorage["Elsie_recentProducts"] = JSON.stringify(favouriteProducts);
 							}
-							var itemList = new WinJS.Binding.List(Elsie.Data.nearbyStoresWithProduct);
-							Elsie.Data.processed.nearbyStoresWithProduct = itemList;
-							services.getRecentProducts();
-							complete();
-						}
-					);
+						);
+					};
+
+					if (Object.keys(Elsie.Data.location).length > 0) {
+						makeCall();
+					} else {
+						services.getLocation().then(makeCall);
+					}
+
 			});
 		}
 
