@@ -1,16 +1,17 @@
-#productResultsTemplate.listBox(data-win-control="WinJS.Binding.Template")
-  .product.listItem
-    img.listItem-Image(data-win-bind="src:image_thumb_url")
-    .listItem-Detail
-      h4(data-win-bind="textContent:name")
-      h6(data-win-bind="textContent:package")
+#templates(style="display:none;")
+  #productResultsTemplate.listBox(data-win-control="WinJS.Binding.Template")
+    .product.listItem
+      img.listItem-Image(data-win-bind="src:image_thumb_url")
+      .listItem-Detail
+        h4(data-win-bind="textContent:name")
+        h6(data-win-bind="textContent:package")
 
-#storeResultsTemplate.listBox(data-win-control="WinJS.Binding.Template")
-  .store.listItem
-    .listItem-Detail
-      h6.right(data-win-bind="textContent: distance_in_meters Elsie.Interface.convertMetersToKilometers")
-      .block
-        span.quantity(data-win-bind="textContent: quantity")
-        span.remaining units
-      h4(data-win-bind="textContent:name")
-      h6(data-win-bind="textContent:address_line_1")
+  #storeResultsTemplate.listBox(data-win-control="WinJS.Binding.Template")
+    .store.listItem
+      .listItem-Detail
+        h6.right(data-win-bind="textContent: distance_in_meters Elsie.Interface.convertMetersToKilometers")
+        .block
+          span.quantity(data-win-bind="textContent: quantity")
+          span.remaining units
+        h4(data-win-bind="textContent:name")
+        h6(data-win-bind="textContent:address_line_1")
