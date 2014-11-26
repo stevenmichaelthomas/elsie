@@ -9,7 +9,6 @@
         if (typeof Windows !== 'undefined') {
             var statusBar = Windows.UI.ViewManagement.StatusBar.getForCurrentView();
             statusBar.backgroundColor = {a: 255, r: 103, g: 65, b: 114};
-            statusBar.foregroundColor = {a: 255, r: 255, g: 255, b: 255};
             statusBar.backgroundOpacity = 1;
             statusBar.showAsync();
         }
