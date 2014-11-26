@@ -12,11 +12,6 @@
             document.getElementById("button-nearby").winControl.disabled = false;
             document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
             var listView = element.querySelector("#storeResults");
-                listView.style.height = window.innerHeight + "px";
-                setTimeout(function(){ 
-                    listView.style.height = window.innerHeight - 355 + "px";
-                    //listView.winControl.forceLayout();
-                }, 750);
                 listView.addEventListener("iteminvoked", function(evt){
                     evt.detail.itemPromise.then(function itemInvoked(item) {
                         Elsie.Search.selectStore(item.data);
@@ -25,6 +20,7 @@
                 listView.addEventListener("loadingstatechanged", function (args) {
                     if (listView.winControl.loadingState === "complete" && listViewFilled == false){
                         listView.winControl.itemDataSource = Elsie.Lists.nearbyStoresWithProduct.dataSource;
+                        setTimeout(function(){ listView.style.height = window.innerHeight - 355 + "px"; }, 1000);
                         listViewFilled = true;
                     }
                 });
@@ -154,7 +150,6 @@
                     if (listView.winControl.loadingState === "complete" && listViewFilled == false){
                         listView.winControl.itemDataSource = Elsie.Lists.closestStores.dataSource;
                         listViewFilled = true;
-                        //listView.winControl.forceLayout();
                     }
                 });
         }
