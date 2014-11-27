@@ -126,6 +126,108 @@
     
     };
 
+    ui.getDay = function() {
+        var today;
+        switch (new Date().getDay()) {
+            case 0:
+                today = "sunday";
+                break;
+            case 1:
+                today = "monday";
+                break;
+            case 2:
+                today = "tuesday";
+                break;
+            case 3:
+                today = "wednesday";
+                break;
+            case 4:
+                today = "thursday";
+                break;
+            case 5:
+                today = "friday";
+                break;
+            case 6:
+                today = "saturday";
+                break;
+        }
+        return today;
+    };
+
+    ui.todaysHoursForStore = function(store) {
+
+        var today = ui.getDay();
+        var todayOpen = today + "_open";
+        var todayClose = today + "_close";
+
+        var todaysHours = {};
+        todaysHours.open = store[todayOpen];
+        todaysHours.close = store[todayClose];
+
+        return todaysHours;
+
+    };
+
+    ui.determineStoreOpen = WinJS.Binding.converter(function (store) {
+
+        var todaysHours = ui.todaysHoursForStore(store);
+
+        var now = new Date();
+        var minutes_since_midnight = (now.getHours() * 60) + now.getMinutes();
+
+        var result;
+
+        if (minutes_since_midnight >= todaysHours.open && minutes_since_midnight <= todaysHours.close) {
+            result = "open right now";
+        } else {
+            result = "closed right now";
+        }
+
+        return result;
+
+    });
+
+    ui.determineTimeToOpenOrClose = WinJS.Binding.converter(function (store) {
+
+        var todaysHours = ui.todaysHoursForStore(store);
+
+        var now = new Date();
+        var minutes_since_midnight = (now.getHours() * 60) + now.getMinutes();
+
+        var result;
+
+        // if we are open, we want to return the amount of time until close
+        if (minutes_since_midnight >= todaysHours.open && minutes_since_midnight <= todaysHours.close){
+            var minutesToClose = todaysHours.close - minutes_since_midnight;
+            if (minutesToClose >= 60) {
+                // convert to hours
+                var hoursToClose = minutesToClose / 60;
+                result = hoursToClose.toFixed(1) + " hours until close"; 
+            } else {
+                result = minutesToClose + " minutes until close";
+            }
+        } else {
+            // we are closed, so we want to return the amount of time until open
+            if (minutes_since_midnight > todaysHours.open) {
+                // we are late in the night, but before midnight
+                var minutesToOpen = todaysHours.open + (1440 - minutes_since_midnight);
+            } else {
+                // we are in the wee hours of the morning
+                var minutesToOpen = todaysHours.open - minutes_since_midnight;
+            }
+            if (minutesToOpen >= 60) {
+                // convert to hours
+                var hoursToOpen = minutesToOpen / 60;
+                result = hoursToOpen.toFixed(1) + " hours until open"; 
+            } else {
+                result = minutesToOpen + " minutes until open";
+            }
+        }
+
+        return result;
+
+    });
+
     ui.convertMetersToKilometers = WinJS.Binding.converter(function (meters) {
         var kilometers = meters / 1000;
         kilometers = Math.round(kilometers * 100) / 100;

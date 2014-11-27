@@ -289,7 +289,8 @@ textarea:focus,
 
 .win-pivot button.win-pivot-header,
 .win-pivot button.win-pivot-header:hover,
-.win-pivot button.win-pivot-header:hover:active {
+.win-pivot button.win-pivot-header:hover:active,
+html.win-hoverable .win-pivot button.win-pivot-header:hover {
     font-weight: 200;
     color: $primary-color;
 }
@@ -396,6 +397,7 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
             margin-bottom: 10px;
             width: 50%;
             float: left;
+            text-transform: lowercase;
             .value {
                 color: $secondary-color;
             }
