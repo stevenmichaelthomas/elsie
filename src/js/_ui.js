@@ -7,6 +7,7 @@
     ui.initialize = function(){
 
         if (typeof Windows !== 'undefined') {
+            // WinRT is available
             var statusBar = Windows.UI.ViewManagement.StatusBar.getForCurrentView();
             statusBar.backgroundColor = {a: 255, r: 103, g: 65, b: 114};
             statusBar.backgroundOpacity = 1;

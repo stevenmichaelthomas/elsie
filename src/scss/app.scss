@@ -60,7 +60,7 @@ progress:indeterminate {
 .elsie-title {
     font-size: 14pt;
     font-weight: 600;
-    margin: 10px 0 5px;
+    margin: 14px 0 5px;
     text-transform: uppercase;
     clear: both;
     color: $primary-color;
@@ -234,14 +234,16 @@ button:disabled .win-commandimage, button:disabled:active .win-commandimage {
 
 // win-searchbox
 .win-searchbox {
-    margin: 0 auto 5%;
+    margin: 0 auto;
     padding: 0;
     bottom: 0;
     width: 90%;
     height: 52px;
+    border-color: #ddd;
     input {
         font-size: 14pt;
         width: 100%;
+        padding: 0 10px;
     }
 }
 
@@ -408,6 +410,7 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
         }
     }
     &.store {
+        height: 198px;
         .glance {
             width: 100%;
             margin-left: 0;
