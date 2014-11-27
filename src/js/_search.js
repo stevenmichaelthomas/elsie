@@ -51,6 +51,10 @@
         });
     }
 
+    search.determineSimilar = function(){
+        //logic!
+    };
+
     search.selectStore = function(data) {
         //we chose a store
         Elsie.Interface.showLoadingAnimation("Looking up that store...");

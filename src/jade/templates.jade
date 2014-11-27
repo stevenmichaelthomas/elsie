@@ -1,7 +1,7 @@
 #templates(style="visibility:hidden; height: 0px;")
   .productResultsTemplate.listBox(data-win-control="WinJS.Binding.Template")
     .product.listItem
-      img.listItem-Image(data-win-bind="src:image_thumb_url")
+      img.listItem-Image(data-win-bind="src:image_thumb_url Elsie.Interface.processImage")
       .listItem-Detail
         h4(data-win-bind="textContent:name")
         h6(data-win-bind="textContent:package")

@@ -157,6 +157,14 @@
         return geoLocation;
     });
 
+    ui.processImage = WinJS.Binding.converter(function (url) {
+        if (!url || url == null){
+            return 'img/nothumb.png';
+        } else {
+            return url;
+        }
+    });
+
     WinJS.Namespace.define("Elsie", {
         Interface: ui
     });
