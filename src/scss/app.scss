@@ -357,6 +357,10 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
     .listItem-Detail {
         margin: 5px;
         width: 100%;
+        h4 {
+            overflow: hidden;
+            white-space: nowrap;
+        }
     }
 }
 
