@@ -68,7 +68,7 @@
 							if (result.status === 200) {
 								Elsie.Data.closestStores = JSON.parse(result.responseText).result;
 								var itemList = new WinJS.Binding.List(Elsie.Data.closestStores);
-	            				Elsie.Lists.closestStores = itemList;
+	            Elsie.Lists.closestStores = itemList;
 								complete();
 							} else {
 								console.log('API error');
@@ -119,6 +119,8 @@
 					WinJS.xhr(options).done(
 						function (result) {
 							Elsie.Data.similarProducts = JSON.parse(result.responseText).result;
+							var itemList = new WinJS.Binding.List(Elsie.Data.similarProducts);
+            Elsie.Lists.similarProducts = itemList;
 							complete();
 						}
 					);

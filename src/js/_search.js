@@ -46,8 +46,12 @@
         var productId = id;
         Elsie.Interface.showLoadingAnimation("Getting product details...");
         Elsie.Services.findNearbyStoresWithProduct(productId).then(function(){
-            Elsie.Interface.hideLoadingAnimation();
-            WinJS.Navigation.navigate("./product.html");
+            Elsie.Search.determineSimilar().then(function(){
+                Elsie.Services.querySimilarProducts(Elsie.Data.similarProducts).then(function(){
+                    Elsie.Interface.hideLoadingAnimation();
+                    WinJS.Navigation.navigate("./product.html");
+                })
+            });
         });
     }
 
