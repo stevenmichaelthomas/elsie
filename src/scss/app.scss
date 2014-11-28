@@ -223,7 +223,8 @@ html.win-hoverable button.win-command:enabled:hover .win-commandglyph,
     margin-left: 11px;
 }*/
 
-.win-appbar.win-menulayout .win-toolbar, .win-appbar.win-menulayout .win-toolbar {
+.win-appbar.win-menulayout .win-toolbar, .win-appbar.win-menulayout .win-toolbar,
+.win-appbar.win-appbar-hiding button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:hover:active, .win-appbar.win-appbar-hiding button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:hover:active, .win-appbar.win-appbar-hidden button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:hover:active, .win-appbar.win-appbar-hidden button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:hover:active {
     background: $primary-color;
 }
 
