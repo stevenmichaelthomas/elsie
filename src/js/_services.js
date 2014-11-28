@@ -168,6 +168,7 @@
 											favouriteProductsString.splice(indexOfProduct, productToMove.length);
 											favouriteProducts = JSON.parse(favouriteProductsString);
 											favouriteProducts.push(Elsie.Data.selectedProduct);
+											localStorage["Elsie_recentProducts"] = JSON.stringify(favouriteProducts);
 										}
 									} else {
 										var favouriteProducts = [];
