@@ -163,8 +163,9 @@
 										} else {
 											// this is ugly. clean it up.
 											var productToMove = JSON.stringify(returnedBlob.product.name);
+											var indexOfProduct = checkForProduct;
 											var favouriteProductsString = JSON.stringify(favouriteProducts);
-											favouriteProductsString = favouriteProductsString.replace(productToMove, "");
+											favouriteProductsString.splice(indexOfProduct, productToMove.length);
 											favouriteProducts = JSON.parse(favouriteProductsString);
 											favouriteProducts.push(Elsie.Data.selectedProduct);
 											localStorage["Elsie_recentProducts"] = JSON.stringify(favouriteProducts);
