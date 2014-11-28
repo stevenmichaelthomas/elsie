@@ -105,6 +105,26 @@
 			});
 		}
 
+		services.querySimilarProducts = function(query){
+			return new WinJS.Promise(function (complete) {
+					if (!query || query == "") {
+						Elsie.Data.similarProducts.length = 0;
+						complete();
+						return;
+					}
+					var options = {
+						url: 'http://lcboapi.com/products?q=' + query,
+						type: 'GET'
+					};
+					WinJS.xhr(options).done(
+						function (result) {
+							Elsie.Data.similarProducts = JSON.parse(result.responseText).result;
+							complete();
+						}
+					);
+			});
+		}
+
 		services.getRecentProducts = function(){
 			if (localStorage["Elsie_recentProducts"]){
 			 	var retrievedItmes = JSON.parse(localStorage["Elsie_recentProducts"]);

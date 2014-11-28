@@ -51,8 +51,40 @@
         });
     }
 
+    /*  so this method is kind of silly. but its intended purpose is to serve
+        as a stopgop until LCBO API v2 launches in all its glory with a similarProducts endpoint. */
     search.determineSimilar = function(){
-        //logic!
+        return new WinJS.Promise(function (complete) {
+            if (Elsie.Data.selectedProduct){
+                var tags = Elsie.Data.selectedProduct.tags;
+                tags = tags.split(" ");
+
+                var productName = Elsie.Data.selectedProduct.name;
+                productName = productName.toLocaleLowerCase();
+
+                for (var i = tags.length; i--; ) {
+                   // refine!
+                   // remove silly, short tags
+                   if (tags[i].length < 4) tags.splice(i, 1);
+
+                   // remove tags which are part of the product name
+                   if (productName.search(tags[i]) !== -1) tags.splice(i, 1);
+
+                   // arbitrarily, remove all these other generic tags
+                   if (tags[i] === 'beer') tags.splice(i, 1);
+                   if (tags[i] === 'wine') tags.splice(i, 1);
+                   if (tags[i] === 'lager') tags.splice(i, 1);
+                   if (tags[i] === 'bottle') tags.splice(i, 1);
+                   if (tags[i] === 'natural') tags.splice(i, 1);
+                   if (tags[i] === 'ontario') tags.splice(i, 1);
+                   if (tags[i] === 'canada') tags.splice(i, 1);
+                   if (tags[i] === 'region') tags.splice(i, 1);
+                   if (tags[i] === 'specified') tags.splice(i, 1);
+                }
+            }
+            Elsie.Data.similarProducts = tags.join(" ") || "";
+            complete();
+        });
     };
 
     search.selectStore = function(data) {
