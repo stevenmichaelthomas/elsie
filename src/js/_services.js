@@ -37,7 +37,7 @@
 					Elsie.Interface.hideLoadingAnimation();
 					var text = "Elsie couldn't get your location. She won't be able to provide you with accurate information until she has it.";
 					var link = { label: "Retry", action: "getLocation" };
-					Elsie.Interface.displayDialog(text, link);
+					Elsie.Interface.showLocationError(text, link);
 				}
 
 				navigator.geolocation.getCurrentPosition(onSuccess, onError);
@@ -54,11 +54,16 @@
 					};
 					WinJS.xhr(options).done(
 						function (result) {
-							Elsie.Data.nearbyStores = JSON.parse(result.responseText).result;
-							Elsie.Data.nearbyStores.shift();
-							var itemList = new WinJS.Binding.List(Elsie.Data.nearbyStores);
-            Elsie.Lists.nearbyStores = itemList;
-							complete();
+							if (result.status === 200) {
+								Elsie.Data.nearbyStores = JSON.parse(result.responseText).result;
+								Elsie.Data.nearbyStores.shift();
+								var itemList = new WinJS.Binding.List(Elsie.Data.nearbyStores);
+	            Elsie.Lists.nearbyStores = itemList;
+								complete();
+							} else {
+								var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
+								Elsie.Interface.showApiError(text);
+							}
 						}
 					);
 				};
@@ -85,8 +90,8 @@
 	            Elsie.Lists.closestStores = itemList;
 								complete();
 							} else {
-								console.log('API error');
-								console.log(result);
+								var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
+								Elsie.Interface.showApiError(text);
 							}
 						}
 					);
@@ -112,8 +117,13 @@
 					};
 					WinJS.xhr(options).done(
 						function (result) {
-							Elsie.Data.searchResults = JSON.parse(result.responseText).result;
-							complete();
+							if (result.status === 200){
+								Elsie.Data.searchResults = JSON.parse(result.responseText).result;
+								complete();
+							} else {
+								var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
+								Elsie.Interface.showApiError(text);
+							}
 						}
 					);
 			});
@@ -132,10 +142,15 @@
 					};
 					WinJS.xhr(options).done(
 						function (result) {
-							Elsie.Data.similarProducts = JSON.parse(result.responseText).result;
-							var itemList = new WinJS.Binding.List(Elsie.Data.similarProducts);
-            Elsie.Lists.similarProducts = itemList;
-							complete();
+							if (result.status === 200){
+								Elsie.Data.similarProducts = JSON.parse(result.responseText).result;
+								var itemList = new WinJS.Binding.List(Elsie.Data.similarProducts);
+	            Elsie.Lists.similarProducts = itemList;
+								complete();
+							} else {
+								var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
+								Elsie.Interface.showApiError(text);
+							}
 						}
 					);
 			});
@@ -185,8 +200,8 @@
 									services.getRecentProducts();
 									complete();
 								} else {
-									console.log('API error');
-									console.log(result);
+									var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
+									Elsie.Interface.showApiError(text);
 								}
 							}
 						);
@@ -213,9 +228,14 @@
 					};
 					WinJS.xhr(options).done(
 						function (result) {
-							var returnedBlob = JSON.parse(result.responseText);
-							Elsie.Data.selectedStore = returnedBlob.result;
-							complete();
+							if (result.status === 200) {
+								var returnedBlob = JSON.parse(result.responseText);
+								Elsie.Data.selectedStore = returnedBlob.result;
+								complete();
+							} else {
+								var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
+								Elsie.Interface.showApiError(text);
+							}
 						}
 					);
 				}

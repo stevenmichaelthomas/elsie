@@ -29,7 +29,7 @@
 
     };
 
-    ui.displayDialog = function(text, link){
+    ui.showLocationError = function(text, link){
 
         var message = text;
         var confirmCallback = function(buttonIndex){
@@ -41,6 +41,18 @@
         };
         var title = "Location error";
         var buttonLabels = ["Cancel", link.label];
+        navigator.notification.confirm(message, confirmCallback, title, buttonLabels);
+
+    };
+
+    ui.showApiError = function(text, link){
+
+        var message = text;
+        var confirmCallback = function(buttonIndex){
+            //nothing
+        };
+        var title = "Error getting data";
+        var buttonLabels = ["OK"];
         navigator.notification.confirm(message, confirmCallback, title, buttonLabels);
 
     };
