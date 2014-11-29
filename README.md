@@ -1,9 +1,7 @@
 Elsie
 ====
 
-Elsie is a Windows frontend to a lovely LCBO API (http://lcboapi.com/).  
-
-Her first planned release is coming soon.
+Elsie is fast, clean frontend to a lovely LCBO API (http://lcboapi.com/).  
 
 ## Setup ##
 
