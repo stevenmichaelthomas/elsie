@@ -212,20 +212,18 @@ html.win-hoverable button.win-command:enabled:hover .win-commandglyph,
     }
 }
 
-/*.win-command:after {
-    border: 1px white solid;
-    display: block;
-    width: 40px;
-    height: 40px;
-    border-radius: 600px;
-    content: '';
-    margin-top: -44px;
-    margin-left: 11px;
-}*/
+button:disabled .win-commandring, button:disabled:active .win-commandring {
+    border-color: rgba(255, 255, 255, 0.4);
+}
 
 .win-appbar.win-menulayout .win-toolbar, .win-appbar.win-menulayout .win-toolbar,
-.win-appbar.win-appbar-hiding button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:hover:active, .win-appbar.win-appbar-hiding button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:hover:active, .win-appbar.win-appbar-hidden button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:hover:active, .win-appbar.win-appbar-hidden button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:hover:active {
+.win-appbar.win-appbar-hiding button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:hover:active, .win-appbar.win-appbar-hiding button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:hover:active, .win-appbar.win-appbar-hidden button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:hover:active, .win-appbar.win-appbar-hidden button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:hover:active,
+button:disabled, input[type=button]:disabled, input[type=reset]:disabled, button:disabled:hover:active, input[type=button]:disabled:hover:active, input[type=reset]:disabled:hover:active {
     background: $primary-color;
+}
+
+button:disabled, input[type=button]:disabled, input[type=reset]:disabled, button:disabled:hover:active, input[type=button]:disabled:hover:active, input[type=reset]:disabled:hover:active {
+    border-color: transparent;
 }
 
 button.win-command:disabled .win-label, button.win-command:disabled:active .win-label,
