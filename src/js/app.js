@@ -14,6 +14,7 @@
     var deviceReady = function(){
         Elsie.Services.getRecentProducts();
         Elsie.Interface.initialize();
+        Elsie.Services.initializeLocation();
         Elsie.Services.getLocation();
         app.start();
     }

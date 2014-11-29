@@ -4,6 +4,19 @@
 
 		var services = {};
 
+		services.initializeLocation = function(){
+			if (!localStorage["Elsie_cachedLocation"]){
+				var location = {
+					latitude: "43.656025",
+					longitude: "-79.380257"
+				};
+				Elsie.Data.location = location;
+				localStorage["Elsie_cachedLocation"] = JSON.stringify(location);
+			} else {
+				Elsie.Data.location = JSON.parse(localStorage["Elsie_cachedLocation"]);
+			}
+		}
+
 		services.getLocation = function(){
 			return new WinJS.Promise(function (complete) {
 				
@@ -17,6 +30,7 @@
 						longitude: position.coords.longitude
 					};
 					Elsie.Data.location = location;
+					localStorage["Elsie_cachedLocation"] = JSON.stringify(location);
 					complete();
 				};
 				var onError = function() {
@@ -48,7 +62,7 @@
 						}
 					);
 				};
-				if (Object.keys(Elsie.Data.location).length > 0) {
+				if (Elsie.Data.location && Object.keys(Elsie.Data.location).length > 0) {
 					makeCall();
 				} else {
 					services.getLocation().then(makeCall);
@@ -77,7 +91,7 @@
 						}
 					);
 				};
-				if (Object.keys(Elsie.Data.location).length > 0) {
+				if (Elsie.Data.location && Object.keys(Elsie.Data.location).length > 0) {
 					makeCall();
 				} else {
 					services.getLocation().then(makeCall);
@@ -178,7 +192,7 @@
 						);
 					};
 
-					if (Object.keys(Elsie.Data.location).length > 0) {
+					if (Elsie.Data.location && Object.keys(Elsie.Data.location).length > 0) {
 						makeCall();
 					} else {
 						services.getLocation().then(makeCall);
