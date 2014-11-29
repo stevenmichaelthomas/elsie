@@ -132,7 +132,7 @@
 		services.querySimilarProducts = function(query){
 			return new WinJS.Promise(function (complete) {
 					if (!query || query == "") {
-						Elsie.Data.similarProducts.length = 0;
+						Elsie.Data.similarProducts = [];
 						complete();
 						return;
 					}
