@@ -101,6 +101,7 @@
                 element.querySelector("#brand-container").style.display = "none";
                 element.querySelector("#mini-brand").style.display = "block";
                 element.querySelector("#recent").style.display = "none";
+                element.querySelector("#explanation").style.display = "none";
             });
             searchBox.addEventListener("blur", function(){
                 if (!Elsie.Data.searchResults || Elsie.Data.searchResults.length == 0){
@@ -111,7 +112,13 @@
                     element.querySelector("#productResults").style.display = "none";
                     element.querySelector("#brand-container").style.display = "block";
                     element.querySelector("#mini-brand").style.display = "none";
-                    element.querySelector("#recent").style.display = "block";
+                    if (!Elsie.Data.recentProducts) {
+                        element.querySelector("#recent").style.display = "none";
+                        element.querySelector("#explanation").style.display = "block";
+                    } else {
+                        element.querySelector("#recent").style.display = "block";
+                        element.querySelector("#explanation").style.display = "none";
+                    }
                     element.querySelector("#searchBoxContainer").classList.remove("win-searchbox-focus");
                 }
             });
@@ -120,6 +127,15 @@
             document.getElementById("button-about").winControl.disabled = false;
             document.getElementById("button-nearby").winControl.disabled = false;
             document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
+
+            //first run handling
+            if (!Elsie.Data.recentProducts) {
+                element.querySelector("#recent").style.display = "none";
+                element.querySelector("#explanation").style.display = "block";
+            } else {
+                element.querySelector("#recent").style.display = "block";
+                element.querySelector("#explanation").style.display = "none";
+            }
 
             // recent products bindings
             var recentProducts = element.querySelector("#recentProducts");
