@@ -43,7 +43,6 @@
                 listView.addEventListener("loadingstatechanged", function (args) {
                     if (listView.winControl.loadingState === "complete" && listViewFilled == false){
                         listView.winControl.itemDataSource = Elsie.Lists.nearbyStoresWithProduct.dataSource;
-                        handleStock();
                         setTimeout(function(){ 
                             listView.style.height = window.innerHeight - 355 + "px"; 
                             similarView.style.height = window.innerHeight - 155 + "px";
@@ -59,10 +58,12 @@
                 similarView.addEventListener("loadingstatechanged", function (args) {
                     if (similarView.winControl.loadingState === "complete" && similarViewFilled == false){
                         similarView.winControl.itemDataSource = Elsie.Lists.similarProducts.dataSource;
-                        handleSimilar();
                         similarViewFilled = true;
                     }
                 });
+
+            handleSimilar();
+            handleStock();
         },
     });
 
