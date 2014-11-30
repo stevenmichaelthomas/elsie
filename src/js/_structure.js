@@ -178,6 +178,10 @@
                 });
             });
 
+            if (element.style.visibility === 'hidden'){
+                element.style.visibility = 'visible';
+            }
+
             Elsie.Search.displayRecentProducts();
 
         },

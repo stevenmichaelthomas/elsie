@@ -38,6 +38,19 @@ a:hover {
     color: $primary-color;
 }
 
+button.donate {
+    color: white;
+    border-color: white;
+    background: transparent;
+    display: block;
+    margin: 15px auto;
+}
+
+.affiliation {
+    font-size: 9pt;
+    opacity: 0.5;
+}
+
 progress {
     top: 0;
     position: fixed;
@@ -128,13 +141,14 @@ progress:indeterminate {
     margin: -15px 0 0;
     width: 100%;
     height: 100%;
-    background-size: 90%;
+    background-size: 70%;
 }
 
 #about {
     width: 90%;
     margin: 0 auto;
     padding-top: 20px;
+    text-align: center;
     p {
         color: $background-color;
     }
@@ -324,9 +338,9 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
 }
 
 .wordmark {
-    margin: 40px auto;
+    margin: 30px auto;
     display: block;
-    width: 50%;
+    width: 40%;
 }
 
 .listItem {
