@@ -47,7 +47,7 @@
         Elsie.Interface.showLoadingAnimation("Getting product details...");
         Elsie.Services.findNearbyStoresWithProduct(productId).then(function(){
             Elsie.Search.determineSimilar().then(function(){
-                Elsie.Services.querySimilarProducts(Elsie.Data.similarProducts).then(function(){
+                Elsie.Services.querySimilarProducts(Elsie.Data.similarProductsSearchString).then(function(){
                     Elsie.Interface.hideLoadingAnimation();
                     WinJS.Navigation.navigate("./product.html");
                 })
@@ -86,7 +86,11 @@
                    if (tags[i] === 'specified') tags.splice(i, 1);
                 }
             }
-            Elsie.Data.similarProducts = tags.join(" ") || "";
+            if (tags.length > 0){
+                Elsie.Data.similarProductsSearchString = tags.join(" ") || "";
+            } else {
+                Elsie.Data.similarProductsSearchString = "";
+            }
             complete();
         });
     };

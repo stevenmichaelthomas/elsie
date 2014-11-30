@@ -133,6 +133,8 @@
 			return new WinJS.Promise(function (complete) {
 					if (!query || query == "") {
 						Elsie.Data.similarProducts = [];
+						var itemList = new WinJS.Binding.List(Elsie.Data.similarProducts);
+	         Elsie.Lists.similarProducts = itemList;
 						complete();
 						return;
 					}
