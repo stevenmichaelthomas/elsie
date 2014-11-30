@@ -183,7 +183,6 @@
 									var returnedBlob = JSON.parse(result.responseText);
 									Elsie.Data.selectedProduct = returnedBlob.product;							
 									Elsie.Data.nearbyStoresWithProduct = returnedBlob.result;
-
 									if (localStorage["Elsie_recentProducts"]){
 										var favouriteProducts = JSON.parse(localStorage["Elsie_recentProducts"]);
 										//favouriteProducts.shift();

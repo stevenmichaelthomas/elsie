@@ -7,6 +7,27 @@
         ready: function (element, options) {
             var listViewFilled = false;
             var similarViewFilled = false;
+
+            var handleStock = function(){
+                if (Elsie.Data.nearbyStoresWithProduct.length === 0){
+                    document.getElementById("noStock").style.display = "block";
+                    document.getElementById("storeResults").style.display = "none";
+                } else {
+                    document.getElementById("noStock").style.display = "none";
+                    document.getElementById("storeResults").style.display = "block";
+                }
+            };
+
+            var handleSimilar = function(){
+                if (Elsie.Data.similarProducts.length === 0){
+                    document.getElementById("noSimilar").style.display = "block";
+                    document.getElementById("storeResults").style.display = "none";
+                } else {
+                    document.getElementById("noSimilar").style.display = "none";
+                    document.getElementById("storeResults").style.display = "block";
+                }
+            };
+
             WinJS.Binding.processAll();
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = false;
@@ -22,6 +43,7 @@
                 listView.addEventListener("loadingstatechanged", function (args) {
                     if (listView.winControl.loadingState === "complete" && listViewFilled == false){
                         listView.winControl.itemDataSource = Elsie.Lists.nearbyStoresWithProduct.dataSource;
+                        handleStock();
                         setTimeout(function(){ 
                             listView.style.height = window.innerHeight - 355 + "px"; 
                             similarView.style.height = window.innerHeight - 155 + "px";
@@ -37,6 +59,7 @@
                 similarView.addEventListener("loadingstatechanged", function (args) {
                     if (similarView.winControl.loadingState === "complete" && similarViewFilled == false){
                         similarView.winControl.itemDataSource = Elsie.Lists.similarProducts.dataSource;
+                        handleSimilar();
                         similarViewFilled = true;
                     }
                 });
