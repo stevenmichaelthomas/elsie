@@ -136,7 +136,7 @@
             };
 
             var waitForStripe = function(){
-                if (StripeCheckout){
+                if (typeof StripeCheckout != 'undefined')
                     initializeStripe();
                 } else {
                     setTimeout(waitForStripe, 500);
@@ -144,7 +144,7 @@
             };
 
             waitForStripe();
-            
+
         }
     });
 
