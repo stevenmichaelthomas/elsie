@@ -12,15 +12,5 @@ doctype
       a(href="http://lcboapi.com",target="_blank") LCBO API
       | . Product stock info is updated daily.
     p Elsie is free, but building her was not. You can help guarantee her future with a donation.
-    form(action='https://www.paypal.com/cgi-bin/webscr', method='post', target='_top')
-      input(type='hidden', name='cmd', value='_donations')
-      input(type='hidden', name='business', value='doug.estey@gmail.com')
-      input(type='hidden', name='lc', value='US')
-      input(type='hidden', name='item_name', value='Elsie')
-      input(type='hidden', name='no_note', value='0')
-      input(type='hidden', name='currency_code', value='CAD')
-      input(type='hidden', name='bn', value='PP-DonationsBF:11.jpg:NonHostedGuest')
-      //input(type='image', src='*', border='0', name='submit', alt='PayPal - The safer, easier way to pay online!')
-      button.donate(name='submit',formtarget='_blank') Donate
-
+    button.donate#donateButton Donate
     p.affiliation Elsie &amp; the LCBO API aren't affiliated with the LCBO.
