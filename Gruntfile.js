@@ -20,7 +20,7 @@ module.exports = function(grunt) {
         expand: true,
         flatten: true,
         cwd: 'node_modules',
-        src: ['winjs/css/*.css'],
+        src: ['winjs/css/*.min.css'],
         dest: 'www/css/lib'
       },
       fonts: {
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
         expand: true,
         flatten: true,
         cwd: 'node_modules',
-        src: ['winjs/js/*.js'],
+        src: ['winjs/js/*.min.js'],
         dest: 'www/js/lib'
       },
       js: {
