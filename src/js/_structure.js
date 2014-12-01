@@ -101,52 +101,6 @@
             document.getElementById("button-about").winControl.disabled = true;
             document.getElementById("button-nearby").winControl.disabled = false;
             document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
-
-            var initializeStripe = function() {
-                // Stripe
-                var handler = StripeCheckout.configure({
-                    key: 'pk_test_6pRNASCoBOKtIshFeQd4XMUh',
-                    image: '/img/square.png',
-                    token: function(token) {
-                      // Use the token to create the charge with a server-side script.
-                      // You can access the token ID with `token.id`
-                      console.log(token);
-                    }
-                  });
-
-                  element.querySelector('#donateButton').addEventListener('click', function(e) {
-                    // Open Checkout with further options
-                    handler.open({
-                      name: 'Elsie',
-                      description: 'Donation',
-                      amount: 2000,
-                      currency: 'CAD',
-                      panelLabel: 'Donate',
-                      allowRememberMe: false,
-
-                    });
-                    e.preventDefault();
-                  });
-
-                  // Close Checkout on page navigation
-                  window.addEventListener('popstate', function() {
-                    handler.close();
-                  });
-
-            };
-
-            var waitForStripe = function(){
-                if (typeof StripeCheckout != 'undefined'){
-                    initializeStripe();
-                } else {
-                    setTimeout(function(){
-                        waitForStripe();
-                    }, 500);
-                }
-            };
-
-            initializeStripe();
-
         }
     });
 
