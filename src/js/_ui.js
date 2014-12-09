@@ -124,7 +124,7 @@
 
     ui.renderBingMap = function(element){
 
-        var key = "AnafmzzTy228kzIf7tq7FjhJ52k1U7PmiR76KVnDdZdftx6OwmjoJs2fxTtm3DmI";
+        var key = "AsAiyJ_zfemVuOamdfw8YgZMIT1mK7n0IxKZ9Z3Ad7GObWRKb2QV_WMjSM8rfZtd";
         var centerPoint = Elsie.Data.selectedStore.latitude + "," + Elsie.Data.selectedStore.longitude;
         var imagerySet = 'Road';
         var mapSize = ((window.innerWidth * 2) - 80) + ',400';
