@@ -148,7 +148,7 @@
 								Elsie.Data.similarProducts = JSON.parse(result.responseText).result;
 								Elsie.Data.similarProducts = Elsie.Data.similarProducts.slice(0,5);
 								var itemList = new WinJS.Binding.List(Elsie.Data.similarProducts);
-	            Elsie.Lists.similarProducts = itemList;
+								Elsie.Lists.similarProducts = itemList;
 								complete();
 							} else {
 								var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
@@ -189,6 +189,16 @@
 										//favouriteProducts.shift();
 										var checkForProduct = JSON.stringify(favouriteProducts).indexOf(JSON.stringify(returnedBlob.product.name));
 										if (checkForProduct == -1){
+											favouriteProducts.push(Elsie.Data.selectedProduct);
+											localStorage["Elsie_recentProducts"] = JSON.stringify(favouriteProducts);
+										} else {
+											// product was already in recents
+											var index = favouriteProducts.map(function(product, index) {
+												if(product.product_no === Elsie.Data.selectedProduct.product_no) {
+														return index;
+												}
+											}).filter(isFinite);
+											favouriteProducts.splice(index, 1);
 											favouriteProducts.push(Elsie.Data.selectedProduct);
 											localStorage["Elsie_recentProducts"] = JSON.stringify(favouriteProducts);
 										}
