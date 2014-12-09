@@ -146,6 +146,7 @@
 						function (result) {
 							if (result.status === 200){
 								Elsie.Data.similarProducts = JSON.parse(result.responseText).result;
+								Elsie.Data.similarProducts = Elsie.Data.similarProducts.slice(0,6);
 								var itemList = new WinJS.Binding.List(Elsie.Data.similarProducts);
 	            Elsie.Lists.similarProducts = itemList;
 								complete();
