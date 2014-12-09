@@ -59,6 +59,7 @@ progress {
     position: fixed;
     background-color: transparent;
     color: $highlight-color;
+    height: 2px;
 }
 
 progress::-webkit-progress-value {
