@@ -163,6 +163,7 @@
 			if (localStorage["Elsie_recentProducts"]){
 			 	var retrievedItmes = JSON.parse(localStorage["Elsie_recentProducts"]);
 			 	retrievedItmes.reverse();
+			 	retrievedItmes = retrievedItmes.slice(0,10);
 	    	Elsie.Data.recentProducts = retrievedItmes;
    		}
 		};
