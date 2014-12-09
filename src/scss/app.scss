@@ -52,14 +52,17 @@ button.donate {
 }
 
 progress {
+    -webkit-appearance: none;
+    border: none;
+    width: 100%;
     top: 0;
     position: fixed;
     background-color: transparent;
+    color: $highlight-color;
 }
 
-progress:indeterminate {
-    color: white;
-    width: 100%;
+progress::-webkit-progress-value {
+    background: $highlight-color;
 }
 
 .left {
