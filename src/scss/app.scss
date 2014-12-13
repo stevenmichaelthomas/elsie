@@ -313,6 +313,12 @@ textarea:focus,
     z-index: 9000;
 }
 
+.win-pivot-viewport {
+    input[type="text"] {
+        width: 100%;
+    }
+}
+
 .win-pivot button.win-pivot-header,
 .win-pivot button.win-pivot-header:hover,
 .win-pivot button.win-pivot-header:hover:active,

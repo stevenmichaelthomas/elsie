@@ -40,6 +40,29 @@
         },500);
     };
 
+    search.searchInventory = function() {
+        Elsie.Interface.hideLoadingAnimation();
+        clearTimeout(timer);
+        timer = setTimeout(function(){
+            Elsie.Interface.showLoadingAnimation("Searching this store's inventory...");
+            var query = document.getElementById("searchInventory").value.toLocaleLowerCase();
+            Elsie.Services.findProductAtStore(query, Elsie.Data.selectedStore.id).then(function(){
+                 // create a List object
+                var itemList = new WinJS.Binding.List(Elsie.Data.storeInventoryQuery);
+                var productsList = {
+                    itemList: itemList
+                };
+                WinJS.Namespace.define("StoreInventoryQuery", productsList);
+                var listView = document.getElementById("storeInventory").winControl;
+                var explanation = document.getElementById("explanation");
+                explanation.style.display = "none";
+                listView.itemDataSource = StoreInventoryQuery.itemList.dataSource;
+                Elsie.Interface.hideLoadingAnimation();
+            });
+            //Elsie.Data.query = query;
+        },500);
+    };
+
     search.selectSuggestion = function(id) {
         //we chose a product, now let's do something with it
         //clearTimeout(timer);
@@ -104,10 +127,10 @@
             latitude: Elsie.Data.selectedStore.latitude,
             longitude: Elsie.Data.selectedStore.longitude,
         };
-        Elsie.Services.getNearbyStoresForProduct(storeLocation).then(function(){
+        //Elsie.Services.getNearbyStoresForProduct(storeLocation).then(function(){
             Elsie.Interface.hideLoadingAnimation();
             WinJS.Navigation.navigate("./store.html");
-        });
+        //});
     }
 
     WinJS.Namespace.define("Elsie", {

@@ -168,6 +168,32 @@
    		}
 		};
 
+		services.findProductAtStore = function(query, storeId){
+			return new WinJS.Promise(function (complete) {
+					if (!query || query == "") {
+						Elsie.Data.storeInventoryQuery.length = 0;
+						complete();
+						return;
+					}
+					var options = {
+						url: 'http://lcboapi.com/products?q=' + query + '&store_id=' + storeId,
+						type: 'GET'
+					};
+					WinJS.xhr(options).done(
+						function (result) {
+							if (result.status === 200){
+								Elsie.Data.storeInventoryQuery = JSON.parse(result.responseText).result;
+								complete();
+							} else {
+								var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
+								Elsie.Interface.showApiError(text);
+								complete();
+							}
+						}
+					);
+			});
+		}
+
 		services.findNearbyStoresWithProduct = function(id){
 			// this is a bit redundant
 			Elsie.Data.selectedProductId = id;

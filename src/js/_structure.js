@@ -79,19 +79,19 @@
             
             Elsie.Interface.renderBingMap(element);
 
-            var listView = element.querySelector("#nearbyStores");
-                listView.style.height = window.innerHeight - 144 + "px";
-                listView.addEventListener("iteminvoked", function(evt){
+            Elsie.Data.storeInventoryQuery = [];
+            var itemList = new WinJS.Binding.List(Elsie.Data.storeInventoryQuery);
+            Elsie.Lists.storeInventoryQuery = itemList;
+
+            var inventory = element.querySelector("#storeInventory");
+                inventory.addEventListener("iteminvoked", function(evt){
                     evt.detail.itemPromise.then(function itemInvoked(item) {
-                        Elsie.Search.selectStore(item.data);
+                        Elsie.Search.selectSuggestion(item.data.id);
                     });
                 });
-                listView.addEventListener("loadingstatechanged", function (args) {
-                    if (listView.winControl.loadingState === "complete" && listViewFilled == false){
-                        listView.winControl.itemDataSource = Elsie.Lists.nearbyStores.dataSource;
-                        listViewFilled = true;
-                    }
-                });
+
+            var searchBox = element.querySelector("#searchInventory");
+                searchBox.addEventListener("keyup", Elsie.Search.searchInventory);
         }
     });
 

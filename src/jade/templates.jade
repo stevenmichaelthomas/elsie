@@ -15,3 +15,13 @@
           span.remaining units
         h4(data-win-bind="textContent:name")
         h6(data-win-bind="textContent:address_line_1")
+
+  .inventoryTemplate.listBox(data-win-control="WinJS.Binding.Template")
+    .store.listItem
+      //img.listItem-Image(data-win-bind="src:image_thumb_url Elsie.Interface.processImage")
+      .listItem-Detail
+        .block
+          span.quantity(data-win-bind="textContent: quantity")
+          span.remaining units
+        h4(data-win-bind="textContent:name")
+        h6(data-win-bind="textContent:package")
