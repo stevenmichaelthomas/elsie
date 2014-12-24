@@ -287,8 +287,12 @@ html.win-hoverable button.win-command:enabled:hover .win-commandglyph,
 .win-label,
 .win-commandimage {
     color: white;
+    background-size: auto 60%;
+    background-repeat: no-repeat;
+    background-position: center center;
     &:hover {
         color: white;
+        background-position: center center;
     }
 }
 
@@ -299,7 +303,7 @@ button:disabled .win-commandring, button:disabled:active .win-commandring {
 .win-appbar.win-menulayout .win-toolbar, .win-appbar.win-menulayout .win-toolbar,
 .win-appbar.win-appbar-hiding button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:hover:active, .win-appbar.win-appbar-hiding button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:hover:active, .win-appbar.win-appbar-hidden button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:hover:active, .win-appbar.win-appbar-hidden button.win-appbar-invokebutton.win-appbar-invokebutton:enabled:hover:active,
 button:disabled, input[type=button]:disabled, input[type=reset]:disabled, button:disabled:hover:active, input[type=button]:disabled:hover:active, input[type=reset]:disabled:hover:active {
-    background: $primary-color;
+    //background: $primary-color;
 }
 
 button:disabled, input[type=button]:disabled, input[type=reset]:disabled, button:disabled:hover:active, input[type=button]:disabled:hover:active, input[type=reset]:disabled:hover:active {
@@ -308,7 +312,10 @@ button:disabled, input[type=button]:disabled, input[type=reset]:disabled, button
 
 button.win-command:disabled .win-label, button.win-command:disabled:active .win-label,
 button:disabled .win-commandimage, button:disabled:active .win-commandimage {
-    color: rgba(255, 255, 255, 0.4);
+    //color: rgba(255, 255, 255, 0.4);
+    color: white;
+    opacity: 0.4;
+    background-position: center center;
 }
 
 // win-searchbox
@@ -337,7 +344,7 @@ button:disabled .win-commandimage, button:disabled:active .win-commandimage {
         width: 14%;
         //right: -50%;
         right: 0;
-        top: 13px;
+        top: 0;
         bottom: 0;
         opacity: 0;
         z-index: 999;
@@ -368,8 +375,7 @@ textarea:focus,
     border-color: $primary-color;
 }
 
-// win-pivot
-.win-pivot-title {
+.win-pivot .win-pivot-title {
     text-transform: uppercase;
     color: $primary-color;
     display: none;
@@ -467,9 +473,9 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
         }
     }
     img.listItem-Image {
-        height: 70px;
+        height: 50px;
         min-width: 32px;
-        margin: 0;
+        margin: 5px 0 0 0;
         opacity: 0;
         transition: 0.5s;
     }

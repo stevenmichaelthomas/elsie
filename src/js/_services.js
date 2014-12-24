@@ -112,7 +112,8 @@
 		services.searchProducts = function(query){
 			return new WinJS.Promise(function (complete) {
 					if (!query || query == "") {
-						Elsie.Data.searchResults.length = 0;
+						if (Elsie.Data.searchResults)
+							Elsie.Data.searchResults.length = 0;
 						complete();
 						return;
 					}
