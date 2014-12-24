@@ -43,19 +43,17 @@
             searchBox.addEventListener("keyup", Elsie.Search.requestSuggestions);
             searchBox.addEventListener("focus", function(){
                 document.getElementById("appBar").winControl.closedDisplayMode = 'none';
-                element.classList.add("search-mode");
-                var explanation = document.getElementById("explanation");
-                explanation.style.display = "none";
                 element.querySelector("#cancel").style.opacity = '1';
                 element.querySelector("#cancel").style.zIndex = '1002';
+                element.classList.add("search-mode");
             });
             searchBox.addEventListener("blur", function(){
+                if (!Elsie.Data.searchResults || Elsie.Data.searchResults.length === 0 || this.value === ""){
+                    goBackHome();
+                }
                 setTimeout(function(){
                     document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
                 }, 750);
-                element.classList.remove("search-mode");
-                element.querySelector("#cancel").style.opacity = '0';
-                element.querySelector("#cancel").style.zIndex = '999'; 
             });
 
             var cancelButton = element.querySelector("#cancel");
