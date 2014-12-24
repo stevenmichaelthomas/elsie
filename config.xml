@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="Elsie" version="0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="Elsie" version="1.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Elsie</name>
     <description>
-        A Windows frontend to a lovely LCBO API.
+        Your guide to the LCBO.
     </description>
     <author email="doug@tailoredux.com" href="http://dougestey.com/">
         Doug Estey
@@ -22,6 +22,9 @@
       <splash src="artwork/windows/SplashScreen.scale-240.png" width="1152" height="1920" />
     </platform>
     <preference name="SplashScreen" value="splash"/>
-    <preference name="SplashScreenDelay" value="1000" />
-    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="UIWebViewBounce" value="false"/>
+    <preference name="HideKeyboardFormAccessoryBar" value="true" />
+    <preference name="KeyboardShrinksView" value="true" />
 </widget>

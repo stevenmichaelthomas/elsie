@@ -44,6 +44,13 @@ module.exports = function(grunt) {
         src: ['winjs/js/*.js'],
         dest: 'www/js/lib'
       },
+      fastclick: {
+        expand: true,
+        flatten: true,
+        cwd: 'node_modules',
+        src: 'fastclick/lib/*.js',
+        dest: 'www/js/lib'
+      },
       js: {
         expand: true,
         flatten: true,
