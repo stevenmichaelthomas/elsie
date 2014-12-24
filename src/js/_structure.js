@@ -173,8 +173,8 @@
                     if (listView.winControl.loadingState === "complete" && listViewFilled == false){
                         listView.winControl.itemDataSource = Elsie.Lists.nearbyStoresWithProduct.dataSource;
                         setTimeout(function(){ 
-                            listView.style.height = window.innerHeight - 355 + "px"; 
-                            similarView.style.height = window.innerHeight - 155 + "px";
+                            listView.style.height = window.innerHeight - 375 + "px"; 
+                            similarView.style.height = window.innerHeight - 170 + "px";
                         }, 1000);
                         listViewFilled = true;
                     }
