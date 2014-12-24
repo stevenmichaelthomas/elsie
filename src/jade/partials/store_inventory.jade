@@ -1,3 +1,5 @@
-input#searchInventory(type="text")
-#explanation.explanation(style="display:block") Search for a product at this particular store to see if it's in stock.
+.win-searchbox
+  input#searchInventory(type="text",placeholder="Search for a product")
+  span#cancel
+#explanation.explanation(style="display:block") Check this store's inventory for a specific product.
 #storeInventory(data-win-control="WinJS.UI.ListView",data-win-options="{itemTemplate: select('.inventoryTemplate'), layout : {type: WinJS.UI.ListLayout}, selectionMode: 'none'}")

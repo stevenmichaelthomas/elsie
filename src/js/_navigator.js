@@ -79,9 +79,16 @@
                     return this.pageElement;
                 },
 
+                _getAnimationElementOffsets: function () {
+                    if (this.pageControl && this.pageControl.getAnimationElementOffsets) {
+                        return this.pageControl.getAnimationElementOffsets();
+                    }
+                    return;
+                },
+
                 _navigated: function () {
                     this.pageElement.style.visibility = "";
-                    WinJS.UI.Animation.enterPage(this._getAnimationElements()).done();
+                    WinJS.UI.Animation.enterPage(this._getAnimationElements(), this._getAnimationElementOffsets()).done();
                 },
 
                 // Responds to navigation by adding new pages to the DOM. 

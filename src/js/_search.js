@@ -54,8 +54,6 @@
                 };
                 WinJS.Namespace.define("StoreInventoryQuery", productsList);
                 var listView = document.getElementById("storeInventory").winControl;
-                var explanation = document.getElementById("explanation");
-                explanation.style.display = "none";
                 listView.itemDataSource = StoreInventoryQuery.itemList.dataSource;
                 Elsie.Interface.hideLoadingAnimation();
             });

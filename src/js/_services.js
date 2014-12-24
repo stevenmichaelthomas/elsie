@@ -3,6 +3,7 @@
     "use strict";
 
 		var services = {};
+		var processes = [];
 
 		services.initializeLocation = function(){
 			if (!localStorage["Elsie_cachedLocation"]){
@@ -18,7 +19,7 @@
 		}
 
 		services.getLocation = function(){
-			return new WinJS.Promise(function (complete) {
+			var promise = new WinJS.Promise(function (complete) {
 				
 				Elsie.Interface.showLoadingAnimation("Getting your location...");
 
@@ -38,11 +39,13 @@
 					var text = "Elsie couldn't get your location. She won't be able to provide you with accurate information until she has it.";
 					var link = { label: "Retry", action: "getLocation" };
 					Elsie.Interface.showLocationError(text, link);
+					complete();
 				}
 
 				navigator.geolocation.getCurrentPosition(onSuccess, onError);
-
 			});
+			processes.push(promise);
+			return promise;
 		}
 
 		services.getNearbyStoresForProduct = function(location){
@@ -63,6 +66,7 @@
 							} else {
 								var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
 								Elsie.Interface.showApiError(text);
+								complete();
 							}
 						}
 					);
@@ -76,7 +80,7 @@
 		}
 
 		services.getClosestStores = function(){
-			return new WinJS.Promise(function (complete) {
+			var promise = new WinJS.Promise(function (complete) {
 				var makeCall = function(){
 					var options = {
 						url: 'http://lcboapi.com/stores?lat=' + Elsie.Data.location.latitude + '&lon=' + Elsie.Data.location.longitude,
@@ -92,16 +96,17 @@
 							} else {
 								var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
 								Elsie.Interface.showApiError(text);
+								complete();
 							}
 						}
 					);
 				};
-				if (Elsie.Data.location && Object.keys(Elsie.Data.location).length > 0) {
+				WinJS.Promise.join(processes).done(function(){
 					makeCall();
-				} else {
-					services.getLocation().then(makeCall);
-				}
-			});
+				});
+			}
+			processes.push(promise);
+			return promise;
 		}
 
 		services.searchProducts = function(query){
@@ -123,6 +128,7 @@
 							} else {
 								var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
 								Elsie.Interface.showApiError(text);
+								complete();
 							}
 						}
 					);
@@ -146,13 +152,14 @@
 						function (result) {
 							if (result.status === 200){
 								Elsie.Data.similarProducts = JSON.parse(result.responseText).result;
-								Elsie.Data.similarProducts = Elsie.Data.similarProducts.slice(0,5);
+								Elsie.Data.similarProducts = Elsie.Data.similarProducts.slice(0,8);
 								var itemList = new WinJS.Binding.List(Elsie.Data.similarProducts);
 								Elsie.Lists.similarProducts = itemList;
 								complete();
 							} else {
 								var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
 								Elsie.Interface.showApiError(text);
+								complete();
 							}
 						}
 					);
@@ -195,10 +202,11 @@
 		}
 
 		services.findNearbyStoresWithProduct = function(id){
+
 			// this is a bit redundant
 			Elsie.Data.selectedProductId = id;
 			
-			return new WinJS.Promise(function (complete) {
+			var promise = new WinJS.Promise(function (complete) {
 
 					var makeCall = function(){
 						var options = {
@@ -241,19 +249,32 @@
 								} else {
 									var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
 									Elsie.Interface.showApiError(text);
+									complete();
 								}
 							}
 						);
 					};
 
-					if (Elsie.Data.location && Object.keys(Elsie.Data.location).length > 0) {
+					WinJS.Promise.join(processes).done(function(){
 						makeCall();
-					} else {
-						services.getLocation().then(makeCall);
-					}
+					});
 
 			});
+			promise.type = 'findNearbyStoresWithProduct';
+			processes.push(promise);
+			return promise;
 		}
+
+		services.cancelProcessesByType = function(type) {
+			return new WinJS.Promise(function(complete){
+				for (var process = 0; process < processes.length; process++){
+					if (processes[process].type === type){
+						processes[process].cancel();
+					}
+				}
+				complete();
+			});
+ 		}
 
 		services.storeDetails = function(id){
 			// this is a bit redundant
@@ -274,6 +295,7 @@
 							} else {
 								var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
 								Elsie.Interface.showApiError(text);
+								complete();
 							}
 						}
 					);
