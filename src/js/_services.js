@@ -104,7 +104,7 @@
 				WinJS.Promise.join(processes).done(function(){
 					makeCall();
 				});
-			}
+			});
 			processes.push(promise);
 			return promise;
 		}

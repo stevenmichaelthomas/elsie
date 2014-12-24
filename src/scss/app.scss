@@ -111,7 +111,7 @@ progress::-webkit-progress-value {
     clear: both;
     color: $primary-color;
     &.solo {
-        margin: 15px auto 10px;
+        margin: 30px auto 10px;
         width: 90%;
     }
 }
@@ -373,6 +373,7 @@ textarea:focus,
     text-transform: uppercase;
     color: $primary-color;
     display: none;
+    margin-top: 30px;
 }
 
 .win-pivot-item .win-pivot-item-content {
