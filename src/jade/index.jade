@@ -5,12 +5,13 @@ html
     title Elsie
     link(rel='stylesheet', href='css/lib/ui-light.css')
     link(rel='stylesheet', href='css/app.css')
-    // WinJS 3.0.1
+    // WinJS @ 6ca0ffc
     script(src="js/lib/base.js")
     script(src="js/lib/ui.js")
+    script(src="js/lib/fastclick.js")
     // Cordova 4.0.0
     script(src='cordova.js')
-    // Elsie 1.0
+    // Elsie 1.2
     script(src='js/_navigator.js')
     script(src='js/_search.js')
     script(src='js/_services.js')
@@ -18,6 +19,7 @@ html
     script(src='js/_ui.js')
     script(src='js/app.js')
   body(onload="window.onLoad()")
+    #mini-bar
     #app(data-win-control="Application.PageControlNavigator")
     include partials/appbar.jade
     include templates.jade
