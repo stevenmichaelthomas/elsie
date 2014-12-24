@@ -23,6 +23,9 @@
     window.onLoad = function(){
         document.addEventListener("deviceready", deviceReady);
         document.addEventListener("resume", Elsie.Services.getLocation);
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
     }
     
 })();

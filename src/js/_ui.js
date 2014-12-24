@@ -19,8 +19,14 @@
             document.getElementById("button-home").addEventListener("click", ui.goHome);
             document.getElementById("button-about").addEventListener("click", ui.goAbout);
             document.getElementById("button-nearby").addEventListener("click", ui.goNearbyStores);
+            navigator.splashscreen.hide();
     	});
     }
+
+    ui.clickLink = function(url) {
+        //navigator.app.loadUrl(url, {openExternal : true});
+        window.open(url, '_system');
+    };
 
     ui.clearMessage = function(){
 
@@ -106,6 +112,11 @@
             var progress = document.createElement("progress");
             progress.id = "loading";
             document.getElementById("app").appendChild(progress);
+            if (!document.getElementById("loading")){
+                var progress = document.createElement("progress");
+                progress.id = "loading";
+                document.getElementById("app").parentNode.appendChild(progress);
+            }
         }
     };
 
