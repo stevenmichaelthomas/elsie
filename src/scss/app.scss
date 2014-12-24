@@ -3,8 +3,36 @@ $secondary-color: #444; //grey
 $background-color: #ecf0f1; //white
 $highlight-color: #FCD53B; //sunflower
 
+html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
 body {
-    background: $background-color;
+     background: $background-color;
+    font-family: 'Segoe UI', 'Segoe WP', 'Helvetice Neue', 'Open Sans', sans-serif;
+    > * {
+        -webkit-user-select:none;
+    }
+    width: 100%;
+    position: relative;
+    overflow-x: hidden;
+    //-webkit-overflow-scrolling: touch;
+}
+
+body, #app {
+    height: 100%;
+}
+
+#app {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1001;
+    overflow: hidden;
 }
 
 h1 {
@@ -56,10 +84,11 @@ progress {
     border: none;
     width: 100%;
     top: 0;
-    position: fixed;
+    position: absolute;
     background-color: transparent;
     color: $highlight-color;
     height: 2px;
+    z-index: 8001;
 }
 
 progress::-webkit-progress-value {
@@ -87,6 +116,25 @@ progress::-webkit-progress-value {
     }
 }
 
+.explanation {
+    color: $secondary-color;
+    text-align: center;
+    padding: 40px;
+    display: none;
+}
+
+.search-mode {
+    #productResults,
+    #mini-brand {
+        display: block !important;
+    }
+    //#brand-container,
+    #recent,
+    #explanation {
+        display: none !important;
+    }
+}
+
 #brand-container {
     background: $primary-color;
     margin-bottom: 20px;
@@ -106,6 +154,15 @@ progress::-webkit-progress-value {
     }
 }
 
+#mini-bar {
+    height: 20px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1001;
+    background-color: $primary-color;
+}
+
 #mini-brand {
     display: none;
 }
@@ -114,15 +171,6 @@ progress::-webkit-progress-value {
     width: 90%;
     margin: 0 auto;
     display: none;
-}
-
-.explanation {
-    width: 80%;
-    margin: 50px auto;
-    color: $secondary-color;
-    display: none;
-    opacity: 0.6;
-    text-align: center;
 }
 
 #status {
@@ -143,8 +191,12 @@ progress::-webkit-progress-value {
 #about-container {
     background: url("../img/logo.png") no-repeat center bottom $primary-color;
     margin: -15px 0 0;
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
     background-size: 70%;
 }
 
@@ -153,6 +205,7 @@ progress::-webkit-progress-value {
     margin: 0 auto;
     padding-top: 20px;
     text-align: center;
+    transition: 0.75s;
     p {
         color: $background-color;
     }
@@ -266,10 +319,28 @@ button:disabled .win-commandimage, button:disabled:active .win-commandimage {
     width: 90%;
     height: 52px;
     border-color: #ddd;
-    input {
+    position: relative;
+    input,
+    input:hover {
         font-size: 14pt;
         width: 100%;
         padding: 0 10px;
+        position: absolute;
+        z-index: 1001;
+    }
+    #cancel {
+        color: $primary-color;
+        transition: 0.3s;
+        background: url('../img/icon_clear.png') no-repeat center center;
+        background-size: 30%;
+        position: absolute;
+        width: 14%;
+        //right: -50%;
+        right: 0;
+        top: 13px;
+        bottom: 0;
+        opacity: 0;
+        z-index: 999;
     }
 }
 
@@ -307,13 +378,18 @@ textarea:focus,
 .win-pivot-item .win-pivot-item-content {
     width: 90%;
     padding: 0 5%;
+    overflow: hidden;
 }
 
 .win-pivot-headers {
-    z-index: 9000;
+    z-index: 8000;
 }
 
 .win-pivot-viewport {
+    .win-searchbox {
+        width: 100%;
+        margin: 0 auto 20px;
+    }
     input[type="text"] {
         width: 100%;
     }
@@ -337,6 +413,10 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover {
     border-left: 5px $primary-color solid;
 }
 
+.win-listview .win-focusedoutline {
+    outline: none;
+}
+
 html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-itemcontainer.win-container:hover {
     outline: none;
 }
@@ -350,7 +430,7 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
 .wordmark {
     margin: 30px auto;
     display: block;
-    width: 40%;
+    width: 50%;
 }
 
 .listItem {
@@ -387,7 +467,10 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
     }
     img.listItem-Image {
         height: 70px;
+        min-width: 32px;
         margin: 0;
+        opacity: 0;
+        transition: 0.5s;
     }
     .listItem-Detail {
         margin: 5px;
@@ -413,7 +496,7 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
         }
     }
     .glance {
-        width: 65%;
+        width: 60%;
         margin-left: 5%;
         margin-top: 3%;
         float: left;
@@ -432,6 +515,7 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
             text-transform: lowercase;
             .value {
                 color: $secondary-color;
+                white-space: nowrap;
             }
             .key {
                 color: $primary-color;
@@ -448,6 +532,10 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
         .glance {
             width: 100%;
             margin-left: 0;
+            .fact {
+                opacity: 0;
+                transition: opacity 0.5s;
+            }
         }
     }
 }
