@@ -4,18 +4,21 @@
   br
   .glance.linear
     .fact
-      a.value.win-type-x-large(data-win-bind="innerText: Elsie.Data.selectedStore.address_line_1; href: Elsie.Data.selectedStore Elsie.Interface.formatAddress")
-      br
-      span.key.win-type-medium view map
+      a(data-win-bind="href: Elsie.Data.selectedStore Elsie.Interface.formatAddress")
+        span.value.win-type-x-large(data-win-bind="innerText: Elsie.Data.selectedStore.address_line_1")
+        br
+        span.key.win-type-medium view map
     .fact
-      a.value.win-type-x-large(data-win-bind="textContent: Elsie.Data.selectedStore.distance_in_meters Elsie.Interface.convertMetersToKilometers; href: Elsie.Data.selectedStore Elsie.Interface.formatAddress")
-      br
-      span.key.win-type-medium from your location
+      a(data-win-bind="href: Elsie.Data.selectedStore Elsie.Interface.formatAddress")
+        span.value.win-type-x-large(data-win-bind="textContent: Elsie.Data.selectedStore.distance_in_meters Elsie.Interface.convertMetersToKilometers")
+        br
+        span.key.win-type-medium from your location
     .fact
       span.value.win-type-x-large(data-win-bind="innerText: Elsie.Data.selectedStore Elsie.Interface.determineStoreOpen")
       br
       span.key.win-type-medium(data-win-bind="innerText: Elsie.Data.selectedStore Elsie.Interface.determineTimeToOpenOrClose")
     .fact
-      a.value.win-type-x-large(data-win-bind="innerText: Elsie.Data.selectedStore.telephone; href: Elsie.Data.selectedStore.telephone Elsie.Interface.formatTelephoneNumber")
-      br
-      span.key.win-type-medium call store
+      a(data-win-bind="href: Elsie.Data.selectedStore.telephone Elsie.Interface.formatTelephoneNumber")
+        span.value.win-type-x-large(data-win-bind="innerText: Elsie.Data.selectedStore.telephone")
+        br
+        span.key.win-type-medium call store
