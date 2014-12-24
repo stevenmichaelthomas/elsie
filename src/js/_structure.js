@@ -43,29 +43,30 @@
             searchBox.addEventListener("keyup", Elsie.Search.requestSuggestions);
             searchBox.addEventListener("focus", function(){
                 document.getElementById("appBar").winControl.closedDisplayMode = 'none';
+                element.classList.add("search-mode");
+                var explanation = document.getElementById("explanation");
+                explanation.style.display = "none";
                 element.querySelector("#cancel").style.opacity = '1';
                 element.querySelector("#cancel").style.zIndex = '1002';
-                element.classList.add("search-mode");
             });
             searchBox.addEventListener("blur", function(){
-                if (!Elsie.Data.searchResults || Elsie.Data.searchResults.length === 0 || this.value === ""){
-                    goBackHome();
-                }
                 setTimeout(function(){
-                    document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
+                    document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
                 }, 750);
+                element.classList.remove("search-mode");
+                element.querySelector("#cancel").style.opacity = '0';
+                element.querySelector("#cancel").style.zIndex = '999'; 
             });
 
             var cancelButton = element.querySelector("#cancel");
             cancelButton.addEventListener("click", function(){
                 searchBox.value = "";
-                goBackHome();
             });
 
             document.getElementById("button-home").winControl.disabled = true;
             document.getElementById("button-about").winControl.disabled = false;
             document.getElementById("button-nearby").winControl.disabled = false;
-            document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
+            document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
             StatusBar.styleLightContent();
 
             //first run handling
@@ -285,6 +286,35 @@
                 });
         }
     });
+
+    structure.aboutConstructor = WinJS.UI.Pages.define("./about.html", {
+        ready: function (element, options) {
+            document.getElementById("button-home").winControl.disabled = false;
+            document.getElementById("button-about").winControl.disabled = true;
+            document.getElementById("button-nearby").winControl.disabled = false;
+            document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
+            //StatusBar.styleLightContent();
+
+            this.getAnimationElements = function(){
+                var elements = [];
+                //var wordmark = element.querySelector("#about");
+                elements.push(element);
+                return elements;
+            };
+
+            this.getAnimationElementOffsets = function(){
+                var offsets = [];
+                var wholepage = { top: "200px", left: "0" };
+                offsets.push(wholepage);
+                return offsets;
+            };
+
+            /*var wordmark = element.querySelector("#about");
+            setTimeout(function(){
+                wordmark.style.opacity = "1";
+            }, 150);*/
+         }
+     });
 
     WinJS.Namespace.define("Elsie", {
         Structure: structure
