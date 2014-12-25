@@ -229,7 +229,7 @@
                   var fact = -1;
 
                     (function next() {
-                        if (fact++ >= facts.length) return;
+                        if (fact++ === facts.length - 1) return;
 
                         setTimeout(function() {
                             facts[fact].style.opacity = 1;
