@@ -411,6 +411,10 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover {
     color: $primary-color;
 }
 
+.win-listview {
+    height: 800px;
+}
+
 .win-listview > .win-vertical .win-container {
     margin-right: 0;
     margin-left: 0;
