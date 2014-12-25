@@ -254,6 +254,27 @@
 
             var searchBox = element.querySelector("#searchInventory");
                 searchBox.addEventListener("keyup", Elsie.Search.searchInventory);
+                searchBox.addEventListener("focus", function(){
+                    document.getElementById("appBar").winControl.closedDisplayMode = 'none';
+                    element.classList.add("search-mode");
+                    var explanation = document.getElementById("explanation");
+                    explanation.style.display = "none";
+                    element.querySelector("#cancel").style.opacity = '1';
+                    element.querySelector("#cancel").style.zIndex = '1002';
+                });
+                searchBox.addEventListener("blur", function(){
+                    setTimeout(function(){
+                        document.getElementById("appBar").winControl.closedDisplayMode = 'compact';
+                    }, 750);
+                    element.classList.remove("search-mode");
+                    element.querySelector("#cancel").style.opacity = '0';
+                    element.querySelector("#cancel").style.zIndex = '999';
+                });
+
+            var cancelButton = element.querySelector("#cancel");
+            cancelButton.addEventListener("click", function(){
+                searchBox.value = "";
+            });
         }
     });
 
