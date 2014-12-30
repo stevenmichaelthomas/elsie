@@ -139,8 +139,25 @@ progress::-webkit-progress-value {
     background: $primary-color;
     margin-bottom: 20px;
     padding: 10px 0;
-    background: url('../img/top.png') no-repeat bottom center $primary-color;
+    background: $primary-color;
     background-size: contain;
+    height: 45px;
+    #text {
+        height: 42px;
+        width: 45%;
+        margin-left: 5%;
+        float: left;
+        background: url('../img/logo_text.png') no-repeat left center;
+        background-size: contain;
+    }
+    #art {
+        height: 54px;
+        width: 45%;
+        margin-right: 5%;
+        float: right;
+        background: url('../img/logo_art.png') no-repeat right center;
+        background-size: contain;
+    }
 }
 
 #brand {
