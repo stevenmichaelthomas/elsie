@@ -86,8 +86,10 @@
                     (function fadeIn() {
                         if (i++ === images.length - 1) return;
                         setTimeout(function() {
-                            images[i].style.opacity = 1;
-                            fadeIn();
+                            if (images[i]) {
+                                images[i].style.opacity = 1;
+                                fadeIn();
+                            }
                         }, 50);
                     })();
                 }
