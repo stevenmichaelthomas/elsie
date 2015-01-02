@@ -12,7 +12,6 @@ Elsie is fast, clean frontend to a lovely LCBO API (http://lcboapi.com/).
 * `$ cordova plugin add org.apache.cordova.splashscreen`
 * `$ cordova plugin add org.apache.cordova.statusbar`
 
-**Branches**  
 You need to check out the branch that corresponds to the platform you wish to run.
 * `$ git checkout [windows|android|ios]`
 
