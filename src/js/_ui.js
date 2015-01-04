@@ -200,6 +200,11 @@
 
         var result;
 
+        if (todaysHours.open === null || todaysHours.closed === null){
+            result = "closed today";
+            return result;
+        }
+
         if (minutes_since_midnight >= todaysHours.open && minutes_since_midnight <= todaysHours.close) {
             result = "open right now";
         } else {
@@ -231,6 +236,10 @@
             }
         } else {
             // we are closed, so we want to return the amount of time until open
+            if (todaysHours.open === null || todaysHours.closed === null){
+                result = "due to holiday";
+                return result;
+            }
             if (minutes_since_midnight > todaysHours.open) {
                 // we are late in the night, but before midnight
                 var minutesToOpen = todaysHours.open + (1440 - minutes_since_midnight);
