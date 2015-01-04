@@ -42,7 +42,7 @@
 					complete();
 				}
 
-				navigator.geolocation.getCurrentPosition(onSuccess, onError);
+				navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 10000 });
 			});
 			processes.push(promise);
 			return promise;
