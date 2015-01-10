@@ -137,7 +137,6 @@ progress::-webkit-progress-value {
 
 #brand-container {
     background: $primary-color;
-    margin-bottom: 20px;
     padding: 10px 0;
     background: $primary-color;
     background-size: contain;
@@ -186,9 +185,8 @@ progress::-webkit-progress-value {
 }
 
 #recent {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
-    display: none;
 }
 
 #status {
@@ -198,7 +196,7 @@ progress::-webkit-progress-value {
 #productResults {
     margin: 0 auto;
     display: none;
-    width: 90%;
+    width: 100%;
 }
 
 #closestStores {

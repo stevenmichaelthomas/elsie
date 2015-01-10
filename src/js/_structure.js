@@ -6,6 +6,9 @@
     structure.homeConstructor = WinJS.UI.Pages.define("./home.html", {
         ready: function (element, options) {
 
+            var recentsFilled = false;
+            var tabsFilled = false;
+
             this.getAnimationElements = function(){
                 var elements = [];
                 //var wordmark = element.querySelector("#about");
@@ -21,13 +24,6 @@
             };
 
             var goBackHome = function(){
-                if (!Elsie.Data.recentProducts) {
-                    element.querySelector("#recent").style.display = "none";
-                    element.querySelector("#explanation").style.display = "block";
-                } else {
-                    element.querySelector("#recent").style.display = "block";
-                    element.querySelector("#explanation").style.display = "none";
-                }
                 element.querySelector("#cancel").style.opacity = '0';
                 element.querySelector("#cancel").style.zIndex = '999';
                 element.classList.remove("search-mode");
@@ -67,31 +63,35 @@
             document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
             StatusBar.styleLightContent();
 
-            //first run handling
-            if (!Elsie.Data.recentProducts) {
-                element.querySelector("#recent").style.display = "none";
-                element.querySelector("#explanation").style.display = "block";
-            } else {
-                element.querySelector("#recent").style.display = "block";
-                element.querySelector("#explanation").style.display = "none";
-            }
-
             // recent products bindings
             var recentProducts = element.querySelector("#recentProducts");
             recentProducts.style.height = window.innerHeight - 215 + "px";
             recentProducts.addEventListener("loadingstatechanged", function(){
                 if (recentProducts.winControl.loadingState === "complete"){
-                    var i = -1;
-                    var images = document.getElementsByClassName("listItem-Image");
-                    (function fadeIn() {
-                        if (i++ === images.length - 1) return;
-                        setTimeout(function() {
-                            if (images[i]) {
-                                images[i].style.opacity = 1;
-                                fadeIn();
-                            }
-                        }, 50);
-                    })();
+                    if (recentsFilled == false) {
+                        if (Elsie.Data.recentProducts) {
+                            var itemList = new WinJS.Binding.List(Elsie.Data.recentProducts);
+                            element.querySelector("#no-recents").style.display = "none";
+                        } else {
+                            var itemList = new WinJS.Binding.List([]);
+                            element.querySelector("#no-recents").style.display = "block";
+                        }
+                        Elsie.Lists.recentProducts = itemList;
+                        recentProducts.winControl.itemDataSource = Elsie.Lists.recentProducts.dataSource;
+                        recentsFilled = true;
+                    } else {
+                        var i = -1;
+                        var images = document.getElementsByClassName("listItem-Image");
+                        (function fadeIn() {
+                            if (i++ === images.length - 1) return;
+                            setTimeout(function() {
+                                if (images[i]) {
+                                    images[i].style.opacity = 1;
+                                    fadeIn();
+                                }
+                            }, 50);
+                        })();
+                    }
                 }
             });
             recentProducts.addEventListener("iteminvoked", function(evt){
@@ -125,12 +125,9 @@
             });
             //listView.addEventListener("contentanimating", function (e) { e.preventDefault() });  
 
-
             if (element.style.visibility === 'hidden'){
                 element.style.visibility = 'visible';
             }
-
-            Elsie.Search.displayRecentProducts();
 
         },
     });

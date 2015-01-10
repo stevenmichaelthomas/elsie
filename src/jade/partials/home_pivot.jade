@@ -1,0 +1,7 @@
+doctype
+#homePivot(data-win-control="WinJS.UI.Pivot",data-win-options="{ selectedIndex: 0 }")
+  .listviewpivotitem(data-win-control="WinJS.UI.PivotItem",data-win-options="{ 'header': 'search', isHeaderStatic: true }")
+    include search.jade
+    include recent.jade
+  .listviewpivotitem(data-win-control="WinJS.UI.PivotItem",data-win-options="{ 'header': 'faves', isHeaderStatic: true }")
+    include tabs.jade

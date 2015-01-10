@@ -4,20 +4,6 @@
     var search = {};
     var timer;
 
-    search.displayRecentProducts = function() {
-        if (Elsie.Data.recentProducts){
-            document.getElementById("recent").style.display = "block";
-            var itemList = new WinJS.Binding.List(Elsie.Data.recentProducts);
-            var productsList = {
-                itemList: itemList
-            };
-            WinJS.Namespace.define("RecentProducts", productsList);
-            var listView = document.getElementById("recentProducts").winControl;
-            listView.itemDataSource = RecentProducts.itemList.dataSource;
-            listView.forceLayout();
-        }
-    };
-
     search.requestSuggestions = function() {
         Elsie.Interface.hideLoadingAnimation();
         clearTimeout(timer);

@@ -6,6 +6,13 @@
         h4(data-win-bind="textContent:name")
         h6(data-win-bind="textContent:package")
 
+  .tabTemplate.listBox(data-win-control="WinJS.Binding.Template")
+    .tab.listItem
+      img.listItem-Image(data-win-bind="src:image_thumb_url Elsie.Interface.processImage")
+      .listItem-Detail
+        h4(data-win-bind="textContent:name")
+        //h6(data-win-bind="textContent:package")
+
   .storeResultsTemplate.listBox(data-win-control="WinJS.Binding.Template")
     .store.listItem
       .listItem-Detail
