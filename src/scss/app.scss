@@ -451,10 +451,13 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
         height: 0 !important;
     }
     .win-container {
-        margin: 0 3% 3% 0;
-        width: 47% !important;
+        margin: 0 4% 4% 0;
+        width: 48% !important;
         max-height: none !important;
         float: left;
+        &:nth-child(odd) {
+            margin-right: 0;
+        }
     }
 }
 
