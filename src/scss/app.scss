@@ -528,6 +528,7 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
         flex-direction: column;
         padding: 0;
         width: 100%;
+        height: 152px;
         img.listItem-Image {
             height: auto;
             width: 40%;
@@ -560,14 +561,13 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
             }
         }
         .details {
-            height: auto;
+            height: 122px;
             background-color: transparent;
             border: none;
             .glance {
                 margin: 0;
                 padding: 10px 0;
                 width: 60%;
-                box-sizing: border-box;
                 .fact {
                     margin-bottom: 10px;
                     .value {
