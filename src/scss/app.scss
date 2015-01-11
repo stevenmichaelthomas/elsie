@@ -446,19 +446,24 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
 }
 
 // gridlayout overrides 
+.win-listview > .win-viewport.win-horizontal {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
 .win-listview .win-horizontal .win-listlayout .win-itemscontainer, .win-listview.win-groups .win-horizontal .win-listlayout .win-itemscontainer.win-laidout, .win-listview .win-horizontal .win-listlayout .win-itemsblock, .win-listview .win-horizontal .win-gridlayout .win-uniformgridlayout.win-itemscontainer.win-laidout, .win-listview .win-horizontal .win-gridlayout .win-uniformgridlayout .win-itemsblock {
     -ms-flex-direction: row;
     -webkit-flex-direction: row;
     flex-direction: row;
     width: 100% !important;
     height: 100% !important;
-    overflow: scroll;
+    overflow-y: auto;
     > .win-itemscontainer-padder {
         height: 0;
     }
     > .win-container {
         margin: 0 3% 3% 0;
-        width: 30% !important;
+        width: 47% !important;
     }
 }
 
