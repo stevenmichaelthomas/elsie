@@ -437,16 +437,29 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover {
     max-height: 80px !important;
 }
 
-.win-listview .win-itembox {
-    border-left: 5px $primary-color solid;
-}
-
 .win-listview .win-focusedoutline {
     outline: none;
 }
 
 html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-itemcontainer.win-container:hover {
     outline: none;
+}
+
+// gridlayout overrides 
+.win-listview .win-horizontal .win-listlayout .win-itemscontainer, .win-listview.win-groups .win-horizontal .win-listlayout .win-itemscontainer.win-laidout, .win-listview .win-horizontal .win-listlayout .win-itemsblock, .win-listview .win-horizontal .win-gridlayout .win-uniformgridlayout.win-itemscontainer.win-laidout, .win-listview .win-horizontal .win-gridlayout .win-uniformgridlayout .win-itemsblock {
+    flex-direction: row;
+    width: 100% !important;
+    > .win-itemscontainer-padder {
+        height: 0;
+    }
+    > .win-container {
+        margin: 0 3% 3% 0;
+        width: 30% !important;
+    }
+}
+
+.win-listview .win-horizontal .win-surface.win-nocssgrid {
+    width: 100% !important;
 }
 
 //custom
@@ -469,6 +482,7 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
+    border-left: 5px $primary-color solid;
     .block {
         width: 50px;
         height: 42px;
@@ -506,6 +520,38 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
         h4 {
             overflow: hidden;
             white-space: nowrap;
+        }
+    }
+    &.tab {
+        border-left: none;
+        flex-direction: column;
+        padding: 0;
+        width: 100%;
+        img.listItem-Image {
+            height: 75px;
+            max-width: 56px;
+            margin: 5px auto;
+            display: block;
+        }
+        h2 {
+            margin: 0 0 5px 0;
+            text-align: center;
+        }
+        .listItem-Main {
+            width: 100%;
+        }
+        .listItem-Detail {
+            height: 30px;
+            box-sizing: border-box;
+            margin: 0;
+            width: 100%;
+            background-color: $primary-color;
+            color: white;
+            text-transform: uppercase;
+            font-size: 0.8em;
+            text-align: center;
+            white-space: nowrap;
+            padding: 5px;
         }
     }
 }

@@ -101,6 +101,45 @@
             });
             recentProducts.addEventListener("contentanimating", function (e) { e.preventDefault() });  
 
+            // tabs bindings
+            var tabGrid = element.querySelector("#tabGrid");
+            //tabGrid.style.height = window.innerHeight - 215 + "px";
+            tabGrid.addEventListener("loadingstatechanged", function(){
+                if (tabGrid.winControl.loadingState === "complete"){
+                    if (tabsFilled == false) {
+                        //if (Elsie.Data.savedTabs) {
+                        if (Elsie.Data.recentProducts) {
+                            var itemList = new WinJS.Binding.List(Elsie.Data.recentProducts);
+                            element.querySelector("#no-tabs").style.display = "none";
+                        } else {
+                            var itemList = new WinJS.Binding.List([]);
+                            element.querySelector("#no-tabs").style.display = "block";
+                        }
+                        Elsie.Lists.savedTabs = itemList;
+                        tabGrid.winControl.itemDataSource = Elsie.Lists.savedTabs.dataSource;
+                        tabsFilled = true;
+                    } else {
+                        var i = -1;
+                        var images = document.getElementsByClassName("listItem-Image");
+                        (function fadeIn() {
+                            if (i++ === images.length - 1) return;
+                            setTimeout(function() {
+                                if (images[i]) {
+                                    images[i].style.opacity = 1;
+                                    fadeIn();
+                                }
+                            }, 50);
+                        })();
+                    }
+                }
+            });
+            tabGrid.addEventListener("iteminvoked", function(evt){
+                evt.detail.itemPromise.then(function itemInvoked(item) {
+                    Elsie.Search.selectSuggestion(item.data.id);
+                });
+            });
+            tabGrid.addEventListener("contentanimating", function (e) { e.preventDefault() });
+
             // results bindings
             var listView = element.querySelector("#productResults");
             listView.addEventListener("iteminvoked", function(evt){

@@ -8,10 +8,11 @@
 
   .tabTemplate.listBox(data-win-control="WinJS.Binding.Template")
     .tab.listItem
-      img.listItem-Image(data-win-bind="src:image_thumb_url Elsie.Interface.processImage")
+      .listItem-Main
+        img.listItem-Image(data-win-bind="src:image_thumb_url Elsie.Interface.processImage")
+        h2(data-win-bind="textContent:inventory_count")
       .listItem-Detail
-        h4(data-win-bind="textContent:name")
-        //h6(data-win-bind="textContent:package")
+        span(data-win-bind="textContent:name")
 
   .storeResultsTemplate.listBox(data-win-control="WinJS.Binding.Template")
     .store.listItem
