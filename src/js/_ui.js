@@ -260,11 +260,40 @@
 
     });
 
+    ui.determineAvailability = WinJS.Binding.converter(function (number){
+        var availability;
+        if (number == 0) {
+            availability = "sold out";
+        } 
+        if (number > 0) {
+            availability = "rare";
+        } 
+        if (number > 100) {
+            availability = "limited";
+        } 
+        if (number > 500) {
+            availability = "moderate";
+        } 
+        if (number > 2000) {
+            availability = "high";
+        } 
+        return availability;
+    });
+
     ui.convertMetersToKilometers = WinJS.Binding.converter(function (meters) {
         var kilometers = meters / 1000;
         kilometers = Math.round(kilometers * 100) / 100;
         kilometers = kilometers + " km";
         return kilometers;
+    });
+
+    ui.formatNumber = WinJS.Binding.converter(function (number) {
+        if (number > 999) {
+            number = (number / 1000).toFixed(1) + "k";
+        } else if (number > 999999) {
+            number = (number / 1000000).toFixed(1) + "m";
+        }
+        return number;
     });
 
     ui.convertABVtoPercentage = WinJS.Binding.converter(function (abv) {

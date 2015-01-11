@@ -529,14 +529,16 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
         padding: 0;
         width: 100%;
         img.listItem-Image {
-            height: 75px;
-            max-width: 56px;
-            margin: 5px auto;
+            height: auto;
+            width: 40%;
+            margin: 15px 0;
             display: block;
+            float: left;
         }
         h2 {
             margin: 0 0 5px 0;
             text-align: center;
+            float: left;
         }
         .listItem-Main {
             width: 100%;
@@ -553,6 +555,32 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
             text-align: center;
             white-space: nowrap;
             padding: 5px;
+            span {
+                line-height: 20px;
+            }
+        }
+        .details {
+            height: auto;
+            background-color: transparent;
+            border: none;
+            .glance {
+                margin: 0;
+                padding: 10px 0;
+                width: 60%;
+                box-sizing: border-box;
+                .fact {
+                    margin-bottom: 10px;
+                    .value {
+                        font-size: 16pt;
+                    }
+                    .key {
+                        font-size: 9pt;
+                    }
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
         }
     }
 }

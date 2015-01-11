@@ -8,9 +8,17 @@
 
   .tabTemplate.listBox(data-win-control="WinJS.Binding.Template")
     .tab.listItem
-      .listItem-Main
+      .listItem-Main.details
         img.listItem-Image(data-win-bind="src:image_thumb_url Elsie.Interface.processImage")
-        h2(data-win-bind="textContent:inventory_count")
+        .glance.linear
+          .fact
+            span.value.win-type-x-large(data-win-bind="textContent:inventory_count Elsie.Interface.determineAvailability")
+            br
+            span.key.win-type-medium availability
+          .fact
+            span.value.win-type-x-large(data-win-bind="textContent:inventory_count Elsie.Interface.formatNumber")
+            br
+            span.key.win-type-medium all stock
       .listItem-Detail
         span(data-win-bind="textContent:name")
 
