@@ -445,30 +445,17 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
     outline: none;
 }
 
-// gridlayout overrides 
-.win-listview > .win-viewport.win-horizontal {
-    overflow-y: hidden;
-    overflow-x: hidden;
-}
-
-.win-listview .win-horizontal .win-listlayout .win-itemscontainer, .win-listview.win-groups .win-horizontal .win-listlayout .win-itemscontainer.win-laidout, .win-listview .win-horizontal .win-listlayout .win-itemsblock, .win-listview .win-horizontal .win-gridlayout .win-uniformgridlayout.win-itemscontainer.win-laidout, .win-listview .win-horizontal .win-gridlayout .win-uniformgridlayout .win-itemsblock {
-    -ms-flex-direction: row;
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    width: 100% !important;
-    height: 100% !important;
-    overflow-y: auto;
-    > .win-itemscontainer-padder {
-        height: 0;
+// grid overrides 
+#tabGrid {
+    .win-itemscontainer {
+        height: 0 !important;
     }
-    > .win-container {
+    .win-container {
         margin: 0 3% 3% 0;
         width: 47% !important;
+        max-height: none !important;
+        float: left;
     }
-}
-
-.win-listview .win-horizontal .win-surface.win-nocssgrid {
-    width: 100% !important;
 }
 
 //custom
