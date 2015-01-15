@@ -3,6 +3,13 @@ $secondary-color: #444; //grey
 $background-color: #ecf0f1; //white
 $highlight-color: #FCD53B; //sunflower
 
+* {
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { 
+        display: none !important;
+    }
+}
+
 html {
     width: 100%;
     height: 100%;
@@ -401,7 +408,7 @@ textarea:focus,
 .win-pivot-item .win-pivot-item-content {
     width: 90%;
     padding: 0 5%;
-    overflow: hidden;
+    //overflow: hidden;
 }
 
 .win-pivot-headers {

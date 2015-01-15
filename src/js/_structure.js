@@ -198,10 +198,20 @@
             };
 
             WinJS.Binding.processAll();
+
             document.getElementById("button-home").winControl.disabled = false;
             document.getElementById("button-about").winControl.disabled = false;
             document.getElementById("button-nearby").winControl.disabled = false;
             document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
+
+            element.querySelectorAll(".win-pivot-item-content")[0].addEventListener("scroll", function(){
+                var end = document.querySelector("#product-end");
+                if (Elsie.Interface.isInViewport(end)) {
+                    document.querySelectorAll(".win-viewport")[0].style.overflowY = "auto";
+                } else {
+                    document.querySelectorAll(".win-viewport")[0].style.overflowY = "hidden";
+                }
+            });
             var listView = element.querySelector("#storeResults");
             var similarView = element.querySelector("#similarProducts");
                 listView.addEventListener("iteminvoked", function(evt){
