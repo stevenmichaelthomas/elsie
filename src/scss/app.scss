@@ -4,7 +4,7 @@ $background-color: #ecf0f1; //white
 $highlight-color: #FCD53B; //sunflower
 
 * {
-    -ms-overflow-style: none;
+    -ms-overflow-style: none !important;
     &::-webkit-scrollbar { 
         display: none !important;
     }
