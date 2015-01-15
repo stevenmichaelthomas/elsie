@@ -108,15 +108,15 @@
                 if (tabGrid.winControl.loadingState === "complete"){
                     if (tabsFilled == false) {
                         //if (Elsie.Data.savedTabs) {
-                        if (Elsie.Data.recentProducts) {
-                            var itemList = new WinJS.Binding.List(Elsie.Data.recentProducts);
+                        if (Elsie.Data.watchlistProducts.length > 0) {
+                            var itemList = new WinJS.Binding.List(Elsie.Data.watchlistProducts);
                             element.querySelector("#no-tabs").style.display = "none";
                         } else {
                             var itemList = new WinJS.Binding.List([]);
                             element.querySelector("#no-tabs").style.display = "block";
                         }
-                        Elsie.Lists.savedTabs = itemList;
-                        tabGrid.winControl.itemDataSource = Elsie.Lists.savedTabs.dataSource;
+                        Elsie.Lists.watchlistProducts = itemList;
+                        tabGrid.winControl.itemDataSource = Elsie.Lists.watchlistProducts.dataSource;
                         tabsFilled = true;
                     } else {
                         var i = -1;
@@ -204,6 +204,20 @@
             document.getElementById("button-nearby").winControl.disabled = false;
             document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
 
+            var watchlist = document.getElementById("watchlist");
+            watchlist.addEventListener("click", function(){
+                var result = Elsie.Services.changeProductWatchStatus(Elsie.Data.selectedProduct);
+                if (result === "added"){
+                    watchlist.classList.add("on");
+                } else if (result === "removed"){
+                    watchlist.classList.remove("on");
+                }
+            });
+            var result = Elsie.Services.checkWatchlistForProduct(Elsie.Data.selectedProduct);
+            if (result === true){
+                watchlist.classList.add("on");
+            };
+
             element.querySelectorAll(".win-pivot-item-content")[0].addEventListener("scroll", function(){
                 var end = document.querySelector("#product-end");
                 if (Elsie.Interface.isInViewport(end)) {
@@ -223,7 +237,7 @@
                     if (listView.winControl.loadingState === "complete" && listViewFilled == false){
                         listView.winControl.itemDataSource = Elsie.Lists.nearbyStoresWithProduct.dataSource;
                         setTimeout(function(){ 
-                            listView.style.height = window.innerHeight - 375 + "px"; 
+                            listView.style.height = window.innerHeight - 180 + "px"; 
                             similarView.style.height = window.innerHeight - 170 + "px";
                             document.querySelectorAll(".win-viewport")[0].style.overflowY = "hidden";
                         }, 1000);

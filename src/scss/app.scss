@@ -596,6 +596,19 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
     height: 150px;
     background: white;
     border: 2px #ddd solid;
+    position: relative;
+    #watchlist {
+        height: 24px;
+        width: 24px;
+        background: url('../img/icon_watchlist-hollow.png') no-repeat center center;
+        background-size: contain;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        &.on {
+            background-image: url('../img/icon_watchlist.png');
+        }
+    }
     .image {
         width: 30%;
         max-height: 300px;

@@ -13,6 +13,7 @@
 
     var deviceReady = function(){
         Elsie.Services.getRecentProducts();
+        Elsie.Services.loadWatchlist();
         Elsie.Interface.initialize();
         Elsie.Services.initializeLocation();
         Elsie.Services.getLocation();

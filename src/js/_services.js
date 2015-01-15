@@ -304,6 +304,51 @@
 			});
 		};
 
+		services.loadWatchlist = function(){
+			if (localStorage["Elsie_watchlistProducts"]){
+			 	var retrievedItmes = JSON.parse(localStorage["Elsie_watchlistProducts"]);
+			 	retrievedItmes.reverse();
+	    	Elsie.Data.watchlistProducts = retrievedItmes;
+   		} else {
+   			Elsie.Data.watchlistProducts = [];
+   			services.syncWatchlist();
+   		}
+		};
+
+		services.checkWatchlistForProduct = function(product){
+			var index = JSON.stringify(Elsie.Data.watchlistProducts).indexOf(JSON.stringify(product.product_no));
+			if (index === -1){
+				return false;
+			} else {
+				return true;
+			}
+		};
+
+		services.changeProductWatchStatus = function(product){
+			var result;
+			var index;
+			var isWatched = JSON.stringify(Elsie.Data.watchlistProducts).indexOf(JSON.stringify(product.product_no));
+			if (isWatched === -1){
+				Elsie.Data.watchlistProducts.push(product);
+				result = "added";
+			} else {
+				var i = 0;
+				for (i = 0; i < Elsie.Data.watchlistProducts.length; i++) {
+				  if (Elsie.Data.watchlistProducts[i] === product) {
+				      index = i;
+				  }
+				}
+				Elsie.Data.watchlistProducts.splice(index, 1);
+				result = "removed";
+			}
+			services.syncWatchlist();
+			return result;
+		};
+
+		services.syncWatchlist = function(){
+			localStorage["Elsie_watchlistProducts"] = JSON.stringify(Elsie.Data.watchlistProducts);
+		};
+
 		services.contains = function(obj, array){
 			var i;
 			for (i = 0; i < array.length; i++) {
@@ -311,7 +356,6 @@
 			      return true;
 			  }
 			}
-
 			return false;
 		};
 
