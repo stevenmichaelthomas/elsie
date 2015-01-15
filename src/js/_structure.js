@@ -225,6 +225,7 @@
                         setTimeout(function(){ 
                             listView.style.height = window.innerHeight - 375 + "px"; 
                             similarView.style.height = window.innerHeight - 170 + "px";
+                            document.querySelectorAll(".win-viewport")[0].style.overflowY = "hidden";
                         }, 1000);
                         listViewFilled = true;
                     }
