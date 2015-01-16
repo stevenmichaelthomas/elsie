@@ -332,9 +332,8 @@
 				Elsie.Data.watchlistProducts.push(product);
 				result = "added";
 			} else {
-				var i = 0;
-				for (i = 0; i < Elsie.Data.watchlistProducts.length; i++) {
-				  if (Elsie.Data.watchlistProducts[i] === product) {
+				for (var i = 0; i < Elsie.Data.watchlistProducts.length; i++) {
+				  if (Elsie.Data.watchlistProducts[i].product_no === product.product_no) {
 				      index = i;
 				  }
 				}
