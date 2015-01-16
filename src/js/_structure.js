@@ -204,7 +204,7 @@
             document.getElementById("button-nearby").winControl.disabled = false;
             document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
 
-            var watchlist = document.getElementById("watchlist");
+            var watchlist = element.querySelectorAll(".watchlist")[0];
             watchlist.addEventListener("click", function(){
                 var result = Elsie.Services.changeProductWatchStatus(Elsie.Data.selectedProduct);
                 if (result === "added"){
