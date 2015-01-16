@@ -1,6 +1,6 @@
 .details
   .image#productImage
-    img(data-win-bind="src: Elsie.Data.selectedProduct.image_thumb_url")
+    img(data-win-bind="src: Elsie.Data.selectedProduct.image_thumb_url Elsie.Interface.processImage")
   .glance
     .fact(style="width: 100%;")
       span.value.win-type-x-large(data-win-bind="innerText: Elsie.Data.selectedProduct.secondary_category")
