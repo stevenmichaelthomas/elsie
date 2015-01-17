@@ -342,6 +342,14 @@
         }
     });
 
+    ui.returnFirstStoreDistance = WinJS.Binding.converter(function (storesArray) {
+        var closestStore = storesArray[0];
+        var kilometers = closestStore.distance_in_meters / 1000;
+        kilometers = Math.round(kilometers * 100) / 100;
+        kilometers = kilometers + " km";
+        return kilometers;
+    });
+
     WinJS.Namespace.define("Elsie", {
         Interface: ui
     });

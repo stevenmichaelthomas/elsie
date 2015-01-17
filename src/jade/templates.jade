@@ -12,13 +12,13 @@
         img.listItem-Image(data-win-bind="src:image_thumb_url Elsie.Interface.processImage")
         .glance.linear
           .fact
-            span.value.win-type-x-large(data-win-bind="textContent:inventory_count Elsie.Interface.determineAvailability")
-            br
-            span.key.win-type-medium availability
-          .fact
             span.value.win-type-x-large(data-win-bind="textContent:inventory_count Elsie.Interface.formatNumber")
             br
             span.key.win-type-medium all stock
+          .fact
+            span.value.win-type-x-large(data-win-bind="textContent:stores Elsie.Interface.returnFirstStoreDistance")
+            br
+            span.key.win-type-medium closest store
       .listItem-Detail
         span(data-win-bind="textContent:name")
 

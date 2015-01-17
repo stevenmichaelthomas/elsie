@@ -218,6 +218,8 @@
 							function (result) {
 								if (result.status == 200){
 									var returnedBlob = JSON.parse(result.responseText);
+									Elsie.Data.selectedProductWithStores = returnedBlob.product;
+									Elsie.Data.selectedProductWithStores.stores = returnedBlob.result;
 									Elsie.Data.selectedProduct = returnedBlob.product;							
 									Elsie.Data.nearbyStoresWithProduct = returnedBlob.result;
 									if (localStorage["Elsie_recentProducts"]){

@@ -538,10 +538,10 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
         height: 152px;
         img.listItem-Image {
             height: auto;
-            width: 40%;
-            margin: 15px 0;
-            display: block;
-            float: left;
+            width: 45%;
+            top: 4px;
+            left: -5%;
+            position: absolute;
         }
         h2 {
             margin: 0 0 5px 0;
@@ -573,8 +573,13 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
             border: none;
             .glance {
                 margin: 0;
-                padding: 10px 0;
+                padding: 13px 0;
                 width: 60%;
+                position: absolute;
+                right: 0;
+                .win-type-x-large {
+                    line-height: 1.0;
+                }
                 .fact {
                     margin-bottom: 10px;
                     .value {

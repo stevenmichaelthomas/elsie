@@ -206,7 +206,7 @@
 
             var watchlist = element.querySelectorAll(".watchlist")[0];
             watchlist.addEventListener("click", function(){
-                var result = Elsie.Services.changeProductWatchStatus(Elsie.Data.selectedProduct);
+                var result = Elsie.Services.changeProductWatchStatus(Elsie.Data.selectedProductWithStores);
                 if (result === "added"){
                     watchlist.classList.add("on");
                 } else if (result === "removed"){
