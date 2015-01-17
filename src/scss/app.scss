@@ -461,7 +461,7 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
         width: 48% !important;
         max-height: none !important;
         float: left;
-        &:nth-child(odd) {
+        &.win-container-odd {
             margin-right: 0;
         }
     }
