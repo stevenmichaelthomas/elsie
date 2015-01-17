@@ -243,8 +243,7 @@ progress::-webkit-progress-value {
     margin-top: -10px;
 }
 
-#nearbyStores .block,
-#closestStores .block {
+#nearbyStores .block {
     display: none;
 }
 
@@ -506,11 +505,40 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
         }
         .remaining {
             font-size: 7pt;
+            line-height: 8px;
             text-transform: uppercase;
             color: white;
             text-align: center;
             width: 100%;
             display: block;
+        }
+    }
+    .info {
+        margin-top: 3px;
+        opacity: 0.85;
+        > * {
+            float: left;
+            margin-right: 10px;
+            padding-left: 16px;
+            color: #888;
+            text-transform: uppercase;
+            font-size: 9pt;
+        }
+        .distance {
+            background: url('../img/icon_sm_map.png') no-repeat left;
+            background-size: 12px auto;
+        }
+        .openclosed {
+            background: url('../img/icon_sm_flag.png') no-repeat left;
+            background-size: 12px auto;
+        }
+        .package {
+            background: url('../img/icon_sm_bag.png') no-repeat left;
+            background-size: 12px auto;
+        }
+        .abv {
+            background: url('../img/icon_sm_drink.png') no-repeat left;
+            background-size: 12px auto;
         }
     }
     img.listItem-Image {
@@ -521,7 +549,7 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
         transition: 0.5s;
     }
     .listItem-Detail {
-        margin: 5px;
+        margin: 5px 5px 2px 5px;
         width: 100%;
         h4 {
             overflow: hidden;

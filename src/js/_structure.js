@@ -311,6 +311,9 @@
             var itemList = new WinJS.Binding.List(Elsie.Data.storeInventoryQuery);
             Elsie.Lists.storeInventoryQuery = itemList;
 
+            var storePivot = element.querySelector("#storePivot").winControl;
+                storePivot.title =  "Store " + Elsie.Data.selectedStore.store_no + " - " + Elsie.Data.selectedStore.name;
+
             var inventory = element.querySelector("#storeInventory");
                 inventory.style.height = window.innerHeight - 227 + "px";
                 inventory.addEventListener("iteminvoked", function(evt){

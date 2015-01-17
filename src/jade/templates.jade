@@ -4,7 +4,9 @@
       img.listItem-Image(data-win-bind="src:image_thumb_url Elsie.Interface.processImage")
       .listItem-Detail
         h4(data-win-bind="textContent:name")
-        h6(data-win-bind="textContent:package")
+        .info
+          h6.package(data-win-bind="textContent:package")
+          h6.abv(data-win-bind="textContent:alcohol_content Elsie.Interface.convertABVtoPercentage")
 
   .tabTemplate.listBox(data-win-control="WinJS.Binding.Template")
     .tab.listItem
@@ -25,12 +27,24 @@
   .storeResultsTemplate.listBox(data-win-control="WinJS.Binding.Template")
     .store.listItem
       .listItem-Detail
-        h6.right(data-win-bind="textContent: distance_in_meters Elsie.Interface.convertMetersToKilometers")
         .block
           span.quantity(data-win-bind="textContent: quantity")
           span.remaining units
         h4(data-win-bind="textContent:name")
-        h6(data-win-bind="textContent:address_line_1")
+        .info
+          h6.distance(data-win-bind="textContent: distance_in_meters Elsie.Interface.convertMetersToKilometers")
+          h6.openclosed(data-win-bind="innerText: this Elsie.Interface.determineStoreResultOpen")
+
+  .storeTemplate.listBox(data-win-control="WinJS.Binding.Template")
+    .store.listItem
+      .listItem-Detail
+        .block
+          span.quantity(data-win-bind="textContent: store_no")
+          span.remaining store #
+        h4(data-win-bind="textContent:name")
+        .info
+          h6.distance(data-win-bind="textContent: distance_in_meters Elsie.Interface.convertMetersToKilometers")
+          h6.openclosed(data-win-bind="innerText: this Elsie.Interface.determineStoreResultOpen")
 
   .inventoryTemplate.listBox(data-win-control="WinJS.Binding.Template")
     .store.listItem
@@ -40,4 +54,6 @@
           span.quantity(data-win-bind="textContent: quantity")
           span.remaining units
         h4(data-win-bind="textContent:name")
-        h6(data-win-bind="textContent:package")
+        .info
+          h6.package(data-win-bind="textContent:package")
+          h6.abv(data-win-bind="textContent:alcohol_content Elsie.Interface.convertABVtoPercentage")

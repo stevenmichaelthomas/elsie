@@ -204,6 +204,7 @@
         
     };
 
+    // merge these next two functions
     ui.determineStoreOpen = WinJS.Binding.converter(function (store) {
 
         var todaysHours = ui.todaysHoursForStore(store);
@@ -222,6 +223,25 @@
             result = "open right now";
         } else {
             result = "closed right now";
+        }
+
+        return result;
+
+    });
+
+    ui.determineStoreResultOpen = WinJS.Binding.converter(function (store) {
+
+        var todaysHours = ui.todaysHoursForStore(store);
+
+        var now = new Date();
+        var minutes_since_midnight = (now.getHours() * 60) + now.getMinutes();
+
+        var result;
+
+        if (minutes_since_midnight >= todaysHours.open && minutes_since_midnight <= todaysHours.close) {
+            result = "Open";
+        } else {
+            result = "Closed";
         }
 
         return result;
@@ -296,6 +316,7 @@
     ui.convertMetersToKilometers = WinJS.Binding.converter(function (meters) {
         var kilometers = meters / 1000;
         kilometers = Math.round(kilometers * 100) / 100;
+        kilometers = kilometers.toPrecision(3);
         kilometers = kilometers + " km";
         return kilometers;
     });
