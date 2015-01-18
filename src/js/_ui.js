@@ -379,7 +379,6 @@
         var words = input.split(" ");
         var filtered = "";
         for (var i = 0; i < words.length; i++){
-            console.log(words[i]);
             if (i == 0 || filtered.length + words[i].length < 20){
                 if (i > 0)
                     filtered = filtered + " ";
