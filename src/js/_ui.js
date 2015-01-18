@@ -364,11 +364,29 @@
     });
 
     ui.returnFirstStoreDistance = WinJS.Binding.converter(function (storesArray) {
-        var closestStore = storesArray[0];
-        var kilometers = closestStore.distance_in_meters / 1000;
-        kilometers = Math.round(kilometers * 100) / 100;
-        kilometers = kilometers + " km";
-        return kilometers;
+        if (storesArray.length > 0){
+            var closestStore = storesArray[0];
+            var kilometers = closestStore.distance_in_meters / 1000;
+            kilometers = Math.round(kilometers * 100) / 100;
+            kilometers = kilometers + " km";
+            return kilometers;
+        } else {
+            return "none";
+        }
+    });
+
+    ui.restrictMaxCharacters = WinJS.Binding.converter(function (input){
+        var words = input.split(" ");
+        var filtered = "";
+        for (var i = 0; i < words.length; i++){
+            console.log(words[i]);
+            if (i == 0 || filtered.length + words[i].length < 20){
+                if (i > 0)
+                    filtered = filtered + " ";
+                filtered = filtered.concat(words[i]);
+            }
+        }
+        return filtered;
     });
 
     WinJS.Namespace.define("Elsie", {
