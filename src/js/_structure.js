@@ -111,7 +111,7 @@
                             element.querySelectorAll(".loader")[0].style.display = "block";
                             Elsie.Services.refreshWatchlistData().then(function() {
                               var itemList = new WinJS.Binding.List(Elsie.Data.watchlistProducts);
-                              element.querySelectorAll(".loader")[0].style.display = "block";
+                              element.querySelectorAll(".loader")[0].style.display = "none";
                               element.querySelector("#no-tabs").style.display = "none";
                               Elsie.Lists.watchlistProducts = itemList;
                               tabGrid.winControl.itemDataSource = Elsie.Lists.watchlistProducts.dataSource;
