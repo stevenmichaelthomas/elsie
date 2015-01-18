@@ -107,17 +107,21 @@
             tabGrid.addEventListener("loadingstatechanged", function(){
                 if (tabGrid.winControl.loadingState === "complete"){
                     if (tabsFilled == false) {
-                        //if (Elsie.Data.savedTabs) {
                         if (Elsie.Data.watchlistProducts.length > 0) {
-                            var itemList = new WinJS.Binding.List(Elsie.Data.watchlistProducts);
-                            element.querySelector("#no-tabs").style.display = "none";
+                            Elsie.Services.refreshWatchlistData().then(function() {
+                              var itemList = new WinJS.Binding.List(Elsie.Data.watchlistProducts);
+                              element.querySelector("#no-tabs").style.display = "none";
+                              Elsie.Lists.watchlistProducts = itemList;
+                              tabGrid.winControl.itemDataSource = Elsie.Lists.watchlistProducts.dataSource;
+                              tabsFilled = true;
+                            });
                         } else {
                             var itemList = new WinJS.Binding.List([]);
                             element.querySelector("#no-tabs").style.display = "block";
+                            Elsie.Lists.watchlistProducts = itemList;
+                            tabGrid.winControl.itemDataSource = Elsie.Lists.watchlistProducts.dataSource;
+                            tabsFilled = true;
                         }
-                        Elsie.Lists.watchlistProducts = itemList;
-                        tabGrid.winControl.itemDataSource = Elsie.Lists.watchlistProducts.dataSource;
-                        tabsFilled = true;
                     } else {
                         var i = -1;
                         var images = document.getElementsByClassName("listItem-Image");
@@ -139,6 +143,7 @@
                 });
             });
             tabGrid.addEventListener("contentanimating", function (e) { e.preventDefault() });
+            //element.querySelectorAll(".updated")[0].innerText = Elsie.Data.lastWatchlistRefresh;
 
             // results bindings
             var listView = element.querySelector("#productResults");

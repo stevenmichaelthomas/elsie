@@ -217,14 +217,17 @@
 						WinJS.xhr(options).done(
 							function (result) {
 								if (result.status == 200){
+									
+									// get some data back
 									var returnedBlob = JSON.parse(result.responseText);
 									Elsie.Data.selectedProductWithStores = returnedBlob.product;
 									Elsie.Data.selectedProductWithStores.stores = returnedBlob.result;
 									Elsie.Data.selectedProduct = returnedBlob.product;							
 									Elsie.Data.nearbyStoresWithProduct = returnedBlob.result;
+
+									// recents handling
 									if (localStorage["Elsie_recentProducts"]){
 										var favouriteProducts = JSON.parse(localStorage["Elsie_recentProducts"]);
-										//favouriteProducts.shift();
 										var checkForProduct = JSON.stringify(favouriteProducts).indexOf(JSON.stringify(returnedBlob.product.name));
 										if (checkForProduct == -1){
 											favouriteProducts.push(Elsie.Data.selectedProduct);
@@ -245,6 +248,19 @@
 										favouriteProducts.push(Elsie.Data.selectedProduct);
 										localStorage["Elsie_recentProducts"] = JSON.stringify(favouriteProducts);
 									}
+
+									// if product is in watchlist, update its data
+									if (services.checkWatchlistForProduct(Elsie.Data.selectedProduct)){
+										var index;
+										for (var p = 0; p < Elsie.Data.watchlistProducts.length; p++) {
+										  if (Elsie.Data.watchlistProducts[p].product_no === Elsie.Data.selectedProduct.product_no) {
+										      index = p;
+										  }
+										}
+										Elsie.Data.watchlistProducts[index] = Elsie.Data.selectedProductWithStores;
+									}
+
+									// finish up
 									var itemList = new WinJS.Binding.List(Elsie.Data.nearbyStoresWithProduct);
 									Elsie.Lists.nearbyStoresWithProduct = itemList;
 									services.getRecentProducts();
@@ -344,6 +360,37 @@
 			}
 			services.syncWatchlist();
 			return result;
+		};
+
+		services.refreshWatchlistData = function(){
+			return new WinJS.Promise(function (complete) {
+				if (Elsie.Data.watchlistProducts.length > 0 && services.cacheIsExpired()){
+					for (var p = 0; p < Elsie.Data.watchlistProducts.length; p++){
+						services.findNearbyStoresWithProduct(Elsie.Data.watchlistProducts[p].id);
+					}
+					WinJS.Promise.join(processes).done(function(){
+						var itemList = new WinJS.Binding.List(Elsie.Data.watchlistProducts);
+						Elsie.Lists.watchlistProducts = itemList;
+						Elsie.Data.lastWatchlistRefresh = new Date().getTime();
+						complete();
+					});
+				} else {
+					complete();
+				}
+			});	
+		};
+
+		services.cacheIsExpired = function() {
+			if (!Elsie.Data.lastWatchlistRefresh) {
+				return true;
+			}
+			var now = new Date().getTime();
+			var delta = now - Elsie.Data.lastWatchlistRefresh;
+			if (delta >= 600000){
+				return true;
+			} else {
+				return false;
+			}
 		};
 
 		services.syncWatchlist = function(){
