@@ -314,11 +314,17 @@
     });
 
     ui.convertMetersToKilometers = WinJS.Binding.converter(function (meters) {
-        var kilometers = meters / 1000;
-        kilometers = Math.round(kilometers * 100) / 100;
-        kilometers = kilometers.toPrecision(3);
-        kilometers = kilometers + " km";
-        return kilometers;
+        if (meters >= 1000){
+            var kilometers = meters / 1000;
+            kilometers = Math.round(kilometers * 100) / 100;
+            kilometers = kilometers.toPrecision(3);
+            kilometers = kilometers + " km";
+            return kilometers;
+        } else {
+            var meters = meters;
+            meters = meters + " metres";
+            return meters;
+        }
     });
 
     ui.formatNumber = WinJS.Binding.converter(function (number) {
@@ -366,10 +372,16 @@
     ui.returnFirstStoreDistance = WinJS.Binding.converter(function (storesArray) {
         if (storesArray.length > 0){
             var closestStore = storesArray[0];
-            var kilometers = closestStore.distance_in_meters / 1000;
-            kilometers = Math.round(kilometers * 100) / 100;
-            kilometers = kilometers + " km";
-            return kilometers;
+            if (closestStore.distance_in_meters >= 1000){
+                var kilometers = closestStore.distance_in_meters / 1000;
+                kilometers = Math.round(kilometers * 100) / 100;
+                kilometers = kilometers + " km";
+                return kilometers;
+            } else {
+                var meters = closestStore.distance_in_meters;
+                meters = meters + " m";
+                return meters;
+            }
         } else {
             return "none";
         }

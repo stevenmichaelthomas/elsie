@@ -108,11 +108,11 @@
                 if (tabGrid.winControl.loadingState === "complete"){
                     if (tabsFilled == false) {
                         if (Elsie.Data.watchlistProducts.length > 0) {
+                            element.querySelector("#no-tabs").style.display = "none";
                             element.querySelectorAll(".loader")[0].style.display = "block";
                             Elsie.Services.refreshWatchlistData().then(function() {
                               var itemList = new WinJS.Binding.List(Elsie.Data.watchlistProducts);
                               element.querySelectorAll(".loader")[0].style.display = "none";
-                              element.querySelector("#no-tabs").style.display = "none";
                               Elsie.Lists.watchlistProducts = itemList;
                               tabGrid.winControl.itemDataSource = Elsie.Lists.watchlistProducts.dataSource;
                               tabsFilled = true;
@@ -334,7 +334,7 @@
                 searchBox.addEventListener("focus", function(){
                     document.getElementById("appBar").winControl.closedDisplayMode = 'none';
                     element.classList.add("search-mode");
-                    var explanation = document.getElementById("explanation");
+                    var explanation = element.querySelectoAll(".explanation")[0];
                     explanation.style.display = "none";
                     element.querySelector("#cancel").style.opacity = '1';
                     element.querySelector("#cancel").style.zIndex = '1002';
