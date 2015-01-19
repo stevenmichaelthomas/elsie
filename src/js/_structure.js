@@ -336,7 +336,7 @@
                 searchBox.addEventListener("focus", function(){
                     document.getElementById("appBar").winControl.closedDisplayMode = 'none';
                     element.classList.add("search-mode");
-                    var explanation = element.querySelectoAll(".explanation")[0];
+                    var explanation = element.querySelectorAll(".explanation")[0];
                     explanation.style.display = "none";
                     element.querySelector("#cancel").style.opacity = '1';
                     element.querySelector("#cancel").style.zIndex = '1002';
