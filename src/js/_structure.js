@@ -54,6 +54,8 @@
 
             var cancelButton = element.querySelector("#cancel");
             cancelButton.addEventListener("click", function(){
+                goBackHome();
+                document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
                 searchBox.value = "";
             });
 
