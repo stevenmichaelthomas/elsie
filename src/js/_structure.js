@@ -171,7 +171,11 @@
                     })();
                 }
             });
-            //listView.addEventListener("contentanimating", function (e) { e.preventDefault() });  
+            //listView.addEventListener("contentanimating", function (e) { e.preventDefault() }); 
+
+            if (Elsie.Data.watchlistProducts.length === 0) {
+                document.querySelector("#homePivot").winControl.selectedIndex = 1;
+            } 
 
             if (element.style.visibility === 'hidden'){
                 element.style.visibility = 'visible';
