@@ -238,8 +238,13 @@
 
         var result;
 
+        var closingHour = todaysHours.close / 60;
+        if (closingHour > 12){
+            closingHour = closingHour - 12;
+        };
+
         if (minutes_since_midnight >= todaysHours.open && minutes_since_midnight <= todaysHours.close) {
-            result = "Open";
+            result = "Open until " + closingHour;
         } else {
             result = "Closed";
         }
