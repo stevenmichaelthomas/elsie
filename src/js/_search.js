@@ -32,6 +32,7 @@
         timer = setTimeout(function(){
             Elsie.Interface.showLoadingAnimation("Searching this store's inventory...");
             var query = document.getElementById("searchInventory").value.toLocaleLowerCase();
+            query = encodeURIComponent(query);
             Elsie.Services.findProductAtStore(query, Elsie.Data.selectedStore.id).then(function(){
                  // create a List object
                 var itemList = new WinJS.Binding.List(Elsie.Data.storeInventoryQuery);
@@ -94,7 +95,9 @@
                 }
             }
             if (tags.length > 0){
-                Elsie.Data.similarProductsSearchString = tags.join(" ") || "";
+                var builtString = tags.join(" ") || "";
+                builtString = encodeURIComponent(builtString);
+                Elsie.Data.similarProductsSearchString = builtString;
             } else {
                 Elsie.Data.similarProductsSearchString = "";
             }
