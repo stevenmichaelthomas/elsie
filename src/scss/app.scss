@@ -206,6 +206,10 @@ progress::-webkit-progress-value {
     width: 100%;
 }
 
+#storeResults .win-viewport {
+    overflow-y: hidden;
+}
+
 #closestStores {
     margin: 0 auto;
     width: 90%;

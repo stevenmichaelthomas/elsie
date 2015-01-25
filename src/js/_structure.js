@@ -249,7 +249,6 @@
                             listView.style.height = listHeight; 
                             listView.style.paddingBottom = excesss; 
                             similarView.style.height = window.innerHeight - 170 + "px";
-                            document.querySelectorAll(".win-viewport")[0].style.overflowY = "hidden";
                         }, 1000);
                         listViewFilled = true;
                     }
