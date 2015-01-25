@@ -36,7 +36,7 @@
 
             // searchBox bindings
             var searchBox = element.querySelector("#searchBoxId");
-            searchBox.addEventListener("keyup", Elsie.Search.requestSuggestions);
+            searchBox.addEventListener("input", Elsie.Search.requestSuggestions);
             searchBox.addEventListener("focus", function(){
                 document.getElementById("appBar").winControl.closedDisplayMode = 'none';
                 element.querySelector("#cancel").style.opacity = '1';
@@ -333,7 +333,7 @@
                 });
 
             var searchBox = element.querySelector("#searchInventory");
-                searchBox.addEventListener("keyup", Elsie.Search.searchInventory);
+                searchBox.addEventListener("input", Elsie.Search.searchInventory);
                 searchBox.addEventListener("focus", function(){
                     document.getElementById("appBar").winControl.closedDisplayMode = 'none';
                     element.classList.add("search-mode");
