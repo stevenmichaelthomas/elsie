@@ -231,14 +231,6 @@
                 watchlist.classList.add("on");
             };
 
-            element.querySelectorAll(".win-pivot-item-content")[0].addEventListener("scroll", function(){
-                var end = document.querySelector("#product-end");
-                if (Elsie.Interface.isInViewport(end)) {
-                    document.querySelectorAll(".win-viewport")[0].style.overflowY = "auto";
-                } else {
-                    document.querySelectorAll(".win-viewport")[0].style.overflowY = "hidden";
-                }
-            });
             var listView = element.querySelector("#storeResults");
             var similarView = element.querySelector("#similarProducts");
                 listView.addEventListener("iteminvoked", function(evt){
@@ -249,8 +241,13 @@
                 listView.addEventListener("loadingstatechanged", function (args) {
                     if (listView.winControl.loadingState === "complete" && listViewFilled == false){
                         listView.winControl.itemDataSource = Elsie.Lists.nearbyStoresWithProduct.dataSource;
-                        setTimeout(function(){ 
-                            listView.style.height = window.innerHeight - 180 + "px"; 
+                        setTimeout(function(){
+                            var realEstate = window.innerHeight - 180;
+                            var listItems = parseInt(realEstate / 77);
+                            var listHeight = listItems * 77 + "px";
+                            var excesss = realEstate - (listItems * 77) + 10 + "px";
+                            listView.style.height = listHeight; 
+                            listView.style.paddingBottom = excesss; 
                             similarView.style.height = window.innerHeight - 170 + "px";
                             document.querySelectorAll(".win-viewport")[0].style.overflowY = "hidden";
                         }, 1000);
