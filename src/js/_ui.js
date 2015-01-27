@@ -327,7 +327,7 @@
             return kilometers;
         } else {
             var meters = meters;
-            meters = meters + " metres";
+            meters = meters + " m";
             return meters;
         }
     });
