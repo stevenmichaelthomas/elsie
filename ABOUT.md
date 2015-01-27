@@ -3,7 +3,7 @@ About
 
 ## What is Elsie? ##
 
-Elsie is a mobile app designed and developed for people who frequent the LCBO, the alcohol authority in Ontario, Canada. The crown-owned organization is "one of the world's largest single purchasers of alcoholic beverage products" - having sold over $1 billion in alcohol over the 2014 winter holiday alone. 
+Elsie is a mobile app designed and developed for people who frequent the LCBO, the alcohol authority in Ontario, Canada. The crown-owned corporation is "one of the world's largest single purchasers of alcoholic beverage products" - having sold over $1 billion in alcohol over the 2014 winter holiday alone. 
 
 ## What can Elsie do? ##
 * Search for products across all LCBOs or individual stores
