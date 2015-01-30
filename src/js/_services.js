@@ -109,6 +109,37 @@
 			return promise;
 		}
 
+		services.getNewReleases = function(){
+			var promise = new WinJS.Promise(function (complete) {
+				var makeCall = function(){
+					var options = {
+						url: 'http://lcboapi.com/products?order=released_on',
+						type: 'GET'
+					};
+					WinJS.xhr(options).done(
+						function (result) {
+							if (result.status === 200) {
+								http://lcboapi.com/products?order=released_on
+								Elsie.Data.newReleases = JSON.parse(result.responseText).result;
+								var itemList = new WinJS.Binding.List(Elsie.Data.newReleases);
+	            Elsie.Lists.newReleases = itemList;
+								complete();
+							} else {
+								var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
+								Elsie.Interface.showApiError(text);
+								complete();
+							}
+						}
+					);
+				};
+				WinJS.Promise.join(processes).done(function(){
+					makeCall();
+				});
+			});
+			processes.push(promise);
+			return promise;
+		}
+
 		services.searchProducts = function(query){
 			return new WinJS.Promise(function (complete) {
 					if (!query || query == "") {
