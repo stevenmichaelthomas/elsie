@@ -8,6 +8,15 @@
           h6.package(data-win-bind="textContent:package")
           h6.abv(data-win-bind="textContent:alcohol_content Elsie.Interface.convertABVtoPercentage")
 
+  .newReleaseTemplate.listBox(data-win-control="WinJS.Binding.Template")
+    .product.listItem
+      img.listItem-Image(data-win-bind="src:image_thumb_url Elsie.Interface.processImage")
+      .listItem-Detail
+        h4(data-win-bind="textContent:name")
+        .info
+          h6.release(data-win-bind="textContent:released_on Elsie.Interface.getFancyDate")
+          //h6.abv(data-win-bind="textContent:alcohol_content Elsie.Interface.convertABVtoPercentage")
+
   .tabTemplate.listBox(data-win-control="WinJS.Binding.Template")
     .tab.listItem
       .listItem-Main.details

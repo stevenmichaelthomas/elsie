@@ -116,13 +116,12 @@
 			var promise = new WinJS.Promise(function (complete) {
 				var makeCall = function(){
 					var options = {
-						url: 'http://lcboapi.com/products?order=released_on&per_page=50&page=' + pageNumber,
+						url: 'http://lcboapi.com/products?order=released_on&per_page=100&page=' + pageNumber,
 						type: 'GET'
 					};
 					WinJS.xhr(options).done(
 						function (result) {
 							if (result.status === 200) {
-								http://lcboapi.com/products?order=released_on
 								Elsie.Data.newReleases = JSON.parse(result.responseText).result;
 								var itemList = new WinJS.Binding.List(Elsie.Data.newReleases);
 	            Elsie.Lists.newReleases = itemList;

@@ -160,18 +160,20 @@
                         Elsie.Services.getNewReleases().then(function() {
                             // Sorts the groups
                             function compareGroups(leftKey, rightKey) {
+                                console.log(leftKey);
+                                console.log(rightKey);
                                 return leftKey.charCodeAt(0) - rightKey.charCodeAt(0);
                             }
 
                             // Returns the group key that an item belongs to
                             function getGroupKey(dataItem) {
-                                var processedKey = Elsie.Interface.getFancyDate(dataItem.released_on);
+                                var processedKey = Elsie.Interface.getRelativeDate(dataItem.released_on);
                                 return processedKey.toLowerCase();
                             }
 
                             // Returns the title for a group
                             function getGroupData(dataItem) {
-                                var groupTitle = Elsie.Interface.getFancyDate(dataItem.released_on);
+                                var groupTitle = Elsie.Interface.getRelativeDate(dataItem.released_on);
                                 return {
                                     title: groupTitle.toLowerCase()
                                 };

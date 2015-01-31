@@ -204,19 +204,54 @@
         
     };
 
-    ui.getFancyDate = function(dateString) {
+    ui.getRelativeDate = function(dateString) {
 
         var date = new Date(dateString);
         var rightNow = new Date();
-        var result = "sometime";
+        var result = "n/a";
 
-        if (date.getTime() > rightNow.getTime()){
-            result = "upcoming";
+        // deltas, in milliseconds
+        var day = 86400000;
+        var week = 604800000;
+
+        // positive -> future
+        // negative -> past
+        var timeDelta = date.getTime() - rightNow.getTime();
+        if (timeDelta > 0){
+            //future
+            if (timeDelta < day) {
+                result = "today";
+            } else if (timeDelta > day && timeDelta < (day * 2)){
+                result = "in 2 days";
+            } else if (timeDelta > (day * 2) && timeDelta < (day * 3)){
+                result = "in 3 days";
+            } else if (timeDelta > (day * 3) && timeDelta < week){
+                result = "this week";
+            } else if (timeDelta < (week * 2) && timeDelta > week){
+                result = "next week";
+            } else if (timeDelta < (week * 4)){
+                result = "this month";
+            }
+        } else {
+            //past
+            var usableDelta = -timeDelta;
+            if (timeDelta < day) {
+                result = "yesterday";
+            } else if (timeDelta > day && timeDelta < week){
+                result = "last week";
+            } else if (timeDelta < (week * 4)){
+                result = "last month";
+            }
         }
 
         return result;
 
     };
+
+    ui.getFancyDate = WinJS.Binding.converter(function (dateString) {
+        var date = new Date(dateString);
+        return date.toDateString();
+    });
 
     // merge these next two functions
     ui.determineStoreOpen = WinJS.Binding.converter(function (store) {
