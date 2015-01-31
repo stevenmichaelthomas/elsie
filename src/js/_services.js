@@ -109,11 +109,14 @@
 			return promise;
 		}
 
-		services.getNewReleases = function(){
+		services.getNewReleases = function(page){
+			if (!page){
+				var pageNumber = 1;
+			}
 			var promise = new WinJS.Promise(function (complete) {
 				var makeCall = function(){
 					var options = {
-						url: 'http://lcboapi.com/products?order=released_on',
+						url: 'http://lcboapi.com/products?order=released_on&per_page=50&page=' + pageNumber,
 						type: 'GET'
 					};
 					WinJS.xhr(options).done(

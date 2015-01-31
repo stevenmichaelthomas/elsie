@@ -455,7 +455,6 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
     outline: none;
 }
 
-// grid overrides 
 #tabGrid {
     .win-itemscontainer {
         height: 0 !important;
@@ -470,6 +469,15 @@ html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-i
             margin-right: 0;
         }
     }
+}
+
+// gridLayout overrides 
+.win-listview .win-vertical .win-gridlayout.win-surface {
+    margin-left: 0;
+}
+
+.win-listview.win-groups .win-vertical .win-listlayout .win-groupleader, .win-listview.win-groups .win-vertical .win-gridlayout .win-groupleader {
+    margin-top: 50px;
 }
 
 //custom

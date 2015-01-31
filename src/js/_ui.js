@@ -204,6 +204,20 @@
         
     };
 
+    ui.getFancyDate = function(dateString) {
+
+        var date = new Date(dateString);
+        var rightNow = new Date();
+        var result = "sometime";
+
+        if (date.getTime() > rightNow.getTime()){
+            result = "upcoming";
+        }
+
+        return result;
+
+    };
+
     // merge these next two functions
     ui.determineStoreOpen = WinJS.Binding.converter(function (store) {
 

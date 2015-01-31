@@ -7,6 +7,7 @@
         ready: function (element, options) {
 
             var recentsFilled = false;
+            var releasesFilled = false;
             var tabsFilled = false;
 
             this.getAnimationElements = function(){
@@ -111,10 +112,10 @@
                     if (tabsFilled == false) {
                         if (Elsie.Data.watchlistProducts.length > 0) {
                             element.querySelector("#no-tabs").style.display = "none";
-                            element.querySelectorAll(".loader")[0].style.display = "block";
+                            element.querySelector("#watchlist-loader").style.display = "block";
                             Elsie.Services.refreshWatchlistData().then(function() {
                               var itemList = new WinJS.Binding.List(Elsie.Data.watchlistProducts);
-                              element.querySelectorAll(".loader")[0].style.display = "none";
+                              element.querySelector("#watchlist-loader").style.display = "none";
                               Elsie.Lists.watchlistProducts = itemList;
                               tabGrid.winControl.itemDataSource = Elsie.Lists.watchlistProducts.dataSource;
                               tabsFilled = true;
@@ -148,6 +149,63 @@
             });
             tabGrid.addEventListener("contentanimating", function (e) { e.preventDefault() });
             //element.querySelectorAll(".updated")[0].innerText = Elsie.Data.lastWatchlistRefresh;
+
+            // tabs bindings
+            var newReleases = element.querySelector("#newReleases");
+            //newReleases.style.height = window.innerHeight - 215 + "px";
+            newReleases.addEventListener("loadingstatechanged", function(){
+                if (newReleases.winControl.loadingState === "complete"){
+                    if (releasesFilled == false) {
+                        element.querySelector("#release-loader").style.display = "block";
+                        Elsie.Services.getNewReleases().then(function() {
+                            // Sorts the groups
+                            function compareGroups(leftKey, rightKey) {
+                                return leftKey.charCodeAt(0) - rightKey.charCodeAt(0);
+                            }
+
+                            // Returns the group key that an item belongs to
+                            function getGroupKey(dataItem) {
+                                var processedKey = Elsie.Interface.getFancyDate(dataItem.released_on);
+                                return processedKey.toLowerCase();
+                            }
+
+                            // Returns the title for a group
+                            function getGroupData(dataItem) {
+                                var groupTitle = Elsie.Interface.getFancyDate(dataItem.released_on);
+                                return {
+                                    title: groupTitle.toLowerCase()
+                                };
+                            }
+
+                            // Create the groups for the ListView from the item data and the grouping functions
+                            var groupedItemsList = Elsie.Lists.newReleases.createGrouped(getGroupKey, getGroupData, compareGroups);
+
+                            element.querySelector("#release-loader").style.display = "none";
+                            newReleases.winControl.itemDataSource = groupedItemsList.dataSource;
+                            newReleases.winControl.groupDataSource = groupedItemsList.groups.dataSource,
+                            releasesFilled = true;
+                        });
+                    } else {
+                        var i = -1;
+                        var images = document.getElementsByClassName("listItem-Image");
+                        (function fadeIn() {
+                            if (i++ === images.length - 1) return;
+                            setTimeout(function() {
+                                if (images[i]) {
+                                    images[i].style.opacity = 1;
+                                    fadeIn();
+                                }
+                            }, 50);
+                        })();
+                    }
+                }
+            });
+            newReleases.addEventListener("iteminvoked", function(evt){
+                evt.detail.itemPromise.then(function itemInvoked(item) {
+                    Elsie.Search.selectSuggestion(item.data.id);
+                });
+            });
+            newReleases.addEventListener("contentanimating", function (e) { e.preventDefault() });
 
             // results bindings
             var listView = element.querySelector("#productResults");
