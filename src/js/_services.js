@@ -410,6 +410,17 @@
 			return result;
 		};
 
+		services.removeSelectedWatchedProducts = function (listView) {
+		  if (listView.winControl){
+		    var indices = listView.winControl.selection.getIndices().sort(function(a,b){return a-b});
+		    for (var j = indices.length - 1; j >= 0; j--) {
+		        Elsie.Lists.watchlistProducts.splice(indices[j], 1);
+		        Elsie.Data.watchlistProducts.splice(indices[j], 1);
+		    }
+		    services.syncWatchlist();
+		  }
+		};
+
 		services.refreshWatchlistData = function(){
 			return new WinJS.Promise(function (complete) {
 				if (Elsie.Data.watchlistProducts.length > 0 && services.cacheIsExpired()){

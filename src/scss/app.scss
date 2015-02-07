@@ -123,6 +123,10 @@ progress::-webkit-progress-value {
     }
 }
 
+#releases .elsie-title {
+    margin: 10px 0 0;
+}
+
 .explanation {
     color: $secondary-color;
     text-align: center;
@@ -197,7 +201,7 @@ progress::-webkit-progress-value {
 }
 
 //selections
-#clear {
+.clear {
     opacity: 0;
     transition: opacity 0.3s;
 }
@@ -477,6 +481,22 @@ html.win-hoverable .win-pivot button.win-pivot-header:hover {
 
 html.win-hoverable .win-listview .win-container:hover, html.win-hoverable .win-itemcontainer.win-container:hover {
     outline: none;
+}
+
+#tabs {
+    .elsie-title {
+        margin-top: 0;
+        margin-bottom: 0;
+        height: 0;
+        transition: 0.3s;
+        &.active {
+            height: auto;
+            margin-bottom: 15px;
+            .clear {
+                opacity: 1;
+            }
+        }
+    }
 }
 
 #tabGrid {

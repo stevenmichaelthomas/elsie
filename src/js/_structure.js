@@ -105,14 +105,14 @@
             });
             recentProducts.addEventListener("selectionchanged", function(){
                 if (recentProducts.winControl.selection.count() === 0){
-                    element.querySelector("#clear").style.opacity = "0";
+                    element.querySelectorAll("#recent .clear")[0].style.opacity = "0";
                 } else {
-                    element.querySelector("#clear").style.opacity = "1";
+                    element.querySelectorAll("#recent .clear")[0].style.opacity = "1";
                 }
             });
             recentProducts.addEventListener("contentanimating", function (e) { e.preventDefault() });  
 
-            element.querySelector("#clear").addEventListener("click", function(){
+            element.querySelectorAll("#recent .clear")[0].addEventListener("click", function(){
                 Elsie.Services.removeSelectedRecentProducts(recentProducts);
             });
 
@@ -161,6 +161,16 @@
             });
             tabGrid.addEventListener("contentanimating", function (e) { e.preventDefault() });
             //element.querySelectorAll(".updated")[0].innerText = Elsie.Data.lastWatchlistRefresh;
+            tabGrid.addEventListener("selectionchanged", function(){
+                if (tabGrid.winControl.selection.count() === 0){
+                    element.querySelectorAll("#tabs .elsie-title")[0].classList.remove("active");
+                } else {
+                    element.querySelectorAll("#tabs .elsie-title")[0].classList.add("active");
+                }
+            });
+            element.querySelectorAll("#tabs .elsie-title")[0].addEventListener("click", function(){
+                Elsie.Services.removeSelectedWatchedProducts(tabGrid);
+            });
 
             // tabs bindings
             var newReleases = element.querySelector("#newReleases");
