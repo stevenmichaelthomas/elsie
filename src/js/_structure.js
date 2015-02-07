@@ -4,6 +4,7 @@
     var structure = {};
 
     structure.homeConstructor = WinJS.UI.Pages.define("./home.html", {
+
         ready: function (element, options) {
 
             var recentsFilled = false;
@@ -72,7 +73,7 @@
             recentProducts.addEventListener("loadingstatechanged", function(){
                 if (recentProducts.winControl.loadingState === "complete"){
                     if (recentsFilled == false) {
-                        if (Elsie.Data.recentProducts) {
+                        if (Elsie.Data.recentProducts.length > 0) {
                             var itemList = new WinJS.Binding.List(Elsie.Data.recentProducts);
                             element.querySelector("#no-recents").style.display = "none";
                         } else {
@@ -102,7 +103,18 @@
                     Elsie.Search.selectSuggestion(item.data.id);
                 });
             });
+            recentProducts.addEventListener("selectionchanged", function(){
+                if (recentProducts.winControl.selection.count() === 0){
+                    element.querySelector("#clear").style.opacity = "0";
+                } else {
+                    element.querySelector("#clear").style.opacity = "1";
+                }
+            });
             recentProducts.addEventListener("contentanimating", function (e) { e.preventDefault() });  
+
+            element.querySelector("#clear").addEventListener("click", function(){
+                Elsie.Services.removeSelectedRecentProducts(recentProducts);
+            });
 
             // tabs bindings
             var tabGrid = element.querySelector("#tabGrid");
@@ -160,8 +172,6 @@
                         Elsie.Services.getNewReleases().then(function() {
                             // Sorts the groups
                             function compareGroups(leftKey, rightKey) {
-                                console.log(leftKey);
-                                console.log(rightKey);
                                 return leftKey.charCodeAt(0) - rightKey.charCodeAt(0);
                             }
 
@@ -241,7 +251,8 @@
                 element.style.visibility = 'visible';
             }
 
-        },
+        }
+
     });
 
     structure.productConstructor = WinJS.UI.Pages.define("./product.html", {

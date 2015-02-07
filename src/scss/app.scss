@@ -196,6 +196,11 @@ progress::-webkit-progress-value {
     margin: 0 auto;
 }
 
+#clear {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
 #status {
     text-align: center;
 }
