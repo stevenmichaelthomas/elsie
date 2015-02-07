@@ -196,9 +196,28 @@ progress::-webkit-progress-value {
     margin: 0 auto;
 }
 
+//selections
 #clear {
     opacity: 0;
     transition: opacity 0.3s;
+}
+
+::selection {
+    background-color: $primary-color;
+}
+
+.win-listview:not(.win-selectionstylefilled) .win-container.win-selected .win-selectionborder, .win-itemcontainer:not(.win-selectionstylefilled).win-container.win-selected .win-selectionborder {
+    color: $primary-color;
+}
+
+.win-listview:not(.win-selectionstylefilled) .win-selectioncheckmarkbackground, .win-itemcontainer:not(.win-selectionstylefilled) .win-selectioncheckmarkbackground, html.win-hoverable .win-listview:not(.win-selectionstylefilled) .win-container.win-selected:hover .win-selectioncheckmarkbackground, html.win-hoverable .win-itemcontainer:not(.win-selectionstylefilled).win-container.win-selected:hover .win-selectioncheckmarkbackground {
+    border-top-color: $primary-color;
+    border-right-color: $primary-color;
+}
+
+.win-listview:not(.win-selectionstylefilled) .win-container.win-selected .win-selectionborder, .win-itemcontainer:not(.win-selectionstylefilled).win-container.win-selected .win-selectionborder,
+html.win-hoverable .win-listview:not(.win-selectionstylefilled) .win-container.win-selected:hover .win-selectionborder, html.win-hoverable .win-itemcontainer:not(.win-selectionstylefilled).win-container.win-selected:hover .win-selectionborder {
+    border-color: $primary-color;
 }
 
 #status {
