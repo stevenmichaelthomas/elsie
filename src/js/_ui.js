@@ -63,6 +63,18 @@
 
     };
 
+    ui.showBarcodeError = function(text){
+
+        var message = text;
+        var confirmCallback = function(buttonIndex){
+            //nothing
+        };
+        var title = "Barcode scan complete";
+        var buttonLabels = ["OK"];
+        navigator.notification.confirm(message, confirmCallback, title, buttonLabels);
+
+    };
+
     ui.displayHomeMessage = function(text, link){
 
         ui.clearMessage();

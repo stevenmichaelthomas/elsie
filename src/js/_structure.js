@@ -36,6 +36,10 @@
             listHeight = listHeight + "px";
             element.querySelector("#productResults").style.height = listHeight;
 
+            // barcode listener
+            var barcodeButton = element.querySelector("#barcode");
+            barcodeButton.addEventListener("click", Elsie.Search.scanBarcode);
+
             // searchBox bindings
             var searchBox = element.querySelector("#searchBoxId");
             searchBox.addEventListener("input", Elsie.Search.requestSuggestions);
