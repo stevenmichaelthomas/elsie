@@ -172,7 +172,7 @@
                 Elsie.Services.removeSelectedWatchedProducts(tabGrid);
             });
 
-            // tabs bindings
+            /* new release bindings
             var newReleases = element.querySelector("#newReleases");
             //newReleases.style.height = window.innerHeight - 215 + "px";
             newReleases.addEventListener("loadingstatechanged", function(){
@@ -227,7 +227,7 @@
                     Elsie.Search.selectSuggestion(item.data.id);
                 });
             });
-            newReleases.addEventListener("contentanimating", function (e) { e.preventDefault() });
+            newReleases.addEventListener("contentanimating", function (e) { e.preventDefault() }); */
 
             // results bindings
             var listView = element.querySelector("#productResults");
