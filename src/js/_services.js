@@ -209,6 +209,24 @@
    		}
 		};
 
+		services.toggleProductSelection = function (item, listView) {
+			if (listView.winControl){
+				//console.log(item);
+				var items = listView.winControl.selection.getItems()._value;
+				var inArray = false;
+				//console.log(items);
+				for (var i = 0; i < items.length; i++) {
+					if (items[i].index === item)
+						inArray = true;
+				}
+				if (inArray){
+					listView.winControl.selection.remove(item);
+				} else {
+					listView.winControl.selection.add(item);
+				}
+			}
+		};
+
 		services.removeSelectedRecentProducts = function (listView) {
       if (listView.winControl){
         var indices = listView.winControl.selection.getIndices().sort(function(a,b){return a-b});

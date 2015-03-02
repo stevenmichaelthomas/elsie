@@ -67,9 +67,32 @@
             document.getElementById("appBar").winControl.closedDisplayMode = 'minimal';
             StatusBar.styleLightContent();
 
-            // recent products bindings
             var recentProducts = element.querySelector("#recentProducts");
+
+            var timer;
+            var touchduration = 500; //length of time we want the user to touch before we do something
+
+            var touchstart = function(event) {
+                timer = setTimeout(function(){
+                    onlongtouch(event);
+                }, touchduration); 
+            }
+
+            var touchend = function() {
+                //stops short touches from firing the event
+                if (timer)
+                    clearTimeout(timer);
+            };
+
+            var onlongtouch = function(item) {
+                var index = recentProducts.winControl.indexOfElement(item.target);
+                Elsie.Services.toggleProductSelection(index, recentProducts);
+            };
+
+            // recent products bindings
             recentProducts.style.height = window.innerHeight - 215 + "px";
+            recentProducts.addEventListener("touchstart", touchstart);
+            recentProducts.addEventListener("touchend", touchend);
             recentProducts.addEventListener("loadingstatechanged", function(){
                 if (recentProducts.winControl.loadingState === "complete"){
                     if (recentsFilled == false) {
@@ -99,6 +122,7 @@
                 }
             });
             recentProducts.addEventListener("iteminvoked", function(evt){
+                //console.log(evt);
                 evt.detail.itemPromise.then(function itemInvoked(item) {
                     Elsie.Search.selectSuggestion(item.data.id);
                 });
@@ -110,7 +134,7 @@
                     element.querySelectorAll("#recent .clear")[0].style.opacity = "1";
                 }
             });
-            recentProducts.addEventListener("contentanimating", function (e) { e.preventDefault() });  
+            recentProducts.addEventListener("contentanimating", function (e) { e.preventDefault() });
 
             element.querySelectorAll("#recent .clear")[0].addEventListener("click", function(){
                 Elsie.Services.removeSelectedRecentProducts(recentProducts);
