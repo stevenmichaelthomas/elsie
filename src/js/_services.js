@@ -268,16 +268,24 @@
 			});
 		}
 
-		services.findNearbyStoresWithProduct = function(id){
+		services.findNearbyStoresWithProduct = function(id, isUPC){
 
 			// this is a bit redundant
-			Elsie.Data.selectedProductId = id;
+			if (!isUPC)
+				Elsie.Data.selectedProductId = id;
 			
 			var promise = new WinJS.Promise(function (complete) {
 
+					if (isUPC){
+						// have to set Elsie.Data.selectedProductId
+						var url = 'http://lcboapi.com/products?upc=' + id + '/stores?lat=' + Elsie.Data.location.latitude + '&lon=' + Elsie.Data.location.longitude;
+					} else {
+						var url = 'http://lcboapi.com/products/' + Elsie.Data.selectedProductId + '/stores?lat=' + Elsie.Data.location.latitude + '&lon=' + Elsie.Data.location.longitude;
+					}
+
 					var makeCall = function(){
 						var options = {
-							url: 'http://lcboapi.com/products/' + Elsie.Data.selectedProductId + '/stores?lat=' + Elsie.Data.location.latitude + '&lon=' + Elsie.Data.location.longitude,
+							url: url,
 							type: 'GET'
 						};
 						WinJS.xhr(options).done(
@@ -288,7 +296,8 @@
 									var returnedBlob = JSON.parse(result.responseText);
 									Elsie.Data.selectedProductWithStores = returnedBlob.product;
 									Elsie.Data.selectedProductWithStores.stores = returnedBlob.result;
-									Elsie.Data.selectedProduct = returnedBlob.product;							
+									Elsie.Data.selectedProduct = returnedBlob.product;		
+									Elsie.Data.selectedProductId = returnedBlob.product.id;					
 									Elsie.Data.nearbyStoresWithProduct = returnedBlob.result;
 
 									// recents handling

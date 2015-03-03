@@ -7,12 +7,16 @@
     search.scanBarcode = function() {
         cordova.plugins.barcodeScanner.scan(
           function (result) {
-              console.log(result);
-              Elsie.Interface.showBarcodeError(result);
+              //console.log(result);
+              if (result.cancelled !== "false"){
+                Elsie.Search.selectByUPC(result.text);
+              } else {
+                Elsie.Interface.showBarcodeError(result);
+              }
           }, 
           function (error) {
               //alert("Scanning failed: " + error);
-              console.log(error);
+              //console.log(error);
               Elsie.Interface.showBarcodeError(error);
           }
        );
@@ -61,6 +65,19 @@
             //Elsie.Data.query = query;
         },500);
     };
+
+    search.selectByUPC = function(upc) {
+        //we chose a product, now let's do something with it
+        Elsie.Interface.showLoadingAnimation("Getting product details...");
+        Elsie.Services.findNearbyStoresWithProduct(upc, true).then(function(){
+            Elsie.Search.determineSimilar().then(function(){
+                Elsie.Services.querySimilarProducts(Elsie.Data.similarProductsSearchString).then(function(){
+                    Elsie.Interface.hideLoadingAnimation();
+                    WinJS.Navigation.navigate("./product.html");
+                })
+            });
+        });
+    }
 
     search.selectSuggestion = function(id) {
         //we chose a product, now let's do something with it
