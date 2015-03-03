@@ -144,6 +144,9 @@ progress::-webkit-progress-value {
     #explanation {
         display: none !important;
     }
+    #barcode {
+        display: none;
+    }
 }
 
 #brand-container {
@@ -402,6 +405,18 @@ button:disabled .win-commandimage, button:disabled:active .win-commandimage {
         bottom: 0;
         opacity: 0;
         z-index: 999;
+    }
+    #barcode {
+        color: $primary-color;
+        transition: 0.3s;
+        background: url('../img/icon_barcode.png') no-repeat center center;
+        background-size: 70%;
+        position: absolute;
+        width: 14%;
+        right: 5px;
+        top: 0;
+        bottom: 0;
+        z-index: 1002;
     }
 }
 
