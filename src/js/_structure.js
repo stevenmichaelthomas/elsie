@@ -111,7 +111,7 @@
             recentProducts.addEventListener("loadingstatechanged", function(){
                 if (recentProducts.winControl.loadingState === "complete"){
                     if (recentsFilled == false) {
-                        if (Elsie.Data.recentProducts.length > 0) {
+                        if (Elsie.Data.recentProducts && Elsie.Data.recentProducts.length > 0) {
                             var itemList = new WinJS.Binding.List(Elsie.Data.recentProducts);
                             element.querySelector("#no-recents").style.display = "none";
                         } else {
