@@ -4,6 +4,20 @@
     var search = {};
     var timer;
 
+    search.scanBarcode = function() {
+        cordova.plugins.barcodeScanner.scan(
+          function (result) {
+              console.log(result);
+              Elsie.Interface.showBarcodeError(result);
+          }, 
+          function (error) {
+              //alert("Scanning failed: " + error);
+              console.log(error);
+              Elsie.Interface.showBarcodeError(error);
+          }
+       );
+    };
+
     search.requestSuggestions = function() {
         Elsie.Interface.hideLoadingAnimation();
         clearTimeout(timer);
