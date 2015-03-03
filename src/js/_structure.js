@@ -71,17 +71,28 @@
 
             var timer;
             var touchduration = 500; //length of time we want the user to touch before we do something
+            var touchStartTime;
+            var touchEndTime;
+            var touchDelta;
 
             var touchstart = function(event) {
+                touchStartTime = new Date().getTime();
                 timer = setTimeout(function(){
                     onlongtouch(event);
                 }, touchduration); 
             }
 
-            var touchend = function() {
+            var touchend = function(evt) {
                 //stops short touches from firing the event
                 if (timer)
                     clearTimeout(timer);
+                touchEndTime = new Date().getTime();
+                touchDelta = touchEndTime - touchStartTime;
+                if (touchDelta < 500) {
+                    evt.detail.itemPromise.then(function itemInvoked(item) {
+                        Elsie.Search.selectSuggestion(item.data.id);
+                    });
+                }
             };
 
             var onlongtouch = function(item) {
@@ -123,9 +134,7 @@
             });
             recentProducts.addEventListener("iteminvoked", function(evt){
                 //console.log(evt);
-                evt.detail.itemPromise.then(function itemInvoked(item) {
-                    Elsie.Search.selectSuggestion(item.data.id);
-                });
+                touchend(evt);
             });
             recentProducts.addEventListener("selectionchanged", function(){
                 if (recentProducts.winControl.selection.count() === 0){
