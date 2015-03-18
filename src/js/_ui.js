@@ -75,6 +75,20 @@
 
     };
 
+    ui.showReviewDialog = function(){
+
+        var message = "If you enjoy Elsie, you can help others find out about her by leaving a review in the app store.";
+        var confirmCallback = function(buttonIndex){
+            if (buttonIndex == 2){
+                Elsie.Interface.clickLink('http://www.windowsphone.com/s?appid=d1040ef2-5d48-4962-9a5b-e20c01fe1760');
+            }
+        };
+        var title = "Please consider a review";
+        var buttonLabels = ["Don't ask again", "Leave a review"];
+        navigator.notification.confirm(message, confirmCallback, title, buttonLabels);
+
+    };
+
     ui.displayHomeMessage = function(text, link){
 
         ui.clearMessage();

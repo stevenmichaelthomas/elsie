@@ -18,6 +18,15 @@
 			}
 		}
 
+		services.checkForFirstRun = function(){
+			if (!localStorage["Elsie_firstRun"]){
+				Elsie.Data.firstRun = true;
+				localStorage["Elsie_firstRun"] = false;
+			} else {
+				Elsie.Data.firstRun = false;
+			}
+		}
+
 		services.getLocation = function(){
 			var promise = new WinJS.Promise(function (complete) {
 				

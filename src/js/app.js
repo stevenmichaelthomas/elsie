@@ -17,6 +17,10 @@
         Elsie.Interface.initialize();
         Elsie.Services.initializeLocation();
         Elsie.Services.getLocation();
+        Elsie.Services.checkForFirstRun();
+        if (Elsie.Data.firstRun){
+            Elsie.Interface.showReviewDialog();
+        }
         app.start();
     }
 
