@@ -81,9 +81,22 @@ button.donate {
     margin: 15px auto;
 }
 
+.button-group {
+    width: 250px;
+    margin: 0 auto;
+    button.donate {
+        float: left;
+        margin-right: 10px;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
 .affiliation {
     font-size: 9pt;
     opacity: 0.5;
+    clear: left;
 }
 
 progress {
