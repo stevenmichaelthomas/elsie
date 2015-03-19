@@ -12,7 +12,6 @@
     });
 
     var deviceReady = function(){
-        console.log('deviceready');
         Elsie.Services.getRecentProducts();
         Elsie.Services.loadWatchlist();
         Elsie.Interface.initialize();
