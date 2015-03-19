@@ -18,12 +18,15 @@
 			}
 		}
 
-		services.checkForFirstRun = function(){
-			if (!localStorage["Elsie_firstRun"]){
-				Elsie.Data.firstRun = true;
-				localStorage["Elsie_firstRun"] = false;
+		services.updateRunNumber = function(){
+			if (!localStorage["Elsie_numberOfRuns"]){
+				Elsie.Data.runNumber = 1;
+				localStorage["Elsie_numberOfRuns"] = 1;
 			} else {
-				Elsie.Data.firstRun = false;
+				var existingNumber = parseInt(localStorage["Elsie_numberOfRuns"]);
+				var newNumber = existingNumber + 1;
+				Elsie.Data.runNumber = newNumber;
+				localStorage["Elsie_numberOfRuns"] = newNumber;
 			}
 		}
 

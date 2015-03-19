@@ -12,13 +12,14 @@
     });
 
     var deviceReady = function(){
+        console.log('deviceready');
         Elsie.Services.getRecentProducts();
         Elsie.Services.loadWatchlist();
         Elsie.Interface.initialize();
         Elsie.Services.initializeLocation();
         Elsie.Services.getLocation();
-        Elsie.Services.checkForFirstRun();
-        if (Elsie.Data.firstRun){
+        Elsie.Services.updateRunNumber();
+        if (Elsie.Data.runNumber === "3"){
             Elsie.Interface.showReviewDialog();
         }
         app.start();
