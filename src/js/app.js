@@ -19,7 +19,7 @@
         Elsie.Services.initializeLocation();
         Elsie.Services.getLocation();
         Elsie.Services.updateRunNumber();
-        if (Elsie.Data.runNumber === "3"){
+        if (Elsie.Data.runNumber === 3){
             Elsie.Interface.showReviewDialog();
         }
         app.start();
