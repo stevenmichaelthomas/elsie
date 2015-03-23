@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.tailoredux.elsie" version="1.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.tailoredux.elsie" version="1.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Elsie</name>
     <description>
         Your guide to the LCBO.
     </description>
-    <author email="doug@tailoredux.com" href="http://dougestey.com/">
+    <author email="doug@designcofounders.com" href="http://dougestey.com/">
         Doug Estey
     </author>
     <content src="index.html" />
