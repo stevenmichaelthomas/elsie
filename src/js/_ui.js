@@ -69,7 +69,7 @@
         var confirmCallback = function(buttonIndex){
             //nothing
         };
-        var title = "Barcode scan complete";
+        var title = "Barcode scan error";
         var buttonLabels = ["OK"];
         navigator.notification.confirm(message, confirmCallback, title, buttonLabels);
 

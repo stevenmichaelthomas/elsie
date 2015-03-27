@@ -8,10 +8,8 @@
         cordova.plugins.barcodeScanner.scan(
           function (result) {
               //console.log(result);
-              if (result.cancelled !== "false"){
+              if (!result.cancelled){
                 Elsie.Search.selectByUPC(result.text);
-              } else {
-                Elsie.Interface.showBarcodeError(result);
               }
           }, 
           function (error) {
