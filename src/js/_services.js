@@ -7,7 +7,7 @@
 		var options = {
 			type: 'GET',
 			headers: {
-				"Authorization": "Token MDpmOThhYzlhNC02YTZjLTExZTQtODZiZi1hYjYzZmNhOGU4YTc6VXcxNWs2cXVVTGFhM2JrWXUzSHhlVWQ3ak1RNUdhT2RHMXVh"
+				"Authorization": "Token " + Elsie.Keys.LCBO_API
     	}
 		};
 

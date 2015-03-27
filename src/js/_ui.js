@@ -161,14 +161,13 @@
 
     ui.renderBingMap = function(element){
 
-        var key = "AsAiyJ_zfemVuOamdfw8YgZMIT1mK7n0IxKZ9Z3Ad7GObWRKb2QV_WMjSM8rfZtd";
         var centerPoint = Elsie.Data.selectedStore.latitude + "," + Elsie.Data.selectedStore.longitude;
         var imagerySet = 'Road';
         var mapSize = ((window.innerWidth * 2) - 80) + ',400';
         var pushpin = Elsie.Data.selectedStore.latitude + "," + Elsie.Data.selectedStore.longitude + ";75";
         var zoomLevel = 17;
 
-        var url = "http://dev.virtualearth.net/REST/v1/Imagery/Map/" + imagerySet + "/" + centerPoint + "/"+ zoomLevel +"?mapSize=" + mapSize + "&pushpin=" + pushpin + "&key=" + key + "&format=png";
+        var url = "http://dev.virtualearth.net/REST/v1/Imagery/Map/" + imagerySet + "/" + centerPoint + "/"+ zoomLevel +"?mapSize=" + mapSize + "&pushpin=" + pushpin + "&key=" + Elsie.Keys.BING + "&format=png";
 
         var mapObject = "<img src='" + url + "' />";
         element.querySelector("#mapDiv").innerHTML = mapObject;
