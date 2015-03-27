@@ -4,6 +4,12 @@
 
 		var services = {};
 		var processes = [];
+		var options = {
+			type: 'GET',
+			headers: {
+				"Authorization": "Token MDpmOThhYzlhNC02YTZjLTExZTQtODZiZi1hYjYzZmNhOGU4YTc6VXcxNWs2cXVVTGFhM2JrWXUzSHhlVWQ3ak1RNUdhT2RHMXVh"
+    	}
+		};
 
 		services.initializeLocation = function(){
 			if (!localStorage["Elsie_cachedLocation"]){
@@ -63,10 +69,7 @@
 		services.getNearbyStoresForProduct = function(location){
 			return new WinJS.Promise(function (complete) {
 				var makeCall = function(){
-					var options = {
-						url: 'http://lcboapi.com/stores?lat=' + location.latitude + '&lon=' + location.longitude,
-						type: 'GET'
-					};
+					options.url = 'http://lcboapi.com/stores?lat=' + location.latitude + '&lon=' + location.longitude;
 					WinJS.xhr(options).done(
 						function (result) {
 							if (result.status === 200) {
@@ -94,10 +97,7 @@
 		services.getClosestStores = function(){
 			var promise = new WinJS.Promise(function (complete) {
 				var makeCall = function(){
-					var options = {
-						url: 'http://lcboapi.com/stores?lat=' + Elsie.Data.location.latitude + '&lon=' + Elsie.Data.location.longitude,
-						type: 'GET'
-					};
+					options.url = 'http://lcboapi.com/stores?lat=' + Elsie.Data.location.latitude + '&lon=' + Elsie.Data.location.longitude;
 					WinJS.xhr(options).done(
 						function (result) {
 							if (result.status === 200) {
@@ -127,10 +127,7 @@
 			}
 			var promise = new WinJS.Promise(function (complete) {
 				var makeCall = function(){
-					var options = {
-						url: 'http://lcboapi.com/products?order=released_on&per_page=100&page=' + pageNumber,
-						type: 'GET'
-					};
+					options.url = 'http://lcboapi.com/products?order=released_on&per_page=100&page=' + pageNumber;
 					WinJS.xhr(options).done(
 						function (result) {
 							if (result.status === 200) {
@@ -162,10 +159,7 @@
 						complete();
 						return;
 					}
-					var options = {
-						url: 'http://lcboapi.com/products?q=' + query,
-						type: 'GET'
-					};
+					options.url = 'http://lcboapi.com/products?q=' + query;
 					WinJS.xhr(options).done(
 						function (result) {
 							if (result.status === 200){
@@ -190,10 +184,7 @@
 						complete();
 						return;
 					}
-					var options = {
-						url: 'http://lcboapi.com/products?q=' + query,
-						type: 'GET'
-					};
+					options.url = 'http://lcboapi.com/products?q=' + query;
 					WinJS.xhr(options).done(
 						function (result) {
 							if (result.status === 200){
@@ -261,10 +252,7 @@
 						complete();
 						return;
 					}
-					var options = {
-						url: 'http://lcboapi.com/products?q=' + query + '&store_id=' + storeId,
-						type: 'GET'
-					};
+					options.url = 'http://lcboapi.com/products?q=' + query + '&store_id=' + storeId;
 					WinJS.xhr(options).done(
 						function (result) {
 							if (result.status === 200){
@@ -290,16 +278,13 @@
 
 					if (isUPC){
 						// have to set Elsie.Data.selectedProductId
-						var url = 'http://lcboapi.com/products?upc=' + id + '/stores?lat=' + Elsie.Data.location.latitude + '&lon=' + Elsie.Data.location.longitude;
+						var url = 'http://lcboapi.com/products/' + id + '/stores?lat=' + Elsie.Data.location.latitude + '&lon=' + Elsie.Data.location.longitude;
 					} else {
 						var url = 'http://lcboapi.com/products/' + Elsie.Data.selectedProductId + '/stores?lat=' + Elsie.Data.location.latitude + '&lon=' + Elsie.Data.location.longitude;
 					}
 
 					var makeCall = function(){
-						var options = {
-							url: url,
-							type: 'GET'
-						};
+						options.url = url;
 						WinJS.xhr(options).done(
 							function (result) {
 								if (result.status == 200){
@@ -388,10 +373,7 @@
 			
 			return new WinJS.Promise(function (complete) {
 				if (Elsie.Data.location && Elsie.Data.selectedProductId){
-					var options = {
-						url: 'http://lcboapi.com/stores/' + Elsie.Data.selectedStoreId,
-						type: 'GET'
-					};
+					options.url = 'http://lcboapi.com/stores/' + Elsie.Data.selectedStoreId;
 					WinJS.xhr(options).done(
 						function (result) {
 							if (result.status === 200) {
