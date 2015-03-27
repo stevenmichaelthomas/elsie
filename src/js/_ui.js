@@ -167,7 +167,7 @@
         var pushpin = Elsie.Data.selectedStore.latitude + "," + Elsie.Data.selectedStore.longitude + ";75";
         var zoomLevel = 17;
 
-        var url = "http://dev.virtualearth.net/REST/v1/Imagery/Map/" + imagerySet + "/" + centerPoint + "/"+ zoomLevel +"?mapSize=" + mapSize + "&pushpin=" + pushpin + "&key=" + Elsie.Keys.BING + "&format=png";
+        var url = "http://dev.virtualearth.net/REST/v1/Imagery/Map/" + imagerySet + "/" + centerPoint + "/"+ zoomLevel +"?mapSize=" + mapSize + "&pushpin=" + pushpin + "&key=" + Keys.BING + "&format=png";
 
         var mapObject = "<img src='" + url + "' />";
         element.querySelector("#mapDiv").innerHTML = mapObject;
