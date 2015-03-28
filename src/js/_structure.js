@@ -92,7 +92,7 @@
                     clearTimeout(timer);
                 touchEndTime = new Date().getTime();
                 touchDelta = touchEndTime - touchStartTime;
-                if (touchDelta < 500) {
+                if (touchDelta < 500 && evt.detail && evt.detail.itemPromise) {
                     evt.detail.itemPromise.then(function itemInvoked(item) {
                         Elsie.Search.selectSuggestion(item.data.id);
                     });

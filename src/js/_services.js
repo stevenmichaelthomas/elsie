@@ -270,6 +270,9 @@
 
 		services.findNearbyStoresWithProduct = function(id, isUPC){
 
+			delete Elsie.Data.selectedProduct;
+			delete Elsie.Data.selectedProductId;
+
 			// this is a bit redundant
 			if (!isUPC)
 				Elsie.Data.selectedProductId = id;
@@ -345,7 +348,7 @@
 							}, function(error) {
 								var error = JSON.parse(error.response).message;
 								Elsie.Interface.showApiError(error);
-								error();
+								complete();
 							}
 						);
 					};

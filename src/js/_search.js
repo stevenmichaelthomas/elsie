@@ -68,12 +68,16 @@
         //we chose a product, now let's do something with it
         Elsie.Interface.showLoadingAnimation("Getting product details...");
         Elsie.Services.findNearbyStoresWithProduct(upc, true).then(function(){
-            Elsie.Search.determineSimilar().then(function(){
-                Elsie.Services.querySimilarProducts(Elsie.Data.similarProductsSearchString).then(function(){
-                    Elsie.Interface.hideLoadingAnimation();
-                    WinJS.Navigation.navigate("./product.html");
-                })
-            });
+            if (Elsie.Data.selectedProduct){
+                Elsie.Search.determineSimilar().then(function(){
+                    Elsie.Services.querySimilarProducts(Elsie.Data.similarProductsSearchString).then(function(){
+                        Elsie.Interface.hideLoadingAnimation();
+                        WinJS.Navigation.navigate("./product.html");
+                    })
+                });
+            } else {
+                Elsie.Interface.hideLoadingAnimation();
+            }
         });
     }
 
