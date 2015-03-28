@@ -82,7 +82,7 @@
         //clearTimeout(timer);
         var productId = id;
         Elsie.Interface.showLoadingAnimation("Getting product details...");
-        Elsie.Services.findNearbyStoresWithProduct(productId).then(function(){
+        Elsie.Services.findNearbyStoresWithProduct(productId).then(function(result){
             Elsie.Search.determineSimilar().then(function(){
                 Elsie.Services.querySimilarProducts(Elsie.Data.similarProductsSearchString).then(function(){
                     Elsie.Interface.hideLoadingAnimation();

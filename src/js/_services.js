@@ -342,6 +342,10 @@
 									Elsie.Interface.showApiError(text);
 									complete();
 								}
+							}, function(error) {
+								var error = JSON.parse(error.response).message;
+								Elsie.Interface.showApiError(error);
+								error();
 							}
 						);
 					};
