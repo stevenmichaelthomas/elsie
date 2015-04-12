@@ -75,6 +75,17 @@
 
     };
 
+    ui.showMiscPopup = function(text, title){
+
+        var message = text;
+        var confirmCallback = function(buttonIndex){
+            //nothing
+        };
+        var buttonLabels = ["OK"];
+        navigator.notification.confirm(message, confirmCallback, title, buttonLabels);
+
+    };
+
     ui.showReviewDialog = function(){
 
         var message = "If you enjoy Elsie, you can help others find out about her by leaving a review in the app store.";
