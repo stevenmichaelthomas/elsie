@@ -16,22 +16,22 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
 
   $stateProvider
 
-  /*.state('motions', {
-    url: '/motions',
+  .state('home', {
+    url: '/home',
     abstract: true,
-    templateUrl: 'templates/motions.html',
-    controller: 'MotionsCtrl'
+    templateUrl: 'templates/home.html',
+    controller: 'HomeCtrl'
   })
-  .state('motions.trending', {
-    url: '/trending',
+  .state('home.search', {
+    url: '/search',
     views: {
-      'trending': {
-        templateUrl: 'templates/motions/trending.html'
+      'search': {
+        templateUrl: 'templates/home/search.html'
       }
     }
-  });*/
+  });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/home');
 
 });

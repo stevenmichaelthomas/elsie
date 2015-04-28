@@ -1,21 +1,30 @@
 doctype
 html
   head
-    meta(charset='utf-8')
-    meta(name='viewport',content='initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width')
+    meta(charset="utf-8")
+    meta(name="viewport",content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width")
     title Elsie
     // Angular
-    script(src='js/lib/angular.js',charset='utf-8')
-    script(src='js/lib/angular-ui-router.js',charset='utf-8')
-    script(src='js/lib/angular-animate.js',charset='utf-8')
-    script(src='js/lib/angular-aria.js',charset='utf-8')
+    script(src="js/lib/angular.js",charset="utf-8")
+    script(src="js/lib/angular-ui-router.js",charset="utf-8")
+    script(src="js/lib/angular-animate.js",charset="utf-8")
+    script(src="js/lib/angular-aria.js",charset="utf-8")
     // Angular Material
-    script(src='js/lib/angular-material.js',charset='utf-8')
-    link(rel='stylesheet', href='css/lib/angular-material.css')
+    script(src="js/lib/angular-material.js",charset="utf-8")
+    link(rel="stylesheet", href="css/lib/angular-material.css")
     // Cordova 4.0.0
-    script(src='cordova.js',charset='utf-8')
+    script(src="cordova.js",charset="utf-8")
     // Elsie 2.0
-    //script(src='js/something.js',charset='utf-8')
-    link(rel='stylesheet', href='css/app.css')
+    script(src="js/app.js",charset="utf-8")
+    script(src="js/controllers.js",charset="utf-8")
+    script(src="js/services.js",charset="utf-8")
+    link(rel="stylesheet", href="css/app.css")
   body(ng-app="elsie")
-    h1 Hello. Welcome to v2.
+    div(layout="column",layout-fill,ng-controller="AppCtrl")
+      md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="menu")
+        md-toolbar
+          h1.md-toolbar-tools Elsie
+        md-content(layout-padding,ng-controller="MenuCtrl")
+          md-button(ng-click="close()",class="md-primary") Close
+      md-content#main
+        div(ui-view)
