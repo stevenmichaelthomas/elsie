@@ -6,6 +6,9 @@ angular.module('elsie.controllers', [])
     }
   }
   $scope.toggleMenu = buildToggler('menu'); 
+  $scope.go = function(destination){
+    $state.go(destination);
+  }
 })
 .controller('HomeCtrl', function($scope, $state) {
   $scope.go = function(destination){

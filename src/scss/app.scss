@@ -1,12 +1,21 @@
 @import 'fonts';
 
+$purple: rgb(103,58,183);
+
 body {
   font-family: 'Roboto';
 }
 
+#main {
+  padding-top: 25px;
+  background-color: $purple;
+}
+
 md-toolbar {
   box-shadow: none;
-  padding-top: 25px;
+  md-autocomplete {
+    width: 100%;
+  }
 }
 
 md-icon.md-default-theme {

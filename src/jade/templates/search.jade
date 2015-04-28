@@ -1,0 +1,7 @@
+doctype
+md-toolbar.md-default-theme
+  .md-toolbar-tools
+    md-button.md-icon-button(aria-label="Back", ng-click="go('home.watchlist')")
+      md-icon(md-svg-icon="img/arrow_back.svg")  
+    md-autocomplete(md-selected-item='product', md-delay='300', md-search-text-change='change(searchText)', md-search-text='searchText', md-selected-item-change='selectProduct(product)', md-items='product in search(searchText)', md-item-text='product.name', md-min-length='0', placeholder='Search for a product')
+        span(md-highlight-text='searchText', md-highlight-flags='^i') {{ product.name }}

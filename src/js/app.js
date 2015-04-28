@@ -21,15 +21,6 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
       templateUrl: 'home.html',
       controller: 'HomeCtrl'
     })
-    .state('home.search', {
-      url: '/search',
-      views: {
-        'search': {
-          controller: 'SearchCtrl',
-          templateUrl: 'search.html'
-        }
-      }
-    })
     .state('home.watchlist', {
       url: '/watchlist',
       views: {
@@ -37,9 +28,14 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
           templateUrl: 'watchlist.html'
         }
       }
+    })
+    .state('search', {
+      url: '/search',
+      controller: 'SearchCtrl',
+      templateUrl: 'search.html'
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/home/search');
+  $urlRouterProvider.otherwise('/home/watchlist');
 
 });
