@@ -37,7 +37,7 @@ module.exports = function(grunt) {
         src: ['*'],
         dest: 'www/img'
       },
-      angular-material: {
+      angularMaterial: {
         expand: true,
         flatten: true,
         cwd: 'node_modules',
@@ -51,14 +51,14 @@ module.exports = function(grunt) {
         src: ['angular/*.js'],
         dest: 'www/js/lib'
       },
-      angular-animate: {
+      angularAnimate: {
         expand: true,
         flatten: true,
         cwd: 'node_modules',
         src: ['angular-animate/*.js'],
         dest: 'www/js/lib'
       },
-      angular-aria: {
+      angularAria: {
         expand: true,
         flatten: true,
         cwd: 'node_modules',
