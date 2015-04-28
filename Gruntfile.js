@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         },
         files: {
           'www/css/app.css': 'src/scss/app.scss'
-        }        
+        }         
       }
     },
  
@@ -20,14 +20,14 @@ module.exports = function(grunt) {
         expand: true,
         flatten: true,
         cwd: 'node_modules',
-        src: ['winjs/css/*.css'],
+        src: ['angular-material/angular-material.css'],
         dest: 'www/css/lib'
       },
       fonts: {
         expand: true,
         flatten: true,
         cwd: 'node_modules',
-        src: ['winjs/fonts/*.ttf'],
+        src: ['roboto-font/fonts/**/*'],
         dest: 'www/css/fonts'
       },
       img: {
@@ -37,18 +37,11 @@ module.exports = function(grunt) {
         src: ['*'],
         dest: 'www/img'
       },
-      winjs: {
+      material: {
         expand: true,
         flatten: true,
         cwd: 'node_modules',
-        src: ['winjs/js/*.js'],
-        dest: 'www/js/lib'
-      },
-      fastclick: {
-        expand: true,
-        flatten: true,
-        cwd: 'node_modules',
-        src: 'fastclick/lib/*.js',
+        src: ['angular-material/*.js'],
         dest: 'www/js/lib'
       },
       js: {

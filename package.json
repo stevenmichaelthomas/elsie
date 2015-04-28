@@ -1,9 +1,9 @@
 {
   "name": "elsie",
-  "version": "1.0.0",
-  "description": "A Windows frontend to a lovely LCBO API.",
+  "version": "2.0.0",
+  "description": "A mobile frontend to a lovely LCBO API.",
   "dependencies": {
-    "fastclick": "^1.0.3",
+    "angular-material": "^0.8.3",
     "grunt": "~0.4.5",
     "grunt-contrib-concat": "^0.5.0",
     "grunt-contrib-copy": "~0.7.0",
@@ -13,8 +13,7 @@
     "grunt-sass": "~0.16.0",
     "load-grunt-tasks": "^1.0.0",
     "node-sass": "~0.7.0",
-    "node-static": "^0.7.6",
-    "winjs": "~3.0.1"
+    "roboto-font": "^0.1.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -33,7 +32,7 @@
     "wine"
   ],
   "author": "Doug Estey",
-  "license": "MIT",
+  "license": "none",
   "bugs": {
     "url": "https://github.com/dougestey/elsie/issues"
   },
