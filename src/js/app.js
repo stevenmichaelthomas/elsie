@@ -1,36 +1,37 @@
-(function () {
+angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsie.controllers', 'elsie.services'])
 
-    "use strict";
+.run(function(){
+  //
+})
 
-    var app = WinJS.Application;
+.config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
-    WinJS.Namespace.define("Elsie", {
-        Data: {
-        },
-        Lists: {
-        }
+  $mdThemingProvider.theme('default')
+    .primaryPalette('deep-purple', {
+      'default': '500'
+    })
+    .accentPalette('pink', {
+      'default': '500'
     });
 
-    var deviceReady = function(){
-        Elsie.Services.getRecentProducts();
-        Elsie.Services.loadWatchlist();
-        Elsie.Interface.initialize();
-        Elsie.Services.initializeLocation();
-        Elsie.Services.getLocation();
-        Elsie.Services.updateRunNumber();
-        if (Elsie.Data.runNumber === 3){
-            Elsie.Interface.showReviewDialog();
-        }
-        app.start();
-    }
+  $stateProvider
 
-    // cordova event listeners
-    window.onLoad = function(){
-        document.addEventListener("deviceready", deviceReady);
-        document.addEventListener("resume", Elsie.Services.getLocation);
-        document.addEventListener('DOMContentLoaded', function() {
-            FastClick.attach(document.body);
-        }, false);
+  /*.state('motions', {
+    url: '/motions',
+    abstract: true,
+    templateUrl: 'templates/motions.html',
+    controller: 'MotionsCtrl'
+  })
+  .state('motions.trending', {
+    url: '/trending',
+    views: {
+      'trending': {
+        templateUrl: 'templates/motions/trending.html'
+      }
     }
-    
-})();
+  });*/
+
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/');
+
+});

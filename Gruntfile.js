@@ -65,6 +65,13 @@ module.exports = function(grunt) {
         src: ['angular-aria/*.js'],
         dest: 'www/js/lib'
       },
+      angularUiRouter: {
+        expand: true,
+        flatten: true,
+        cwd: 'node_modules',
+        src: ['angular-ui-router/release/*.js'],
+        dest: 'www/js/lib'
+      },
       js: {
         expand: true,
         flatten: true,
