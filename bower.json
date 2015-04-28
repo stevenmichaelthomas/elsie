@@ -1,0 +1,25 @@
+{
+  "name": "elsie",
+  "version": "2.0.0",
+  "homepage": "http://heyelsie.com",
+  "authors": [
+    "Doug Estey <doug@designcofounders.com>"
+  ],
+  "description": "A mobile frontend to a lovely LCBO API.",
+  "main": "www/index.html",
+  "keywords": [
+    "lcbo",
+    "ontario",
+    "beer",
+    "wine",
+    "liquor",
+    "control",
+    "board"
+  ],
+  "license": "none",
+  "dependencies": {
+    "angular-material": "0.9.0-rc2",
+    "roboto-fontface": "~0.4.0",
+    "angular-ui-router": "~0.2.14"
+  }
+}

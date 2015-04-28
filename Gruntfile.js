@@ -19,15 +19,15 @@ module.exports = function(grunt) {
       css: {
         expand: true,
         flatten: true,
-        cwd: 'node_modules',
+        cwd: 'bower_components',
         src: ['angular-material/angular-material.css'],
         dest: 'www/css/lib'
       },
       fonts: {
         expand: true,
         flatten: true,
-        cwd: 'node_modules',
-        src: ['roboto-font/fonts/**/*'],
+        cwd: 'bower_components',
+        src: ['roboto-fontface/fonts/*'],
         dest: 'www/css/fonts'
       },
       img: {
@@ -40,35 +40,35 @@ module.exports = function(grunt) {
       angularMaterial: {
         expand: true,
         flatten: true,
-        cwd: 'node_modules',
+        cwd: 'bower_components',
         src: ['angular-material/*.js'],
         dest: 'www/js/lib'
       },
       angular: {
         expand: true,
         flatten: true,
-        cwd: 'node_modules',
+        cwd: 'bower_components',
         src: ['angular/*.js'],
         dest: 'www/js/lib'
       },
       angularAnimate: {
         expand: true,
         flatten: true,
-        cwd: 'node_modules',
+        cwd: 'bower_components',
         src: ['angular-animate/*.js'],
         dest: 'www/js/lib'
       },
       angularAria: {
         expand: true,
         flatten: true,
-        cwd: 'node_modules',
+        cwd: 'bower_components',
         src: ['angular-aria/*.js'],
         dest: 'www/js/lib'
       },
       angularUiRouter: {
         expand: true,
         flatten: true,
-        cwd: 'node_modules',
+        cwd: 'bower_components',
         src: ['angular-ui-router/release/*.js'],
         dest: 'www/js/lib'
       },
