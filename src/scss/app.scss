@@ -1,4 +1,5 @@
 @import 'fonts';
+@import 'animations';
 
 $purple: rgb(103,58,183);
 
@@ -8,6 +9,19 @@ body {
 
 #main {
   padding-top: 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.android-bar {
+  height: 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   background-color: $purple;
 }
 
@@ -15,6 +29,24 @@ md-toolbar {
   box-shadow: none;
   md-autocomplete {
     width: 100%;
+    height: 100%;
+    box-shadow: none;
+    button {
+      top: 22px;
+    }
+    md-autocomplete-wrap {
+      height: 100%;
+      input {
+        height: 100% !important;
+      }
+    }
+  }
+  &.md-theme-search {
+    background-color: #FAFAFA;
+    box-shadow: initial;
+    md-icon.md-default-theme {
+      color: rgba(0,0,0,0.54);
+    }
   }
 }
 
