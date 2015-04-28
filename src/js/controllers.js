@@ -24,7 +24,7 @@ angular.module('elsie.controllers', [])
     });
   }
   $scope.selectProduct = function(product){
-    $scope.selectedProduct = product;
+    $scope.product = product;
   };
 })
 .controller('MenuCtrl', function ($scope, $state, $mdSidenav) {
