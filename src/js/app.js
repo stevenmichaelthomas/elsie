@@ -25,6 +25,7 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
       url: '/search',
       views: {
         'search': {
+          controller: 'SearchCtrl',
           templateUrl: 'search.html'
         }
       }

@@ -1,26 +1,25 @@
 angular.module('elsie.services', [])
+.run(function($http, LCBO) {
+  $http.defaults.headers.common.Authorization = LCBO;
+})
+.factory('Products', function($http) {
 
-.factory('Sample', function($http) {
-
-  var votes = [];
-
+  var url = 'https://lcboapi.com';
+  var dataCache = {};
+      
   return {
-    all: function() {
-      return $http.get('data/voting.json').then(function(response){
-        votes = response.data;
-        return votes.slice(0,19);
-      })
-    },
-    remove: function(vote) {
-      votes.splice(votes.indexOf(vote), 1);
-    },
-    get: function(voteId) {
-      for (var i = 0; i < votes.length; i++) {
-        if (votes[i].id === parseInt(voteId)) {
-          return votes[i];
+    search: function(query) {
+      return $http.get(url + '/products?q=' + query).then(function(response){
+        if (response.status === 200){
+          dataCache.searchResults = response.data.result;
+          return dataCache.searchResults;
+        } else {
+          var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
+          //Elsie.Interface.showApiError(text);
+          //reject();
         }
-      }
-      return null;
+      });
     }
   }
+
 });
