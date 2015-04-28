@@ -9,7 +9,7 @@ body {
 }
 
 #main {
-  padding-top: 25px;
+  //padding-top: 25px;
   position: absolute;
   top: 0;
   left: 0;
@@ -57,6 +57,12 @@ md-icon.md-default-theme {
 
 md-tabs {
   margin-top: -1px;
+}
+
+md-sidenav {
+  md-toolbar {
+    //padding-top: 25px;
+  }
 }
 
 .md-autocomplete-suggestions.md-default-theme li .highlight {
