@@ -87,7 +87,7 @@ module.exports = function(grunt) {
         src: 'src/jade/index.jade',
         dest: 'build/',
         options: {
-          includePath: 'src/jade/partials'
+          includePath: 'src/jade/templates/'
         }
       }
     },
@@ -96,7 +96,7 @@ module.exports = function(grunt) {
       build: {
         expand: true,
         flatten: true,
-        src: 'src/jade/*.jade',
+        src: 'src/jade/**/*.jade',
         dest: 'www/',
         ext: '.html'
       }

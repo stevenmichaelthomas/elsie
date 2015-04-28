@@ -1,7 +1,7 @@
 angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsie.controllers', 'elsie.services'])
 
 .run(function(){
-  //
+  console.log('init success');
 })
 
 .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
@@ -15,31 +15,30 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
     });
 
   $stateProvider
-
-  .state('home', {
-    url: '/home',
-    abstract: true,
-    templateUrl: 'templates/home.html',
-    controller: 'HomeCtrl'
-  })
-  .state('home.search', {
-    url: '/search',
-    views: {
-      'search': {
-        templateUrl: 'templates/home/search.html'
+    .state('home', {
+      url: '/home',
+      abstract: true,
+      templateUrl: 'home.html',
+      controller: 'HomeCtrl'
+    })
+    .state('home.search', {
+      url: '/search',
+      views: {
+        'search': {
+          templateUrl: 'search.html'
+        }
       }
-    }
-  })
-  .state('home.watchlist', {
-    url: '/watchlist',
-    views: {
-      'watchlist': {
-        templateUrl: 'templates/home/watchlist.html'
+    })
+    .state('home.watchlist', {
+      url: '/watchlist',
+      views: {
+        'watchlist': {
+          templateUrl: 'watchlist.html'
+        }
       }
-    }
-  });
+    });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/home/search');
 
 });
