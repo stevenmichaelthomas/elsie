@@ -29,6 +29,14 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
         templateUrl: 'templates/home/search.html'
       }
     }
+  })
+  .state('home.watchlist', {
+    url: '/watchlist',
+    views: {
+      'watchlist': {
+        templateUrl: 'templates/home/watchlist.html'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback
