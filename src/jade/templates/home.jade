@@ -1,0 +1,12 @@
+  md-toolbar
+    .md-toolbar-tools
+      md-button.md-icon-button(aria-label='Settings', ng-click='toggleMenu()')
+        md-icon(md-svg-icon='img/icons/menu.svg')    
+      h2
+        span Elsie    
+      span(flex='')
+  md-tabs.md-primary(md-selected='selectedIndex', md-no-pagination='true')
+    md-tab(label='Search', md-on-select="go('home.search')")
+      div(ui-view='search')
+    md-tab(label='Watchlist', md-on-select="go('home.watchlist')")
+      div(ui-view='watchlist')
