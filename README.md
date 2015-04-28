@@ -1,7 +1,9 @@
 Elsie
 ====
 
-Elsie is fast, clean frontend to a lovely LCBO API (http://lcboapi.com/) that has no affiliation whatsoever with the LCBO.
+Elsie is fast, clean frontend to a lovely LCBO API (http://lcboapi.com/)
+
+Elsie has no affiliation with and is not endorsed by the LCBO.
 
 ## Setup ##
 
