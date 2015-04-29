@@ -45,7 +45,15 @@ angular.module('elsie.controllers', [])
     $mdSidenav('menu').close();
   };
 })
-.controller('ProductCtrl', function ($scope, $state, Products) {
+.controller('ProductCtrl', function ($scope, $state, Products, Watchlist) {
+  $scope.toggleWatch = function(product){
+    var toggle = Watchlist.changeProductStatus(product);
+    if (toggle === 'added') {
+      $scope.isWatched = true;
+    } else if (toggle === 'removed') {
+      $scope.isWatched = false;
+    }
+  };
   (function(){
     $scope.product = Products.selected();
     $scope.image = {
