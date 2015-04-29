@@ -25,7 +25,8 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
       url: '/watchlist',
       views: {
         'watchlist': {
-          templateUrl: 'watchlist.html'
+          templateUrl: 'watchlist.html',
+          controller: 'WatchlistCtrl'
         }
       }
     })
