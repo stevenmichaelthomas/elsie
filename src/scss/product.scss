@@ -1,13 +1,19 @@
 .product {
   .image {
-    height: 200px;
-    background-size: contain;
+    height: 264px;
+    background-size: 120%;
     background-repeat: no-repeat;
-    background-position-x: center;
+    background-position-x: -75%;
+    background-position-y: 60%;
+  }
+  md-toolbar {
+    margin-top: -64px;
+    background-color: rgba(0,0,0,0.2);
+    color: white;
   }
   a.md-button.md-default-theme.md-fab, .md-button.md-default-theme.md-fab {
     position: absolute;
     right: 20px;
-    top: 165px;
+    top: 255px;
   }
 }
