@@ -1,7 +1,4 @@
-angular.module('elsie.services', [])
-.run(function($http, LCBO) {
-  $http.defaults.headers.common.Authorization = LCBO;
-})
+angular.module('elsie.services')
 .factory('Products', function($http) {
 
   var url = 'https://lcboapi.com';
@@ -16,7 +13,7 @@ angular.module('elsie.services', [])
         } else {
           var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
           //Elsie.Interface.showApiError(text);
-          //reject();
+          return;
         }
       });
     }

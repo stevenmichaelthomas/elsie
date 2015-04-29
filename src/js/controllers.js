@@ -11,9 +11,7 @@ angular.module('elsie.controllers', [])
   }
 })
 .controller('HomeCtrl', function($scope, $state) {
-  $scope.go = function(destination){
-    $state.go(destination);
-  }
+  //
 })
 .controller('SearchCtrl', function($scope, $state, Products) {
   $scope.selectedProduct = {};
