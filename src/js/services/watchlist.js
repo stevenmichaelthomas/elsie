@@ -24,12 +24,14 @@ angular.module('elsie.services')
       
   return {
     load: function(){
-      if (localStorage["Elsie_watchlistProducts"]){
-        var retrievedItmes = JSON.parse(localStorage["Elsie_watchlistProducts"]);
-        retrievedItmes.reverse();
-        watchlist = retrievedItmes;
-      } else {
-        _syncWatchlist();
+      if (watchlist.length === 0){
+        if (localStorage["Elsie_watchlistProducts"]){
+          var retrievedItmes = JSON.parse(localStorage["Elsie_watchlistProducts"]);
+          retrievedItmes.reverse();
+          watchlist = retrievedItmes;
+        } else {
+          _syncWatchlist();
+        }
       }
       return watchlist;
     },
@@ -40,6 +42,16 @@ angular.module('elsie.services')
       } else {
         return true;
       }
+    },
+    updateProduct: function(product){
+      var index;
+      for (var p = 0; p < watchlist.length; p++) {
+        if (watchlist[p].product_no === product.product_no) {
+            index = p;
+        }
+      }
+      watchlist[index] = product;
+      return;
     },
     changeProductStatus: function(product){
       var result;

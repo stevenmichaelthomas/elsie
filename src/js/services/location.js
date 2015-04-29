@@ -1,5 +1,5 @@
 angular.module('elsie.services')
-.factory('Location', function($q) {
+.factory('Location', function($q, Scheduler) {
 
   var location = {};
   var _sync = function(){
@@ -17,9 +17,11 @@ angular.module('elsie.services')
       } else {
         location = JSON.parse(localStorage["Elsie_cachedLocation"]);
       }
+      return location;
     },
     refresh: function(){
       var deferred = $q.defer();
+      var process = deferred.promise;
       //Elsie.Interface.showLoadingAnimation("Getting your location...");
       var onSuccess = function(position) {
         //Elsie.Interface.hideLoadingAnimation();
@@ -39,7 +41,8 @@ angular.module('elsie.services')
         deferred.resolve();
       };
       navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 6500 });
-      return deferred.promise;
+      Scheduler.queue(process);
+      return process;
     }
   }
 

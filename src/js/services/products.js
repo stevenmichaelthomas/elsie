@@ -1,21 +1,66 @@
 angular.module('elsie.services')
-.factory('Products', function($http) {
+.factory('Products', function($http, Location, Products, Watchlist, Scheduler) {
 
   var url = 'https://lcboapi.com';
-  var dataCache = {};
+  var searchCache = [];
+  var searchCacheForStore = [];
+  var products = [];
+  var selectedProduct = {};
+  var selectedProductWithStores = {};
       
   return {
     search: function(query) {
-      return $http.get(url + '/products?q=' + query).then(function(response){
+      var process = $http.get(url + '/products?q=' + query).then(function(response){
         if (response.status === 200){
-          dataCache.searchResults = response.data.result;
-          return dataCache.searchResults;
+          searchCache = response.data.result;
+          return searchCache;
         } else {
           var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
           //Elsie.Interface.showApiError(text);
-          return;
+          return [];
         }
       });
+      Scheduler.queue(process);
+      return process;
+    },
+    atNearbyStores: function(product){
+      var url = url + '/products/' + product.id + '/stores?lat=' + Location.latitude + '&lon=' + Location.longitude;
+      var process = $http.get(url).then(function(result){
+        if (result.status == 200){
+          // get some data back
+          selectedProduct = result.data.product;
+          selectedProduct.stores = result.data.result;
+          // if product is in watchlist, update its data
+          if (Watchlist.checkForProduct(selectedProduct)){
+            Watchlist.updateProduct(selectedProduct);
+          }
+          return selectedProduct;
+        } else {
+          var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
+          //Elsie.Interface.showApiError(text);
+          return {};
+        }
+      });
+      Scheduler.queue(process);
+      return process;
+    },
+    atStore: function(query, store){
+      if (!query || query == "") {
+        return;
+      }
+      url = url + '/products?q=' + query + '&store_id=' + store.id;
+      var process = $http.get(url).then(function(result){
+        if (result.status === 200){
+          searchCacheForStore = result.data;
+          return searchCacheForStore;
+        } else {
+          var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
+          //Elsie.Interface.showApiError(text);
+          return [];
+        }
+      });
+      Scheduler.queue(process);
+      return process;
     }
   }
 
