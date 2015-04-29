@@ -4,12 +4,22 @@ doctype
   md-toolbar
     .md-toolbar-tools
       h2.md-flex {{ product.name }}
+  md-button.md-fab(aria-label="Add to Watchlist")
+    md-icon(md-svg-src='img/star_rate.svg')
   md-content.md-whiteframe-z5(layout-padding)
     md-list
       md-list-item.md-2-line
         .md-list-item-text
           h3 {{ product.varietal }}
           p type
+      md-list-item.md-2-line
+        .md-list-item-text
+          h3 {{ product.price_in_cents }}
+          p price
+      md-list-item.md-2-line
+        .md-list-item-text
+          h3 {{ product.package_unit_volume_in_milliliters }}
+          p ml x {{ product.total_package_units }}
       md-list-item.md-2-line
         .md-list-item-text
           h3 {{ product.alcohol_content }}
