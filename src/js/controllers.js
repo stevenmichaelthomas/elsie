@@ -30,7 +30,10 @@ angular.module('elsie.controllers', [])
     });
   }
   $scope.selectProduct = function(product){
-    $scope.product = product;
+    if (product && product.product_no){
+      Products.select(product);
+      $state.go('product');
+    }
   };
 })
 .controller('MenuCtrl', function ($scope, $state, $mdSidenav) {
@@ -41,4 +44,9 @@ angular.module('elsie.controllers', [])
   $scope.close = function () {
     $mdSidenav('menu').close();
   };
+})
+.controller('ProductCtrl', function ($scope, $state, Products) {
+  (function(){
+    $scope.product = Products.selected();
+  })();
 });

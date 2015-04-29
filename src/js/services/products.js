@@ -6,9 +6,17 @@ angular.module('elsie.services')
   var searchCacheForStore = [];
   var products = [];
   var selectedProduct = {};
-  var selectedProductWithStores = {};
       
   return {
+    select: function(product) {
+      if (product){
+        selectedProduct = product;
+      }
+      return;
+    },
+    selected: function() {
+      return selectedProduct;
+    },
     search: function(query) {
       var process = $http.get(url + '/products?q=' + query).then(function(response){
         if (response.status === 200){
