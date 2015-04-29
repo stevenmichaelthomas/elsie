@@ -48,5 +48,8 @@ angular.module('elsie.controllers', [])
 .controller('ProductCtrl', function ($scope, $state, Products) {
   (function(){
     $scope.product = Products.selected();
+    $scope.image = {
+      'background-image': 'url(' + $scope.product.image_url + ')'
+    };
   })();
 });

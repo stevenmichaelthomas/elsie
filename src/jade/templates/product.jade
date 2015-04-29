@@ -1,5 +1,16 @@
 doctype
-md-card
-  md-card-content
-    h2.md-title Product
-    pre {{ product }}
+.product(layout="column")
+  .image(flex="100",ng-style="image")
+  md-toolbar
+    .md-toolbar-tools
+      h2.md-flex {{ product.name }}
+  md-content.md-whiteframe-z5(layout-padding)
+    md-list
+      md-list-item.md-2-line
+        .md-list-item-text
+          h3 {{ product.varietal }}
+          p type
+      md-list-item.md-2-line
+        .md-list-item-text
+          h3 {{ product.alcohol_content }}
+          p alcohol by volume
