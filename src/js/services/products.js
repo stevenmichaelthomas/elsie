@@ -1,5 +1,5 @@
 angular.module('elsie.services')
-.factory('Products', function($http, Location, Products, Watchlist, Scheduler) {
+.factory('Products', function($http, Location, Scheduler) {
 
   var url = 'https://lcboapi.com';
   var searchCache = [];
@@ -31,9 +31,6 @@ angular.module('elsie.services')
           selectedProduct = result.data.product;
           selectedProduct.stores = result.data.result;
           // if product is in watchlist, update its data
-          if (Watchlist.checkForProduct(selectedProduct)){
-            Watchlist.updateProduct(selectedProduct);
-          }
           return selectedProduct;
         } else {
           var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
