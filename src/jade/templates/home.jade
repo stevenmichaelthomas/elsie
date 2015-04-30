@@ -8,9 +8,9 @@ md-toolbar.md-default-theme
     span(flex)
     md-button.md-icon-button(aria-label="Search", ng-click="go('search')")
       md-icon(md-svg-icon="img/search.svg")
-//md-tabs.md-primary(md-selected='selectedIndex', md-no-pagination='true')
-  md-tab(label='Search', md-on-select="go('home.search')")
-    div(ui-view='search')
+md-tabs.md-primary.full(md-selected='selectedIndex', md-no-pagination='true')
   md-tab(label='Watchlist', md-on-select="go('home.watchlist')")
     div(ui-view='watchlist')
-div(ui-view='watchlist')
+  md-tab(label='Releases', md-on-select="go('home.watchlist')")
+    //div(ui-view='search')
+  

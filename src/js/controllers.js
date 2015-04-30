@@ -25,7 +25,6 @@ angular.module('elsie.controllers', [])
     var style = {
       "background-image": "url('" + product.image_url + "')"
     }
-    console.log(style);
     return style;
   };
 })
@@ -70,5 +69,7 @@ angular.module('elsie.controllers', [])
     $scope.image = {
       'background-image': 'url(' + $scope.product.image_url + ')'
     };
+    if (Watchlist.checkForProduct($scope.product))
+      $scope.isWatched = true;
   })();
 });

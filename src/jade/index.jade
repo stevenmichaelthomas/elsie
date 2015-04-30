@@ -17,6 +17,7 @@ html
     // Elsie 2.0
     script(src="js/app.js",charset="utf-8")
     script(src="js/controllers.js",charset="utf-8")
+    script(src="js/directives.js",charset="utf-8")
     script(src="js/services/master.js",charset="utf-8")
     script(src="js/services/scheduler.js",charset="utf-8")
     script(src="js/services/location.js",charset="utf-8")
@@ -33,4 +34,4 @@ html
           md-button(ng-click="close()",class="md-primary") Close
       md-content#main
         .android-bar
-        div(ui-view)
+        div(ui-view,state-class)

@@ -1,14 +1,17 @@
-angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsie.controllers', 'elsie.services'])
+angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsie.controllers', 'elsie.services', 'elsie.directives'])
 
-.run(function(){
-  console.log('init success');
+.run(function($rootScope){
+  //
 })
 
 .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
   $mdThemingProvider.theme('default')
     .primaryPalette('deep-purple', {
-      'default': '500'
+      'default': '500',
+      'hue-1': '100',
+      'hue-2': '600',
+      'hue-3': 'A100'
     })
     .accentPalette('pink', {
       'default': '500'

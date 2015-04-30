@@ -3,6 +3,7 @@
 
 $purple: rgb(103,58,183);
 $pink: #E91E63;
+$charcoal: #212121;
 
 body {
   font-family: 'Roboto';
@@ -58,6 +59,13 @@ md-icon.md-default-theme {
 
 md-tabs {
   margin-top: -1px;
+  &.full {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 }
 
 md-sidenav {

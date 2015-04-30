@@ -14,6 +14,14 @@
   a.md-button.md-default-theme.md-fab, .md-button.md-default-theme.md-fab {
     position: absolute;
     right: 20px;
-    top: 255px;
+    top: 230px;
+  }
+  md-content.upper {
+    .md-icon-button {
+      float: left;
+      md-icon {
+        color: $charcoal;
+      }
+    }
   }
 }
