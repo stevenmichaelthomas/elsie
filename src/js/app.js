@@ -15,6 +15,9 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
     })
     .accentPalette('pink', {
       'default': '500'
+    })
+    .backgroundPalette('grey', {
+      'default': '50'
     });
 
   $stateProvider

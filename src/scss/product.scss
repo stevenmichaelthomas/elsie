@@ -1,6 +1,7 @@
 .product.single {
   .image {
     height: 264px;
+    background-color: white;
     background-size: 120%;
     background-repeat: no-repeat;
     background-position-x: -75%;
@@ -8,7 +9,7 @@
   }
   md-toolbar {
     margin-top: -64px;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,0.4);
     color: white;
   }
   a.md-button.md-default-theme.md-fab, .md-button.md-default-theme.md-fab {
@@ -19,9 +20,16 @@
   md-content.upper {
     .md-icon-button {
       float: left;
+      margin: 0;
       md-icon {
         color: $charcoal;
       }
+    }
+  }
+  md-content.lower {
+    //background-color: $purple;
+    * {
+      //color: rgba(255,255,255,0.87) !important;
     }
   }
 }
