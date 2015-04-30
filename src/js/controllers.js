@@ -14,12 +14,19 @@ angular.module('elsie.controllers', [])
   //
 })
 .controller('WatchlistCtrl', function($scope, $state, Watchlist, Products) {
-  $scope.watchlist = Watchlist.load();
   $scope.loadProduct = function(product){
     if (product && product.product_no){
       Products.select(product);
       $state.go('product');
     }
+  };
+  $scope.watchlist = Watchlist.load();
+  $scope.productStyle = function(product){
+    var style = {
+      "background-image": "url('" + product.image_url + "')"
+    }
+    console.log(style);
+    return style;
   };
 })
 .controller('SearchCtrl', function($scope, $state, Products) {

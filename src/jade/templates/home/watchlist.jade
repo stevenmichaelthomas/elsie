@@ -1,5 +1,6 @@
 doctype
-md-card(ng-repeat="product in watchlist",flex="50",ng-click="loadProduct(product)")
-  md-card-content
-    h2.md-title {{ product.name }}
-    p {{ product.no }}
+md-grid-list.watchlist(md-row-height="4:3",md-gutter="8px",md-cols="2",layout-padding)
+  md-grid-tile.product(md-colspan="1",ng-repeat="product in watchlist",ng-click="loadProduct(product)",ng-style="productStyle(product)")
+    md-icon
+    md-grid-tile-footer
+      h3 {{ product.name }}
