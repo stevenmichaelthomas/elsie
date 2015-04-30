@@ -13,10 +13,14 @@ angular.module('elsie.controllers', [])
 .controller('HomeCtrl', function($scope, $state) {
   //
 })
-.controller('WatchlistCtrl', function($scope, Watchlist) {
-  Watchlist.load().then(function(result){
-    console.log(result);
-  })
+.controller('WatchlistCtrl', function($scope, $state, Watchlist, Products) {
+  $scope.watchlist = Watchlist.load();
+  $scope.loadProduct = function(product){
+    if (product && product.product_no){
+      Products.select(product);
+      $state.go('product');
+    }
+  };
 })
 .controller('SearchCtrl', function($scope, $state, Products) {
   $scope.selectedProduct = {};
