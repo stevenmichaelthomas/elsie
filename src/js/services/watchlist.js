@@ -21,8 +21,8 @@ angular.module('elsie.services')
     localStorage["Elsie_watchlistProducts"] = JSON.stringify(watchlist);
     return;
   };
-      
-  return {
+
+  var watchlistService = {
     load: function(){
       if (watchlist.length === 0){
         if (localStorage["Elsie_watchlistProducts"]){
@@ -56,8 +56,7 @@ angular.module('elsie.services')
     changeProductStatus: function(product){
       var result;
       var index;
-      var isWatched = JSON.stringify(watchlist).indexOf(JSON.stringify(product.product_no));
-      if (isWatched === -1){
+      if (!this.checkForProduct(product)){
         watchlist.push(product);
         result = "added";
       } else {
@@ -93,7 +92,9 @@ angular.module('elsie.services')
         deferred.resolve();
       };
       return deferred.promise; 
-    },
-  }
+    }
+  };
+      
+  return watchlistService;
 
 });

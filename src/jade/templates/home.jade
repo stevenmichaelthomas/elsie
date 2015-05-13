@@ -4,11 +4,15 @@ md-toolbar.md-default-theme
     md-button.md-icon-button(aria-label="Settings", ng-click="toggleMenu()")
       md-icon(md-svg-icon="img/menu.svg")    
     h2
-      span Elsie    
+      span Elsie
     span(flex)
+    md-button.md-icon-button(aria-label="List", ng-click="toggleGrid(false)", ng-if="gridView")
+      md-icon(md-svg-icon="img/view_list.svg") 
+    md-button.md-icon-button(aria-label="Grid", ng-click="toggleGrid(true)", ng-if="!gridView")
+      md-icon(md-svg-icon="img/view_module.svg")
     md-button.md-icon-button(aria-label="Search", ng-click="go('search')")
       md-icon(md-svg-icon="img/search.svg")
-md-tabs.full(md-selected='selectedIndex', md-no-pagination='true')
+md-tabs.full.md-primary(md-selected='selectedIndex', md-no-pagination='true')
   md-tab(label='Watchlist', md-on-select="go('home.watchlist')")
     div(ui-view='watchlist')
   md-tab(label='Releases', md-on-select="go('home.watchlist')")

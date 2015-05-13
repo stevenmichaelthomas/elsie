@@ -6,7 +6,8 @@ doctype
     .image(ng-style="image")
     md-toolbar
       .md-toolbar-tools
-        h2.md-flex {{ product.name }}
+        h2.md-title {{ product.name }}
+        h5.md-subhead {{ product.producer_name }}
   md-button.md-fab(aria-label="Add to Watchlist",ng-click="toggleWatch(product)")
     md-icon(md-svg-src='img/favorite.svg',ng-show="isWatched")
     md-icon(md-svg-src='img/favorite_outline.svg',ng-show="!isWatched")

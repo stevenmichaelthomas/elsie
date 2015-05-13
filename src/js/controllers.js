@@ -11,7 +11,10 @@ angular.module('elsie.controllers', [])
   }
 })
 .controller('HomeCtrl', function($scope, $state) {
-  //
+  $scope.gridView = false;
+  $scope.toggleGrid = function(value){
+    $scope.gridView = value;
+  };
 })
 .controller('WatchlistCtrl', function($scope, $state, Watchlist, Products) {
   $scope.loadProduct = function(product){

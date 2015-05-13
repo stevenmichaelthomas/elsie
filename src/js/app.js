@@ -7,11 +7,11 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
 .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
   $mdThemingProvider.theme('default')
-    .primaryPalette('deep-purple', {
-      'default': '500',
+    .primaryPalette('purple', {
+      'default': '800',
       'hue-1': '100',
       'hue-2': '600',
-      'hue-3': 'A100'
+      'hue-3': '50'
     })
     .accentPalette('pink', {
       'default': '500'

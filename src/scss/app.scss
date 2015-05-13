@@ -1,7 +1,8 @@
 @import 'fonts';
+@import 'mixins';
 @import 'animations';
 
-$purple: rgb(103,58,183);
+$purple: rgb(106,27,154);
 $pink: #E91E63;
 $charcoal: #212121;
 
@@ -43,6 +44,11 @@ md-toolbar {
       }
     }
   }
+  .md-toolbar-tools {
+    h2 {
+      font-weight: 500;
+    }
+  }
   &.md-theme-search {
     background-color: #FAFAFA;
     box-shadow: initial;
@@ -79,3 +85,4 @@ md-sidenav {
 
 @import 'product';
 @import 'watchlist';
+@import 'search';

@@ -1,5 +1,3 @@
-/* Have to set height explicity on ui-view 
-to prevent collapsing during animation*/
 [ui-view] {
   position: absolute;
   top: 25px;
@@ -32,6 +30,10 @@ to prevent collapsing during animation*/
     -moz-transform:translate3d(0, 0, 0);
     transform:translate3d(0, 0, 0);
   } 
+  &.state-search {
+    z-index: 0;
+    opacity: 1;
+  }
 }
 
 [ui-view].ng-leave-active {
@@ -43,6 +45,10 @@ to prevent collapsing during animation*/
     -moz-transform:translate3d(0, 100%, 0);
     transform:translate3d(0, 100%, 0);
   } 
+  &.state-search {
+    z-index: 0;
+    opacity: 0;
+  }
 }
 
 [ui-view].ng-enter {
