@@ -6,7 +6,7 @@ angular.module('elsie.product')
   };
 
   var cache = {
-    product: {}
+    product: {},
     products: [],
     store: {},
     stores: [],

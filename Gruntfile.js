@@ -14,6 +14,18 @@ module.exports = function(grunt) {
         }         
       }
     },
+
+    concat: {
+      build: {
+        files: {
+          'build/js/elsie.js': [
+            'src/elsie.common/**/*.js',
+            'src/elsie.*/**/*.js',
+            'src/elsie/**/*.js',
+          ]
+        }
+      }
+    },
  
     copy: {
       css: {
@@ -74,37 +86,26 @@ module.exports = function(grunt) {
       },
       js: {
         expand: true,
-        flatten: true,
-        cwd: 'src/js',
-        src: '*.js',
-        dest: 'www/js'
+        flatten: false,
+        cwd: 'build/js',
+        src: 'elsie.js',
+        dest: 'www/js/'
       },
-      services: {
-        expand: true,
-        flatten: true,
-        cwd: 'src/js/services',
-        src: '*.js',
-        dest: 'www/js/services'
-      }
-    },
- 
-    includes: {
-      build: {
-        flatten: true,
-        src: 'src/index.jade',
-        dest: 'build/',
-        options: {
-          includePath: 'src/**/templates'
-        }
-      }
     },
 
     jade: {
+      master: {
+        expand: true,
+        flatten: true,
+        src: 'src/index.jade',
+        dest: 'www/',
+        ext: '.html'
+      },
       build: {
         expand: true,
         flatten: true,
         src: 'src/**/templates/*.jade',
-        dest: 'www/',
+        dest: 'www/templates/',
         ext: '.html'
       }
     },
@@ -125,8 +126,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
- 
-  grunt.registerTask('build', ['sass', 'copy', 'includes', 'jade']);
+  grunt.loadNpmTasks('grunt-contrib-concat');
+
+  grunt.registerTask('build', ['sass', 'concat', 'copy', 'jade']);
   grunt.registerTask('default', ['build', 'watch']);
  
 }

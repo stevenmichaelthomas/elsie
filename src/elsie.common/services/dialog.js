@@ -1,12 +1,12 @@
 angular.module('elsie.common')
-.factory('Dialog', function(Location) {
+.factory('Dialog', function() {
 
   return {
     show: function(message, actions, type){
       var confirmCallback = function(buttonIndex){
         if (buttonIndex == 2){
           if (actions[buttonIndex - 1].action == 'getLocation')
-            Location.refresh();
+            //Location.refresh();
           if (actions[buttonIndex - 1].action == 'url')
             //navigator.app.loadUrl(actions[buttonIndex - 1].url, {openExternal : true});
             window.open(actions[buttonIndex - 1].url, '_system');

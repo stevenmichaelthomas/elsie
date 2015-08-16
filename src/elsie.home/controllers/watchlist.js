@@ -1,4 +1,4 @@
-angular.module('elsie.home', [])
+angular.module('elsie.home')
 .controller('WatchlistCtrl', function($scope, $state, Watchlist, Products) {
   $scope.loadProduct = function(product){
     if (product && product.product_no){
@@ -13,4 +13,4 @@ angular.module('elsie.home', [])
     }
     return style;
   };
-})
+});

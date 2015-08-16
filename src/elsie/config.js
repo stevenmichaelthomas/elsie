@@ -1,9 +1,9 @@
-angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsie.common', 'elsie.home', 'elsie.product', 'elsie.search'])
+angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsie.common', 'elsie.home', 'elsie.product', 'elsie.search', 'elsie.store'])
 
-.run(function($http, LCBO, Analytics) {
+.run(function($http, LCBO, Analytics, Dialog) {
   $http.defaults.headers.common.Authorization = LCBO;
-  //TODO: move this after app is fully rendered
-  if (navigator)
+  //TODO: move this after app init
+  if (navigator && navigator.splashscreen)
     navigator.splashscreen.hide();
 
   Analytics.incrementRunNumber();

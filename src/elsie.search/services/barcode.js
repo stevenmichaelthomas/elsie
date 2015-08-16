@@ -6,7 +6,7 @@ angular.module('elsie.search')
   };
       
   return {
-    scan = function() {
+    scan: function() {
       cordova.plugins.barcodeScanner.scan(
         function (result) {
           if (!result.cancelled){

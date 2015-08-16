@@ -1,4 +1,4 @@
-angular.module('elsie.product', [])
+angular.module('elsie.product')
 .controller('ProductCtrl', function ($scope, $state, Products, Watchlist) {
   $scope.toggleWatch = function(product){
     var toggle = Watchlist.changeProductStatus(product);

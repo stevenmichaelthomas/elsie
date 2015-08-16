@@ -1,4 +1,4 @@
-angular.module('elsie.common', [])
+angular.module('elsie.common')
 .controller('MenuCtrl', function ($scope, $state, $mdSidenav) {
   $scope.go = function(destination){
     $mdSidenav('menu').close();
@@ -7,4 +7,4 @@ angular.module('elsie.common', [])
   $scope.close = function () {
     $mdSidenav('menu').close();
   };
-})
+});

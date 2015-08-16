@@ -1,4 +1,4 @@
-angular.module('elsie.common', [])
+angular.module('elsie.common')
 .controller('AppCtrl', function($scope, $state, $mdSidenav){
   
   function buildToggler(navID) {
@@ -25,6 +25,6 @@ angular.module('elsie.common', [])
       statusBar.backgroundOpacity = 1;
       statusBar.showAsync();
     }
-  }()
+  })()
   
 });

@@ -1,4 +1,4 @@
-angular.module('elsie.common', [])
+angular.module('elsie.common')
 .directive('stateClass', ['$state', function($state) {
   return {
     link: function($scope, $element, $attrs) {

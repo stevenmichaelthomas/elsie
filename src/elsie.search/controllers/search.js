@@ -1,4 +1,4 @@
-angular.module('elsie.search', [])
+angular.module('elsie.search')
 .controller('SearchCtrl', function($scope, $state, Products) {
   $scope.selectedProduct = {};
   $scope.change = function(change) {
@@ -16,4 +16,4 @@ angular.module('elsie.search', [])
       $state.go('product');
     }
   };
-})
+});

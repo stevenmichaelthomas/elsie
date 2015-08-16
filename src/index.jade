@@ -19,7 +19,7 @@ html
     link(rel="stylesheet", href="css/app.css")
   body(ng-app="elsie")
     div(layout="column",layout-fill,ng-controller="AppCtrl")
-      md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="menu",md-is-locked-open="$mdMedia('gt-md')")
+      md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="menu")
         md-toolbar.md-default-theme
           h1.md-toolbar-tools Elsie
         md-content(layout-padding,ng-controller="MenuCtrl")
