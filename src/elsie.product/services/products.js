@@ -55,24 +55,6 @@ angular.module('elsie.product')
       Scheduler.queue(process);
       return process;
     },
-    atStore: function(query, store){
-      if (!query || query == "") {
-        return;
-      }
-      var req = url() + '/products?q=' + query + '&store_id=' + store.id;
-      var process = $http.get(req).then(function(result){
-        if (result.status === 200){
-          cache.store = result.data;
-          return cache.store;
-        } else {
-          var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
-          //Elsie.Interface.showApiError(text);
-          return [];
-        }
-      });
-      Scheduler.queue(process);
-      return process;
-    },
     newReleases: function(page) {
       if (!page){
         var pageNumber = 1;
