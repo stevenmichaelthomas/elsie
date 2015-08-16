@@ -1,7 +1,22 @@
 angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsie.common', 'elsie.home', 'elsie.product', 'elsie.search'])
 
-.run(function($http, LCBO) {
+.run(function($http, LCBO, Analytics) {
   $http.defaults.headers.common.Authorization = LCBO;
+  //TODO: move this after app is fully rendered
+  if (navigator)
+    navigator.splashscreen.hide();
+
+  Analytics.incrementRunNumber();
+  if (Analytics.runNumber() === 3){
+    var message = "If you enjoy Elsie, you can help others find out about her by leaving a review in the app store.";
+    var actions = [
+      { label: 'Don\'t ask again' },
+      { label: 'Leave a review', action: 'url', url: 'http://www.windowsphone.com/s?appid=d1040ef2-5d48-4962-9a5b-e20c01fe1760' }
+    ];
+    var title = "Please consider a review";
+    Dialog.show(message, actions, title);    
+  }
+
 })
 
 .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
