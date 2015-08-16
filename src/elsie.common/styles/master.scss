@@ -83,6 +83,6 @@ md-sidenav {
   color: $pink;
 }
 
-@import 'product';
-@import 'watchlist';
-@import 'search';
+@import '../../elsie.product/styles/product';
+@import '../../elsie.home/styles/watchlist';
+@import '../../elsie.search/styles/search';

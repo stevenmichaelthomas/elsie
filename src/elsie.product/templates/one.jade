@@ -19,7 +19,7 @@ doctype
           p type
       md-list-item.md-2-line
         .md-list-item-text
-          h3 {{ product.price_in_cents }}
+          h3 {{ product.price_in_cents | currency : $ : 1  }}
           p price
       md-list-item.md-2-line
         .md-list-item-text

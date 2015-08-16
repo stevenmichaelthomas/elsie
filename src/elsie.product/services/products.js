@@ -1,4 +1,4 @@
-angular.module('elsie.services')
+angular.module('elsie.product')
 .factory('Products', function($http, Location, Scheduler) {
 
   var url = 'https://lcboapi.com';

@@ -1,7 +1,7 @@
-angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsie.controllers', 'elsie.services', 'elsie.directives'])
+angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsie.controllers', 'elsie.services', 'elsie.common'])
 
-.run(function($rootScope){
-  //
+.run(function($http, LCBO) {
+  $http.defaults.headers.common.Authorization = LCBO;
 })
 
 .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {

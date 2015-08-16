@@ -1,4 +1,4 @@
-angular.module('elsie.services')
+angular.module('elsie.common')
 .factory('Watchlist', function($http, Products, Scheduler) {
 
   var watchlist = [];

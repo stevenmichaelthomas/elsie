@@ -1,4 +1,4 @@
-angular.module('elsie.services')
+angular.module('elsie.common')
 .factory('Scheduler', function($q) {
 
   var processes = [];

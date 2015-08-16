@@ -10,7 +10,7 @@ module.exports = function(grunt) {
           outputStyle: 'compressed'
         },
         files: {
-          'www/css/app.css': 'src/scss/app.scss'
+          'www/css/app.css': 'src/elsie.common/styles/master.scss'
         }         
       }
     },
@@ -91,10 +91,10 @@ module.exports = function(grunt) {
     includes: {
       build: {
         flatten: true,
-        src: 'src/jade/index.jade',
+        src: 'src/index.jade',
         dest: 'build/',
         options: {
-          includePath: 'src/jade/templates/'
+          includePath: 'src/**/templates'
         }
       }
     },
@@ -103,7 +103,7 @@ module.exports = function(grunt) {
       build: {
         expand: true,
         flatten: true,
-        src: 'src/jade/**/*.jade',
+        src: 'src/**/templates/*.jade',
         dest: 'www/',
         ext: '.html'
       }
@@ -116,7 +116,7 @@ module.exports = function(grunt) {
       grunt: { files: ['Gruntfile.js'] },
  
       sass: {
-        files: 'scss/*.scss',
+        files: '**/styles/*.scss',
         tasks: ['sass']
       }
     }

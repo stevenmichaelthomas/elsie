@@ -1,4 +1,4 @@
-angular.module('elsie.services')
+angular.module('elsie.common')
 .factory('Location', function($q, Scheduler) {
 
   var location = {};
