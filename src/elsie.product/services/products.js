@@ -1,27 +1,34 @@
 angular.module('elsie.product')
-.factory('Products', function($http, Location, Scheduler) {
+.factory('Products', function($http, ApiUrl, Location, Scheduler) {
 
-  var url = 'https://lcboapi.com';
-  var searchCache = [];
-  var searchCacheForStore = [];
-  var products = [];
-  var selectedProduct = {};
+  var url = function() {
+    return ApiUrl;
+  };
+
+  var cache = {
+    product: {}
+    products: [],
+    store: {},
+    stores: [],
+    releases: []
+  };
       
   return {
-    select: function(product) {
-      if (product){
-        selectedProduct = product;
+    select: function(item) {
+      if (item){
+        product = item;
       }
       return;
     },
     selected: function() {
-      return selectedProduct;
+      return product;
     },
     search: function(query) {
-      var process = $http.get(url + '/products?q=' + query).then(function(response){
+      var req = url() + '/products?q=' + query;
+      var process = $http.get(req).then(function(response){
         if (response.status === 200){
-          searchCache = response.data.result;
-          return searchCache;
+          cache.products = response.data.result;
+          return cache.products;
         } else {
           var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
           //Elsie.Interface.showApiError(text);
@@ -32,14 +39,13 @@ angular.module('elsie.product')
       return process;
     },
     atNearbyStores: function(product){
-      var url = url + '/products/' + product.id + '/stores?lat=' + Location.latitude + '&lon=' + Location.longitude;
-      var process = $http.get(url).then(function(result){
+      var req = url() + '/products/' + product.id + '/stores?lat=' + Location.latitude + '&lon=' + Location.longitude;
+      var process = $http.get(req).then(function(result){
         if (result.status == 200){
-          // get some data back
-          selectedProduct = result.data.product;
-          selectedProduct.stores = result.data.result;
-          // if product is in watchlist, update its data
-          return selectedProduct;
+          cache.product = result.data.product;
+          cache.product.stores = result.data.result;
+          // TODO: if product is in watchlist, update its data
+          return cache.product;
         } else {
           var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
           //Elsie.Interface.showApiError(text);
@@ -53,11 +59,29 @@ angular.module('elsie.product')
       if (!query || query == "") {
         return;
       }
-      url = url + '/products?q=' + query + '&store_id=' + store.id;
-      var process = $http.get(url).then(function(result){
+      var req = url() + '/products?q=' + query + '&store_id=' + store.id;
+      var process = $http.get(req).then(function(result){
         if (result.status === 200){
-          searchCacheForStore = result.data;
-          return searchCacheForStore;
+          cache.store = result.data;
+          return cache.store;
+        } else {
+          var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
+          //Elsie.Interface.showApiError(text);
+          return [];
+        }
+      });
+      Scheduler.queue(process);
+      return process;
+    },
+    newReleases: function(page) {
+      if (!page){
+        var pageNumber = 1;
+      }
+      var req = url() + '/products?order=released_on&per_page=100&page=' + page;
+      var process = $http.get(req).then(function(result){
+        if (result.status === 200){
+          cache.releases = JSON.parse(result.responseText).result;
+          return cache.releases;
         } else {
           var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
           //Elsie.Interface.showApiError(text);

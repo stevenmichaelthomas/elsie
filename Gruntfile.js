@@ -33,7 +33,7 @@ module.exports = function(grunt) {
       img: {
         expand: true,
         flatten: true,
-        cwd: 'src/img',
+        cwd: 'src/assets',
         src: ['*'],
         dest: 'www/img'
       },

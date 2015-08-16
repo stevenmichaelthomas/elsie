@@ -6,6 +6,8 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
 
 .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
+  //todo: update with elsie colours. #674172
+
   $mdThemingProvider.theme('default')
     .primaryPalette('purple', {
       'default': '800',

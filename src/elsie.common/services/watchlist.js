@@ -1,15 +1,17 @@
 angular.module('elsie.common')
 .factory('Watchlist', function($http, Products, Scheduler) {
 
+  var cache = {
+    lastUpdate: 0
+  };  
   var watchlist = [];
-  var lastRefresh = 0;
 
   var _cacheIsExpired = function() {
-    if (lastRefresh === 0) {
+    if (cache.lastUpdate === 0) {
       return true;
     }
     var now = new Date().getTime();
-    var delta = now - Elsie.Data.lastWatchlistRefresh;
+    var delta = now - cache.lastUpdate;
     if (delta >= 600000){
       return true;
     } else {
@@ -82,10 +84,10 @@ angular.module('elsie.common')
       var deferred = $q.defer();
       if (watchlist.length > 0 && _cacheIsExpired()){
         for (var p = 0; p < watchlist.length; p++){
-          Products.findNearbyStoresWithProduct(watchlist[p].id);
+          Products.atNearbyStores(watchlist[p].id);
         }
         Scheduler.run().then(function(){
-          lastRefresh = new Date().getTime();
+          cache.lastUpdate = new Date().getTime();
           deferred.resolve();
         });
       } else {
