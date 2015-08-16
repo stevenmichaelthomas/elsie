@@ -1,5 +1,5 @@
 angular.module('elsie.search')
-.factory('Barcode', function($http, ApiUrl, Location, Scheduler) {
+.factory('Barcode', function($http, ApiUrl, Location, Scheduler, Dialog) {
 
   var url = function(){
     return ApiUrl;
@@ -14,8 +14,12 @@ angular.module('elsie.search')
           }
         }, 
         function (error) {
-          //handle error
-          //Elsie.Interface.showBarcodeError(error);
+          var message = 'Error scanning: ' + error;
+          var actions = [
+            { label: 'OK' }
+          ];
+          var title = 'Barcode scan error';
+          Dialog.show(message, actions, title);
         }
       );
     }

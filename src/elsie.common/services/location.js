@@ -1,5 +1,5 @@
 angular.module('elsie.common')
-.factory('Location', function($q, Scheduler) {
+.factory('Location', function($q, Scheduler, Dialog) {
 
   var location = {};
   var _sync = function(){
@@ -35,9 +35,13 @@ angular.module('elsie.common')
       };
       var onError = function() {
         //Elsie.Interface.hideLoadingAnimation();
-        var text = "Elsie couldn't get your location. She won't be able to provide you with accurate information until she has it.";
-        var link = { label: "Retry", action: "getLocation" };
-        //Elsie.Interface.showLocationError(text, link);
+        var message = 'Elsie couldn\'t get your location. She won\'t be able to provide you with accurate information until she has it.';
+        var actions = [
+          { label: 'Cancel' },
+          { label: 'Retry', action: 'getLocation' }
+        ];
+        var title = 'Location error';
+        Dialog.show(message, actions, title);
         deferred.resolve();
       };
       navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 6500 });

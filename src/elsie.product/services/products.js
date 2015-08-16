@@ -30,8 +30,7 @@ angular.module('elsie.product')
           cache.products = response.data.result;
           return cache.products;
         } else {
-          var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
-          //Elsie.Interface.showApiError(text);
+          Dialog.showConnectionError();
           return [];
         }
       });
@@ -47,8 +46,7 @@ angular.module('elsie.product')
           // TODO: if product is in watchlist, update its data
           return cache.product;
         } else {
-          var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
-          //Elsie.Interface.showApiError(text);
+          Dialog.showConnectionError();
           return {};
         }
       });
@@ -65,8 +63,7 @@ angular.module('elsie.product')
           cache.releases = JSON.parse(result.responseText).result;
           return cache.releases;
         } else {
-          var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
-          //Elsie.Interface.showApiError(text);
+          Dialog.showConnectionError();
           return [];
         }
       });

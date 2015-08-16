@@ -18,6 +18,16 @@ angular.module('elsie.common')
         buttonLabels.push(actions[i].label);
       }
       navigator.notification.confirm(message, confirmCallback, title, buttonLabels);
+      return;
+    },
+    showConnectionError: function(){
+      var message = 'Elsie couldn\'t reach the LCBO API. It\'s possible that you\'ve lost your data connection. Please try again in a few moments.';
+      var actions = [
+        { label: 'OK' }
+      ];
+      var title = 'Error getting data';
+      this.show(message, actions, title);
+      return;
     }
   }
 

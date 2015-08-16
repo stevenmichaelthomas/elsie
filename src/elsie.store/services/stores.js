@@ -1,5 +1,5 @@
 angular.module('elsie.store')
-.factory('Stores', function($http, ApiUrl, Location, Scheduler) {
+.factory('Stores', function($http, ApiUrl, Location, Scheduler, Dialog) {
 
   var url = function() {
     return ApiUrl;
@@ -111,7 +111,7 @@ angular.module('elsie.store')
           cache.selected = result.data;
           return cache.selected;
         } else {
-          //handle error
+          Dialog.showConnectionError();
           return {};
         }
       });
@@ -125,8 +125,7 @@ angular.module('elsie.store')
         if (result.status === 200){
           return result.data;
         } else {
-          var text = "Elsie couldn't reach the LCBO API. It's possible that you've lost your data connection. Please try again in a few moments.";
-          //Elsie.Interface.showApiError(text);
+          Dialog.showConnectionError();
           return [];
         }
       });
