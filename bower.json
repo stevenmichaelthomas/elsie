@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "homepage": "http://heyelsie.com",
   "authors": [
-    "Doug Estey <doug@designcofounders.com>"
+    "Doug Estey <get@dougestey.com>"
   ],
   "description": "A mobile frontend to a lovely LCBO API.",
   "main": "www/index.html",

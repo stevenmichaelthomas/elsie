@@ -1,4 +1,4 @@
-angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsie.controllers', 'elsie.services', 'elsie.common'])
+angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsie.common', 'elsie.home', 'elsie.product', 'elsie.search'])
 
 .run(function($http, LCBO) {
   $http.defaults.headers.common.Authorization = LCBO;

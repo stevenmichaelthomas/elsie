@@ -47,7 +47,7 @@ angular.module('elsie.common')
       var index;
       for (var p = 0; p < watchlist.length; p++) {
         if (watchlist[p].product_no === product.product_no) {
-            index = p;
+          index = p;
         }
       }
       watchlist[index] = product;
