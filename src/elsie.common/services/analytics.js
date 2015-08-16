@@ -6,7 +6,7 @@ angular.module('elsie.common')
   };
 
   return {
-    updateRunNumber = function(){
+    incrementRunNumber = function(){
       if (!localStorage["Elsie_numberOfRuns"]){
         cache.runNumber = 1;
         localStorage["Elsie_numberOfRuns"] = 1;
