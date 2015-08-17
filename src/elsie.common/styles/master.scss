@@ -33,12 +33,9 @@ md-toolbar {
   md-autocomplete {
     width: 100%;
     height: 100%;
-    box-shadow: none;
-    button {
-      top: 22px;
-    }
     md-autocomplete-wrap {
       height: 100%;
+      box-shadow: none !important;
       input {
         height: 100% !important;
       }
