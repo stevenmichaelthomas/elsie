@@ -42,14 +42,14 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
     .state('home', {
       url: '/home',
       abstract: true,
-      templateUrl: 'home.html',
+      templateUrl: 'templates/master.html',
       controller: 'HomeCtrl'
     })
     .state('home.watchlist', {
       url: '/watchlist',
       views: {
         'watchlist': {
-          templateUrl: 'watchlist.html',
+          templateUrl: 'templates/watchlist.html',
           controller: 'WatchlistCtrl'
         }
       }
@@ -57,12 +57,12 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
     .state('search', {
       url: '/search',
       controller: 'SearchCtrl',
-      templateUrl: 'search.html'
+      templateUrl: 'templates/search.html'
     })
     .state('product', {
       url: '/product',
       controller: 'ProductCtrl',
-      templateUrl: 'product.html'
+      templateUrl: 'templates/one.html'
     });
 
   // if none of the above states are matched, use this as the fallback
