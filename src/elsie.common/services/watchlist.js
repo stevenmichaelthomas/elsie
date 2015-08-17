@@ -1,5 +1,5 @@
 angular.module('elsie.common')
-.factory('Watchlist', function($http, Products, Scheduler) {
+.factory('Watchlist', function($http, $q, Products, Scheduler) {
 
   var cache = {
     lastUpdate: 0
@@ -92,7 +92,7 @@ angular.module('elsie.common')
         });
       } else {
         deferred.resolve();
-      };
+      }
       return deferred.promise; 
     }
   };

@@ -9,7 +9,7 @@ angular.module('elsie.search')
       $scope.products = result;
       return $scope.products;
     });
-  }
+  };
   $scope.selectProduct = function(product){
     if (product && product.product_no){
       Products.select(product);

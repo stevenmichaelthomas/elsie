@@ -20,6 +20,6 @@ angular.module('elsie.common')
     runNumber: function(){
       return cache.runNumber;
     }
-  }
+  };
 
 });

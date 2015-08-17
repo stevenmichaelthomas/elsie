@@ -11,6 +11,6 @@ angular.module('elsie.common')
     run: function(){
       return $q.all(processes);
     }
-  }
+  };
 
 });

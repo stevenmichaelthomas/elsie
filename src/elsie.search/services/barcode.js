@@ -23,6 +23,6 @@ angular.module('elsie.search')
         }
       );
     }
-  }
+  };
 
 });

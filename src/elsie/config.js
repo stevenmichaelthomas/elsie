@@ -3,8 +3,9 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
 .run(function($http, LCBO, Analytics, Dialog) {
   $http.defaults.headers.common.Authorization = LCBO;
   //TODO: move this after app init
-  if (navigator && navigator.splashscreen)
+  if (navigator && navigator.splashscreen){
     navigator.splashscreen.hide();
+  }
 
   Analytics.incrementRunNumber();
   if (Analytics.runNumber() === 3){

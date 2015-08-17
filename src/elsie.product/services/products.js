@@ -1,5 +1,5 @@
 angular.module('elsie.product')
-.factory('Products', function($http, ApiUrl, Location, Scheduler) {
+.factory('Products', function($http, ApiUrl, Location, Dialog, Scheduler) {
 
   var url = function() {
     return ApiUrl;
@@ -16,12 +16,12 @@ angular.module('elsie.product')
   return {
     select: function(item) {
       if (item){
-        product = item;
+        cache.product = item;
       }
       return;
     },
     selected: function() {
-      return product;
+      return cache.product;
     },
     search: function(query) {
       var req = url() + '/products?q=' + query;
@@ -40,7 +40,7 @@ angular.module('elsie.product')
     atNearbyStores: function(product){
       var req = url() + '/products/' + product.id + '/stores?lat=' + Location.latitude + '&lon=' + Location.longitude;
       var process = $http.get(req).then(function(result){
-        if (result.status == 200){
+        if (result.status === 200){
           cache.product = result.data.product;
           cache.product.stores = result.data.result;
           // TODO: if product is in watchlist, update its data
@@ -70,6 +70,6 @@ angular.module('elsie.product')
       Scheduler.queue(process);
       return process;
     }
-  }
+  };
 
 });

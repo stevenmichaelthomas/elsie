@@ -11,6 +11,6 @@ angular.module('elsie.store')
       var url = "http://dev.virtualearth.net/REST/v1/Imagery/Map/" + imagerySet + "/" + centerPoint + "/"+ zoomLevel +"?mapSize=" + mapSize + "&pushpin=" + pushpin + "&key=" + BING + "&format=png";
       return url;
     }
-  }
+  };
 
 });

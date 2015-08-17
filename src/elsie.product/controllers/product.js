@@ -13,7 +13,8 @@ angular.module('elsie.product')
     $scope.image = {
       'background-image': 'url(' + $scope.product.image_url + ')'
     };
-    if (Watchlist.checkForProduct($scope.product))
+    if (Watchlist.checkForProduct($scope.product)){
       $scope.isWatched = true;
+    }
   })();
 });

@@ -6,5 +6,5 @@ angular.module('elsie.common')
         normalizedStateName = 'state-' + stateName.replace(/\./g, '-');
       $element.addClass(normalizedStateName);
     }
-  }
+  };
 }]);

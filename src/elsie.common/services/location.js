@@ -48,6 +48,6 @@ angular.module('elsie.common')
       Scheduler.queue(process);
       return process;
     }
-  }
+  };
 
 });

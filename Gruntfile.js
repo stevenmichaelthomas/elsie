@@ -15,6 +15,15 @@ module.exports = function(grunt) {
       }
     },
 
+    jshint: {
+      files: [
+        'src/**/*.js'
+      ],
+      options: {
+        jshintrc: '.jshintrc'
+      }
+    },
+
     concat: {
       build: {
         files: {
@@ -127,8 +136,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  grunt.registerTask('build', ['sass', 'concat', 'copy', 'jade']);
+  grunt.registerTask('build', ['sass', 'jshint', 'concat', 'copy', 'jade']);
   grunt.registerTask('default', ['build', 'watch']);
  
 }

@@ -3,7 +3,7 @@ angular.module('elsie.common')
   $scope.go = function(destination){
     $mdSidenav('menu').close();
     $state.go(destination);
-  }
+  };
   $scope.close = function () {
     $mdSidenav('menu').close();
   };

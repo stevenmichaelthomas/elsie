@@ -5,7 +5,7 @@ angular.module('elsie.store')
     return ApiUrl;
   };
 
-  var today = function() {
+  var _today = function() {
     var day;
     switch (new Date().getDay()) {
         case 0:
@@ -33,8 +33,8 @@ angular.module('elsie.store')
     return day;
   };
 
-  var getHours = function(store){
-    var day = today();
+  var _hours = function(store){
+    var day = _today();
     var todayOpen = day + "_open";
     var todayClose = day + "_close";
     var todaysHours = {};
@@ -43,8 +43,8 @@ angular.module('elsie.store')
     return todaysHours;
   };
 
-  var getStatus = function(store){
-    var todaysHours = hours(store);
+  var _status = function(store){
+    var todaysHours = _hours(store);
     var now = new Date();
     var minutes_since_midnight = (now.getHours() * 60) + now.getMinutes();
     var result;
@@ -60,8 +60,8 @@ angular.module('elsie.store')
     return result;
   };
 
-  var getTimeUntilStatusChange = function(store){
-    var todaysHours = hours(store);
+  var _timeUntilChange = function(store){
+    var todaysHours = _hours(store);
     var now = new Date();
     var minutes_since_midnight = (now.getHours() * 60) + now.getMinutes();
     var result;
@@ -81,12 +81,13 @@ angular.module('elsie.store')
         result = "due to holiday";
         return result;
       }
+      var minutesToOpen;
       if (minutes_since_midnight > todaysHours.open) {
         // we are late in the night, but before midnight
-        var minutesToOpen = todaysHours.open + (1440 - minutes_since_midnight);
+        minutesToOpen = todaysHours.open + (1440 - minutes_since_midnight);
       } else {
         // we are in the wee hours of the morning
-        var minutesToOpen = todaysHours.open - minutes_since_midnight;
+        minutesToOpen = todaysHours.open - minutes_since_midnight;
       }
       if (minutesToOpen >= 60) {
         // convert to hours
@@ -117,7 +118,7 @@ angular.module('elsie.store')
       });
     },
     inventory: function(query, store){
-      if (!query || query == "") {
+      if (!query || query === "") {
         return;
       }
       var req = url() + '/products?q=' + query + '&store_id=' + store.id;
@@ -133,14 +134,14 @@ angular.module('elsie.store')
       return process;
     },
     hours: function(store){
-      return getHours(store);
+      return _hours(store);
     },
     status: function(store){
-      return getStatus(store);
+      return _status(store);
     },
     timeUntilStatusChange: function(store){
-      return getTimeUntilStatusChange(store);
+      return _timeUntilChange(store);
     }
-  }
+  };
 
 });

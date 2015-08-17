@@ -10,7 +10,7 @@ angular.module('elsie.home')
   $scope.productStyle = function(product){
     var style = {
       "background-image": "url('" + product.image_url + "')"
-    }
+    };
     return style;
   };
 });
