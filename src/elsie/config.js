@@ -22,10 +22,15 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
 
 .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
-  //todo: update with elsie colours. #674172
+  // Extend the red theme with a few different colors
+  var elsiePurple = $mdThemingProvider.extendPalette('purple', {
+    '800': '674172'
+  });
+  // Register the new color palette map with the name <code>neonRed</code>
+  $mdThemingProvider.definePalette('elsie', elsiePurple);
 
   $mdThemingProvider.theme('default')
-    .primaryPalette('purple', {
+    .primaryPalette('elsie', {
       'default': '800',
       'hue-1': '100',
       'hue-2': '600',
