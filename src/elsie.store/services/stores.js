@@ -1,5 +1,5 @@
 angular.module('elsie.store')
-.factory('Stores', function($http, ApiUrl, Location, Scheduler, Dialog) {
+.factory('Stores', function($http, ApiUrl, Scheduler, Dialog) {
 
   var url = function() {
     return ApiUrl;

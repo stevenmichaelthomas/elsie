@@ -1,5 +1,5 @@
 angular.module('elsie.search')
-.factory('Barcode', function($http, ApiUrl, Location, Scheduler, Dialog) {
+.factory('Barcode', function($http, ApiUrl, Scheduler, Dialog) {
 
   var url = function(){
     return ApiUrl;

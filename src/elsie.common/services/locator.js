@@ -1,5 +1,5 @@
 angular.module('elsie.common')
-.factory('Location', function($q, Scheduler, Dialog) {
+.factory('Locator', function($q, Scheduler, Dialog) {
 
   var location = {};
   var _sync = function(){

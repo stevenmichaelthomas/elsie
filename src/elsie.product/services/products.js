@@ -1,5 +1,5 @@
 angular.module('elsie.product')
-.factory('Products', function($http, ApiUrl, Location, Dialog, Scheduler) {
+.factory('Products', function($http, ApiUrl, Locator, Dialog, Scheduler) {
 
   var url = function() {
     return ApiUrl;
@@ -38,7 +38,7 @@ angular.module('elsie.product')
       return process;
     },
     atNearbyStores: function(product){
-      var req = url() + '/products/' + product.id + '/stores?lat=' + Location.latitude + '&lon=' + Location.longitude;
+      var req = url() + '/products/' + product.id + '/stores?lat=' + Locator.latitude + '&lon=' + Locator.longitude;
       var process = $http.get(req).then(function(result){
         if (result.status === 200){
           cache.product = result.data.product;
