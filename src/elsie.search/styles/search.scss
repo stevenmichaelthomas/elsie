@@ -4,5 +4,18 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background: white;
+  background: #FAFAFA;
+  padding-top: $bump;
+  md-autocomplete {
+    width: 100%;
+    height: 100%;
+    background-color: #FAFAFA;
+    md-autocomplete-wrap {
+      height: 100%;
+      box-shadow: none !important;
+      input {
+        height: 100% !important;
+      }
+    }
+  }
 }

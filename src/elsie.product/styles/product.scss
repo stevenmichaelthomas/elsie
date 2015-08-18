@@ -31,14 +31,14 @@
   md-content.upper {
     .md-icon-button {
       float: left;
-      margin: 25px 0 0;
+      margin: 0;
       md-icon {
         color: $charcoal;
       }
     }
   }
   md-content.lower {
-    background-color: white;
+    //background-color: white;
     * {
       //color: rgba(255,255,255,0.87) !important;
     }

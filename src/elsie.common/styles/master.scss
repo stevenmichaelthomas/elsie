@@ -1,17 +1,18 @@
 @import 'fonts';
 @import 'mixins';
-@import 'animations';
+//@import 'animations';
 
 $purple: #674172;
 $pink: #E91E63;
 $charcoal: #212121;
+$bump: 20px;
 
 body {
   font-family: 'Roboto';
 }
 
 #main {
-  padding-top: 25px;
+  padding-top: $bump;
   position: absolute;
   top: 0;
   left: 0;
@@ -20,7 +21,7 @@ body {
 }
 
 .android-bar {
-  height: 25px;
+  height: $bump;
   position: absolute;
   top: 0;
   left: 0;
@@ -28,19 +29,18 @@ body {
   background-color: $purple;
 }
 
-md-toolbar {
-  box-shadow: none;
-  md-autocomplete {
-    width: 100%;
-    height: 100%;
-    md-autocomplete-wrap {
-      height: 100%;
-      box-shadow: none !important;
-      input {
-        height: 100% !important;
-      }
+button.md-button {
+  &.md-fab {
+    &.fab-bottom-right {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
     }
   }
+}
+
+md-toolbar {
+  box-shadow: none;
   .md-toolbar-tools {
     h2 {
       font-weight: 500;
@@ -62,9 +62,14 @@ md-icon.md-default-theme {
   color: rgba(255, 255, 255, 0.870588);
 }
 
+md-list-item > .md-avatar:first-child, md-list-item .md-list-item-inner > .md-avatar:first-child {
+  height: auto;
+}
+
 md-tabs {
-  margin-top: -1px;
+  //margin-top: -1px;
   &.full {
+    margin-top: $bump;
     position: absolute;
     top: 64px;
     left: 0;
@@ -75,7 +80,7 @@ md-tabs {
 
 md-sidenav {
   md-toolbar {
-    padding-top: 25px;
+    padding-top: $bump;
   }
 }
 
@@ -85,4 +90,5 @@ md-sidenav {
 
 @import '../../elsie.product/styles/product';
 @import '../../elsie.home/styles/watchlist';
+@import '../../elsie.home/styles/explore';
 @import '../../elsie.search/styles/search';
