@@ -2,7 +2,7 @@ angular.module('elsie.search')
 .controller('SearchCtrl', function($scope, $state, Products) {
   $scope.selectedProduct = {};
   $scope.change = function(change) {
-    console.log(change);
+    //console.log(change);
   };
   $scope.search = function(query) {
     return Products.search(query).then(function(result){
