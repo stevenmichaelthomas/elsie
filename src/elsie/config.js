@@ -1,33 +1,40 @@
 angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsie.common', 'elsie.home', 'elsie.product', 'elsie.search', 'elsie.store'])
 
 .run(function($http, LCBO, Analytics, Dialog) {
-  $http.defaults.headers.common.Authorization = LCBO;
-  //TODO: move this after app init
-  if (navigator && navigator.splashscreen){
-    navigator.splashscreen.hide();
-  }
+  $http.defaults.headers.common.Authorization = LCBO;  
+  
+  function onDeviceReady() {
+    if (navigator && navigator.splashscreen){
+      navigator.splashscreen.hide();
+    }
 
-  Analytics.incrementRunNumber();
-  if (Analytics.runNumber() === 3){
-    var message = 'If you enjoy Elsie, you can help others find out about her by leaving a review in the app store.';
-    var actions = [
-      { label: 'Don\'t ask again' },
-      { label: 'Leave a review', action: 'url', url: 'http://www.windowsphone.com/s?appid=d1040ef2-5d48-4962-9a5b-e20c01fe1760' }
-    ];
-    var title = 'Please consider a review';
-    Dialog.show(message, actions, title);    
+    Analytics.incrementRunNumber();
+    if (Analytics.runNumber() === 3){
+      var message = 'If you enjoy Elsie, you can help others find out about her by leaving a review in the app store.';
+      var actions = [
+        { label: 'Don\'t ask again' },
+        { label: 'Leave a review', action: 'url', url: 'http://www.windowsphone.com/s?appid=d1040ef2-5d48-4962-9a5b-e20c01fe1760' }
+      ];
+      var title = 'Please consider a review';
+      Dialog.show(message, actions, title);    
+    }
   }
+  
+  document.addEventListener("deviceready", onDeviceReady, false);
 
 })
 
 .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
-  // Extend the red theme with a few different colors
   var elsiePurple = $mdThemingProvider.extendPalette('purple', {
     '800': '674172'
   });
-  // Register the new color palette map with the name <code>neonRed</code>
   $mdThemingProvider.definePalette('elsie', elsiePurple);
+
+  var background = $mdThemingProvider.extendPalette('grey', {
+    '50': 'ffffff'
+  });
+  $mdThemingProvider.definePalette('background', background);
 
   $mdThemingProvider.theme('default')
     .primaryPalette('elsie', {
@@ -39,9 +46,7 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
     .accentPalette('pink', {
       'default': '500'
     })
-    .backgroundPalette('grey', {
-      'default': '50'
-    });
+    .backgroundPalette('background');
 
   $stateProvider
     .state('home', {
@@ -50,15 +55,23 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
       templateUrl: 'templates/master.html',
       controller: 'HomeCtrl'
     })
-    .state('home.watchlist', {
-      url: '/watchlist',
-      views: {
-        'watchlist': {
-          templateUrl: 'templates/watchlist.html',
-          controller: 'WatchlistCtrl'
+      .state('home.watchlist', {
+        url: '/watchlist',
+        views: {
+          'watchlist': {
+            templateUrl: 'templates/watchlist.html',
+            controller: 'WatchlistCtrl'
+          }
         }
-      }
-    })
+      })
+      .state('home.explore', {
+        url: '/explore',
+        views: {
+          'explore': {
+            templateUrl: 'templates/explore.html'
+          }
+        }
+      })
     .state('search', {
       url: '/search',
       controller: 'SearchCtrl',

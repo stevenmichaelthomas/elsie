@@ -13,8 +13,7 @@ md-toolbar.md-default-theme
     md-button.md-icon-button(aria-label="Search", ng-click="go('search')")
       md-icon(md-svg-icon="img/search.svg")
 md-tabs.full.md-primary(md-selected="selectedIndex", md-no-pagination="true", md-stretch-tabs="always")
-  md-tab(label='Watchlist', md-on-select="go('home.watchlist')")
+  md-tab(label='Explore', md-on-select="go('home.explore')")
+    div(ui-view='explore')
+  md-tab(label='Cellar', md-on-select="go('home.watchlist')")
     div(ui-view='watchlist')
-  md-tab(label='Releases', md-on-select="go('home.watchlist')")
-    //div(ui-view='search')
-  

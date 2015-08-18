@@ -1,12 +1,18 @@
 doctype
-md-grid-list.watchlist(ng-if="gridView",md-row-height="4:3",md-gutter="8px",md-cols="2",layout-padding)
+//md-grid-list.watchlist.grid(ng-if="gridView",md-row-height="4:3",md-gutter="8px",md-cols="2",layout-padding)
   md-grid-tile.product(md-colspan="1",ng-repeat="product in watchlist",ng-click="loadProduct(product)",ng-style="productStyle(product)")
     md-icon
     md-grid-tile-footer
       h3 {{ product.name }}
+.watchlist.carousel(ng-if="gridView")
+  md-virtual-repeat-container.scroller(md-orient-horizontal)
+    .product(md-virtual-repeat="product in watchlist",ng-click="loadProduct(product)")
+      img(ng-src="{{ product.image_url }}")
 md-list.watchlist(ng-if="!gridView",layout-padding)
-  md-list-item.md-2-line(ng-repeat="product in watchlist",ng-click="loadProduct(product)")
+  md-list-item.md-2-line(md-no-ink,ng-repeat="product in watchlist",ng-click="loadProduct(product)")
     img.md-avatar(ng-src="{{ product.image_thumb_url }}")
     .md-list-item-text
       h3 {{ product.name }}
       p {{ product.producer_name }}
+md-button.md-fab.fab-bottom-right(aria-label="Add to Watchlist",ng-click="go('search')")
+  md-icon(md-svg-src="img/add.svg")
