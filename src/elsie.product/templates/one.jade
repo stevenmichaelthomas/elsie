@@ -9,23 +9,23 @@ doctype
         h2.md-title {{ product.name }}
         h5.md-subhead {{ product.producer_name }}
   md-button.md-fab(aria-label="Add to Watchlist",ng-click="toggleWatch(product)")
-    md-icon(md-svg-src='img/favorite.svg',ng-show="isWatched")
-    md-icon(md-svg-src='img/favorite_outline.svg',ng-show="!isWatched")
-  md-content.lower.md-default.md-hue-1
+    md-icon(md-svg-src='img/favorite.svg',ng-if="isWatched")
+    md-icon(md-svg-src='img/favorite_outline.svg',ng-if="!isWatched")
+  md-content.lower.md-default.md-primary-bg
     md-list
-      md-list-item.md-2-line
+      md-list-item.md-2-line(ng-if="product.varietal")
         .md-list-item-text
           h3 {{ product.varietal }}
           p type
       md-list-item.md-2-line
         .md-list-item-text
-          h3 {{ product.price_in_cents | currency : $ : 1  }}
+          h3 {{ product.price_in_cents / 100 | currency : $ : 2  }}
           p price
       md-list-item.md-2-line
         .md-list-item-text
-          h3 {{ product.package_unit_volume_in_milliliters }}
-          p ml x {{ product.total_package_units }}
+          h3 {{ product.package_unit_volume_in_milliliters }} ml x {{ product.total_package_units }}
+          p unit package
       md-list-item.md-2-line
         .md-list-item-text
-          h3 {{ product.alcohol_content }}
+          h3 {{ product.alcohol_content / 10000 | percentage : 1 }}
           p alcohol by volume
