@@ -15,6 +15,7 @@
   "predef": [
     "angular",
     "console",
-    "cordova"
+    "cordova",
+    "verge"
   ]
 }
