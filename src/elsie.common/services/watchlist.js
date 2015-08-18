@@ -29,7 +29,6 @@ angular.module('elsie.common')
       if (watchlist.length === 0){
         if (localStorage["Elsie_watchlistProducts"]){
           var retrievedItmes = JSON.parse(localStorage["Elsie_watchlistProducts"]);
-          retrievedItmes.reverse();
           watchlist = retrievedItmes;
         } else {
           _syncWatchlist();
@@ -59,7 +58,7 @@ angular.module('elsie.common')
       var result;
       var index;
       if (!this.checkForProduct(product)){
-        watchlist.push(product);
+        watchlist.unshift(product);
         result = "added";
       } else {
         for (var i = 0; i < watchlist.length; i++) {
