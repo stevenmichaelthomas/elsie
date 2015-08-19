@@ -101,10 +101,34 @@ angular.module('elsie.store')
   };
 
   var cache = {
-    selected: null
+    selected: null,
+    query: []
   };
 
   return {
+    select: function(item) {
+      if (item){
+        cache.selected = item;
+      }
+      return;
+    },
+    selected: function() {
+      return cache.selected;
+    },
+    search: function(query) {
+      var req = url() + '/stores?q=' + query;
+      var process = $http.get(req).then(function(response){
+        if (response.status === 200){
+          cache.query = response.data.result;
+          return cache.query;
+        } else {
+          Dialog.showConnectionError();
+          return [];
+        }
+      });
+      Scheduler.queue(process);
+      return process;
+    },
     one: function(id){
       var req = url + '/stores/' + id;
       return $http.get(req).then(function(result){

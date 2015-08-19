@@ -1,0 +1,25 @@
+doctype
+.store.single
+  md-content.upper
+    md-toolbar.upper
+      .md-toolbar-tools
+        md-button.md-icon-button(aria-label="Back", ng-click="back()")
+          md-icon(md-svg-icon="img/arrow_back.svg")
+    .image(ng-style="image")
+    md-toolbar.lower
+      .md-toolbar-tools
+        h2.md-title {{ store.name }}
+        h5.md-subhead {{ store.address_line_1 }}
+  //md-button.md-fab(aria-label="Add to Watchlist",ng-click="toggleWatch(product)")
+    md-icon(md-svg-src='img/favorite.svg',ng-if="isWatched")
+    md-icon(md-svg-src='img/favorite_outline.svg',ng-if="!isWatched")
+  md-content.lower.md-default.md-primary-bg
+    md-list
+      md-list-item.md-2-line(ng-if="product.varietal")
+        .md-list-item-text
+          h3 {{ store.store_no }}
+          p store number
+      md-list-item.md-2-line
+        .md-list-item-text
+          h3 {{ store.address_line_1  }}
+          p address

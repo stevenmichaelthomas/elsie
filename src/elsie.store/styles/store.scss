@@ -1,0 +1,48 @@
+.store.single {
+  .image {
+    height: 244px;
+    background-color: white;
+    background-size: auto 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  md-toolbar.upper {
+    background-color: transparent;
+    position: absolute;
+    width: 100%;
+    .md-icon-button {
+      margin-left: -13px;
+      md-icon {
+        color: $charcoal;
+      }
+    }
+  }
+  md-toolbar.lower {
+    @include gradient(rgba(0,0,0,0), rgba(0,0,0,0.4));
+    margin-top: -148px;
+    padding-top: 64px;
+    height: 128px;
+    color: white;
+    .md-toolbar-tools {
+      //align-items: flex-start;
+      //flex-direction: column;
+      display: block;
+      overflow: hidden;
+      .md-title {
+        font-weight: 600;
+        white-space: nowrap;
+      }
+    }
+  }
+  a.md-button.md-default-theme.md-fab, .md-button.md-default-theme.md-fab {
+    position: absolute;
+    right: 20px;
+    top: 210px;
+  }
+  md-content.upper {
+    overflow: hidden;
+  }
+  md-content.lower {
+    //
+  }
+}
