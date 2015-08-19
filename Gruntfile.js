@@ -124,6 +124,16 @@ module.exports = function(grunt) {
         livereload: true
       },
       grunt: { files: ['Gruntfile.js'] },
+
+      scripts: {
+        files: ['src/**/*.js'],
+        tasks: ['jshint', 'concat', 'copy'],
+      },
+
+      templates: {
+        files: ['src/**/*.jade'],
+        tasks: ['jade'],
+      },
  
       sass: {
         files: '**/styles/*.scss',
