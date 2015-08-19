@@ -1,5 +1,5 @@
 angular.module('elsie.common')
-.controller('AppCtrl', function($scope, $state, $mdSidenav){
+.controller('AppCtrl', function($scope, $state, $history, $mdSidenav){
   
   function buildToggler(navID) {
     return function() {
@@ -10,6 +10,9 @@ angular.module('elsie.common')
   $scope.toggleMenu = buildToggler('menu'); 
   $scope.go = function(destination){
     $state.go(destination);
+  };
+  $scope.back = function(){
+    $history.back();
   };
   $scope.followLink = function(url){
     //navigator.app.loadUrl(url, {openExternal : true});

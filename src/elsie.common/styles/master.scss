@@ -4,8 +4,8 @@
 
 $purple: #674172;
 $pink: #E91E63;
-$charcoal: #212121;
-$bump: 20px;
+$charcoal: #313131;
+$bump: 24px;
 
 body {
   font-family: 'Roboto';
@@ -13,6 +13,7 @@ body {
 
 #main {
   padding-top: $bump;
+  overflow: hidden;
   position: absolute;
   top: 0;
   left: 0;
@@ -20,7 +21,7 @@ body {
   right: 0;
 }
 
-.android-bar {
+.bar {
   height: $bump;
   position: absolute;
   top: 0;
@@ -37,23 +38,26 @@ button.md-button {
       right: 20px;
     }
   }
+  &.md-icon-button {
+    -webkit-transition: all 0.25s;
+    -webkit-transform: scale3d(1,1,1);
+    transition: all 0.25s;
+    transform: scale3d(1,1,1);
+    &.invisible {
+      -webkit-transform: scale3d(0,0,0);
+      transform: scale3d(0,0,0);
+    }
+  }
 }
 
 md-toolbar {
-  box-shadow: none;
+  //box-shadow: none;
   .md-toolbar-tools {
     h2 {
       font-weight: 500;
     }
     h5 {
       margin: 0;
-    }
-  }
-  &.md-theme-search {
-    background-color: #FAFAFA;
-    box-shadow: initial;
-    md-icon.md-default-theme {
-      color: rgba(0,0,0,0.54);
     }
   }
 }
@@ -67,9 +71,28 @@ md-list-item > .md-avatar:first-child, md-list-item .md-list-item-inner > .md-av
 }
 
 md-tabs {
-  //margin-top: -1px;
   &.full {
     margin-top: $bump;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    &.no-bump {
+      margin-top: 0;
+    }
+  }
+}
+
+md-sidenav {
+  width: 65%;
+  md-toolbar {
+    padding-top: $bump;
+  }
+}
+
+md-content {
+  &.with-toolbar {
     position: absolute;
     top: 64px;
     left: 0;
@@ -78,9 +101,9 @@ md-tabs {
   }
 }
 
-md-sidenav {
-  md-toolbar {
-    padding-top: $bump;
+md-tab-item {
+  * {
+    -webkit-user-select: none;
   }
 }
 
@@ -89,6 +112,7 @@ md-sidenav {
 }
 
 @import '../../elsie.product/styles/product';
+@import '../../elsie.store/styles/store';
 @import '../../elsie.home/styles/watchlist';
 @import '../../elsie.home/styles/explore';
 @import '../../elsie.search/styles/search';
