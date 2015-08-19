@@ -1,1 +1,1 @@
-angular.module('elsie.common', []);
+angular.module('elsie.common', ['ui.router']);
