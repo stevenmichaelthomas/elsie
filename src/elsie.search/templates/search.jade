@@ -2,7 +2,23 @@ doctype
 .search
   md-toolbar.md-theme-search
     .md-toolbar-tools
-      md-button.md-icon-button(aria-label="Back", ng-click="go('home.watchlist')")
+      md-button.md-icon-button(aria-label="Back", ui-sref="home.watchlist")
         md-icon(md-svg-icon="img/arrow_back.svg")  
-      md-autocomplete(md-selected-item='product', md-delay='300', md-search-text-change='change(searchText)', md-search-text='searchText', md-selected-item-change='selectProduct(product)', md-items='product in search(searchText)', md-item-text='product.name', md-min-length='1', placeholder='Search for a product', md-autofocus="true")
-          span(md-highlight-text='searchText', md-highlight-flags='^i') {{ product.name }}
+      input(type="text",placeholder="Search products",ng-model="query.product",ng-change="searchProducts(query.product)",ng-model-options="{ debounce: 300 }",ng-if="!storeMode")
+      input(type="text",placeholder="Search stores",ng-model="query.store",ng-change="searchStores(query.store)",ng-model-options="{ debounce: 300 }",ng-if="storeMode",ng-cloak)
+      md-button.md-icon-button.hide(ng-class="{ invisible: !storeMode && !query.product || storeMode && !query.store }",ng-click="clear()")
+        md-icon(md-svg-icon="img/close.svg")
+  md-tabs.full.no-bump(md-selected="0",md-no-pagination="true",md-stretch-tabs="always")
+    md-tab(label="Products",ng-click="storeMode = false")
+      md-list
+        md-list-item.md-2-line(md-no-ink,ng-repeat="product in products",ng-click="selectProduct(product)")
+          img.md-avatar(ng-src="{{ product.image_thumb_url }}")
+          .md-list-item-text
+            h3 {{ product.name }}
+            p {{ product.producer_name }}
+    md-tab(label="Stores",ng-click="storeMode = true")
+      md-list
+        md-list-item.md-2-line(md-no-ink,ng-repeat="store in stores",ng-click="selectStore(store)")
+          .md-list-item-text
+            h3 &#35;{{ store.store_no }} {{ store.name }}
+            p {{ store.address_line_1 }}

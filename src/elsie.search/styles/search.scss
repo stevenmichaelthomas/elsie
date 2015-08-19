@@ -1,21 +1,24 @@
 .search {
   position: absolute;
-  top: 0;
+  top: $bump;
   left: 0;
   bottom: 0;
   right: 0;
-  background: #FAFAFA;
-  padding-top: $bump;
-  md-autocomplete {
+  input {
     width: 100%;
     height: 100%;
-    background-color: #FAFAFA;
-    md-autocomplete-wrap {
-      height: 100%;
-      box-shadow: none !important;
-      input {
-        height: 100% !important;
-      }
+    font-size: 0.9em;
+    border: none;
+    outline: none;
+    color: $charcoal;
+    background-color: transparent;
+  }
+  .md-theme-search {
+    background-color: white;
+  }
+  .md-icon-button {
+    md-icon {
+      color: $charcoal;
     }
   }
 }
