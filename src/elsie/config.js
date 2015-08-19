@@ -20,7 +20,11 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
     }
   }
   
-  document.addEventListener("deviceready", onDeviceReady, false);
+  document.addEventListener('deviceready', onDeviceReady, false);
+  window.addEventListener('native.keyboardshow', function(){
+    cordova.plugins.Keyboard.disableScroll(true);
+    cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+  });
 
 })
 
@@ -80,10 +84,15 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
     .state('product', {
       url: '/product',
       controller: 'ProductCtrl',
-      templateUrl: 'templates/one.html'
+      templateUrl: 'templates/product.html'
+    })
+    .state('store', {
+      url: '/store',
+      controller: 'StoreCtrl',
+      templateUrl: 'templates/store.html'
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/home/watchlist');
+  $urlRouterProvider.otherwise('/home/explore');
 
 });
