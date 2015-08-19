@@ -25,3 +25,14 @@
     }
   }
 }
+
+.md-button.md-fab.watchlist-fab {
+  -webkit-transition-property: all;
+  -webkit-transform: scale3d(0,0,0);
+  transition-property: all;
+  transform: scale3d(0,0,0);
+  &.state-home-watchlist {
+    -webkit-transform: scale3d(1,1,1);
+    transform: scale3d(1,1,1);
+  }
+}
