@@ -4,21 +4,21 @@ doctype
     .md-toolbar-tools
       md-button.md-icon-button(aria-label="Back", ui-sref="home.watchlist")
         md-icon(md-svg-icon="img/arrow_back.svg")  
-      input(type="text",placeholder="Search products",ng-model="query.product",ng-change="searchProducts(query.product)",ng-model-options="{ debounce: 300 }",ng-if="!storeMode")
-      input(type="text",placeholder="Search stores",ng-model="query.store",ng-change="searchStores(query.store)",ng-model-options="{ debounce: 300 }",ng-if="storeMode",ng-cloak)
-      md-button.md-icon-button.hide(ng-class="{ invisible: !storeMode && !query.product || storeMode && !query.store }",ng-click="clear()")
+      input(type="text",placeholder="Search products",ng-model="query.product",ng-change="searchProducts(query.product)",ng-model-options="{ debounce: 300 }",ng-if="results.mode === 'product'")
+      input(type="text",placeholder="Search stores",ng-model="query.store",ng-change="searchStores(query.store)",ng-model-options="{ debounce: 300 }",ng-if="results.mode === 'store'",ng-cloak)
+      md-button.md-icon-button.hide(ng-class="{ invisible: results.mode === 'product' && !query.product || results.mode === 'store' && !query.store }",ng-click="clear()")
         md-icon(md-svg-icon="img/close.svg")
-  md-tabs.full.no-bump(md-selected="0",md-no-pagination="true",md-stretch-tabs="always")
-    md-tab(label="Products",ng-click="storeMode = false")
+  md-tabs.full.no-bump(md-selected="selectedTab",md-no-pagination="true",md-stretch-tabs="always")
+    md-tab(label="Products",md-on-select="results.mode = 'product'")
       md-list
-        md-list-item.md-2-line(md-no-ink,ng-repeat="product in products",ng-click="selectProduct(product)")
+        md-list-item.md-2-line(md-no-ink,ng-repeat="product in results.products",ng-click="selectProduct(product)")
           img.md-avatar(ng-src="{{ product.image_thumb_url }}")
           .md-list-item-text
             h3 {{ product.name }}
             p {{ product.producer_name }}
-    md-tab(label="Stores",ng-click="storeMode = true")
+    md-tab(label="Stores",md-on-select="results.mode = 'store'")
       md-list
-        md-list-item.md-2-line(md-no-ink,ng-repeat="store in stores",ng-click="selectStore(store)")
+        md-list-item.md-2-line(md-no-ink,ng-repeat="store in results.stores",ng-click="selectStore(store)")
           .md-list-item-text
             h3 &#35;{{ store.store_no }} {{ store.name }}
             p {{ store.address_line_1 }}

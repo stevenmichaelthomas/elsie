@@ -1,21 +1,22 @@
 angular.module('elsie.search')
-.controller('SearchCtrl', function($scope, $state, Products, Stores) {
+.controller('SearchCtrl', function($scope, $state, Products, Stores, Cache) {
   $scope.query = {
     product: null,
     store: null
   };
   $scope.clear = function(){
-    if ($scope.storeMode){
+    if ($scope.results.mode === 'store'){
       $scope.query.store = null;
     }
-    if (!$scope.storeMode){
+    if ($scope.results.mode === 'product'){
       $scope.query.product = null;
     }
   };
   $scope.searchProducts = function(query) {
     return Products.search(query).then(function(result){
-      $scope.products = result;
-      return $scope.products;
+      $scope.results.products = result;
+      Cache.update($scope.results);
+      return $scope.results.products;
     });
   };
   $scope.selectProduct = function(product){
@@ -26,8 +27,9 @@ angular.module('elsie.search')
   };
   $scope.searchStores = function(query) {
     return Stores.search(query).then(function(result){
-      $scope.stores = result;
-      return $scope.stores;
+      $scope.results.stores = result;
+      Cache.update($scope.results);
+      return $scope.results.stores;
     });
   };
   $scope.selectStore = function(store){
@@ -36,18 +38,24 @@ angular.module('elsie.search')
       $state.go('store');
     }
   };
-  $scope.logScope = function(){
-    console.log($scope);
+  $scope.getTab = function(){
+    if ($scope.results.mode === 'product'){
+      return 0;
+    } else if ($scope.results.mode === 'store'){
+      return 1;
+    }
   };
-  $scope.$watch('storeMode', function(){
-    console.log('change');
+  $scope.$watch('results.mode', function(){
     setTimeout(function(){
       document.querySelector('.md-toolbar-tools input').focus();
     },100);
+    Cache.update($scope.results);
   });
   (function(){
     setTimeout(function(){
       document.querySelector('.md-toolbar-tools input').focus();
     },100);
+    $scope.results = Cache.get();
+    $scope.selectedTab = $scope.getTab();
   })();
 });
