@@ -1,10 +1,12 @@
 doctype
-.product.single(layout="column")
+.product.single
   md-content.upper
-    md-button.md-icon-button(aria-label="Back", ui-sref="home.watchlist")
-      md-icon(md-svg-icon="img/arrow_back.svg")
+    md-toolbar.upper
+      .md-toolbar-tools
+        md-button.md-icon-button(aria-label="Back", ng-click="back()")
+          md-icon(md-svg-icon="img/arrow_back.svg")
     .image(ng-style="image")
-    md-toolbar
+    md-toolbar.lower
       .md-toolbar-tools
         h2.md-title {{ product.name }}
         h5.md-subhead {{ product.producer_name }}
