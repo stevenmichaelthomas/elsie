@@ -37,6 +37,20 @@ angular.module('elsie.product')
       Scheduler.queue(process);
       return process;
     },
+    one: function(id){
+      var req = url() + '/products/' + id;
+      var process = $http.get(req).then(function(response){
+        if (response.status === 200){
+          cache.product = response.data.result;
+          return cache.product;
+        } else {
+          Dialog.showConnectionError();
+          return [];
+        }
+      });
+      Scheduler.queue(process);
+      return process;
+    },
     atNearbyStores: function(product){
       var req = url() + '/products/' + product.id + '/stores?lat=' + Locator.latitude + '&lon=' + Locator.longitude;
       var process = $http.get(req).then(function(result){

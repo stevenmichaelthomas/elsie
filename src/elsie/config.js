@@ -72,7 +72,8 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
         url: '/explore',
         views: {
           'explore': {
-            templateUrl: 'templates/explore.html'
+            templateUrl: 'templates/explore.html',
+            controller: 'ExploreCtrl'
           }
         }
       })

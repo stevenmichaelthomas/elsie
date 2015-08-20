@@ -1,9 +1,4 @@
 doctype
-//md-grid-list.watchlist.grid(ng-if="gridView",md-row-height="4:3",md-gutter="8px",md-cols="2",layout-padding)
-  md-grid-tile.product(md-colspan="1",ng-repeat="product in watchlist",ng-click="loadProduct(product)",ng-style="productStyle(product)")
-    md-icon
-    md-grid-tile-footer
-      h3 {{ product.name }}
 .watchlist.carousel(ng-if="gridView")
   md-virtual-repeat-container.scroller(md-orient-horizontal)
     .product(md-virtual-repeat="product in watchlist",ng-click="loadProduct(product)")

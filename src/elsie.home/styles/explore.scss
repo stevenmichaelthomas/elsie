@@ -1,16 +1,26 @@
-.gridListdemoBasicUsage md-grid-list {
-  margin: 8px; }
-.gridListdemoBasicUsage .gray {
-  background: #ddd; }
-.gridListdemoBasicUsage .green {
-  background: #b9f6ca; }
-.gridListdemoBasicUsage .yellow {
-  background: #ffff8d; }
-.gridListdemoBasicUsage .blue {
-  background: #84ffff; }
-.gridListdemoBasicUsage .purple {
-  background: #b388ff; }
-.gridListdemoBasicUsage .red {
-  background: #ff8a80; }
-.gridListdemoBasicUsage md-grid-tile {
-  transition: all 400ms ease-out 50ms; }
+.explore {
+  md-grid-tile {
+    background-size: auto 200%;
+    background-position-y: center;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    h3 {
+      font-weight: 400;
+      max-width: 50%;
+    }
+    &.temp-1 {
+      background-image: url('https://dx5vpyka4lqst.cloudfront.net/products/478727/images/full.jpeg');
+      background-position-x: 175%;
+      h3 {
+        margin-left: -40%;
+      }
+      border-bottom: 2px #eee solid;
+    }
+  }
+  h5 {
+    font-weight: 400;
+    text-transform: uppercase;
+    color: $charcoal;
+    padding: 0 20px;
+  }
+}
