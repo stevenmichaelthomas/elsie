@@ -1,4 +1,4 @@
-angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsie.common', 'elsie.home', 'elsie.product', 'elsie.search', 'elsie.store'])
+angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsie.common', 'elsie.home', 'elsie.product', 'elsie.search', 'elsie.store'])
 
 .run(function($http, LCBO, Analytics, Dialog) {
   $http.defaults.headers.common.Authorization = LCBO;  
@@ -55,28 +55,9 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
   $stateProvider
     .state('home', {
       url: '/home',
-      abstract: true,
       templateUrl: 'templates/master.html',
       controller: 'HomeCtrl'
     })
-      .state('home.watchlist', {
-        url: '/watchlist',
-        views: {
-          'watchlist': {
-            templateUrl: 'templates/watchlist.html',
-            controller: 'WatchlistCtrl'
-          }
-        }
-      })
-      .state('home.explore', {
-        url: '/explore',
-        views: {
-          'explore': {
-            templateUrl: 'templates/explore.html',
-            controller: 'ExploreCtrl'
-          }
-        }
-      })
     .state('search', {
       url: '/search',
       controller: 'SearchCtrl',
@@ -94,6 +75,6 @@ angular.module('elsie', ['ui.router', 'ngAria', 'ngAnimate', 'ngMaterial', 'elsi
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/home/explore');
+  $urlRouterProvider.otherwise('/home');
 
 });

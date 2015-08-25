@@ -1,11 +1,16 @@
 .product.single {
+  background-color: white;
+  background-size: auto 70%;
+  background-repeat: no-repeat;
+  background-position-x: 100px;
+  background-position-y: -10%;
   .image {
     height: 244px;
-    background-color: white;
+    /*background-color: white;
     background-size: 120%;
     background-repeat: no-repeat;
     background-position-x: -75%;
-    background-position-y: 60%;
+    background-position-y: 60%;*/
   }
   md-toolbar.upper {
     background-color: transparent;
@@ -33,15 +38,19 @@
         font-weight: 600;
         white-space: nowrap;
       }
+      h5 {
+        margin: 0;
+      }
     }
   }
   a.md-button.md-default-theme.md-fab, .md-button.md-default-theme.md-fab {
     position: absolute;
     right: 20px;
-    top: 210px;
+    top: 190px;
   }
   md-content.upper {
     overflow: hidden;
+    background-color: transparent;
   }
   md-content.lower {
     //

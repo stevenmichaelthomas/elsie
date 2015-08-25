@@ -23,8 +23,12 @@ angular.module('elsie.common')
     previous: function(step) {
       return history[history.length - Math.abs(step || 1)];
     },
-    back: function() {
-      return this.go(-1);
+    back: function(val) {
+      if (!val){
+        return this.go(-1);
+      } else {
+        return this.go(-val);
+      }
     }
   });
 

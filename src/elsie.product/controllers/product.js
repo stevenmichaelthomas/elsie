@@ -1,5 +1,5 @@
 angular.module('elsie.product')
-.controller('ProductCtrl', function ($scope, $state, Products, Watchlist) {
+.controller('ProductCtrl', ['$scope', '$state', 'Products', 'Watchlist', 'Actions', function ($scope, $state, Products, Watchlist, Actions) {
   $scope.toggleWatch = function(product){
     var toggle = Watchlist.changeProductStatus(product);
     if (toggle === 'added') {
@@ -9,6 +9,9 @@ angular.module('elsie.product')
     }
   };
   (function(){
+    Actions.transparent(true);
+    Actions.search(false);
+    Actions.set({ menu: false, back: true });
     $scope.product = Products.selected();
     $scope.image = {
       'background-image': 'url(' + $scope.product.image_url + ')'
@@ -17,4 +20,4 @@ angular.module('elsie.product')
       $scope.isWatched = true;
     }
   })();
-});
+}]);

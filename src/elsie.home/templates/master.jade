@@ -1,21 +1,9 @@
 doctype
-md-toolbar.md-default-theme
-  .md-toolbar-tools
-    md-button.md-icon-button(aria-label="Settings", ng-click="toggleMenu()")
-      md-icon(md-svg-icon="img/menu.svg")    
-    h2
-      span Elsie
-    span(flex)
-    //md-button.md-icon-button(aria-label="List", ng-click="toggleGrid(false)", ng-if="gridView")
-      md-icon(md-svg-icon="img/view_list.svg") 
-    //md-button.md-icon-button(aria-label="Grid", ng-click="toggleGrid(true)", ng-if="!gridView")
-      md-icon(md-svg-icon="img/view_module.svg")
-    md-button.md-icon-button(aria-label="Search", ng-click="go('search')")
-      md-icon(md-svg-icon="img/search.svg")
-md-tabs.full.md-primary(md-selected="selectedIndex", md-no-pagination="true", md-stretch-tabs="always")
-  md-tab(label='Explore', md-on-select="go('home.explore')")
-    div(ui-view='explore')
-  md-tab(label='Cellar', md-on-select="go('home.watchlist')")
-    div(ui-view='watchlist')
-md-button.md-fab.fab-bottom-right.watchlist-fab(aria-label="Add to Watchlist",ng-click="go('search')",state-class)
-  md-icon(md-svg-src="img/add.svg")
+.home
+  md-tabs.full.md-primary(md-selected="selectedIndex", md-no-pagination="true", md-stretch-tabs="always")
+    md-tab(label='Explore',md-on-select="changeTab('explore')")
+      include explore.jade
+    md-tab(label='Cellar',md-on-select="changeTab('watchlist')")
+      include watchlist.jade
+  md-button.md-fab.fab-bottom-right.watchlist-fab(ng-click="go('search')",ng-class="{ 'state-home-explore' : currentTab === 'explore', 'state-home-watchlist' : currentTab === 'watchlist'}")
+    md-icon(md-svg-src="img/add.svg")

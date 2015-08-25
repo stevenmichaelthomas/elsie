@@ -1,9 +1,9 @@
 angular.module('elsie.home')
-.controller('WatchlistCtrl', function($scope, $state, Watchlist, Products) {
+.controller('WatchlistCtrl', function($scope, Navigator, Watchlist, Products) {
   $scope.loadProduct = function(product){
     if (product && product.product_no){
       Products.select(product);
-      $state.go('product');
+      Navigator.go('product', 'forward');
     }
   };
   $scope.watchlist = Watchlist.load();

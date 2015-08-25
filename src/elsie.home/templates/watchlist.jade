@@ -1,9 +1,5 @@
 doctype
-.watchlist.carousel(ng-if="gridView")
-  md-virtual-repeat-container.scroller(md-orient-horizontal)
-    .product(md-virtual-repeat="product in watchlist",ng-click="loadProduct(product)")
-      img(ng-src="{{ product.image_url }}")
-md-list.watchlist(ng-if="!gridView",layout-padding)
+md-list.watchlist(layout-padding,ng-controller="WatchlistCtrl")
   md-list-item.md-2-line(md-no-ink,ng-repeat="product in watchlist",ng-click="loadProduct(product)")
     img.md-avatar(ng-src="{{ product.image_thumb_url }}")
     .md-list-item-text

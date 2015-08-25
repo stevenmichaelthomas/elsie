@@ -1,11 +1,12 @@
-@import 'fonts';
-@import 'mixins';
-//@import 'animations';
-
 $purple: #674172;
 $pink: #E91E63;
 $charcoal: #313131;
 $bump: 24px;
+$transition: 30s;
+
+@import 'fonts';
+@import 'mixins';
+@import 'animations';
 
 body {
   font-family: 'Roboto';
@@ -19,6 +20,16 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
+}
+
+.overflow-parent {
+  position: absolute;
+  top: $bump;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .bar {
@@ -50,18 +61,6 @@ button.md-button {
   }
 }
 
-md-toolbar {
-  //box-shadow: none;
-  .md-toolbar-tools {
-    h2 {
-      font-weight: 500;
-    }
-    h5 {
-      margin: 0;
-    }
-  }
-}
-
 md-icon.md-default-theme {
   color: rgba(255, 255, 255, 0.870588);
 }
@@ -74,7 +73,7 @@ md-tabs {
   &.full {
     margin-top: $bump;
     position: absolute;
-    top: 64px;
+    top: 63px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -107,12 +106,10 @@ md-tab-item {
   }
 }
 
-.md-autocomplete-suggestions.md-default-theme li .highlight {
-  color: $pink;
-}
-
+@import 'action-bar';
 @import '../../elsie.product/styles/product';
 @import '../../elsie.store/styles/store';
+@import '../../elsie.home/styles/home';
 @import '../../elsie.home/styles/watchlist';
 @import '../../elsie.home/styles/explore';
 @import '../../elsie.search/styles/search';

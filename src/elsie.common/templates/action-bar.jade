@@ -1,0 +1,11 @@
+md-toolbar.action-bar(ng-class="{ transparent: transparent, 'md-theme-search' : search }")
+  .md-toolbar-tools
+    md-button.md-icon-button.left-button(ng-click="toggleMenu()", ng-class="{ visible: set.menu }")
+      md-icon(md-svg-icon="img/menu.svg")
+    md-button.md-icon-button.left-button(ng-click="back()", ng-class="{ visible: set.back }")
+      md-icon(md-svg-icon="img/arrow_back.svg")
+    h2(ng-class="{ visible: set.title }",ng-hide="search")
+      span(ng-if="set.title") {{ set.title }}
+      span(ng-if="!set.title") Elsie
+    md-button.md-icon-button.right-button(ng-click="go('search', 'forward')", ng-class="{ visible: set.search }")
+      md-icon(md-svg-icon="img/search.svg")

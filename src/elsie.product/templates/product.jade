@@ -1,11 +1,7 @@
 doctype
-.product.single
+.product.single.overflow-parent(ng-style="image")
   md-content.upper
-    md-toolbar.upper
-      .md-toolbar-tools
-        md-button.md-icon-button(aria-label="Back", ng-click="back()")
-          md-icon(md-svg-icon="img/arrow_back.svg")
-    .image(ng-style="image")
+    .image
     md-toolbar.lower
       .md-toolbar-tools
         h2.md-title {{ product.name }}
@@ -15,6 +11,22 @@ doctype
     md-icon(md-svg-src='img/favorite_outline.svg',ng-if="!isWatched")
   md-content.lower.md-default.md-primary-bg
     md-list
+      md-list-item.md-2-line(ng-if="product.varietal")
+        .md-list-item-text
+          h3 {{ product.varietal }}
+          p type
+      md-list-item.md-2-line
+        .md-list-item-text
+          h3 {{ product.price_in_cents / 100 | currency : $ : 2  }}
+          p price
+      md-list-item.md-2-line
+        .md-list-item-text
+          h3 {{ product.package_unit_volume_in_milliliters }} ml x {{ product.total_package_units }}
+          p unit package
+      md-list-item.md-2-line
+        .md-list-item-text
+          h3 {{ product.alcohol_content / 10000 | percentage : 1 }}
+          p alcohol by volume
       md-list-item.md-2-line(ng-if="product.varietal")
         .md-list-item-text
           h3 {{ product.varietal }}

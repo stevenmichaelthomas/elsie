@@ -1,0 +1,59 @@
+md-toolbar.action-bar {
+  position: absolute;
+  top: $bump;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: transparent;
+  &.transparent {
+    md-icon.md-default-theme {
+      color: $purple;
+    }
+  }
+  .md-toolbar-tools {
+    h2 {
+      font-weight: 500;
+      margin-left: 45px;
+      opacity: 0;
+      -webkit-transition: opacity $transition;
+      transition: opacity $transition;
+      &.visible {
+        opacity: 1;
+      }
+    }
+    md-icon.md-default-theme {
+      -webkit-transition: color $transition;
+      transition: color $transition;
+    }
+    > .md-button:last-child {
+      margin: 0;
+    }
+    > .md-button:first-child {
+      margin: 0;
+    }
+    > .md-button.left-button {
+      margin-left: -8px;
+      -webkit-transform: rotate(-90deg) scale(0,0);
+      transform: rotate(-90deg) scale(0,0);
+      position: absolute;
+      top: 8px;
+      transition: all $transition;
+      &.visible {
+        -webkit-transform: rotate(0deg) scale(1,1);
+        transform: rotate(0deg) scale(1,1);
+      }
+    }
+    > .md-button.right-button {
+      -webkit-transform: rotate(-90deg) scale(0,0);
+      transform: rotate(-90deg) scale(0,0);
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      transition: all $transition;
+      &.visible {
+        -webkit-transform: rotate(0deg) scale(1,1);
+        transform: rotate(0deg) scale(1,1);
+      }
+    }
+  }
+}

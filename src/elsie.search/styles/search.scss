@@ -4,19 +4,33 @@
   left: 0;
   bottom: 0;
   right: 0;
+  background-color: white;
+  .searchbox {
+    position: absolute;
+    top: 23px;
+    left: 60px;
+    right: 20px;
+    z-index: 3;
+  }
   input {
-    width: 100%;
+    width: 89%;
     height: 100%;
     font-size: 0.9em;
     border: none;
     outline: none;
     color: $charcoal;
     background-color: transparent;
-  }
-  .md-theme-search {
-    background-color: white;
+    float: left;
   }
   .md-icon-button {
+    width: 10%;
+    float: left;
+    height: 20px;
+    line-height: 18px;
+    margin: 0;
+    border-radius: 0;
+    min-height: 0;
+    padding: 0;
     md-icon {
       color: $charcoal;
     }

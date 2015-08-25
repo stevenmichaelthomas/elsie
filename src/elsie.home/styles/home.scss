@@ -1,0 +1,11 @@
+.home {
+  background-color: $purple;
+  height: 135px;
+  width: 100%;
+  overflow: visible;
+  md-tabs.md-primary {
+    > md-tabs-wrapper {
+      background-color: transparent;
+    }
+  }
+}

@@ -28,4 +28,5 @@ html
           md-button(ng-click="close()",class="md-primary") Close
       md-content#main
         .bar
+        div(action-bar,transparent="barTransparency()",set="barItems()",search="barSearch()")
         div(ui-view,state-class)

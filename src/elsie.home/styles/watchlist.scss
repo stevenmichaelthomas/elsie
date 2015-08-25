@@ -1,13 +1,15 @@
 .watchlist {
-  //margin: 0 8px;
   &.grid .product {
     background-size: cover;
     background-color: white;
     background-repeat: no-repeat;
   }
   &.carousel {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
     .scroller {
-      width: 100%;
+      width: 1000px;
       height: 200px;
     }
     .product {

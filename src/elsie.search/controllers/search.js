@@ -1,5 +1,5 @@
 angular.module('elsie.search')
-.controller('SearchCtrl', function($scope, $state, Products, Stores, Cache) {
+.controller('SearchCtrl', function($scope, Navigator, Products, Stores, Cache, Actions) {
   $scope.query = {
     product: null,
     store: null
@@ -22,7 +22,7 @@ angular.module('elsie.search')
   $scope.selectProduct = function(product){
     if (product && product.product_no){
       Products.select(product);
-      $state.go('product');
+      Navigator.go('product');
     }
   };
   $scope.searchStores = function(query) {
@@ -35,7 +35,7 @@ angular.module('elsie.search')
   $scope.selectStore = function(store){
     if (store && store.name){
       Stores.select(store);
-      $state.go('store');
+      Navigator.go('store');
     }
   };
   $scope.getTab = function(){
@@ -47,13 +47,21 @@ angular.module('elsie.search')
   };
   $scope.$watch('results.mode', function(){
     setTimeout(function(){
-      document.querySelector('.md-toolbar-tools input').focus();
+      document.querySelector('input').focus();
     },100);
     Cache.update($scope.results);
   });
   (function(){
+    Actions.transparent(true);
+    Actions.search(true);
+    if (Navigator.lastState() === 'product'){
+      Actions.backGoesHome(true);
+    } else {
+      Actions.backGoesHome(false);
+    }
+    Actions.set({ menu: false, back: true });
     setTimeout(function(){
-      document.querySelector('.md-toolbar-tools input').focus();
+      document.querySelector('input').focus();
     },100);
     $scope.results = Cache.get();
     $scope.selectedTab = $scope.getTab();

@@ -1,13 +1,10 @@
 doctype
 .search
-  md-toolbar.md-theme-search
-    .md-toolbar-tools
-      md-button.md-icon-button(aria-label="Back", ui-sref="home.watchlist")
-        md-icon(md-svg-icon="img/arrow_back.svg")  
-      input(type="text",placeholder="Search products",ng-model="query.product",ng-change="searchProducts(query.product)",ng-model-options="{ debounce: 300 }",ng-if="results.mode === 'product'")
-      input(type="text",placeholder="Search stores",ng-model="query.store",ng-change="searchStores(query.store)",ng-model-options="{ debounce: 300 }",ng-if="results.mode === 'store'",ng-cloak)
-      md-button.md-icon-button.hide(ng-class="{ invisible: results.mode === 'product' && !query.product || results.mode === 'store' && !query.store }",ng-click="clear()")
-        md-icon(md-svg-icon="img/close.svg")
+  .searchbox
+    input(type="text",placeholder="Search products",ng-model="query.product",ng-change="searchProducts(query.product)",ng-model-options="{ debounce: 300 }",ng-if="results.mode === 'product'")
+    input(type="text",placeholder="Search stores",ng-model="query.store",ng-change="searchStores(query.store)",ng-model-options="{ debounce: 300 }",ng-if="results.mode === 'store'")
+    md-button.md-icon-button.hide(ng-class="{ invisible: results.mode === 'product' && !query.product || results.mode === 'store' && !query.store }",ng-click="clear()")
+      md-icon(md-svg-icon="img/close.svg")
   md-tabs.full.no-bump(md-selected="selectedTab",md-no-pagination="true",md-stretch-tabs="always")
     md-tab(label="Products",md-on-select="results.mode = 'product'")
       md-list
