@@ -10,8 +10,8 @@
 [ui-view].ng-enter, [ui-view].ng-leave {
   -webkit-transition:all $transition ease;
   transition:all $transition ease;
-  -webkit-transition-delay: 0.01s;
-  transition-delay: 0.01s;
+  //-webkit-transition-delay: 0.01s;
+  //transition-delay: 0.01s;
 }
 
 // exiting state (initial)
@@ -23,7 +23,11 @@
     z-index: 1;
     -webkit-transform:translate3d(0, 0, 0);
     transform:translate3d(0, 0, 0);
-  } 
+  }
+  &.no-animate {
+    -webkit-transform:translate3d(100%, 0, 0);
+    transform:translate3d(100%, 0, 0);
+  }
 }
 
 // exiting state (final)
@@ -47,7 +51,11 @@
     z-index: 1;
     -webkit-transform:translate3d(100%, 0, 0);
     transform:translate3d(100%, 0, 0);
-  } 
+  }
+  &.no-animate {
+    -webkit-transform:translate3d(0, 0, 0);
+    transform:translate3d(0, 0, 0);
+  }
 }
 
 // entering state (final)

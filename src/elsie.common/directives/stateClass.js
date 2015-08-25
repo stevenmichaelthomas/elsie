@@ -25,6 +25,9 @@ angular.module('elsie.common')
             $element.addClass('state-higher');
           }
         }
+        if ($state.current.name === 'search'){
+          $element.addClass('no-animate');
+        }
         $element.addClass(normalizedStateName);
       };
       var dealWithOldState = function(event, toState, toParams, fromState, fromParams){
