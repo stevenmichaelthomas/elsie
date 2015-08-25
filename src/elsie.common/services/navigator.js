@@ -2,37 +2,24 @@ angular.module('elsie.common')
 .factory('Navigator', function($state, $history){
 
   var cache = {
-    nextDestination: null,
-    nextDirection: null
+    lastState: null,
+    movingBackward: false
   };
 
   return {
-    nextDestination: function(){
-      return cache.nextDestination;
-    },
-    nextDirection: function(){
-      return cache.nextDirection;
-    },
-    set: function(destination, direction){
-      cache.nextDestination = destination;
-      cache.nextDirection = direction;
-      return;
-    },
-    clear: function(){
-      cache.nextDestination = null;
-      cache.nextDirection = null;
-      return;
-    },
-    go: function(destination, direction){
-      this.set(destination, direction);
+    go: function(destination){
+      cache.movingBackward = false;
+      cache.lastState = $state.current;
       $state.go(destination);
-      cache.lastState = destination;
+    },
+    back: function(){
+      cache.movingBackward = true;
+      cache.lastState = $state.current;
+      $history.back();
       return;
     },
-    back: function(value){
-      this.set($history.all()[0].state.url, 'back');
-      $history.back(value);
-      return;
+    movingBackward: function(){
+      return cache.movingBackward;
     },
     lastState: function(){
       return cache.lastState;

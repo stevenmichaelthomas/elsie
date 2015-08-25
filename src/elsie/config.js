@@ -56,22 +56,26 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
     .state('home', {
       url: '/home',
       templateUrl: 'templates/master.html',
-      controller: 'HomeCtrl'
+      controller: 'HomeCtrl',
+      priority: 0
     })
     .state('search', {
       url: '/search',
       controller: 'SearchCtrl',
-      templateUrl: 'templates/search.html'
+      templateUrl: 'templates/search.html',
+      priority: 1
     })
     .state('product', {
       url: '/product',
       controller: 'ProductCtrl',
-      templateUrl: 'templates/product.html'
+      templateUrl: 'templates/product.html',
+      priority: 2
     })
     .state('store', {
       url: '/store',
       controller: 'StoreCtrl',
-      templateUrl: 'templates/store.html'
+      templateUrl: 'templates/store.html',
+      priority: 3
     });
 
   // if none of the above states are matched, use this as the fallback

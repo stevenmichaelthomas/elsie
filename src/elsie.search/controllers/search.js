@@ -54,7 +54,7 @@ angular.module('elsie.search')
   (function(){
     Actions.transparent(true);
     Actions.search(true);
-    if (Navigator.lastState() === 'product'){
+    if (Navigator.lastState().name === 'product'){
       Actions.backGoesHome(true);
     } else {
       Actions.backGoesHome(false);
