@@ -46,23 +46,17 @@ angular.module('elsie.search')
     }
   };
   $scope.$watch('results.mode', function(){
-    setTimeout(function(){
-      document.querySelector('input').focus();
-    },100);
     Cache.update($scope.results);
   });
   (function(){
     Actions.transparent(true);
     Actions.search(true);
-    if (Navigator.lastState().name === 'product'){
+    if (Navigator.lastState().name === 'product' || Navigator.lastState().name === 'store'){
       Actions.backGoesHome(true);
     } else {
       Actions.backGoesHome(false);
     }
     Actions.set({ menu: false, back: true });
-    setTimeout(function(){
-      document.querySelector('input').focus();
-    },100);
     $scope.results = Cache.get();
     $scope.selectedTab = $scope.getTab();
   })();
