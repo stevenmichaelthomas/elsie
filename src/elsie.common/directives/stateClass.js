@@ -24,6 +24,9 @@ angular.module('elsie.common')
           if (lastState().priority < $state.current.priority){
             $element.addClass('state-higher');
           }
+          if (lastState().name === 'search' && $state.current.name === 'home'){
+            $element.addClass('no-animate');
+          }
         }
         if ($state.current.name === 'search'){
           $element.addClass('no-animate');

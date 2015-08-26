@@ -12,6 +12,7 @@ angular.module('elsie.product')
     Actions.transparent(true);
     Actions.search(false);
     Actions.set({ menu: false, back: true });
+    Actions.backGoesHome(false);
     $scope.product = Products.selected();
     $scope.image = {
       'background-image': 'url(' + $scope.product.image_url + ')'
