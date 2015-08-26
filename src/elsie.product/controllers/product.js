@@ -19,5 +19,8 @@ angular.module('elsie.product')
     if (Watchlist.checkForProduct($scope.product)){
       $scope.isWatched = true;
     }
+    $scope.tags = (function(){
+      return $scope.product.tags.split(" ");
+    })();
   })();
 }]);

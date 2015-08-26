@@ -15,31 +15,24 @@ doctype
         .md-list-item-text
           h3 {{ product.varietal }}
           p type
-      md-list-item.md-2-line
-        .md-list-item-text
-          h3 {{ product.price_in_cents / 100 | currency : $ : 2  }}
-          p price
-      md-list-item.md-2-line
-        .md-list-item-text
-          h3 {{ product.package_unit_volume_in_milliliters }} ml x {{ product.total_package_units }}
-          p unit package
-      md-list-item.md-2-line
-        .md-list-item-text
-          h3 {{ product.alcohol_content / 10000 | percentage : 1 }}
-          p alcohol by volume
       md-list-item.md-2-line(ng-if="product.varietal")
         .md-list-item-text
-          h3 {{ product.varietal }}
-          p type
+          h3 {{ product.product_no }}
+          p product number
       md-list-item.md-2-line
         .md-list-item-text
           h3 {{ product.price_in_cents / 100 | currency : $ : 2  }}
           p price
       md-list-item.md-2-line
         .md-list-item-text
-          h3 {{ product.package_unit_volume_in_milliliters }} ml x {{ product.total_package_units }}
+          h3 {{ product.package }}
           p unit package
-      md-list-item.md-2-line
+      md-divider(ng-if="product.description")
+      md-list-item.md-3-line(ng-if="product.description")
         .md-list-item-text
-          h3 {{ product.alcohol_content / 10000 | percentage : 1 }}
-          p alcohol by volume
+          p {{ product.description }}
+      md-divider
+      md-list-item
+        md-chips(ng-model="tags",readonly="true")
+
+      

@@ -2,7 +2,7 @@ $purple: #674172;
 $pink: #E91E63;
 $charcoal: #313131;
 $bump: 24px;
-$transition: 0.3s;
+$transition: 0.35s;
 
 @import 'fonts';
 @import 'mixins';
@@ -98,6 +98,10 @@ md-content {
     right: 0;
     bottom: 0;
   }
+}
+
+md-chips .md-chips {
+  box-shadow: none;
 }
 
 md-tab-item {

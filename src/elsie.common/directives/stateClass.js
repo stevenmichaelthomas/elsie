@@ -31,10 +31,6 @@ angular.module('elsie.common')
         $element.addClass(normalizedStateName);
       };
       var dealWithOldState = function(event, toState, toParams, fromState, fromParams){
-        console.log('newState:');
-        console.log(toState);
-        console.log('oldState:');
-        console.log(fromState);
         if (toState.priority > $state.current.priority){
           var classes = $element[0].classList;
           for (var c = classes.length; c > 0; c--){
