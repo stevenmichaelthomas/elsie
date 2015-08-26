@@ -1,6 +1,8 @@
 angular.module('elsie.common')
 .controller('AppCtrl', function($scope, $state, $history, Actions, Navigator){
-  
+  $scope.go = function(destination){
+    Navigator.go(destination);
+  };
   $scope.followLink = function(url){
     //navigator.app.loadUrl(url, {openExternal : true});
     window.open(url, '_system');
