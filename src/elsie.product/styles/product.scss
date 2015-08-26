@@ -4,6 +4,11 @@
   background-repeat: no-repeat;
   background-position-x: 100px;
   background-position-y: -10%;
+  position: absolute;
+  top: $bump;
+  left: 0;
+  bottom: 0;
+  right: 0;
   .image {
     height: 244px;
     /*background-color: white;
