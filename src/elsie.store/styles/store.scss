@@ -1,21 +1,12 @@
 .store.single {
+  background-color: white;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: top;
+  height: 100%;
   .image {
     height: 244px;
-    background-color: white;
-    background-size: auto 100%;
-    background-position: center center;
-    background-repeat: no-repeat;
-  }
-  md-toolbar.upper {
-    background-color: transparent;
-    position: absolute;
-    width: 100%;
-    .md-icon-button {
-      margin-left: -13px;
-      md-icon {
-        color: $charcoal;
-      }
-    }
   }
   md-toolbar.lower {
     @include gradient(rgba(0,0,0,0), rgba(0,0,0,0.4));
@@ -32,6 +23,9 @@
         font-weight: 600;
         white-space: nowrap;
       }
+      h5 {
+        margin: 0;
+      }
     }
   }
   a.md-button.md-default-theme.md-fab, .md-button.md-default-theme.md-fab {
@@ -41,6 +35,7 @@
   }
   md-content.upper {
     overflow: hidden;
+    background-color: transparent;
   }
   md-content.lower {
     //

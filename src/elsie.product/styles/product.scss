@@ -12,17 +12,6 @@
     background-position-x: -75%;
     background-position-y: 60%;*/
   }
-  md-toolbar.upper {
-    background-color: transparent;
-    position: absolute;
-    width: 100%;
-    .md-icon-button {
-      margin-left: -13px;
-      md-icon {
-        color: $charcoal;
-      }
-    }
-  }
   md-toolbar.lower {
     @include gradient(rgba(0,0,0,0), rgba(0,0,0,0.4));
     margin-top: -148px;
