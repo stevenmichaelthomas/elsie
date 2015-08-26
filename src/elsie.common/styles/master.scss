@@ -1,8 +1,16 @@
 $purple: #674172;
 $pink: #E91E63;
 $charcoal: #313131;
+
 $bump: 24px;
-$transition: 0.35s;
+
+$transition: 0.4s;
+$transition-function: cubic-bezier(.36, .66, .04, 1) !default; // thanks, driftyco!
+
+$z-index-view-below: 0;
+$z-index-view-above: 1;
+$z-index-control-main: 2;
+$z-index-control-super: 3; 
 
 @import 'fonts';
 @import 'mixins';

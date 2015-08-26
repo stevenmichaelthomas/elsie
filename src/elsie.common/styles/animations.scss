@@ -6,75 +6,55 @@
   right: 0;
 }
 
-// setting general speed for all states, whether they're leaving or entering so we stay synced
+// Common transition properties
 [ui-view].ng-enter, [ui-view].ng-leave {
-  -webkit-transition:all $transition ease;
-  transition:all $transition ease;
-  -webkit-transition-delay: 0.01s;
-  transition-delay: 0.01s;
+  -webkit-transition: all $transition;
+  transition: all $transition;
+  @include transition-timing-function($transition-function);
 }
 
-// exiting state (initial)
-[ui-view].ng-leave {
-  z-index: 0;
-  -webkit-transform:translate3d(0, 0, 0);
-  transform:translate3d(0, 0, 0);
-  &.state-higher {
-    z-index: 1;
-    -webkit-transform:translate3d(0, 0, 0);
-    transform:translate3d(0, 0, 0);
-    &.no-animate {
-      -webkit-transform:translate3d(100%, 0, 0);
-      transform:translate3d(100%, 0, 0);
-    }
-  }
+// Handle initial properties of the leaving state
+#main.direction-forward [ui-view].ng-leave,
+#main.direction-back [ui-view].ng-leave {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
-// exiting state (final)
-[ui-view].ng-leave-active {
-  z-index: 0;
-  -webkit-transform:translate3d(-33%, 0, 0);
-  transform:translate3d(-33%, 0, 0);
-  &.no-animate {
-    -webkit-transform:translate3d(0, 0, 0);
-    transform:translate3d(0, 0, 0);
-  }
-  &.state-higher {
-    z-index: 1;
-    -webkit-transform:translate3d(100%, 0, 0);
-    transform:translate3d(100%, 0, 0);
-    &.no-animate {
-      -webkit-transform:translate3d(100%, 0, 0);
-      transform:translate3d(100%, 0, 0);
-    }
-  } 
+#main.direction-forward [ui-view].ng-leave {
+  z-index: $z-index-view-below;
 }
 
-// entering state (initial)
-[ui-view].ng-enter {
-  z-index: 0;
-  -webkit-transform:translate3d(-33%, 0, 0);
-  transform:translate3d(-33%, 0, 0);
-  &.state-higher {
-    z-index: 1;
-    -webkit-transform:translate3d(100%, 0, 0);
-    transform:translate3d(100%, 0, 0);
-  }
-  &.no-animate {
-    z-index: 1;
-    -webkit-transform:translate3d(0, 0, 0);
-    transform:translate3d(0, 0, 0);
-  }
+#main.direction-back [ui-view].ng-leave {
+  z-index: $z-index-view-above;
 }
 
-// entering state (final)
-[ui-view].ng-enter-active {
-  z-index: 0;
-  -webkit-transform:translate3d(0, 0, 0);
-  transform:translate3d(0, 0, 0);
-  &.state-higher {
-    z-index: 1;
-    -webkit-transform:translate3d(0, 0, 0);
-    transform:translate3d(0, 0, 0);
-  }
+// Handle final properties of the leaving state
+#main.direction-forward [ui-view].ng-leave.ng-leave-active {
+  -webkit-transform: translate3d(-33%, 0, 0);
+  transform: translate3d(-33%, 0, 0);
+}
+
+#main.direction-back [ui-view].ng-leave.ng-leave-active {
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+}
+
+// Handle initial properties of the entering state
+#main.direction-forward [ui-view].ng-enter {
+  z-index: $z-index-view-above;
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+}
+
+#main.direction-back [ui-view].ng-enter {
+  z-index: $z-index-view-below;
+  -webkit-transform: translate3d(-33%, 0, 0);
+  transform: translate3d(-33%, 0, 0);
+}
+
+// Handle final properties of the entering state
+#main.direction-forward [ui-view].ng-enter.ng-enter-active,
+#main.direction-back [ui-view].ng-enter.ng-enter-active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }

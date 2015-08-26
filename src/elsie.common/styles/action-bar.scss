@@ -3,7 +3,7 @@ md-toolbar.action-bar {
   top: $bump;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: $z-index-control-main;
   background-color: transparent;
   &.transparent {
     md-icon.md-default-theme {
