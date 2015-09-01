@@ -1,6 +1,9 @@
 $purple: #674172;
-$pink: #E91E63;
+$purple-light: #e7c5f1;
+$pink: #F06292;
+$pink-light: #F8BBD0;
 $charcoal: #313131;
+$white: #FEFEFE;
 
 $bump: 24px;
 
@@ -62,6 +65,7 @@ button.md-button {
     -webkit-transform: scale3d(1,1,1);
     transition: all 0.25s;
     transform: scale3d(1,1,1);
+    margin: 0;
     &.invisible {
       -webkit-transform: scale3d(0,0,0);
       transform: scale3d(0,0,0);
@@ -125,3 +129,4 @@ md-tab-item {
 @import '../../elsie.home/styles/watchlist';
 @import '../../elsie.home/styles/explore';
 @import '../../elsie.search/styles/search';
+@import '../../elsie.splash/styles/splash';

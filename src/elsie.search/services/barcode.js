@@ -1,8 +1,8 @@
 angular.module('elsie.search')
-.factory('Barcode', function($http, ApiUrl, Scheduler, Dialog) {
+.factory('Barcode', function($http, LCBOAPI, Scheduler, Dialog) {
 
   var url = function(){
-    return ApiUrl;
+    return LCBOAPI;
   };
       
   return {

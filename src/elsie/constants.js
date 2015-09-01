@@ -1,2 +1,3 @@
 angular.module('elsie')
-.constant('ApiUrl', 'https://lcboapi.com');
+.constant('LCBOAPI', 'https://lcboapi.com')
+.constant('ELSIEAPI', 'http://api.heyelsie.com:5000');

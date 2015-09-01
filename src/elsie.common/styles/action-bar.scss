@@ -32,11 +32,11 @@ md-toolbar.action-bar {
       margin: 0;
     }
     > .md-button.left-button {
-      margin-left: -8px;
       -webkit-transform: rotate(-90deg) scale(0,0);
       transform: rotate(-90deg) scale(0,0);
       position: absolute;
-      top: 8px;
+      top: 4px;
+      left: 4px;
       transition: all $transition;
       &.visible {
         -webkit-transform: rotate(0deg) scale(1,1);
@@ -47,8 +47,8 @@ md-toolbar.action-bar {
       -webkit-transform: rotate(-90deg) scale(0,0);
       transform: rotate(-90deg) scale(0,0);
       position: absolute;
-      top: 8px;
-      right: 8px;
+      top: 4px;
+      right: 4px;
       transition: all $transition;
       &.visible {
         -webkit-transform: rotate(0deg) scale(1,1);

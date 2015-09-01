@@ -7,7 +7,8 @@
 }
 
 // Common transition properties
-[ui-view].ng-enter, [ui-view].ng-leave {
+[ui-view].ng-enter, 
+[ui-view].ng-leave {
   -webkit-transition: all $transition;
   transition: all $transition;
   -webkit-transition-delay: 0.01s;

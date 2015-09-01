@@ -1,4 +1,4 @@
-angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsie.common', 'elsie.home', 'elsie.product', 'elsie.search', 'elsie.store'])
+angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsie.common', 'elsie.splash', 'elsie.home', 'elsie.product', 'elsie.search', 'elsie.store'])
 
 .run(function($http, LCBO, Analytics, Dialog) {
   $http.defaults.headers.common.Authorization = LCBO;  
@@ -48,7 +48,7 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
       'hue-3': '50'
     })
     .accentPalette('pink', {
-      'default': '500'
+      'default': '300'
     })
     .backgroundPalette('background');
 
@@ -57,28 +57,39 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
       url: '/home',
       templateUrl: 'templates/master.html',
       controller: 'HomeCtrl',
-      priority: 0
+      priority: 2
     })
     .state('search', {
       url: '/search',
       controller: 'SearchCtrl',
       templateUrl: 'templates/search.html',
-      priority: 1
+      priority: 3
     })
     .state('product', {
       url: '/product',
       controller: 'ProductCtrl',
       templateUrl: 'templates/product.html',
-      priority: 2
+      priority: 4
     })
     .state('store', {
       url: '/store',
       controller: 'StoreCtrl',
       templateUrl: 'templates/store.html',
-      priority: 3
+      priority: 5
+    })
+    .state('welcome', {
+      url: '/welcome',
+      templateUrl: 'templates/welcome.html',
+      priority: 0
+    })
+    .state('login', {
+      url: '/login',
+      controller: 'LoginCtrl',
+      templateUrl: 'templates/login.html',
+      priority: 1
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/welcome');
 
 });

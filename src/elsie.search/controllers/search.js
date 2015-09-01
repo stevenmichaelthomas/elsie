@@ -1,5 +1,5 @@
 angular.module('elsie.search')
-.controller('SearchCtrl', function($scope, Navigator, Products, Stores, Cache, Actions) {
+.controller('SearchCtrl', function($scope, $timeout, Navigator, Products, Stores, Cache, Actions) {
   $scope.query = {
     product: null,
     store: null
@@ -59,5 +59,8 @@ angular.module('elsie.search')
     Actions.set({ menu: false, back: true });
     $scope.results = Cache.get();
     $scope.selectedTab = $scope.getTab();
+    /*$timeout(function(){
+      document.querySelector('input').focus();
+    },500);*/
   })();
 });

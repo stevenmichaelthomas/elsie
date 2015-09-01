@@ -1,5 +1,5 @@
 angular.module('elsie.search')
-.factory('Cache', function($http, ApiUrl) {
+.factory('Cache', function($http, LCBOAPI) {
 
   var cache = {
     products: [],

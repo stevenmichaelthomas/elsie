@@ -7,7 +7,7 @@
   background-color: white;
   .searchbox {
     position: absolute;
-    top: 23px;
+    top: 19px;
     left: 60px;
     right: 20px;
     z-index: $z-index-control-super;
@@ -31,6 +31,7 @@
     border-radius: 0;
     min-height: 0;
     padding: 0;
+    display: block !important;
     md-icon {
       color: $charcoal;
     }
