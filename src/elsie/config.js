@@ -80,13 +80,8 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
     .state('welcome', {
       url: '/welcome',
       templateUrl: 'templates/welcome.html',
-      priority: 0
-    })
-    .state('login', {
-      url: '/login',
-      controller: 'LoginCtrl',
-      templateUrl: 'templates/login.html',
-      priority: 1
+      priority: 0,
+      controller: 'LoginCtrl'
     });
 
   // if none of the above states are matched, use this as the fallback

@@ -1,5 +1,14 @@
 .splash.welcome
-  .brand-bg
-  .form-container(layout="column", layout-align="center center")
+  .container(layout="row", layout-align="center center")
+    div(flex="60")
       img.logo(src="img/logo.png")
-      md-button.md-accent(ui-sref="login") Sign in
+      md-button.md-accent(ng-show="!show",ng-click="show = true") Sign in
+      .login(ng-class="{ shown: show }")
+        md-input-container.md-primary.md-default
+          label Email address
+          input(type="email",ng-model="user.email")
+        md-input-container.md-primary.md-default
+          label Password
+          input(type="password",ng-model="user.password")
+        br
+        md-button.md-raised.md-primary(ui-sref="home") Sign in

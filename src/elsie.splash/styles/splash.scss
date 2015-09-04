@@ -6,25 +6,20 @@
   bottom: 0;
   background-color: $white;
   .logo {
-    width: 35%;
-    margin-top: -25%;
+    width: 75%;
   }
-  .form-container {
-    height: 80%;
-    md-input-container {
-      padding-bottom: 10px;
+  .login {
+    transition: height $transition;
+    height: 0px;
+    overflow: hidden;
+    padding-top: 40px;
+    &.shown {
+      height: 300px;
     }
+    text-align: left;
   }
-  &.welcome {
-    background-image: -webkit-radial-gradient(center 0, circle farthest-corner, rgba(248,187,208,.5), rgba(248,187,208,.3));
-    > .brand-bg {
-      background-image: url('../img/elsie.png');
-      background-repeat: no-repeat;
-      background-size: 70% auto;
-      background-position: center 101%;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
+  .container {
+    text-align: center;
+    height: 100%;
   }
 }
