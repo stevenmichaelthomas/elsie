@@ -1,14 +1,12 @@
 .splash.welcome
-  .container(layout="row", layout-align="center center")
-    div(flex="60")
-      img.logo(src="img/logo.png")
-      md-button.md-accent(ng-show="!show",ng-click="show = true") Sign in
-      .login(ng-class="{ shown: show }")
+  .container(layout="row", layout-align="center center", ng-class="{ shown: shown }")
+    div(flex="70",layout="column")
+      img.logo(ng-click="shown = false",src="img/logo.png")
+      .login(layout="column")
         md-input-container.md-primary.md-default
           label Email address
           input(type="email",ng-model="user.email")
         md-input-container.md-primary.md-default
           label Password
           input(type="password",ng-model="user.password")
-        br
-        md-button.md-raised.md-primary(ui-sref="home") Sign in
+      md-button.md-accent(ng-click="signIn()") Sign in

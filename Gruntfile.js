@@ -93,6 +93,13 @@ module.exports = function(grunt) {
         src: ['angular-ui-router/release/*.js'],
         dest: 'www/js/lib'
       },
+      store: {
+        expand: true,
+        flatten: true,
+        cwd: 'bower_components',
+        src: ['store/dist/*.js'],
+        dest: 'www/js/lib'
+      },
       js: {
         expand: true,
         flatten: false,

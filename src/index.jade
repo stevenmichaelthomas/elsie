@@ -9,23 +9,19 @@ html
     script(src="js/lib/angular-ui-router.js",charset="utf-8")
     script(src="js/lib/angular-animate.js",charset="utf-8")
     script(src="js/lib/angular-aria.js",charset="utf-8")
+    script(src="js/lib/store2.min.js",charset="utf-8")
     // Angular Material
     script(src="js/lib/angular-material.js",charset="utf-8")
     link(rel="stylesheet", href="css/lib/angular-material.css")
     // Cordova 4.0.0
     script(src="cordova.js",charset="utf-8")
-    // Verge 1.9.1
-    script(src="js/lib/verge.min.js",charset="utf-8")
     // Elsie 2.0
     script(src="js/elsie.js",charset="utf-8")
     link(rel="stylesheet", href="css/app.css")
   body(ng-app="elsie")
     div(layout="column",layout-fill,ng-controller="AppCtrl")
       md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="menu")
-        md-toolbar.md-default-theme
-          h1.md-toolbar-tools Elsie
-        md-content(layout-padding,ng-controller="MenuCtrl")
-          md-button(ng-click="close()",class="md-primary") Close
+        div(side-bar)
       md-content#main
         .bar
         div(action-bar,transparent="barTransparency()",set="barItems()",search="barSearch()")

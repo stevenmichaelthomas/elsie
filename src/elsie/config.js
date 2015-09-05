@@ -1,8 +1,7 @@
 angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsie.common', 'elsie.splash', 'elsie.home', 'elsie.product', 'elsie.search', 'elsie.store'])
 
-.run(function($http, LCBO, Analytics, Dialog) {
-  $http.defaults.headers.common.Authorization = LCBO;  
-  
+.run(['$http', '$rootScope', '$state', 'Analytics', 'Dialog', 'elsie.httpAuth', 'elsie.session', function($http, $rootScope, $state, Analytics, Dialog, HttpAuth, Session) {
+
   function onDeviceReady() {
     if (navigator && navigator.splashscreen){
       navigator.splashscreen.hide();
@@ -18,6 +17,10 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
       var title = 'Please consider a review';
       Dialog.show(message, actions, title);    
     }
+
+    if (Session.active()){
+      $state.go('home');
+    }
   }
   
   document.addEventListener('deviceready', onDeviceReady, false);
@@ -26,9 +29,14 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
     cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
   });
 
-})
+  $rootScope.$on('session.init', function(event, data) {
+    Session.init(data);
+    $state.go('home');
+  });
 
-.config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
+}])
+
+.config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $httpProvider) {
 
   var elsiePurple = $mdThemingProvider.extendPalette('purple', {
     '800': '674172'
@@ -84,6 +92,7 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
       controller: 'LoginCtrl'
     });
 
+  $httpProvider.interceptors.push('elsie.httpAuth');
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/welcome');
 

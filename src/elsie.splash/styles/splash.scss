@@ -5,21 +5,31 @@
   right: 0;
   bottom: 0;
   background-color: $white;
+  .container {
+    text-align: center;
+    height: 100%;
+    transition: height $transition;
+    &.shown {
+      height: 65%;
+      .login {
+        height: 185px;
+        padding-top: 20px;
+      }
+      .logo {
+      }
+    }
+  }
+  
   .logo {
-    width: 75%;
+    width: 55%;
+    margin: 0 auto;
+    outline: none;
   }
   .login {
     transition: height $transition;
     height: 0px;
     overflow: hidden;
-    padding-top: 40px;
-    &.shown {
-      height: 300px;
-    }
     text-align: left;
   }
-  .container {
-    text-align: center;
-    height: 100%;
-  }
+  
 }

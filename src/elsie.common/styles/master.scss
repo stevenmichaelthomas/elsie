@@ -43,6 +43,10 @@ body {
   overflow-x: hidden;
 }
 
+.center {
+  text-align: center;
+}
+
 .bar {
   height: $bump;
   position: absolute;
@@ -50,6 +54,7 @@ body {
   left: 0;
   right: 0;
   background-color: $purple;
+  z-index: 90;
 }
 
 button.md-button {
@@ -96,9 +101,12 @@ md-tabs {
 }
 
 md-sidenav {
-  width: 65%;
+  width: 65% !important;
   md-toolbar {
     padding-top: $bump;
+  }
+  md-item {
+    cursor: pointer;
   }
 }
 

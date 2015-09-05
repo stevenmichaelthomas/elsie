@@ -1,0 +1,13 @@
+div
+  md-toolbar.md-default-theme
+    .md-toolbar-tools
+      h1 {{ user.firstName }} {{ user.lastName }}
+      span(flex)
+      md-button(ng-click="logout()") Logout
+  md-content(layout-padding)
+    md-list
+      md-item
+       md-item-content(md-ink-ripple,layout="row",layout-align="start center")
+        .inset
+          md-icon(md-svg-icon="img/power.svg")
+        .inset Logout
