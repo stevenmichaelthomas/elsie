@@ -1,5 +1,5 @@
 angular.module('elsie.common')
-.controller('AppCtrl', function($scope, $state, $history, $timeout, Actions, Navigator){
+.controller('AppCtrl', ['$scope', '$state', '$history', '$timeout', 'Actions', 'Navigator', function($scope, $state, $history, $timeout, Actions, Navigator){
 
   var transitionEnd = function(){
       $scope.waiting = true;
@@ -24,7 +24,8 @@ angular.module('elsie.common')
     if (toState.priority === fromState.priority) {
       document.querySelector('#main').classList.add('direction-no-anim');
     }
-    transitionEnd();
+    $scope.priority = toState.priority;
+    transitionEnd(toState);
   };
 
   $scope.go = function(destination){
@@ -45,4 +46,4 @@ angular.module('elsie.common')
     //init routine
   })();
   
-});
+}]);

@@ -43,6 +43,12 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
   });
   $mdThemingProvider.definePalette('elsie', elsiePurple);
 
+  var elsiePink = $mdThemingProvider.extendPalette('pink', {
+    'contrastLightColors': ['300'],
+    'contrastDefaultColor': 'dark'
+  });
+  $mdThemingProvider.definePalette('elsieAccent', elsiePink);
+
   var background = $mdThemingProvider.extendPalette('grey', {
     '50': 'ffffff'
   });
@@ -50,12 +56,9 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
 
   $mdThemingProvider.theme('default')
     .primaryPalette('elsie', {
-      'default': '800',
-      'hue-1': '100',
-      'hue-2': '600',
-      'hue-3': '50'
+      'default': '800'
     })
-    .accentPalette('pink', {
+    .accentPalette('elsieAccent', {
       'default': '300'
     })
     .backgroundPalette('background');
@@ -88,8 +91,19 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
     .state('welcome', {
       url: '/welcome',
       templateUrl: 'templates/welcome.html',
-      priority: 0,
+      priority: 0
+    })
+    .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      priority: 1,
       controller: 'LoginCtrl'
+    })
+    .state('signup', {
+      url: '/signup',
+      templateUrl: 'templates/signup.html',
+      priority: 1,
+      controller: 'SignupCtrl'
     });
 
   $httpProvider.interceptors.push('elsie.httpAuth');

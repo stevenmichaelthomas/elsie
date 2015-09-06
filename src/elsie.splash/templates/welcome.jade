@@ -1,12 +1,7 @@
 .splash.welcome
-  .container(layout="row", layout-align="center center", ng-class="{ shown: shown }")
-    div(flex="70",layout="column")
+  .container(layout="row", layout-align="center center")
+    .inside(flex="70",layout="column")
       img.logo(ng-click="shown = false",src="img/logo.png")
-      .login(layout="column")
-        md-input-container.md-primary.md-default
-          label Email address
-          input(type="email",ng-model="user.email")
-        md-input-container.md-primary.md-default
-          label Password
-          input(type="password",ng-model="user.password")
-      md-button.md-accent(ng-click="signIn()") Sign in
+      .buttons(layout="row",layout-align="center center")
+        md-button.md-primary(ng-click="go('login')",flex="30") Log in
+        md-button.md-accent(ng-click="go('signup')",flex="30") Sign up

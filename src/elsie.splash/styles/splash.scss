@@ -6,9 +6,11 @@
   bottom: 0;
   background-color: $white;
   .container {
-    text-align: center;
     height: 100%;
     transition: height $transition;
+    .inside {
+      margin-top: -$bump;
+    }
     &.shown {
       height: 65%;
       .login {
@@ -19,7 +21,6 @@
       }
     }
   }
-  
   .logo {
     width: 55%;
     margin: 0 auto;
@@ -31,5 +32,14 @@
     overflow: hidden;
     text-align: left;
   }
-  
+  &.welcome {
+    .container {
+      text-align: center;
+    }
+  }
+  &.login {
+    .container {
+      height: 65%;
+    }
+  }
 }

@@ -1,0 +1,10 @@
+.splash.login(layout="column")
+  .container(layout="row", layout-align="center center")
+    .inside(flex="60",layout="column",layout-align="auto")
+      md-input-container.md-primary.md-default
+        label Email address
+        input(type="email",ng-model="user.email")
+      md-input-container.md-primary.md-default
+        label Password
+        input(type="password",ng-model="user.password")
+      md-button.md-primary(ng-click="login()") Sign up

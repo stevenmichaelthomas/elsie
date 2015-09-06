@@ -20,9 +20,9 @@ html
     link(rel="stylesheet", href="css/app.css")
   body(ng-app="elsie")
     div(layout="column",layout-fill,ng-controller="AppCtrl")
-      md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="menu")
+      md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="menu",ng-if="priority > 1")
         div(side-bar)
       md-content#main
         .bar
-        div(action-bar,transparent="barTransparency()",set="barItems()",search="barSearch()")
+        div(action-bar,transparent="barTransparency()",set="barItems()",search="barSearch()",ng-if="priority > 0")
         div(ui-view,state-class)
