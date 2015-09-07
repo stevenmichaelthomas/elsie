@@ -1,31 +1,21 @@
 angular.module('elsie.common')
 .controller('AppCtrl', ['$scope', '$state', '$history', '$timeout', 'Actions', 'Navigator', function($scope, $state, $history, $timeout, Actions, Navigator){
 
-  var transitionEnd = function(){
-    $scope.waiting = true;
-    $timeout(function(){
-      document.querySelector('#main').classList.remove('direction-back');
-      document.querySelector('#main').classList.remove('direction-forward');
-      $scope.waiting = false;
-    },1200);
-  };
-
   var transitionStart = function(event, toState, toParams, fromState, fromParams){
-    if ($scope.waiting){
-      event.preventDefault();
-      return;
-    }
+    
+    document.getElementById('main').classList.remove('direction-back');
+    document.getElementById('main').classList.remove('direction-forward');
+
     if (toState.priority > fromState.priority){
-      document.querySelector('#main').classList.add('direction-forward');
+      document.getElementById('main').classList.add('direction-forward');
     } 
     if (toState.priority < fromState.priority) {
-      document.querySelector('#main').classList.add('direction-back');
+      document.getElementById('main').classList.add('direction-back');
     }
     if (toState.priority === fromState.priority) {
-      document.querySelector('#main').classList.add('direction-no-anim');
+      document.getElementById('main').classList.add('direction-no-anim');
     }
     $scope.priority = toState.priority;
-    transitionEnd(toState);
   };
 
   $scope.go = function(destination){

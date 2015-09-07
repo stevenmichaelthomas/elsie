@@ -12,8 +12,8 @@
 [ui-view].ng-leave {
   -webkit-transition: all $transition;
   transition: all $transition;
-  -webkit-transition-delay: 0.01s;
-  transition-delay: 0.01s;
+  -webkit-transition-delay: 0.001s;
+  transition-delay: 0.001s;
   @include transition-timing-function($transition-function);
 }
 

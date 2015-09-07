@@ -72,6 +72,13 @@ module.exports = function(grunt) {
         src: ['angular/*.js'],
         dest: 'www/js/lib'
       },
+      angularMonkeyPatch: {
+        expand: true,
+        flatten: true,
+        cwd: 'bower_components',
+        src: ['angular-issue-9128-patch/angular-issue-9128-patch.js'],
+        dest: 'www/js/lib'
+      },
       angularAnimate: {
         expand: true,
         flatten: true,

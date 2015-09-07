@@ -1,4 +1,4 @@
-angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsie.templates', 'elsie.common', 'elsie.splash', 'elsie.home', 'elsie.product', 'elsie.search', 'elsie.store'])
+angular.module('elsie', ['issue-9128-patch', 'ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsie.templates', 'elsie.common', 'elsie.splash', 'elsie.home', 'elsie.product', 'elsie.search', 'elsie.store'])
 
 .run(['$http', '$rootScope', '$state', '$templateCache', 'Analytics', 'Dialog', 'elsie.httpAuth', 'elsie.session', function($http, $rootScope, $state, $templateCache, Analytics, Dialog, HttpAuth, Session) {
 

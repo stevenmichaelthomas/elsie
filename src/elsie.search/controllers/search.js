@@ -59,8 +59,9 @@ angular.module('elsie.search')
     Actions.set({ menu: false, back: true });
     $scope.results = Cache.get();
     $scope.selectedTab = $scope.getTab();
-    /*$timeout(function(){
-      document.querySelector('input').focus();
-    },500);*/
+    $timeout(function(){
+      $scope.showSearch = true;
+      //document.querySelector('input').focus();
+    },750);
   })();
 });

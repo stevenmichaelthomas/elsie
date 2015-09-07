@@ -27,11 +27,15 @@ doctype
         .md-list-item-text
           h3 {{ product.package }}
           p unit package
+      md-divider(ng-if="product.pick")
+      md-list-item.md-3-line(ng-if="product.pick.tastingNote")
+        .md-list-item-text
+          p {{ product.pick.tastingNote }}
       md-divider(ng-if="product.description")
       md-list-item.md-3-line(ng-if="product.description")
         .md-list-item-text
           p {{ product.description }}
-      md-divider(ng-if="product.description && tags")
+      //md-divider(ng-if="product.description && tags")
       //md-list-item
         md-chips(ng-model="tags",readonly="true")
 

@@ -18,10 +18,11 @@
   ],
   "license": "none",
   "dependencies": {
+    "angular-issue-9128-patch": "https://gist.github.com/beckyconning/9fe5450046cabfa5d104.git",
     "angular-material": "0.10.1",
-    "roboto-fontface": "~0.4.0",
     "angular-ui-router": "~0.2.14",
-    "verge": "~1.9.1",
-    "store": "~2.3.0"
+    "roboto-fontface": "~0.4.0",
+    "store": "~2.3.0",
+    "verge": "~1.9.1"
   }
 }

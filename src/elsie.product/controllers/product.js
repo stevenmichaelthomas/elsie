@@ -1,5 +1,5 @@
 angular.module('elsie.product')
-.controller('ProductCtrl', ['$scope', '$state', 'Products', 'Watchlist', 'Actions', function ($scope, $state, Products, Watchlist, Actions) {
+.controller('ProductCtrl', ['$scope', '$state', 'Products', 'Watchlist', 'Actions', 'Picks', function ($scope, $state, Products, Watchlist, Actions, Picks) {
   $scope.toggleWatch = function(product){
     var toggle = Watchlist.changeProductStatus(product);
     if (toggle === 'added') {
@@ -14,6 +14,7 @@ angular.module('elsie.product')
     Actions.set({ menu: false, back: true });
     Actions.backGoesHome(false);
     $scope.product = Products.selected();
+    $scope.product.pick = Picks.check($scope.product);
     $scope.image = {
       'background-image': 'url(' + $scope.product.image_url + ')'
     };

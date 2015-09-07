@@ -7,5 +7,5 @@ md-toolbar.action-bar(ng-class="{ transparent: transparent, 'md-theme-search' : 
     h2(ng-class="{ visible: set.title }",ng-hide="search")
       span(ng-if="set.title") {{ set.title }}
       span(ng-if="!set.title") Elsie
-    md-button.md-icon-button.right-button(ng-click="go('search', 'forward')", ng-class="{ visible: set.search }")
+    md-button.md-icon-button.right-button(ng-click="go('search')", ng-class="{ visible: set.search }")
       md-icon search

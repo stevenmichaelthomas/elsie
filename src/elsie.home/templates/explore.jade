@@ -1,8 +1,8 @@
 .explore(ng-controller="ExploreCtrl")
   md-grid-list(md-cols-sm='2', md-cols-md='2', md-cols-gt-md='6', md-row-height-gt-md='1:1', md-row-height='1:1', md-gutter='1px', md-gutter-gt-sm='1px')
-    md-grid-tile.temp-1(md-rowspan='1', md-colspan='2', ng-click="loadMalbec()")
-      h3 Try the new Catena Malbec
-  h5 Other fine products on sale
+    md-grid-tile.temp-1(md-rowspan='1', md-colspan='2', ng-click="loadPick()",ng-style="latest")
+      h3 kwaf pick of the week
+  h5 Past selections
   .watchlist.carousel
     .scroller
       .product(ng-repeat="product in watchlist",ng-click="loadProduct(product)")
