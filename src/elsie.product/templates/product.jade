@@ -7,8 +7,8 @@ doctype
         h2.md-title {{ product.name }}
         h5.md-subhead {{ product.producer_name }}
   md-button.md-fab(aria-label="Add to Watchlist",ng-click="toggleWatch(product)")
-    md-icon(md-svg-src='img/favorite.svg',ng-if="isWatched")
-    md-icon(md-svg-src='img/favorite_outline.svg',ng-if="!isWatched")
+    md-icon(ng-if="isWatched") favorite
+    md-icon(ng-if="!isWatched") favorite_border
   md-content.lower.md-default.md-primary-bg
     md-list
       md-list-item.md-2-line(ng-if="product.varietal")

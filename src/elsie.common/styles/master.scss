@@ -103,7 +103,8 @@ md-tabs {
 }
 
 md-sidenav {
-  width: 65% !important;
+  width: 65%;
+  min-width: 280px;
   md-toolbar {
     padding-top: $bump;
   }

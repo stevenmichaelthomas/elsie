@@ -7,7 +7,7 @@ angular.module('elsie.common')
       document.querySelector('#main').classList.remove('direction-back');
       document.querySelector('#main').classList.remove('direction-forward');
       $scope.waiting = false;
-    },1500);
+    },1200);
   };
 
   var transitionStart = function(event, toState, toParams, fromState, fromParams){
