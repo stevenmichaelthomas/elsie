@@ -73,20 +73,15 @@ button.md-button {
     }
   }
   &.md-icon-button {
-    -webkit-transition: all 0.25s;
-    -webkit-transform: scale3d(1,1,1);
-    transition: all 0.25s;
-    transform: scale3d(1,1,1);
     margin: 0;
-    &.invisible {
-      -webkit-transform: scale3d(0,0,0);
-      transform: scale3d(0,0,0);
-    }
   }
 }
 
 md-icon.md-default-theme {
   color: rgba(255, 255, 255, 0.870588);
+  &.md-primary {
+    color: $purple;
+  }
 }
 
 md-list-item > .md-avatar:first-child, md-list-item .md-list-item-inner > .md-avatar:first-child {

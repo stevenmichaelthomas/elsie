@@ -121,8 +121,20 @@ module.exports = function(grunt) {
         expand: true,
         flatten: true,
         src: 'src/**/templates/*.jade',
-        dest: 'www/templates/',
+        dest: 'build/templates/',
         ext: '.html'
+      }
+    },
+
+    ngtemplates:  {
+      app: {
+        cwd: 'build/',
+        src: 'templates/**.html',
+        dest: 'www/js/templates.js',
+        options: {
+          standalone: true,
+          module: 'elsie.templates'
+        }
       }
     },
 
@@ -139,7 +151,7 @@ module.exports = function(grunt) {
 
       templates: {
         files: ['src/**/*.jade'],
-        tasks: ['jade'],
+        tasks: ['jade','ngtemplates'],
       },
  
       sass: {
@@ -154,8 +166,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-angular-templates');
 
-  grunt.registerTask('build', ['sass', 'jshint', 'concat', 'copy', 'jade']);
+  grunt.registerTask('build', ['sass', 'jshint', 'concat', 'copy', 'jade', 'ngtemplates']);
   grunt.registerTask('default', ['build', 'watch']);
  
 }

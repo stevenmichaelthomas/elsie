@@ -2,12 +2,12 @@ angular.module('elsie.common')
 .controller('AppCtrl', ['$scope', '$state', '$history', '$timeout', 'Actions', 'Navigator', function($scope, $state, $history, $timeout, Actions, Navigator){
 
   var transitionEnd = function(){
-      $scope.waiting = true;
-      $timeout(function(){
-        document.querySelector('#main').classList.remove('direction-back');
-        document.querySelector('#main').classList.remove('direction-forward');
-        $scope.waiting = false;
-      },1500);
+    $scope.waiting = true;
+    $timeout(function(){
+      document.querySelector('#main').classList.remove('direction-back');
+      document.querySelector('#main').classList.remove('direction-forward');
+      $scope.waiting = false;
+    },1500);
   };
 
   var transitionStart = function(event, toState, toParams, fromState, fromParams){

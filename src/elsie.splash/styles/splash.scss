@@ -10,14 +10,8 @@
     transition: height $transition;
     .inside {
       margin-top: -$bump;
-    }
-    &.shown {
-      height: 65%;
-      .login {
-        height: 185px;
-        padding-top: 20px;
-      }
-      .logo {
+      .md-button {
+        margin-top: 20px;
       }
     }
   }
@@ -26,15 +20,12 @@
     margin: 0 auto;
     outline: none;
   }
-  .login {
-    transition: height $transition;
-    height: 0px;
-    overflow: hidden;
-    text-align: left;
-  }
   &.welcome {
     .container {
       text-align: center;
+    }
+    .buttons {
+      margin-top: 20px;
     }
   }
   &.login {

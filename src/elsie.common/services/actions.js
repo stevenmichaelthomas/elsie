@@ -2,8 +2,11 @@ angular.module('elsie.common')
 .factory('Actions', function() {
 
   var cache = {
-    set: {},
-    transparent: false,
+    set: {
+      menu: false,
+      back: false
+    },
+    transparent: true,
     search: false,
     backGoesHome: false
   };

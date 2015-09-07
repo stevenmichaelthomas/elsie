@@ -1,12 +1,11 @@
-angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsie.common', 'elsie.splash', 'elsie.home', 'elsie.product', 'elsie.search', 'elsie.store'])
+angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsie.templates', 'elsie.common', 'elsie.splash', 'elsie.home', 'elsie.product', 'elsie.search', 'elsie.store'])
 
-.run(['$http', '$rootScope', '$state', 'Analytics', 'Dialog', 'elsie.httpAuth', 'elsie.session', function($http, $rootScope, $state, Analytics, Dialog, HttpAuth, Session) {
+.run(['$http', '$rootScope', '$state', '$templateCache', 'Analytics', 'Dialog', 'elsie.httpAuth', 'elsie.session', function($http, $rootScope, $state, $templateCache, Analytics, Dialog, HttpAuth, Session) {
 
   function onDeviceReady() {
     if (navigator && navigator.splashscreen){
       navigator.splashscreen.hide();
     }
-
     Analytics.incrementRunNumber();
     if (Analytics.runNumber() === 3){
       var message = 'If you enjoy Elsie, you can help others find out about her by leaving a review in the app store.';
@@ -16,10 +15,6 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
       ];
       var title = 'Please consider a review';
       Dialog.show(message, actions, title);    
-    }
-
-    if (Session.active()){
-      $state.go('home');
     }
   }
   
@@ -32,6 +27,13 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
   $rootScope.$on('session.init', function(event, data) {
     Session.init(data);
     $state.go('home');
+  });
+
+  $rootScope.$on('$stateChangeStart', function(e, to) {
+    if (to.url === '/welcome' && Session.active()) {
+      e.preventDefault();
+      $state.go('home');
+    }
   });
 
 }])
@@ -91,7 +93,8 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
     .state('welcome', {
       url: '/welcome',
       templateUrl: 'templates/welcome.html',
-      priority: 0
+      priority: 0,
+      controller: 'WelcomeCtrl'
     })
     .state('login', {
       url: '/login',

@@ -3,5 +3,6 @@
     .inside(flex="70",layout="column")
       img.logo(ng-click="shown = false",src="img/logo.png")
       .buttons(layout="row",layout-align="center center")
-        md-button.md-primary(ng-click="go('login')",flex="30") Log in
-        md-button.md-accent(ng-click="go('signup')",flex="30") Sign up
+        div(flex="70",layout="column")
+          md-button.md-accent.md-raised(ng-click="go('signup')") Sign up
+          md-button.md-primary.md-raised(ng-click="go('login')") Log in

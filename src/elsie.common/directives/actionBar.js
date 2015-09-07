@@ -25,6 +25,9 @@ angular.module('elsie.common')
       $scope.go = function(destination, direction){
         Navigator.go(destination, direction);
       };
+      (function init(){
+        //
+      })();
     }
   };
 }]);
