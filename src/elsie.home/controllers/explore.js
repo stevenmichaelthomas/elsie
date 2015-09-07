@@ -10,16 +10,20 @@ angular.module('elsie.home')
     Products.select($scope.latestObj);
     Navigator.go('product');
   };
+  $scope.getRating = function(num) {
+    return new Array(num);   
+  };
   $scope.watchlist = [];
   (function init(){
     Picks.latest().then(function(picks){
       angular.forEach(picks, function(p, i){
         Products.one(p.productNumber).then(function(one){
           if (i === 0){
-            console.log(one.image_url);
-            console.log("{ 'background-image': url('" + one.image_url + "') }");
-            $scope.latest = "{ 'background-image': url('" + one.image_url + "') }";
-            $scope.latestObj = one;
+            $scope.featuredStyle = { 
+              'background-image': 'url(' + one.image_url + ')'
+            };
+            $scope.featured = one;
+            $scope.featured.pick = p;
           }
           $scope.watchlist.push(one);
         });

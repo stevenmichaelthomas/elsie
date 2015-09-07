@@ -1,20 +1,25 @@
 .explore {
-  md-grid-tile {
-    background-size: auto 200%;
-    background-position-y: center;
-    background-position-x: center;
-    background-repeat: no-repeat;
-    outline: none;
+  .feature {
+    border-bottom: 2px #eee solid;
+    .image {
+      background-size: cover;
+      background-position-x: 50%;
+    }
+    .pick {
+      height: 200px;
+      .buttons {
+        margin-top: 15px;
+        .md-button {
+          margin-left: 0;
+        }
+      }
+    }
     h3 {
       font-weight: 400;
-      max-width: 50%;
+      max-width: 80%;
     }
-    &.temp-1 {
-      background-position-x: 175%;
-      h3 {
-        margin-left: -40%;
-      }
-      border-bottom: 2px #eee solid;
+    p {
+      font-size: 0.9em;
     }
   }
   h5 {

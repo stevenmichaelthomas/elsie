@@ -1,7 +1,17 @@
 .explore(ng-controller="ExploreCtrl")
-  md-grid-list(md-cols-sm='2', md-cols-md='2', md-cols-gt-md='6', md-row-height-gt-md='1:1', md-row-height='1:1', md-gutter='1px', md-gutter-gt-sm='1px')
-    md-grid-tile.temp-1(md-rowspan='1', md-colspan='2', ng-click="loadPick()",ng-style="latest")
-      h3 kwaf pick of the week
+  .feature
+    h5 Pick of the week
+    .pick(layout="row")
+      .image(ng-style="featuredStyle",flex="30")
+      div(flex="65")
+        h3 {{ featured.name }}
+        span.rating 
+          md-icon.material-icons.md-default-theme.md-accent(ng-repeat="star in getRating(featured.pick.rating) track by $index") star_rate
+        br
+        .buttons
+          md-button.md-primary.md-raised
+            span Find it
+            md-icon arrow_forward
   h5 Past selections
   .watchlist.carousel
     .scroller

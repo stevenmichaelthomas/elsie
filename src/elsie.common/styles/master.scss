@@ -82,6 +82,9 @@ md-icon.md-default-theme {
   &.md-primary {
     color: $purple;
   }
+  &.md-accent {
+    color: $pink;
+  }
 }
 
 md-list-item > .md-avatar:first-child, md-list-item .md-list-item-inner > .md-avatar:first-child {
