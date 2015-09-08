@@ -25,6 +25,17 @@
       }
     }
   }
+  md-list-item {
+    .md-list-item-inner > .md-avatar {
+      width: 50px;
+      margin-top: 8px;
+      margin-bottom: 8px;
+      margin-right: 0px;
+      margin-left: -12px;
+      border-radius: 50%;
+      box-sizing: content-box; 
+    }
+  }
 }
 
 .md-button.md-fab.watchlist-fab {

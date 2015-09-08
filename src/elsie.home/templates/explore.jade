@@ -2,14 +2,14 @@
   .feature
     h5 Pick of the week
     .pick(layout="row")
-      .image(ng-style="featuredStyle",flex="30")
-      div(flex="65")
+      .image(ng-style="featuredStyle",flex="35")
+      div(flex="60")
         h3 {{ featured.name }}
         span.rating 
           md-icon.material-icons.md-default-theme.md-accent(ng-repeat="star in getRating(featured.pick.rating) track by $index") star_rate
         br
         .buttons
-          md-button.md-primary.md-raised
+          md-button.md-primary.md-raised(ng-click="loadProduct(featured)")
             span Find it
             md-icon arrow_forward
   h5 Past selections

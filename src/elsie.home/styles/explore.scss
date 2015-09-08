@@ -16,7 +16,6 @@
     }
     h3 {
       font-weight: 400;
-      max-width: 80%;
     }
     p {
       font-size: 0.9em;
@@ -27,5 +26,7 @@
     text-transform: uppercase;
     color: $charcoal;
     padding: 0 20px;
+    -webkit-margin-after: 15px;
+    margin-after: 15px;
   }
 }
