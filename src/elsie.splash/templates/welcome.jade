@@ -1,8 +1,8 @@
 .splash.welcome
-  .container(layout="row", layout-align="center center")
-    .inside(flex="70",layout="column")
-      img.logo(ng-click="shown = false",src="img/logo.png")
-      .buttons(layout="row",layout-align="center center")
-        div(flex="70",layout="column")
-          md-button.md-accent.md-raised(ng-click="go('signup')") Sign up
-          md-button.md-primary.md-raised(ng-click="go('login')") Log in
+  .overlay
+  .container(layout="column", layout-align="center center", flex="100")
+    .inside(flex="80",layout="column",layout-align="center center")
+      img.logo(ng-click="shown = false",src="img/logo_white.png")
+    .buttons(flex="20",layout="row",layout-align="center end")
+      md-button.md-accent.md-raised(ng-click="go('signup')",flex="45") Sign up
+      md-button.md-primary.md-raised(ng-click="go('login')",flex="45") Log in

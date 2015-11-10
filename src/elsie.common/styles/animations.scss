@@ -7,17 +7,17 @@
   background-color: white;
 }
 
-// Common transition properties
+// // Common transition properties
 [ui-view].ng-enter, 
 [ui-view].ng-leave {
   -webkit-transition: all $transition;
   transition: all $transition;
-  -webkit-transition-delay: 0.001s;
-  transition-delay: 0.001s;
+  // -webkit-transition-delay: 0.001s;
+  // transition-delay: 0.001s;
   @include transition-timing-function($transition-function);
 }
 
-// Handle initial properties of the leaving state
+// // Handle initial properties of the leaving state
 #main.direction-forward [ui-view].ng-leave,
 #main.direction-back [ui-view].ng-leave {
   -webkit-transform: translate3d(0, 0, 0);

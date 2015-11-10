@@ -104,7 +104,7 @@ module.exports = function(grunt) {
         expand: true,
         flatten: true,
         cwd: 'bower_components',
-        src: ['store/dist/*.js'],
+        src: ['store/dist/*.*'],
         dest: 'www/js/lib'
       },
       js: {

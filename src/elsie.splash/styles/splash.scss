@@ -4,7 +4,16 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: $white;
+  background-color: white;
+  .overlay {
+    background: url('../img/elsie.png') no-repeat;
+    background-size: 175%;
+    background-position: 81% 120%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    opacity: 0.1;
+  }
   .container {
     height: 100%;
     transition: height $transition;
@@ -16,21 +25,39 @@
     }
   }
   .logo {
-    width: 55%;
+    width: 40%;
     margin: 0 auto;
     outline: none;
   }
   &.welcome {
+    background-color: $purple;
     .container {
       text-align: center;
+      position: relative;
+      z-index: 5;
+      .inside {
+        margin-top: 0;
+        .logo {
+
+        }
+      }
     }
     .buttons {
-      margin-top: 20px;
+      width: 100%;
+      button.md-button {
+        width: 50%;
+        color: white;
+        border: 1px solid white;
+      }
     }
   }
-  &.login {
+  &.login, &.signup {
     .container {
       height: 65%;
+    }
+    button.md-button {
+      margin-left: 3px;
+      margin-right: 3px;
     }
   }
 }

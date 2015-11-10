@@ -65,6 +65,11 @@ body {
 }
 
 button.md-button {
+  &:not(.md-fab),
+  &:not(.md-icon-button) {
+    border-radius: 0;
+    background-color: transparent;
+  }
   &.md-fab {
     &.fab-bottom-right {
       position: fixed;
