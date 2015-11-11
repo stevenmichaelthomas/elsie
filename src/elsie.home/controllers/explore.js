@@ -13,19 +13,16 @@ angular.module('elsie.home')
   $scope.getRating = function(num) {
     return new Array(num);   
   };
-  $scope.watchlist = [];
+  $scope.picks = [];
   (function init(){
     Picks.latest().then(function(picks){
       angular.forEach(picks, function(p, i){
         Products.one(p.productNumber).then(function(one){
           if (i === 0){
-            $scope.featuredStyle = { 
-              'background-image': 'url(' + one.image_url + ')'
-            };
             $scope.featured = one;
             $scope.featured.pick = p;
           }
-          $scope.watchlist.push(one);
+          $scope.picks.push(one);
         });
       });
     }); // Picks.latest

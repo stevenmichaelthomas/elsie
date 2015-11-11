@@ -4,38 +4,6 @@
     background-color: white;
     background-repeat: no-repeat;
   }
-  &.carousel {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    .scroller {
-      width: 1000px;
-      height: 100px;
-    }
-    .product {
-      box-sizing: border-box;
-      display: inline-block;
-      width: 50px;
-      height: 100px;
-      text-align: center;
-      outline: none;
-      cursor: pointer;
-      img {
-        height: 100%;
-      }
-    }
-  }
-  md-list-item {
-    .md-list-item-inner > .md-avatar {
-      width: 50px;
-      margin-top: 8px;
-      margin-bottom: 8px;
-      margin-right: 0px;
-      margin-left: -12px;
-      border-radius: 50%;
-      box-sizing: content-box; 
-    }
-  }
 }
 
 .md-button.md-fab.watchlist-fab {

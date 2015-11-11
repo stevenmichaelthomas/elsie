@@ -37,9 +37,6 @@
       z-index: 5;
       .inside {
         margin-top: 0;
-        .logo {
-
-        }
       }
     }
     .buttons {
@@ -53,7 +50,8 @@
   }
   &.login, &.signup {
     .container {
-      height: 65%;
+      margin-top: 30%;
+      height: 35%;
     }
     button.md-button {
       margin-left: 3px;

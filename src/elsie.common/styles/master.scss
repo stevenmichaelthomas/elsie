@@ -79,6 +79,9 @@ button.md-button {
   }
   &.md-icon-button {
     margin: 0;
+    md-icon {
+      color: $purple;
+    }
   }
 }
 
@@ -94,6 +97,18 @@ md-icon.md-default-theme {
 
 md-list-item > .md-avatar:first-child, md-list-item .md-list-item-inner > .md-avatar:first-child {
   height: auto;
+}
+
+md-list-item {
+  .md-list-item-inner > .md-avatar {
+    width: 50px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-right: 0px;
+    margin-left: -12px;
+    border-radius: 50%;
+    box-sizing: content-box; 
+  }
 }
 
 md-list-item.md-2-line .md-list-item-text h3, md-list-item.md-2-line > .md-no-style .md-list-item-text h3, md-list-item.md-3-line .md-list-item-text h3, md-list-item.md-3-line > .md-no-style .md-list-item-text h3 {

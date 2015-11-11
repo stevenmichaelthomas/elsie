@@ -18,8 +18,7 @@
   ],
   "license": "none",
   "dependencies": {
-    "angular-issue-9128-patch": "https://gist.github.com/beckyconning/9fe5450046cabfa5d104.git",
-    "angular-material": "0.10.1",
+    "angular-material": "~1.0.0-rc3",
     "angular-ui-router": "~0.2.14",
     "roboto-fontface": "~0.4.0",
     "store": "~2.3.0",

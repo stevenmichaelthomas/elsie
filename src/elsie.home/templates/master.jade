@@ -1,9 +1,8 @@
 doctype
 .home
-  md-tabs.full.md-primary(md-selected="selectedIndex", md-no-pagination="true", md-stretch-tabs="always", md-no-ink="true")
-    md-tab(label='Explore',md-on-select="changeTab('explore')")
-      include explore.jade
-    md-tab(label='Cellar',md-on-select="changeTab('watchlist')")
-      include watchlist.jade
-  md-button.md-fab.fab-bottom-right.watchlist-fab(ng-click="go('search')",ng-class="{ 'state-home-explore' : currentTab === 'explore', 'state-home-watchlist' : currentTab === 'watchlist'}")
-    md-icon add
+  .search
+    .searchbox(ng-if="showSearch")
+      input(type="text",placeholder="Search products",ng-model="query.product",ng-change="searchProducts(query.product)",ng-model-options="{ debounce: 300 }",ng-if="results.mode === 'product'")
+      input(type="text",placeholder="Search stores",ng-model="query.store",ng-change="searchStores(query.store)",ng-model-options="{ debounce: 300 }",ng-if="results.mode === 'store'")
+      md-button.md-icon-button.hide(ng-class="{ visible: results.mode === 'product' && query.product || results.mode === 'store' && query.store }",ng-click="clear()")
+        md-icon close
