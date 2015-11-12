@@ -40,6 +40,12 @@ h5 {
   &.white {
     color: $grey-light; 
   }
+  &.light {
+    font-weight: 400;
+  }
+  &.md-accent {
+    color: $pink;
+  }
 }
 
 #main {
@@ -149,10 +155,13 @@ md-sidenav {
   }
   md-item {
     cursor: pointer;
+    color: $charcoal;
   }
+  background-color: $grey-light;
 }
 
 md-content {
+  background-color: $grey-light;
   &.with-toolbar {
     position: absolute;
     top: 64px;
