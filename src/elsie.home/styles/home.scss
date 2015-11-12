@@ -1,11 +1,14 @@
 .home {
-  background-color: $purple;
+  padding-top: $bump;
+  background-color: $grey-light;
   height: 135px;
   width: 100%;
   overflow: visible;
-  md-tabs.md-primary {
-    > md-tabs-wrapper {
-      background-color: transparent;
+  .results {
+    md-list-item {
+      background-color: white;
+      box-shadow: $box-shadow;
     }
+    overflow-y: auto;
   }
 }

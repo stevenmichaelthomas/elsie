@@ -6,12 +6,6 @@ angular.module('elsie.home')
       Navigator.go('product', 'forward');
     }
   };
-  $scope.productStyle = function(product){
-    var style = {
-      "background-image": "url('" + product.image_url + "')"
-    };
-    return style;
-  };
   (function(){
     Actions.transparent(false);
     Actions.set({ title: 'Cellar', menu: false, back: true, search: false, watchlist: false });
@@ -21,6 +15,5 @@ angular.module('elsie.home')
       Actions.backGoesHome(false);
     }
     $scope.watchlist = Watchlist.load();
-    console.log($scope.watchlist);
   })();
 });

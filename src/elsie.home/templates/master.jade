@@ -1,13 +1,20 @@
 doctype
-.home
-  .search(layout="column",layout-align="center center")
-    h2 Let's do this.
-    input(type="text",placeholder="Search products and stores",ng-model="query.product",ng-change="search(query)",ng-model-options="{ debounce: 300 }",ng-if="results.mode === 'product'")
-    //- input(type="text",placeholder="Search stores",ng-model="query.store",ng-change="searchStores(query.store)",ng-model-options="{ debounce: 300 }",ng-if="results.mode === 'store'")
-    md-button.md-icon-button.hide(ng-class="{ visible: results.mode === 'product' && query.product || results.mode === 'store' && query.store }",ng-click="clear()")
+.home(layout="column",layout-fill)
+  .search(layout="column",layout-align="center center",flex="{{ flex.search }}")
+    h2(ng-if="!query") Let's do this.
+    input(type="text",placeholder="Search products and stores",ng-model="query",ng-change="search(query)",ng-model-options="{ debounce: 300 }",ng-class="{ expanded: query }")
+    md-button.md-icon-button.hide(ng-class="{ visible: query }",ng-click="clear()")
       md-icon close
-    h5.light.hint.md-accent Try "Gooderham &amp; Worts" or "Saison"
-  md-icon.swipe-down keyboard_arrow_down
+    h5.light.hint.md-accent(ng-if="!query") Try "Gooderham &amp; Worts" or "Saison"
+  .results(ng-if="query",flex="{{ flex.results }}")
+    md-list
+      md-list-item.md-2-line(md-no-ink,ng-repeat="product in results.products",ng-click="selectProduct(product)")
+        img.md-avatar(ng-src="{{ product.image_thumb_url }}")
+        .md-list-item-text
+          h3 {{ product.name }}
+          p {{ product.producer_name }}
+  .explore(flex="{{ flex.explore }}",ng-if="!query")
+    md-icon.swipe-down.md-primary keyboard_arrow_down
     //- md-list
     //-   md-list-item.md-2-line(md-no-ink,ng-repeat="product in results.products",ng-click="selectProduct(product)")
     //-     img.md-avatar(ng-src="{{ product.image_thumb_url }}")

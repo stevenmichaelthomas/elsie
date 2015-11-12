@@ -1,18 +1,15 @@
 angular.module('elsie.home')
 .controller('HomeCtrl', function($scope, $timeout, Navigator, Products, Stores, Cache, Actions) {
-  $scope.query = {
-    product: null,
-    store: null
+  $scope.query = "";
+  $scope.flex = {
+    search: 95,
+    explore: 5,
+    results: 0
   };
   $scope.clear = function(){
-    if ($scope.results.mode === 'store'){
-      $scope.query.store = null;
-    }
-    if ($scope.results.mode === 'product'){
-      $scope.query.product = null;
-    }
+    $scope.query = "";
   };
-  $scope.searchProducts = function(query) {
+  $scope.search = function(query) {
     return Products.search(query).then(function(result){
       $scope.results.products = result;
       Cache.update($scope.results);
@@ -38,17 +35,22 @@ angular.module('elsie.home')
       Navigator.go('store');
     }
   };
-  $scope.getTab = function(){
-    if ($scope.results.mode === 'product'){
-      return 0;
-    } else if ($scope.results.mode === 'store'){
-      return 1;
-    }
-  };
   $scope.$watch('results.mode', function(){
     Cache.update($scope.results);
   });
+  $scope.$watch('query', function(val){
+    if (val !== "") {
+      $scope.flex.search = 15;
+      $scope.flex.results = 85;
+      Actions.hide();
+    } else {
+      $scope.flex.search = 95;
+      $scope.flex.results = 0;
+      Actions.show();
+    }
+  });
   (function(){
+    Actions.show();
     Actions.transparent(false);
     Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true });
     if (Navigator.lastState() && Navigator.lastState().name === 'product' || Navigator.lastState() && Navigator.lastState().name === 'store'){
@@ -57,7 +59,6 @@ angular.module('elsie.home')
       Actions.backGoesHome(false);
     }
     $scope.results = Cache.get();
-    $scope.selectedTab = $scope.getTab();
     $scope.showSearch = true;
   })();
 });

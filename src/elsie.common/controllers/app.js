@@ -31,6 +31,7 @@ angular.module('elsie.common')
   $scope.barTransparency = Actions.transparent;
   $scope.barItems = Actions.get;
   $scope.barSearch = Actions.search;
+  $scope.barVisible = Actions.visible;
   
   (function(){
     //init routine

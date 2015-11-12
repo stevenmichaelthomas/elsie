@@ -1,4 +1,4 @@
-md-toolbar.action-bar(ng-class="{ transparent: transparent, 'md-theme-search' : search }")
+md-toolbar.action-bar(ng-class="{ transparent: transparent, 'md-theme-search' : search }",ng-show="show")
   .md-toolbar-tools
     md-button.md-icon-button.left-button(ng-click="toggleMenu()", ng-class="{ visible: set.menu }")
       md-icon menu

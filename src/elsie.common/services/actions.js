@@ -2,6 +2,7 @@ angular.module('elsie.common')
 .factory('Actions', function() {
 
   var cache = {
+    show: true,
     set: {
       menu: false,
       back: false
@@ -35,6 +36,17 @@ angular.module('elsie.common')
         cache.backGoesHome = value;
       }
       return cache.backGoesHome;
+    },
+    visible: function(){
+      return cache.show;
+    },
+    show: function(){
+      cache.show = true;
+      return cache.show;
+    },
+    hide: function(){
+      cache.show = false;
+      return cache.show;
     }
   };
 

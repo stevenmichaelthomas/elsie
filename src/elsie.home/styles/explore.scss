@@ -1,3 +1,7 @@
 .explore {
-  
+  background-color: $grey-light;
+  text-align: center;
+  .swipe-down {
+    display: inline-block;
+  }
 }

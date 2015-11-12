@@ -3,6 +3,7 @@ angular.module('elsie.common')
   return {
     replace: true,
     scope: {
+      show: '=',
       transparent: '=',
       set: '=',
       search: '='
