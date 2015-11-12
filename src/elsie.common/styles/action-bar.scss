@@ -13,11 +13,13 @@ md-toolbar.action-bar {
   .md-toolbar-tools {
     h2 {
       font-weight: 500;
+      font-size: 0.95em;
       margin-left: 45px;
-      margin-top: -7px;
+      margin-top: 0;
       opacity: 0;
       -webkit-transition: opacity $transition;
       transition: opacity $transition;
+      color: $purple;
       &.visible {
         opacity: 1;
       }

@@ -4,6 +4,7 @@ $pink: #F06292;
 $pink-light: #F8BBD0;
 $charcoal: #313131;
 $white: #FEFEFE;
+$grey-light: #FAFAFA;
 
 $bump: 24px;
 
@@ -27,6 +28,17 @@ body {
   &:not(input){
     -webkit-user-select: none;
     user-select: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: $purple;
+  &.white {
+    color: $grey-light; 
   }
 }
 

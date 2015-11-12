@@ -72,10 +72,10 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
       controller: 'HomeCtrl',
       priority: 2
     })
-    .state('search', {
-      url: '/search',
-      controller: 'SearchCtrl',
-      templateUrl: 'templates/search.html',
+    .state('watchlist', {
+      url: '/watchlist',
+      templateUrl: 'templates/watchlist.html',
+      controller: 'WatchlistCtrl',
       priority: 3
     })
     .state('product', {
