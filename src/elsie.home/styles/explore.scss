@@ -1,7 +1,13 @@
 .explore {
+  // margin-top: 170%;
+  box-shadow: $box-shadow;
+  padding-top: 15px;
   background-color: $grey-light;
   text-align: center;
   .swipe-down {
     display: inline-block;
+  }
+  md-list-item {
+    background-color: white;
   }
 }

@@ -1,6 +1,7 @@
 angular.module('elsie.store')
 .controller('StoreCtrl', function ($scope, $state, Stores, Map, Actions) {
   (function(){
+    Actions.show();
     Actions.transparent(true);
     Actions.search(false);
     Actions.set({ menu: false, back: true });

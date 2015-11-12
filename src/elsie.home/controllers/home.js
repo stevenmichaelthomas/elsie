@@ -1,13 +1,15 @@
 angular.module('elsie.home')
-.controller('HomeCtrl', function($scope, $timeout, Navigator, Products, Stores, Cache, Actions) {
-  $scope.query = "";
+.controller('HomeCtrl', function($scope, $timeout, Navigator, Products, Stores, Cache, Actions, Picks) {
+  $scope.welcome = 'Let\'s get started.';
+  $scope.query = '';
   $scope.flex = {
     search: 95,
     explore: 5,
     results: 0
   };
+  $scope.picks = [];
   $scope.clear = function(){
-    $scope.query = "";
+    $scope.query = '';
   };
   $scope.search = function(query) {
     return Products.search(query).then(function(result){
@@ -59,6 +61,16 @@ angular.module('elsie.home')
       Actions.backGoesHome(false);
     }
     $scope.results = Cache.get();
-    $scope.showSearch = true;
+    Picks.latest().then(function(picks){
+      angular.forEach(picks, function(p, i){
+        Products.one(p.productNumber).then(function(one){
+          if (i === 0){
+            $scope.featured = one;
+            $scope.featured.pick = p;
+          }
+          $scope.picks.push(one);
+        });
+      });
+    }); // Picks.latest
   })();
 });

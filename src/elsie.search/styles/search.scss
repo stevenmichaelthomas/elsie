@@ -1,7 +1,14 @@
 .search {
   background-color: $grey-light;
   transition: height $transition;
-  margin-top: -$bump;
+  padding: 50% 0;
+  &.expanded {
+    padding: 0;
+    input[type="text"] {
+      width: 100%;
+      margin-bottom: 0;
+    }
+  }
   input[type="text"] {
     border: none;
     border-radius: 0;
@@ -12,11 +19,6 @@
     padding: 10px 15px;
     width: 85%;
     margin-bottom: 20px;
-    &.expanded {
-      width: 100%;
-      margin-top: 6px;
-      margin-bottom: 0;
-    }
   }
   h5.hint {
     margin-top: 0;
@@ -29,13 +31,13 @@
     min-height: 0;
     padding: 0;
     display: block !important;
-    -webkit-transition: all 0.25s;
+    -webkit-transition: all $transition;
     -webkit-transform: scale(0,0);
     transform: scale(0,0);
     transition: all $transition;
     position: absolute;
     z-index: 200;
-    top: 33px;
+    top: 10px;
     right: 5px;
     md-icon {
       color: $purple;

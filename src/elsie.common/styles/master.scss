@@ -37,7 +37,8 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+small {
   color: $purple;
   &.white {
     color: $grey-light; 
@@ -45,9 +46,21 @@ h5 {
   &.light {
     font-weight: 400;
   }
+  &.black {
+    color: $charcoal;
+  }
   &.md-accent {
     color: $pink;
   }
+  &.upcase {
+    margin: 10px 20px;
+    font-size: 0.9em;
+  }
+}
+
+.upcase {
+  text-transform: uppercase;
+  font-weight: 400;
 }
 
 #main {
@@ -85,11 +98,8 @@ h5 {
 }
 
 button.md-button {
-  &:not(.md-fab),
-  &:not(.md-icon-button) {
-    border-radius: 0;
-    background-color: transparent;
-  }
+  border-radius: 0;
+  background-color: transparent;
   &.md-fab {
     &.fab-bottom-right {
       position: fixed;
