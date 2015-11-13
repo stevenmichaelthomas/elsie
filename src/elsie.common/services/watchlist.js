@@ -1,10 +1,14 @@
 angular.module('elsie.common')
-.factory('Watchlist', function($http, $q, Products, Scheduler) {
+.factory('Watchlist', ['$http', '$q', 'Products', 'Scheduler', 'elsie.session', 'ELSIEAPI', function($http, $q, Products, Scheduler, Session, ELSIEAPI) {
 
   var cache = {
-    lastUpdate: 0
-  };  
-  var watchlist = [];
+    lastUpdate: 0,
+    watchlist: []
+  };
+
+  var url = function(path) {
+    return ELSIEAPI + '/users/' + Session.get('account').id + '/';
+  };
 
   var _cacheIsExpired = function() {
     if (cache.lastUpdate === 0) {
@@ -19,25 +23,26 @@ angular.module('elsie.common')
     }
   };
 
-  var _syncWatchlist = function(){
-    localStorage["Elsie_watchlistProducts"] = JSON.stringify(watchlist);
-    return;
+  var _syncWatchlist = function() {
+    return $http.put(url(), {
+      cellar: JSON.stringify(cache.watchlist)
+    });
   };
 
   var watchlistService = {
-    load: function(){
-      if (watchlist.length === 0){
-        if (localStorage["Elsie_watchlistProducts"]){
-          var retrievedItmes = JSON.parse(localStorage["Elsie_watchlistProducts"]);
-          watchlist = retrievedItmes;
-        } else {
+    load: function() {
+      $http.get(url()).then(function(res){
+        if (!res.data.cellar) {
+          cache.watchlist = [];
           _syncWatchlist();
+        } else {
+          cache.watchlist = res.data.cellar;
         }
-      }
-      return watchlist;
+        return cache.watchlist;
+      });
     },
     checkForProduct: function(product){
-      var index = JSON.stringify(watchlist).indexOf(JSON.stringify(product.product_no));
+      var index = JSON.stringify(cache.watchlist).indexOf(JSON.stringify(product.product_no));
       if (index === -1){
         return false;
       } else {
@@ -46,27 +51,27 @@ angular.module('elsie.common')
     },
     updateProduct: function(product){
       var index;
-      for (var p = 0; p < watchlist.length; p++) {
-        if (watchlist[p].product_no === product.product_no) {
+      for (var p = 0; p < cache.watchlist.length; p++) {
+        if (cache.watchlist[p].product_no === product.product_no) {
           index = p;
         }
       }
-      watchlist[index] = product;
+      cache.watchlist[index] = product;
       return;
     },
     changeProductStatus: function(product){
       var result;
       var index;
       if (!this.checkForProduct(product)){
-        watchlist.unshift(product);
+        cache.watchlist.unshift(product);
         result = "added";
       } else {
-        for (var i = 0; i < watchlist.length; i++) {
-          if (watchlist[i].product_no === product.product_no) {
+        for (var i = 0; i < cache.watchlist.length; i++) {
+          if (cache.watchlist[i].product_no === product.product_no) {
             index = i;
           }
         }
-        watchlist.splice(index, 1);
+        cache.watchlist.splice(index, 1);
         result = "removed";
       }
       _syncWatchlist();
@@ -74,16 +79,16 @@ angular.module('elsie.common')
     },
     removeSelectedProducts: function (products) {
       for (var i = 0; i < products.length; i++) {
-        watchlist.splice(i, 1);
+        cache.watchlist.splice(i, 1);
       }
       _syncWatchlist();
       return;
     },
     refreshWatchlistData: function(){
       var deferred = $q.defer();
-      if (watchlist.length > 0 && _cacheIsExpired()){
-        for (var p = 0; p < watchlist.length; p++){
-          Products.atNearbyStores(watchlist[p].id);
+      if (cache.watchlist.length > 0 && _cacheIsExpired()){
+        for (var p = 0; p < cache.watchlist.length; p++){
+          Products.atNearbyStores(cache.watchlist[p].id);
         }
         Scheduler.run().then(function(){
           cache.lastUpdate = new Date().getTime();
@@ -98,4 +103,4 @@ angular.module('elsie.common')
       
   return watchlistService;
 
-});
+}]);
