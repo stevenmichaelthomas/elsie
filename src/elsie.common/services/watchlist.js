@@ -24,15 +24,19 @@ angular.module('elsie.common')
   };
 
   var _syncWatchlist = function() {
+    console.log('syncing watchlist for user...');
+    console.log(cache.watchlist);
     return $http.put(url(), {
-      cellar: JSON.stringify(cache.watchlist)
+      cellar: cache.watchlist
     });
   };
 
   var watchlistService = {
     load: function() {
-      $http.get(url()).then(function(res){
+      return $http.get(url()).then(function(res){
+        console.log(res);
         if (!res.data.cellar) {
+          console.log('no watchlist returned, so setting it empty');
           cache.watchlist = [];
           _syncWatchlist();
         } else {
@@ -42,7 +46,7 @@ angular.module('elsie.common')
       });
     },
     checkForProduct: function(product){
-      var index = JSON.stringify(cache.watchlist).indexOf(JSON.stringify(product.product_no));
+      var index = JSON.stringify(cache.watchlist).indexOf(product.product_no);
       if (index === -1){
         return false;
       } else {

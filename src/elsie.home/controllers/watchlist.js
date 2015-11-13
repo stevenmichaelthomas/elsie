@@ -14,6 +14,8 @@ angular.module('elsie.home')
     } else {
       Actions.backGoesHome(false);
     }
-    $scope.watchlist = Watchlist.load();
+    Watchlist.load().then(function(data){
+      $scope.watchlist = data;
+    });
   })();
 });
