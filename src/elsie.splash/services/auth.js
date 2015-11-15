@@ -14,7 +14,7 @@ angular.module('elsie.splash').factory('elsie.auth',
           });
       }
 
-    , register: function(payload) {
+    , signup: function(payload) {
         return $http.post(url('signup'), payload)
           .then(function(response) {
             return response.data;

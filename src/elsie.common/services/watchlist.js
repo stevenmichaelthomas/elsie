@@ -7,7 +7,7 @@ angular.module('elsie.common')
   };
 
   var url = function(path) {
-    return ELSIEAPI + '/users/' + Session.get('account').id + '/';
+    return ELSIEAPI + '/users/' + Session.get('account').id + '/cellar';
   };
 
   var _cacheIsExpired = function() {
@@ -32,18 +32,25 @@ angular.module('elsie.common')
   };
 
   var watchlistService = {
-    load: function() {
+    oldload: function() {
       return $http.get(url()).then(function(res){
-        console.log(res);
+        console.log('res', res);
+        var cellar;
+        angular.copy(res.data.cellar, cellar);
         if (!res.data.cellar) {
           console.log('no watchlist returned, so setting it empty');
           cache.watchlist = [];
           _syncWatchlist();
         } else {
-          cache.watchlist = res.data.cellar;
+          console.log('cellar is present');
+          angular.copy(cellar, cache.watchlist);
+          console.log(res.data.cellar);
         }
         return cache.watchlist;
       });
+    },
+    load: function(){
+      return $http.get(url());
     },
     checkForProduct: function(product){
       var index = JSON.stringify(cache.watchlist).indexOf(product.product_no);
