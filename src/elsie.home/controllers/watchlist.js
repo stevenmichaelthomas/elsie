@@ -6,8 +6,6 @@ angular.module('elsie.home')
       Navigator.go('product', 'forward');
     }
   };
-  $scope.arr = [1, 2, 3];
-  var newData = {};
   (function(){
     Actions.transparent(false);
     Actions.set({ title: 'Cellar', menu: false, back: true, search: false, watchlist: false });
@@ -16,11 +14,8 @@ angular.module('elsie.home')
     } else {
       Actions.backGoesHome(false);
     }
-    $scope.$watch('watchlist',function(a, b, c){
-      console.log('$watch change', a, b, c);
-    });
-    Watchlist.load().then(function(res){
-      $scope.watchlist = res.data;
+    Watchlist.load().then(function(data){
+      $scope.watchlist = data;
     });
   })();
 });

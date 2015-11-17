@@ -1,5 +1,5 @@
 angular.module('elsie.home')
-.controller('HomeCtrl', function($scope, $timeout, Navigator, Products, Stores, Cache, Actions, Picks) {
+.controller('HomeCtrl', function($scope, $timeout, Navigator, Products, Stores, Cache, Actions, Picks, Watchlist) {
   $scope.welcome = 'Let\'s get started.';
   $scope.query = '';
   $scope.flex = {
@@ -72,5 +72,6 @@ angular.module('elsie.home')
         });
       });
     }); // Picks.latest
+    Watchlist.load();
   })();
 });

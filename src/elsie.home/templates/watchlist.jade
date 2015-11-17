@@ -6,11 +6,3 @@ doctype
       .md-list-item-text
         h3 {{ product.name }}
         p {{ product.producer_name }}
-  //- md-list(layout-padding)
-  //-   md-list-item.md-2-line(md-no-ink,ng-if="watchlist.length = 0")
-  //-     p You haven't added anything to your cellar yet.
-  //-   md-list-item.md-2-line(md-no-ink,ng-repeat="product in watchlist",ng-click="loadProduct(product)")
-  //-     img.md-avatar(ng-src="{{ product.image_thumb_url }}")
-  //-     .md-list-item-text
-  //-       h3 {{ product.name }}
-  //-       p {{ product.producer_name }}

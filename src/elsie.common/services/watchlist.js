@@ -32,25 +32,15 @@ angular.module('elsie.common')
   };
 
   var watchlistService = {
-    oldload: function() {
+    load: function() {
       return $http.get(url()).then(function(res){
-        console.log('res', res);
-        var cellar;
-        angular.copy(res.data.cellar, cellar);
-        if (!res.data.cellar) {
-          console.log('no watchlist returned, so setting it empty');
+        if (!res.data) {
           cache.watchlist = [];
-          _syncWatchlist();
         } else {
-          console.log('cellar is present');
-          angular.copy(cellar, cache.watchlist);
-          console.log(res.data.cellar);
+          cache.watchlist = res.data;
         }
         return cache.watchlist;
       });
-    },
-    load: function(){
-      return $http.get(url());
     },
     checkForProduct: function(product){
       var index = JSON.stringify(cache.watchlist).indexOf(product.product_no);
