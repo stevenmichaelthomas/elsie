@@ -4,7 +4,7 @@ $pink: #F06292;
 $pink-light: #F8BBD0;
 $charcoal: #313131;
 $white: #FEFEFE;
-$grey-light: #FAFAFA;
+$grey-light: #FCFCFC;
 
 $bump: 24px;
 
@@ -49,8 +49,11 @@ small {
   &.black {
     color: $charcoal;
   }
+  &.grey {
+    color: rgba(0, 0, 0, 0.54);
+  }
   &.pink {
-    color: $pink;
+    color: $pink !important;
   }
   &.md-accent {
     color: $pink;
@@ -59,6 +62,13 @@ small {
     margin: 10px 20px;
     font-size: 0.9em;
   }
+}
+
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+  color: $pink;
 }
 
 .upcase {
@@ -149,6 +159,25 @@ md-list-item {
     border-radius: 50%;
     box-sizing: content-box; 
   }
+  .stat {
+    h2 {
+      margin: 18px 0 0;
+      line-height: 0.2em;
+      text-align: center;
+    }
+    small {
+      text-transform: uppercase;
+      font-size: 0.65em;
+    }
+  }
+  &.long {
+    .md-avatar {
+      margin-top: 0;
+    }
+    h4 {
+      margin-bottom: 10px !important;
+    }
+  }
 }
 
 md-list-item.md-2-line .md-list-item-text h3, md-list-item.md-2-line > .md-no-style .md-list-item-text h3, md-list-item.md-3-line .md-list-item-text h3, md-list-item.md-3-line > .md-no-style .md-list-item-text h3 {
@@ -167,6 +196,10 @@ md-tabs {
       margin-top: 0;
     }
   }
+}
+
+md-chips {
+  margin-top: 10px;
 }
 
 md-sidenav {

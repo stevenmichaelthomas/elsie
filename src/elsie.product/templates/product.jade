@@ -9,13 +9,16 @@ doctype
   md-button.md-fab(aria-label="Add to Watchlist",ng-click="toggleWatch(product)")
     md-icon(ng-if="isWatched") favorite
     md-icon(ng-if="!isWatched") favorite_border
+  md-button.md-fab.md-secondary(aria-label="Search for Stores",ng-click="toggleWatch(product)")
+    md-icon(ng-if="isWatched") favorite
+    md-icon(ng-if="!isWatched") favorite_border
   md-content.lower.md-default.md-primary-bg
     md-list
       md-list-item.md-2-line(ng-if="product.varietal")
         .md-list-item-text
           h3 {{ product.varietal }}
           p type
-      md-list-item.md-2-line(ng-if="product.varietal")
+      md-list-item.md-2-line(ng-if="product.product_no")
         .md-list-item-text
           h3 {{ product.product_no }}
           p product number
@@ -27,16 +30,32 @@ doctype
         .md-list-item-text
           h3 {{ product.package }}
           p unit package
-      md-divider(ng-if="product.pick")
-      md-list-item.md-3-line.long(ng-if="product.pick.tastingNote")
+      md-divider(ng-if="product.pick.whyDrink")
+      md-list-item.md-3-line.long(ng-if="product.pick.whyDrink")
         .md-list-item-text
-          p {{ product.pick.tastingNote }}
-      md-divider(ng-if="product.description")
-      md-list-item.md-3-line.long(ng-if="product.description")
+          h3 {{ product.pick.reviewer }}
+          h4.pink Sommelier at kwäf
+          span.rating
+            md-icon.material-icons.md-default-theme.md-accent(ng-repeat="star in getRating(product.pick.rating) track by $index") star_rate
+          p {{ product.pick.whyDrink }}
+        img.md-avatar(ng-src="{{ product.pick.reviewerPhoto }}")
+      md-divider(ng-if="product.description && !product.pick.whyDrink")
+      md-list-item.md-3-line.long(ng-if="product.description && !product.pick.whyDrink")
         .md-list-item-text
           p {{ product.description }}
-      //md-divider(ng-if="product.description && tags")
-      //md-list-item
-        md-chips(ng-model="tags",readonly="true")
-
-      
+      md-divider(ng-if="product.pick.whyDrink && product.pick.pairsWith")
+      md-list-item.md-3-line.long(ng-if="product.pick.pairsWith")
+        .md-list-item-text
+          h4.pink Pairing
+          p {{ product.pick.pairsWith }}
+      md-divider(ng-if="product.pick.pairsWith")
+      md-list-item.md-2-line(ng-if="product.pick.pairsWith")
+        .md-list-item-text
+          small.grey
+            | Review &amp; pairing data provided by kwäf: only good wine. Visit them at&nbsp;
+            a(href="http://kwaf.ca",target="_blank") kwaf.ca
+      //- md-divider(ng-if="product.description && tags || product.pick.tastingNote && tags")
+      //- md-list-item
+      //-   md-chips.md-accent(ng-model="tags",readonly="true")
+.kwaf-ribbon(ng-if="isPick(product)")
+  span kwäf pick

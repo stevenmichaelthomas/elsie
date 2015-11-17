@@ -1,27 +1,21 @@
 .watchlist {
   background-color: white;
   padding-top: 56px;
+  width: 100%;
+  height: 100%;
   &.grid .product {
     background-size: cover;
     background-color: white;
     background-repeat: no-repeat;
+  }
+  > md-content {
+    height: 100%;
   }
   md-list {
     margin-top: 1em;
     md-list-item {
       > .md-avatar {
         height: auto;
-      }
-      .inventory {
-        h2 {
-          margin: 18px 0 0;
-          line-height: 0.2em;
-          text-align: center;
-        }
-        small {
-          text-transform: uppercase;
-          font-size: 0.65em;
-        }
       }
     }
   }

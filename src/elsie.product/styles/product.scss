@@ -44,5 +44,28 @@
     md-list-item.long {
       padding: 16px;
     }
+    .rating {
+      display: block;
+      margin-bottom: 12px;
+    }
   }
+}
+
+.kwaf-ribbon span {
+  font-size: 10px;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  width: 100px;
+  display: block;
+  background: #79A70A;
+  background: linear-gradient(#674172 0%, #6F467A 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 18 + $bump;
+  right: -21px;
 }

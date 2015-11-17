@@ -8,6 +8,16 @@ angular.module('elsie.product')
       $scope.isWatched = false;
     }
   };
+  $scope.isPick = function(product) {
+    if (Object.keys(product.pick).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  $scope.getRating = function(num) {
+    return new Array(num);   
+  };
   (function(){
     Actions.show();
     Actions.transparent(true);
