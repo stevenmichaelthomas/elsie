@@ -49,6 +49,9 @@ small {
   &.black {
     color: $charcoal;
   }
+  &.pink {
+    color: $pink;
+  }
   &.md-accent {
     color: $pink;
   }
@@ -130,6 +133,7 @@ md-list-item > .md-avatar:first-child, md-list-item .md-list-item-inner > .md-av
 }
 
 md-list-item {
+  color: $pink;
   .md-list-item-inner > .md-avatar {
     width: 50px;
     margin-top: 8px;
