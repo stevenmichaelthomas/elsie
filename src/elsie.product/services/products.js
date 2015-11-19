@@ -52,7 +52,7 @@ angular.module('elsie.product')
       return process;
     },
     atNearbyStores: function(product){
-      var req = url() + '/products/' + product.id + '/stores?lat=' + Locator.latitude + '&lon=' + Locator.longitude;
+      var req = url() + '/products/' + product.id + '/stores?lat=' + Locator.current().latitude + '&lon=' + Locator.current().longitude;
       var process = $http.get(req).then(function(result){
         if (result.status === 200){
           cache.product = result.data.product;

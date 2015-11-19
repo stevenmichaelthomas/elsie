@@ -6,8 +6,6 @@ div
       md-button.md-accent(ng-click="logout()") Log out
   md-content(layout-padding)
     md-list
-      md-item
-       md-item-content(md-ink-ripple,layout="row",layout-align="start center")
-        //.inset
-          md-icon.md-primary menu
-        .inset Logout
+      md-list-item.md-with-secondary(md-ink-ripple)
+        md-icon settings
+        p.black Settings

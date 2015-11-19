@@ -1,5 +1,5 @@
 angular.module('elsie.product')
-.controller('ProductCtrl', ['$scope', '$state', 'Products', 'Watchlist', 'Actions', 'Picks', '$timeout', function ($scope, $state, Products, Watchlist, Actions, Picks, $timeout) {
+.controller('ProductCtrl', ['$scope', 'Navigator', 'Products', 'Stores', 'Watchlist', 'Actions', 'Picks', '$timeout', function ($scope, Navigator, Products, Stores, Watchlist, Actions, Picks, $timeout) {
   $scope.toggleWatch = function(product){
     var toggle = Watchlist.changeProductStatus(product);
     if (toggle === 'added') {
@@ -7,6 +7,22 @@ angular.module('elsie.product')
     } else if (toggle === 'removed') {
       $scope.isWatched = false;
     }
+  };
+  $scope.findNearby = function(product) {
+    if ($scope.mode === 'stores'){
+      $scope.mode = 'detail';
+      return;
+    }
+    $scope.storesLoading = true;
+    Products.atNearbyStores(product).then(function(data){
+      $scope.product.stores = data.stores;
+      $scope.mode = 'stores';
+      $scope.storesLoading = false;
+    });
+  };
+  $scope.loadStore = function(store) {
+    Stores.select(store);
+    Navigator.go('store');
   };
   $scope.isPick = function(product) {
     if (Object.keys(product.pick).length > 0) {
@@ -20,7 +36,7 @@ angular.module('elsie.product')
   };
   (function(){
     Actions.show();
-    Actions.transparent(true);
+    Actions.light(true);
     Actions.search(false);
     Actions.set({ menu: false, back: true });
     Actions.backGoesHome(false);
@@ -30,6 +46,7 @@ angular.module('elsie.product')
       'background-position-y': '120%',
       'background-image': 'url(' + $scope.product.image_url + ')'
     };
+    $scope.mode = 'detail';
     if (Watchlist.checkForProduct($scope.product)){
       $scope.isWatched = true;
     }

@@ -9,11 +9,11 @@ doctype
   md-button.md-fab(aria-label="Add to Watchlist",ng-click="toggleWatch(product)")
     md-icon(ng-if="isWatched") favorite
     md-icon(ng-if="!isWatched") favorite_border
-  md-button.md-fab.md-secondary(aria-label="Search for Stores",ng-click="toggleWatch(product)")
-    md-icon(ng-if="isWatched") favorite
-    md-icon(ng-if="!isWatched") favorite_border
+  md-button.md-icon-button.md-raised(aria-label="Search for Stores",ng-click="findNearby(product)",ng-disabled="storesLoading",ng-class="{ 'md-primary' : mode === 'stores' }")
+    md-icon(ng-show="!storesLoading") store
+    md-progress-circular(md-mode="indeterminate",ng-show="storesLoading",md-diameter="24")
   md-content.lower.md-default.md-primary-bg
-    md-list
+    md-list(ng-show="mode === 'detail'")
       md-list-item.md-2-line(ng-if="product.varietal")
         .md-list-item-text
           h3 {{ product.varietal }}
@@ -57,5 +57,11 @@ doctype
       //- md-divider(ng-if="product.description && tags || product.pick.tastingNote && tags")
       //- md-list-item
       //-   md-chips.md-accent(ng-model="tags",readonly="true")
+    md-list(ng-show="mode === 'stores'")
+      md-list-item.md-2-line(ng-repeat="store in product.stores",ng-click="loadStore(store)")
+        //img.md-avatar(ng-src="{{ product.image_thumb_url }}")
+        .md-list-item-text
+          h3 {{ store.name }}
+          p {{ store.quantity }} units, {{ store.distance_in_meters | distance }} away
 .kwaf-ribbon(ng-if="isPick(product)")
   span kwäf pick

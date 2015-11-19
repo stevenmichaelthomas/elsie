@@ -1,5 +1,5 @@
 angular.module('elsie.home')
-.controller('HomeCtrl', function($scope, $timeout, Navigator, Products, Stores, Cache, Actions, Picks, Watchlist) {
+.controller('HomeCtrl', function($scope, $timeout, Navigator, Products, Stores, Cache, Actions, Picks, Watchlist, Locator) {
   $scope.welcome = 'Let\'s get started.';
   $scope.query = '';
   $scope.flex = {
@@ -37,6 +37,9 @@ angular.module('elsie.home')
       Navigator.go('store');
     }
   };
+  $scope.showPicks = function(){
+    $scope.picksMode = true;
+  };
   $scope.$watch('results.mode', function(){
     Cache.update($scope.results);
   });
@@ -53,8 +56,8 @@ angular.module('elsie.home')
   });
   (function(){
     Actions.show();
-    Actions.transparent(false);
-    Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true });
+    Actions.light(false);
+    Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, locating: true });
     if (Navigator.lastState() && Navigator.lastState().name === 'product' || Navigator.lastState() && Navigator.lastState().name === 'store'){
       Actions.backGoesHome(true);
     } else {
@@ -69,5 +72,9 @@ angular.module('elsie.home')
       });
     }); // Picks.latest
     Watchlist.load();
+    Locator.initialize();
+    Locator.refresh().then(function(){
+      Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, locating: false });
+    });
   })();
 });

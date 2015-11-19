@@ -1,11 +1,15 @@
 .explore {
   // margin-top: 170%;
   box-shadow: $box-shadow;
-  padding-top: 15px;
   background-color: $grey-light;
   text-align: center;
-  .swipe-down {
-    display: inline-block;
+  .header {
+    padding-top: 15px;
+    background-color: $purple;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
   md-list-item {
     background-color: white;

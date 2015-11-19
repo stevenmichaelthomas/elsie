@@ -22,6 +22,7 @@
     "angular-ui-router": "~0.2.14",
     "roboto-fontface": "~0.4.0",
     "store": "~2.3.0",
-    "verge": "~1.9.1"
+    "verge": "~1.9.1",
+    "jquery": "~2.1.4"
   }
 }

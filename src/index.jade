@@ -6,7 +6,6 @@ html
     title Elsie
     // Angular
     script(src="js/lib/angular.js",charset="utf-8")
-    //- script(src="js/lib/angular-issue-9128-patch.js",charset="utf-8")
     script(src="js/lib/angular-ui-router.js",charset="utf-8")
     script(src="js/lib/angular-animate.js",charset="utf-8")
     script(src="js/lib/angular-aria.js",charset="utf-8")
@@ -17,6 +16,8 @@ html
     link(href="https://fonts.googleapis.com/icon?family=Material+Icons",rel="stylesheet")
     // Cordova 4.0.0
     script(src="cordova.js",charset="utf-8")
+    // Fucking jQuery
+    script(src="js/lib/jquery.min.js",charset="utf-8")
     // Elsie 2.0
     script(src="js/templates.js",charset="utf-8")
     script(src="js/elsie.js",charset="utf-8")
@@ -27,5 +28,5 @@ html
         div(side-bar)
       md-content#main
         .bar
-        div(action-bar,transparent="barTransparency()",set="barItems()",search="barSearch()",show="barVisible()")
+        div(action-bar,light="barLight()",set="barItems()",search="barSearch()",show="barVisible()")
         div(ui-view,state-class)

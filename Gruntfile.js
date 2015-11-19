@@ -107,6 +107,13 @@ module.exports = function(grunt) {
         src: ['store/dist/*.*'],
         dest: 'www/js/lib'
       },
+      jquery: {
+        expand: true,
+        flatten: true,
+        cwd: 'bower_components',
+        src: ['jquery/dist/*.*'],
+        dest: 'www/js/lib'
+      },
       js: {
         expand: true,
         flatten: false,

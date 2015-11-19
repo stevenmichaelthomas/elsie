@@ -36,11 +36,22 @@
     right: 20px;
     margin-top: -30px;
   }
+  button.md-button.md-icon-button {
+    position: absolute;
+    right: 32px;
+    margin-top: 36px;
+    z-index: 20;
+    md-progress-circular {
+      margin-top: -26px;
+      margin-left: -26px;
+    }
+  }
   md-content.upper {
     overflow: hidden;
     background-color: transparent;
   }
   md-content.lower {
+    min-height: 100%;
     md-list-item.long {
       padding: 16px;
     }

@@ -4,7 +4,7 @@ angular.module('elsie.common')
     replace: true,
     scope: {
       show: '=',
-      transparent: '=',
+      light: '=',
       set: '=',
       search: '='
     },

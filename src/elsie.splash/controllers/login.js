@@ -9,7 +9,7 @@ angular.module('elsie.splash')
     });
   };
   (function(){
-    Actions.transparent(true);
+    Actions.light(true);
     Actions.search(false);
     Actions.set({ menu: false, back: true });
     Actions.backGoesHome(false);

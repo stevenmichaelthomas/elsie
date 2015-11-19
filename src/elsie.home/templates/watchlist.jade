@@ -1,7 +1,11 @@
 doctype
 .watchlist
   md-content
-    md-list
+    md-progress-circular(md-mode="indeterminate",ng-show="!watchlist")
+    md-list(ng-show="watchlist && watchlist.length === 0")
+      md-list-item
+        p You haven't added anything to your watchlist yet.
+    md-list(ng-show="watchlist && watchlist.length > 0")
       md-list-item.md-2-line(ng-repeat="product in watchlist",ng-click="loadProduct(product)")
         img.md-avatar(ng-src="{{ product.image_thumb_url }}")
         .md-list-item-text

@@ -1,4 +1,4 @@
-md-toolbar.action-bar(ng-class="{ transparent: transparent, 'md-theme-search' : search }",ng-show="show")
+md-toolbar.action-bar(ng-class="{ light: light, 'md-theme-search' : search }",ng-show="show")
   .md-toolbar-tools
     md-button.md-icon-button.left-button(ng-click="toggleMenu()", ng-class="{ visible: set.menu }")
       md-icon menu
@@ -6,6 +6,8 @@ md-toolbar.action-bar(ng-class="{ transparent: transparent, 'md-theme-search' : 
       md-icon arrow_back
     h2(ng-class="{ visible: set.title }",ng-hide="search")
       span(ng-if="set.title") {{ set.title }}
+    md-button.md-icon-button.right-button.right-button-2(ng-click="go('watchlist')", ng-class="{ visible: set.locating }")
+      md-icon location_searching
     md-button.md-icon-button.right-button(ng-click="go('watchlist')", ng-class="{ visible: set.watchlist }")
       md-icon favorite
     md-button.md-icon-button.right-button(ng-click="go('search')", ng-class="{ visible: set.search }")

@@ -13,18 +13,19 @@ angular.module('elsie.common')
           latitude: "43.656025",
           longitude: "-79.380257"
         };
-        localStorage["Elsie_cachedLocation"] = JSON.stringify(location);
+        _sync();
       } else {
         location = JSON.parse(localStorage["Elsie_cachedLocation"]);
       }
       return location;
     },
+    current: function(){
+      return location;
+    },
     refresh: function(){
       var deferred = $q.defer();
       var process = deferred.promise;
-      //Elsie.Interface.showLoadingAnimation("Getting your location...");
       var onSuccess = function(position) {
-        //Elsie.Interface.hideLoadingAnimation();
         var newLocation = {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
@@ -34,7 +35,6 @@ angular.module('elsie.common')
         deferred.resolve();
       };
       var onError = function() {
-        //Elsie.Interface.hideLoadingAnimation();
         var message = 'Elsie couldn\'t get your location. She won\'t be able to provide you with accurate information until she has it.';
         var actions = [
           { label: 'Cancel' },
@@ -44,7 +44,7 @@ angular.module('elsie.common')
         Dialog.show(message, actions, title);
         deferred.resolve();
       };
-      navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 6500 });
+      navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 20000 });
       Scheduler.queue(process);
       return process;
     }

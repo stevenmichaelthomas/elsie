@@ -7,7 +7,7 @@ angular.module('elsie.common')
       menu: false,
       back: false
     },
-    transparent: true,
+    light: false,
     search: false,
     backGoesHome: false
   };
@@ -19,11 +19,11 @@ angular.module('elsie.common')
     get: function(){
       return cache.set;
     },
-    transparent: function(value){
+    light: function(value){
       if (value !== undefined){
-        cache.transparent = value;
+        cache.light = value;
       }
-      return cache.transparent;
+      return cache.light;
     },
     search: function(value){
       if (value !== undefined){

@@ -7,8 +7,8 @@ angular.module('elsie.home')
     }
   };
   (function(){
-    Actions.transparent(false);
-    Actions.set({ title: 'Cellar', menu: false, back: true, search: false, watchlist: false });
+    Actions.light(true);
+    Actions.set({ title: 'Watchlist', menu: false, back: true, search: false, watchlist: false });
     if (Navigator.lastState() && Navigator.lastState().name === 'product' || Navigator.lastState() && Navigator.lastState().name === 'store'){
       Actions.backGoesHome(true);
     } else {

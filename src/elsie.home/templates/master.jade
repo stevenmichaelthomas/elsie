@@ -1,31 +1,32 @@
 doctype
 .home
-  md-content
-    .search(layout="column",layout-align="center center",ng-class="{ expanded: query }")
-      h2(ng-if="!query") {{ welcome }}
-      input(type="text",placeholder="Search products and LCBO locations",ng-model="query",ng-change="search(query)",ng-model-options="{ debounce: 300 }")
-      md-button.md-icon-button.hide(ng-class="{ visible: query }",ng-click="clear()")
-        md-icon close
-      h5.light.hint.md-accent(ng-if="!query") Try "Gooderham &amp; Worts" or "Saison"      
-    .results(ng-if="query")
+  .search(layout="column",layout-align="center center",ng-class="{ expanded: query }")
+    h2.white(ng-if="!query") {{ welcome }}
+    input(type="text",placeholder="Search products and LCBO locations",ng-model="query",ng-change="search(query)",ng-model-options="{ debounce: 300 }")
+    md-button.md-icon-button.hide(ng-class="{ visible: query }",ng-click="clear()")
+      md-icon close
+    h5.light.hint.md-accent(ng-if="!query") Try "Gooderham &amp; Worts" or "Saison"      
+  .results(ng-if="query",layout-fill)
+    md-content(flex="90")
       md-list
         md-list-item.md-2-line(ng-repeat="product in results.products",ng-click="selectProduct(product)")
           img.md-avatar(ng-src="{{ product.image_thumb_url }}")
           .md-list-item-text
             h3 {{ product.name }}
             p {{ product.producer_name }}
-    .explore(ng-if="!query")
-      small.purple Need some inspiration?
+  .explore(ng-if="!query")
+    .header(ng-if="!picksMode",ng-click="showPicks()",scroll-on-click)
+      small.white Need some inspiration?
       br
-      md-icon.swipe-down.md-primary keyboard_arrow_down
-      h5.upcase Top wine picks from kwaf
-      md-list
-        md-list-item.md-2-line(ng-repeat="product in picks",ng-click="selectProduct(product)")
-          img.md-avatar(ng-src="{{ product.image_thumb_url }}")
-          .md-list-item-text
-            h3 {{ product.name }}
-            p {{ product.producer_name }}
-          //- .stat
-          //-   h2.light.pink {{ product.pick.rating }}
-          //-   md-icon star_rate
-          //-   small.pink Rating
+      md-icon.swipe-down.white keyboard_arrow_down
+    h5.upcase Top wine picks from kwaf
+    md-list
+      md-list-item.md-2-line(ng-repeat="product in picks",ng-click="selectProduct(product)")
+        img.md-avatar(ng-src="{{ product.image_thumb_url }}")
+        .md-list-item-text
+          h3 {{ product.name }}
+          p {{ product.producer_name }}
+        //- .stat
+        //-   h2.light.pink {{ product.pick.rating }}
+        //-   md-icon star_rate
+        //-   small.pink Rating

@@ -6,7 +6,17 @@ $charcoal: #313131;
 $white: #FEFEFE;
 $grey-light: #FCFCFC;
 
-$bump: 24px;
+&.white {
+  color: $grey-light; 
+}
+&.black {
+  color: $charcoal;
+}
+&.grey {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+$bump: 22px;
 
 $transition: 0.35s;
 $transition-function: cubic-bezier(.36, .66, .04, 1) !default; // thanks, driftyco!
@@ -40,17 +50,8 @@ h4,
 h5,
 small {
   color: $purple;
-  &.white {
-    color: $grey-light; 
-  }
   &.light {
     font-weight: 400;
-  }
-  &.black {
-    color: $charcoal;
-  }
-  &.grey {
-    color: rgba(0, 0, 0, 0.54);
   }
   &.pink {
     color: $pink !important;
@@ -178,10 +179,28 @@ md-list-item {
       margin-bottom: 10px !important;
     }
   }
+  &.md-2-line .md-list-item-text p {
+    font-weight: 400;
+  }
+  &.md-2-line .md-list-item-text,
+  &.md-2-line > .md-no-style .md-list-item-text, 
+  &.md-3-line .md-list-item-text, 
+  &.md-3-line > .md-no-style .md-list-item-text,
+  &.md-2-line .md-list-item-text,
+  &.md-2-line > .md-no-style .md-list-item-text {
+    p {
+      font-weight: 400;
+    }
+  }
 }
 
 md-list-item.md-2-line .md-list-item-text h3, md-list-item.md-2-line > .md-no-style .md-list-item-text h3, md-list-item.md-3-line .md-list-item-text h3, md-list-item.md-3-line > .md-no-style .md-list-item-text h3 {
   line-height: 1.2em;
+}
+
+.md-subheader span {
+  color: $pink;
+  font-weight: 400;
 }
 
 md-tabs {

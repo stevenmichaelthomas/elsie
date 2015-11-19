@@ -24,8 +24,6 @@ angular.module('elsie.common')
   };
 
   var _syncWatchlist = function() {
-    console.log('syncing watchlist for user...');
-    console.log(cache.watchlist);
     return $http.put(url(), {
       cellar: cache.watchlist
     });
