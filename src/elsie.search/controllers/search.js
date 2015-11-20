@@ -49,7 +49,7 @@ angular.module('elsie.search')
     Cache.update($scope.results);
   });
   (function(){
-    Actions.light(true);
+    Actions.theme('transparent');
     Actions.search(true);
     if (Navigator.lastState().name === 'product' || Navigator.lastState().name === 'store'){
       Actions.backGoesHome(true);

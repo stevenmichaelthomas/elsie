@@ -4,9 +4,16 @@ md-toolbar.action-bar {
   left: 0;
   right: 0;
   z-index: $z-index-control-main;
-  background-color: transparent;
+  background-color: $purple;
   color: $white;
   &.light {
+    background-color: $white;
+  }
+  &.transparent,
+  &.transparent-dark {
+    background-color: transparent;
+  }
+  &.light, &.transparent {
     button.md-button.md-icon-button > md-icon {
       color: $purple;
     }

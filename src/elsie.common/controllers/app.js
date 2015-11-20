@@ -28,7 +28,7 @@ angular.module('elsie.common')
   };
   
   $scope.$on('$stateChangeStart', transitionStart);
-  $scope.barLight = Actions.light;
+  $scope.barTheme = Actions.theme;
   $scope.barItems = Actions.get;
   $scope.barSearch = Actions.search;
   $scope.barVisible = Actions.visible;

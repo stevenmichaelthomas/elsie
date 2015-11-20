@@ -1,5 +1,6 @@
+/* global $ */
 angular.module('elsie.home')
-.controller('HomeCtrl', function($scope, $timeout, Navigator, Products, Stores, Cache, Actions, Picks, Watchlist, Locator) {
+.controller('HomeCtrl', function($scope, $timeout, Navigator, Products, Stores, Cache, Actions, Picks, Watchlist, Locator, Bump) {
   $scope.welcome = 'Let\'s get started.';
   $scope.query = '';
   $scope.flex = {
@@ -37,9 +38,6 @@ angular.module('elsie.home')
       Navigator.go('store');
     }
   };
-  $scope.showPicks = function(){
-    $scope.picksMode = true;
-  };
   $scope.$watch('results.mode', function(){
     Cache.update($scope.results);
   });
@@ -48,15 +46,17 @@ angular.module('elsie.home')
       $scope.flex.search = 15;
       $scope.flex.results = 85;
       Actions.hide();
+      $scope.locked = true;
     } else {
       $scope.flex.search = 95;
       $scope.flex.results = 0;
       Actions.show();
+      $scope.locked = false;
     }
   });
   (function(){
     Actions.show();
-    Actions.light(false);
+    Actions.theme('transparent-dark');
     Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, locating: true });
     if (Navigator.lastState() && Navigator.lastState().name === 'product' || Navigator.lastState() && Navigator.lastState().name === 'store'){
       Actions.backGoesHome(true);
@@ -64,17 +64,20 @@ angular.module('elsie.home')
       Actions.backGoesHome(false);
     }
     $scope.results = Cache.get();
-    Picks.latest().then(function(picks){
-      angular.forEach(picks, function(p, i){
-        Products.one(p.productNumber).then(function(one){
-          $scope.picks.push(one);
+    $timeout(function(){
+      Picks.latest().then(function(picks){
+        angular.forEach(picks, function(p, i){
+          Products.one(p.productNumber).then(function(one){
+            one.pick = p;
+            $scope.picks.push(one);
+          });
         });
+      }); // Picks.latest
+      Watchlist.load();
+      Locator.initialize();
+      Locator.refresh().then(function(){
+        Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, locating: false });
       });
-    }); // Picks.latest
-    Watchlist.load();
-    Locator.initialize();
-    Locator.refresh().then(function(){
-      Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, locating: false });
-    });
+    }, 500);
   })();
 });

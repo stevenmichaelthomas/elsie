@@ -36,7 +36,7 @@ angular.module('elsie.product')
   };
   (function(){
     Actions.show();
-    Actions.light(true);
+    Actions.theme('transparent');
     Actions.search(false);
     Actions.set({ menu: false, back: true });
     Actions.backGoesHome(false);

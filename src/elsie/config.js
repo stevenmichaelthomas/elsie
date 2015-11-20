@@ -41,7 +41,7 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
 .config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $httpProvider) {
 
   var elsiePurple = $mdThemingProvider.extendPalette('purple', {
-    '800': '674172'
+    '800': '39c0b3'
   });
   $mdThemingProvider.definePalette('elsie', elsiePurple);
 

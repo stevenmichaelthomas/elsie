@@ -1,6 +1,6 @@
-$purple: #674172;
-$purple-light: #e7c5f1;
-$pink: #F06292;
+$purple: #39c0b3;
+$purple-light: #5ee0d1;
+$pink: #f06292;
 $pink-light: #F8BBD0;
 $charcoal: #313131;
 $white: #FEFEFE;
@@ -235,13 +235,27 @@ md-sidenav {
 }
 
 md-content {
-  background-color: $grey-light;
+  background-color: white;
   &.with-toolbar {
     position: absolute;
     top: 64px;
     left: 0;
     right: 0;
     bottom: 0;
+  }
+}
+
+md-card {
+  .card-title {
+    text-align: center;
+    margin: 10px 0;
+  }
+  md-list {
+    md-list-item {
+      > button.md-no-style.md-button.md-ink-ripple {
+        padding: 0;
+      }
+    }
   }
 }
 

@@ -7,15 +7,17 @@ angular.module('elsie.home')
     }
   };
   (function(){
-    Actions.light(true);
+    Actions.theme('transparent');
     Actions.set({ title: 'Watchlist', menu: false, back: true, search: false, watchlist: false });
     if (Navigator.lastState() && Navigator.lastState().name === 'product' || Navigator.lastState() && Navigator.lastState().name === 'store'){
       Actions.backGoesHome(true);
     } else {
       Actions.backGoesHome(false);
     }
-    Watchlist.load().then(function(data){
-      $scope.watchlist = data;
+    $timeout(function(){
+      Watchlist.load().then(function(data){
+        $scope.watchlist = data;
+      });
     });
   })();
 });

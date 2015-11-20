@@ -18,6 +18,7 @@ html
     script(src="cordova.js",charset="utf-8")
     // Fucking jQuery
     script(src="js/lib/jquery.min.js",charset="utf-8")
+    script(src="http://cdn.jsdelivr.net/jquery.scrollto/2.1.2/jquery.scrollTo.min.js")
     // Elsie 2.0
     script(src="js/templates.js",charset="utf-8")
     script(src="js/elsie.js",charset="utf-8")
@@ -28,5 +29,5 @@ html
         div(side-bar)
       md-content#main
         .bar
-        div(action-bar,light="barLight()",set="barItems()",search="barSearch()",show="barVisible()")
+        div(action-bar,theme="barTheme()",set="barItems()",search="barSearch()",show="barVisible()")
         div(ui-view,state-class)
