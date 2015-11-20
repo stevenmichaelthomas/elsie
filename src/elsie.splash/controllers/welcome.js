@@ -6,7 +6,7 @@ angular.module('elsie.splash')
       //$state.go('home');
       return;
     }
-    Actions.theme('purple');
+    Actions.theme('transparent');
     Actions.search(false);
     Actions.set({ menu: false, back: false });
     Actions.backGoesHome(false);
