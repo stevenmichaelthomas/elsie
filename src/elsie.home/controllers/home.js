@@ -65,6 +65,9 @@ angular.module('elsie.home')
     }
     $scope.results = Cache.get();
     $timeout(function(){
+      Watchlist.load();
+    }, 1000);
+    $timeout(function(){
       Picks.latest().then(function(picks){
         angular.forEach(picks, function(p, i){
           Products.one(p.productNumber).then(function(one){
@@ -73,7 +76,8 @@ angular.module('elsie.home')
           });
         });
       }); // Picks.latest
-      Watchlist.load();
+    }, 750);
+    $timeout(function(){
       Locator.initialize();
       Locator.refresh().then(function(){
         Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, locating: false });

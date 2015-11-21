@@ -19,7 +19,7 @@ doctype
             .md-list-item-text
               h3 {{ product.name }}
               p {{ product.producer_name }}
-    .explore(flex="100")
+    .explore(flex="100",ng-show="picks")
       md-card
         md-card-content
           h4.card-title Top wine picks from kwäf
