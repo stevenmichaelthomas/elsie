@@ -16,8 +16,13 @@ angular.module('elsie.home')
     }
     $timeout(function(){
       Watchlist.load().then(function(data){
+        if (data.status && data.status === -1){
+          $scope.watchlist = [];
+          $scope.error = data;
+          return;
+        }
         $scope.watchlist = data;
       });
-    });
+    }, 500);
   })();
 });

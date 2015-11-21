@@ -1,8 +1,8 @@
 angular.module('elsie.store')
-.factory('Stores', function($http, LCBOAPI, Scheduler, Dialog) {
+.factory('Stores', function($http, ELSIEAPI, Scheduler, Dialog) {
 
   var url = function() {
-    return LCBOAPI;
+    return ELSIEAPI;
   };
 
   var _today = function() {

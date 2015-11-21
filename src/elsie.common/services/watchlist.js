@@ -31,14 +31,27 @@ angular.module('elsie.common')
 
   var watchlistService = {
     load: function() {
-      return $http.get(url()).then(function(res){
-        if (!res.data) {
-          cache.watchlist = [];
-        } else {
-          cache.watchlist = res.data;
-        }
-        return cache.watchlist;
-      });
+      var now = new Date().getTime();
+      if (now - cache.lastUpdate <= 60000*5) {
+        console.log('cache is ' + (now - cache.lastUpdate));
+        var deferred = $q.defer();
+        deferred.resolve(cache.watchlist);
+        return deferred.promise;
+      } else {
+        var process = $http.get(url(), { timeout: 5000 }).then(function(res){
+          if (!res.data) {
+            cache.watchlist = [];
+          } else {
+            cache.watchlist = res.data;
+          }
+          return cache.watchlist;
+        }, function(err) {
+          err.data = 'Error loading your watchlist, please check your connection and try again.';
+          return err;
+        });
+        Scheduler.queue(process);
+        return process;
+      }
     },
     checkForProduct: function(product){
       var index = JSON.stringify(cache.watchlist).indexOf(product.product_no);

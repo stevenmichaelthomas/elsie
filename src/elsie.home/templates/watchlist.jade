@@ -2,7 +2,10 @@ doctype
 .watchlist
   md-content
     md-progress-circular(md-mode="indeterminate",ng-show="!watchlist")
-    md-list(ng-show="watchlist && watchlist.length === 0")
+    md-list(ng-show="error")
+      md-list-item
+        p {{ error.data }}
+    md-list(ng-show="watchlist && watchlist.length === 0 && !error")
       md-list-item
         p You haven't added anything to your watchlist yet.
     md-list(ng-show="watchlist && watchlist.length > 0")

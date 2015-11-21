@@ -22,6 +22,12 @@ function($q, Session, $injector, $location, LCBO) {
     }
   }
 
+  function handle408(res) {
+    if(res.status === 408) {
+      console.log('request timed out');
+    }
+  }
+
   function handle401(res) {
     if(res.status === 401) {
       Session.clear();
@@ -35,15 +41,12 @@ function($q, Session, $injector, $location, LCBO) {
   }
 
   function addAuthHeader(req) {
+    req.timeout = 5000;
     if(!authOrFileUrl(req.url) && !Session.active()) {
       req.status = 401;
       return $q.reject(req);
     }
     else {
-      if (req.url.indexOf('lcboapi') !== -1){
-        req.headers.Authorization = LCBO;
-        return req;
-      }
       var token = Session.get('token');
       if(token) { req.headers.Authorization = 'Bearer '+ token; }
       return req;
@@ -56,6 +59,7 @@ function($q, Session, $injector, $location, LCBO) {
     }
   , responseError: function(res) {
       handle401(res);
+      //handle408(res);
       return $q.reject(res);
     }
 
