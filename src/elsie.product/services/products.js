@@ -1,8 +1,8 @@
 angular.module('elsie.product')
-.factory('Products', function($http, LCBOAPI, Locator, Dialog, Scheduler) {
+.factory('Products', function($http, ELSIEAPI, Locator, Dialog, Scheduler) {
 
   var url = function() {
-    return LCBOAPI;
+    return ELSIEAPI;
   };
 
   var cache = {
