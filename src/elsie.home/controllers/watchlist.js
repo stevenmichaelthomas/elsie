@@ -7,7 +7,7 @@ angular.module('elsie.home')
     }
   };
   (function(){
-    Actions.theme('transparent');
+    Actions.theme('purple');
     Actions.set({ title: 'Watchlist', menu: false, back: true, search: false, watchlist: false });
     if (Navigator.lastState() && Navigator.lastState().name === 'product' || Navigator.lastState() && Navigator.lastState().name === 'store'){
       Actions.backGoesHome(true);

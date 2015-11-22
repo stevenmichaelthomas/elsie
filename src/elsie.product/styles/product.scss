@@ -2,22 +2,23 @@
   background-color: white;
   background-size: auto 70%;
   background-repeat: no-repeat;
-  background-position-x: 100px;
-  background-position-y: -10%;
+  background-position-x: center;
+  background-position-y: bottom;
   position: absolute;
   top: $bump;
   left: 0;
   bottom: 0;
   right: 0;
+  @include transition-timing-function($transition-function);
   transition: background-position-y $transition;
   .image {
     height: 244px;
   }
   md-toolbar.lower {
-    @include gradient(rgba(0,0,0,0), rgba(0,0,0,0.4));
-    margin-top: -148px;
+    @include gradient(rgba(255,255,255,0), rgba(0,0,0,0.15));
+    margin-top: -248px;
     padding-top: 64px;
-    height: 128px;
+    height: 228px;
     color: white;
     .md-toolbar-tools {
       display: block;

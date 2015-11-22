@@ -4,8 +4,6 @@ doctype
     .image
     md-toolbar.lower
       .md-toolbar-tools
-        h2.md-title.white {{ product.name }}
-        h5.md-subhead.white {{ product.producer_name }}
   md-button.md-fab(aria-label="Add to Watchlist",ng-click="toggleWatch(product)")
     md-icon(ng-if="isWatched") favorite
     md-icon(ng-if="!isWatched") favorite_border

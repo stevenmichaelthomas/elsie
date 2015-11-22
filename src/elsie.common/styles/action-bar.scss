@@ -17,6 +17,9 @@ md-toolbar.action-bar {
     button.md-button.md-icon-button > md-icon {
       color: $purple;
     }
+    .md-toolbar-tools h2 {
+      color: $purple;
+    }
   }
   button.md-button.md-icon-button > md-icon {
     color: $white;
@@ -30,7 +33,7 @@ md-toolbar.action-bar {
       opacity: 0;
       -webkit-transition: opacity $transition;
       transition: opacity $transition;
-      color: $purple;
+      color: white;
       &.visible {
         opacity: 1;
       }
