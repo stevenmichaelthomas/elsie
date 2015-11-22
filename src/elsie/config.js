@@ -19,9 +19,8 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
   }
   
   document.addEventListener('deviceready', onDeviceReady, false);
-  window.addEventListener('native.keyboardshow', function(){
-    cordova.plugins.Keyboard.disableScroll(true);
-    cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+  window.addEventListener('keyboardWillShow', function(){
+    window.scrollTo(0,0);
   });
 
   $rootScope.$on('session.init', function(event, data) {

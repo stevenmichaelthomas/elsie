@@ -43,13 +43,9 @@ angular.module('elsie.home')
   });
   $scope.$watch('query', function(val){
     if (val !== "") {
-      $scope.flex.search = 15;
-      $scope.flex.results = 85;
       Actions.hide();
       $scope.locked = true;
     } else {
-      $scope.flex.search = 95;
-      $scope.flex.results = 0;
       Actions.show();
       $scope.locked = false;
     }

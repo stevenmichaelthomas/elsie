@@ -1,12 +1,16 @@
 .home {
   padding-top: $bump;
-  background-color: $purple;
+  background: $purple; /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover,  #5ee0d1 16%, #39c0b3 100%); /* FF3.6-15 */
+  background: -webkit-radial-gradient(center, ellipse cover,  #5ee0d1 16%,#39c0b3 100%); /* Chrome10-25,Safari5.1-6 */
+  background: radial-gradient(ellipse at center,  #5ee0d1 16%,#39c0b3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5ee0d1', endColorstr='#39c0b3',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   width: 100%;
   height: 100%;
   overflow: visible;
   > md-content {
     height: 100%;
-    background-color: $purple;
+    background-color: transparent;
     &.locked {
       overflow: visible;
     }
@@ -23,6 +27,7 @@
   //   right: 0;
   // }
   .results {
+    background-color: white;
     md-list {
       padding-top: 1px;
     }
@@ -33,22 +38,25 @@
     overflow-y: auto;
   }
   .explore {
-    background-color: $purple;
+    //
   }
   .search {
-    //background-color: $purple;
-    background: #5ee0d1; /* Old browsers */
-    background: -moz-radial-gradient(center, ellipse cover,  #5ee0d1 16%, #39c0b3 100%); /* FF3.6-15 */
-    background: -webkit-radial-gradient(center, ellipse cover,  #5ee0d1 16%,#39c0b3 100%); /* Chrome10-25,Safari5.1-6 */
-    background: radial-gradient(ellipse at center,  #5ee0d1 16%,#39c0b3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5ee0d1', endColorstr='#39c0b3',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-    transition: height $transition;
+    transition: padding $transition;
     padding: 50% 0;
+    &.focused {
+      &.expanded {
+        padding: 0;
+        input[type="text"] {
+          width: 100%;
+          margin: 1px 0 0;
+        }
+      }
+    }
     &.expanded {
       padding: 0;
       input[type="text"] {
         width: 100%;
-        margin-bottom: 0;
+        margin: 1px 0 0;
       }
     }
     input[type="text"] {
@@ -61,6 +69,7 @@
       padding: 12px 15px;
       width: 85%;
       margin-bottom: 20px;
+      min-height: 41px;
     }
     h5.hint {
       margin-top: 0;

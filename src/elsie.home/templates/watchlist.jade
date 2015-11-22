@@ -1,7 +1,7 @@
 doctype
 .watchlist
   md-content
-    md-progress-circular(md-mode="indeterminate",ng-show="!watchlist")
+    md-progress-circular.md-accent(md-mode="indeterminate",ng-show="!watchlist")
     md-list(ng-show="error")
       md-list-item
         p {{ error.data }}

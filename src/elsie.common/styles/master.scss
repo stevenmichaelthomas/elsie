@@ -257,6 +257,13 @@ md-card {
       }
     }
   }
+  &.folded {
+    transition: all $transition;
+    transform: scale3d(1,0,1);
+    &.unfolded {
+      transform: scale3d(1,1,1);
+    }
+  }
 }
 
 md-chips .md-chips {

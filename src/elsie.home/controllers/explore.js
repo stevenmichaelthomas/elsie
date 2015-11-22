@@ -18,10 +18,6 @@ angular.module('elsie.home')
     Picks.latest().then(function(picks){
       angular.forEach(picks, function(p, i){
         Products.one(p.productNumber).then(function(one){
-          if (i === 0) {
-            $scope.featured = one;
-            $scope.featured.pick = p;
-          }
           $scope.picks.push(one);
         });
       });
