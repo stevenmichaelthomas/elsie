@@ -1,5 +1,6 @@
+/* global $ */
 angular.module('elsie.product')
-.controller('ProductCtrl', ['$scope', 'Navigator', 'Products', 'Stores', 'Watchlist', 'Actions', 'Picks', '$timeout', function ($scope, Navigator, Products, Stores, Watchlist, Actions, Picks, $timeout) {
+.controller('ProductCtrl', ['$scope', 'Navigator', 'Products', 'Stores', 'Watchlist', 'Actions', 'Picks', 'Bump', '$timeout', function ($scope, Navigator, Products, Stores, Watchlist, Actions, Picks, Bump, $timeout) {
   $scope.toggleWatch = function(product){
     var toggle = Watchlist.changeProductStatus(product);
     if (toggle === 'added') {
@@ -33,6 +34,9 @@ angular.module('elsie.product')
   };
   $scope.getRating = function(num) {
     return new Array(num);   
+  };
+  $scope.content = {
+    'height' : $(window).innerHeight() - 56 - Bump + 'px'
   };
   (function(){
     Actions.show();

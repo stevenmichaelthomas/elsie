@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: $grey-light;
+  background-color: $purple;
   .overlay {
     height: 100%;
     width: 100%;
@@ -27,6 +27,7 @@
     outline: none;
   }
   &.welcome {
+    background-color: $purple;
     background-image: url('../img/splash.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -47,6 +48,7 @@
     }
   }
   &.login, &.signup {
+    background-color: $grey-light;
     .container {
       margin-top: 30%;
       height: 35%;
