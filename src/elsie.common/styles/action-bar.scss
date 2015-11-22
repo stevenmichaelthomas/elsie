@@ -38,6 +38,18 @@ md-toolbar.action-bar {
         opacity: 1;
       }
     }
+    .md-avatar.elsie-logo {
+      width: 40px;
+      left: 50%;
+      margin-left: -20px;
+      position: absolute;
+      top: 16px;
+      opacity: 0;
+      transition: opacity $transition;
+      &.visible {
+        opacity: 1;
+      }
+    }
     md-icon.md-default-theme {
       -webkit-transition: color $transition;
       transition: color $transition;

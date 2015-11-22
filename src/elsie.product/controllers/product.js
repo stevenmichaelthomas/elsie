@@ -38,7 +38,7 @@ angular.module('elsie.product')
     Actions.show();
     Actions.theme('transparent');
     Actions.search(false);
-    Actions.set({ menu: false, back: true });
+    Actions.set({ menu: false, back: true, logo: false });
     Actions.backGoesHome(false);
     $scope.product = Products.selected();
     $scope.product.pick = Picks.check($scope.product);

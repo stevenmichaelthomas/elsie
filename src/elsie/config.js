@@ -44,11 +44,12 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
   });
   $mdThemingProvider.definePalette('elsie', elsiePurple);
 
-  var elsiePink = $mdThemingProvider.extendPalette('pink', {
+  var elsieRed = $mdThemingProvider.extendPalette('red', {
+    '300': 'f0625f',
     'contrastLightColors': ['300'],
     'contrastDefaultColor': 'dark'
   });
-  $mdThemingProvider.definePalette('elsieAccent', elsiePink);
+  $mdThemingProvider.definePalette('elsieAccent', elsieRed);
 
   var background = $mdThemingProvider.extendPalette('grey', {
     '50': 'ffffff'

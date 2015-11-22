@@ -1,11 +1,12 @@
 div
   md-toolbar.md-default-theme
     .md-toolbar-tools
-      h1.white {{ user.firstName }} {{ user.lastName }}
-      span(flex)
-      md-button.md-accent(ng-click="logout()") Log out
+      h2.white {{ user.firstName }} {{ user.lastName }}
   md-content(layout-padding)
     md-list
       md-list-item.md-with-secondary(md-ink-ripple)
         md-icon settings
         p.black Settings
+      md-list-item.md-with-secondary(md-ink-ripple,ng-click="logout()")
+        md-icon power_settings_new
+        p.black Log out

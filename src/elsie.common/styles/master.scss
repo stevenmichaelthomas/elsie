@@ -1,10 +1,10 @@
 $purple: #39c0b3;
 $purple-light: #5ee0d1;
-$pink: #f06292;
-$pink-light: #F8BBD0;
-$charcoal: #313131;
-$white: #FEFEFE;
-$grey-light: #FCFCFC;
+$pink: #f0625f;
+$pink-light: #ef9a9a;
+$charcoal: #342f2c;
+$white: #FFFFFF;
+$grey-light: #ffffff;
 $cream: #f3f3f3;
 
 &.white {
@@ -119,7 +119,7 @@ input:active {
 }
 
 button.md-button {
-  border-radius: 0;
+  border-radius: 45px;
   background-color: transparent;
   &.md-fab {
     &.fab-bottom-right {
@@ -133,6 +133,9 @@ button.md-button {
     md-icon {
       color: $purple;
     }
+  }
+  .md-ripple-container {
+    border-radius: 45px;
   }
 }
 
@@ -191,6 +194,11 @@ md-list-item {
   &.md-2-line > .md-no-style .md-list-item-text {
     p {
       font-weight: 400;
+    }
+  }
+  button.md-button {
+    .md-ripple-container {
+      border-radius: 0;
     }
   }
 }

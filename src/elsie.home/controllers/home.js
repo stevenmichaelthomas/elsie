@@ -76,7 +76,7 @@ angular.module('elsie.home')
     $timeout(function(){
       Locator.initialize();
       Locator.refresh().then(function(){
-        Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, locating: false });
+        Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, locating: false, logo: true });
       });
     }, 500);
   })();

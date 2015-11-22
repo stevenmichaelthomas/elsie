@@ -38,7 +38,14 @@
     overflow-y: auto;
   }
   .explore {
-    //
+    md-list {
+      md-list-item {
+        button.md-no-style.md-button.md-ink-ripple {
+          margin: 0 -16px;
+          padding: 0 16px;
+        }
+      }
+    }
   }
   .search {
     transition: padding $transition;
