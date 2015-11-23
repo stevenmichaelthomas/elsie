@@ -1,0 +1,69 @@
+.splash {
+  position: absolute;
+  top: $bump;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $purple;
+  .overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    opacity: 0.1;
+  }
+  .container {
+    height: 100%;
+    transition: height $transition;
+    .inside {
+      margin-top: -$bump;
+      .md-button {
+        margin-top: 20px;
+      }
+    }
+  }
+  .logo {
+    width: 55%;
+    margin: 0 auto;
+    outline: none;
+  }
+  button.md-button {
+    border-radius: 45px;
+    .md-ripple-container {
+      border-radius: 45px;
+    }
+  }
+  &.welcome {
+    background-color: $purple;
+    background-image: url('../img/splash.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    .container {
+      text-align: center;
+      position: relative;
+      z-index: 5;
+      .inside {
+        margin-top: 0;
+      }
+    }
+    .buttons {
+      width: 100%;
+      button.md-button {
+        border: none;
+        box-shadow: none;
+      }
+    }
+  }
+  &.login, &.signup {
+    background-color: $grey-light;
+    .container {
+      margin-top: 30%;
+      height: 35%;
+    }
+    button.md-button {
+      margin-left: 3px;
+      margin-right: 3px;
+      border: none;
+      box-shadow: none;
+    }
+  }
+}

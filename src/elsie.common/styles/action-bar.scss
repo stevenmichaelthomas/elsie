@@ -1,0 +1,91 @@
+md-toolbar.action-bar {
+  position: absolute;
+  top: $bump;
+  left: 0;
+  right: 0;
+  z-index: $z-index-control-main;
+  background-color: $purple;
+  color: $white;
+  &.light {
+    background-color: $white;
+  }
+  &.transparent,
+  &.transparent-dark {
+    background-color: transparent;
+  }
+  &.light, &.transparent {
+    button.md-button.md-icon-button > md-icon {
+      color: $purple;
+    }
+    .md-toolbar-tools h2 {
+      color: $purple;
+    }
+  }
+  button.md-button.md-icon-button > md-icon {
+    color: $white;
+  }
+  .md-toolbar-tools {
+    h2 {
+      font-weight: 500;
+      font-size: 0.95em;
+      margin-left: 45px;
+      margin-top: 0;
+      opacity: 0;
+      -webkit-transition: opacity $transition;
+      transition: opacity $transition;
+      color: white;
+      &.visible {
+        opacity: 1;
+      }
+    }
+    .md-avatar.elsie-logo {
+      width: 40px;
+      left: 50%;
+      margin-left: -20px;
+      position: absolute;
+      top: 16px;
+      opacity: 0;
+      transition: opacity $transition;
+      &.visible {
+        opacity: 1;
+      }
+    }
+    md-icon.md-default-theme {
+      -webkit-transition: color $transition;
+      transition: color $transition;
+    }
+    > .md-button:last-child {
+      margin: 0;
+    }
+    > .md-button:first-child {
+      margin: 0;
+    }
+    > .md-button.left-button {
+      -webkit-transform: rotate(-90deg) scale(0,0);
+      transform: rotate(-90deg) scale(0,0);
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      transition: all $transition;
+      &.visible {
+        -webkit-transform: rotate(0deg) scale(1,1);
+        transform: rotate(0deg) scale(1,1);
+      }
+    }
+    > .md-button.right-button {
+      -webkit-transform: rotate(-90deg) scale(0,0);
+      transform: rotate(-90deg) scale(0,0);
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      transition: all $transition;
+      &.right-button-2 {
+        right: 36px;
+      }
+      &.visible {
+        -webkit-transform: rotate(0deg) scale(1,1);
+        transform: rotate(0deg) scale(1,1);
+      }
+    }
+  }
+}

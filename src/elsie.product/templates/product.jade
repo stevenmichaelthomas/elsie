@@ -1,0 +1,81 @@
+doctype
+.product.single.overflow-parent(ng-style="image")
+  md-content.upper
+    .image
+    md-toolbar.lower
+      .md-toolbar-tools
+  md-button.md-fab(aria-label="Add to Watchlist",ng-click="toggleWatch(product)")
+    md-icon(ng-if="isWatched") favorite
+    md-icon(ng-if="!isWatched") favorite_border
+  md-content.lower.md-default.md-primary-bg
+    div(flex="row",layout-wrap)
+      .head(flex="80",flex-offset="10")
+        h3.title.black.light {{ product.name }}
+        h5.title.grey.light {{ product.producer_name }}
+        md-chips
+          md-chip.md-accent(ng-show="isPick(product)") kwäf pick
+      div(flex="90",flex-offset="5",layout="row",layout-wrap)
+        md-list(flex="50")
+          md-list-item.md-2-line(ng-if="product.varietal")
+            img.md-avatar(src="img/icon_varietal.png")
+            .md-list-item-text
+              h3 {{ product.varietal }}
+              p Type
+          md-list-item.md-2-line(ng-if="product.price_in_cents")
+            img.md-avatar(src="img/icon_price.png")
+            .md-list-item-text
+              h3 {{ product.price_in_cents / 100 | currency : $ : 2  }}
+              p Price
+        md-list(flex="50")
+          md-list-item.md-2-line(ng-if="product.product_no")
+            img.md-avatar(src="img/icon_number.png")
+            .md-list-item-text
+              h3 {{ product.product_no  }}
+              p Product No.
+          md-list-item.md-2-line(ng-if="product.package")
+            img.md-avatar(src="img/icon_package.png")
+            .md-list-item-text
+              h3 
+                span(ng-if="product.total_package_units > 1") {{ product.total_package_units }}x
+                span {{ product.package_unit_volume_in_milliliters  }}ml
+              p Package
+        md-list(flex="100")
+          md-list-item
+            .md-list-item-text
+              h3 Nearest Stocked Location
+          md-progress-circular.md-accent(md-mode="indeterminate",ng-show="storesLoading")
+          md-list-item.no-button-pad.md-3-line(ng-show="!storesLoading",ng-click="loadStore(product.stores[0])")
+            .md-list-item-text
+              h3 {{ product.stores[0].name }}
+              p 
+                span {{ product.stores[0].address_line_1 }}
+                br
+                span {{ product.stores[0].distance_in_meters | distance }} away
+            .md-stat
+              p {{ product.stores[0].quantity }} units
+        md-list(flex="100",ng-if="product.tasting_note")
+          md-list-item.md-3-line.long
+            .md-list-item-text
+              h3 Tasting Note
+              p {{ product.tasting_note }}
+        md-divider(ng-if="product.pick.whyDrink")
+        md-list(flex="100",ng-if="isPick(product)")
+          md-list-item.md-3-line.long
+            .md-list-item-text
+              h3 {{ product.pick.reviewer }}
+              h4.pink Sommelier at kwäf
+              span.rating
+                md-icon.material-icons.md-default-theme.md-accent(ng-repeat="star in getRating(product.pick.rating) track by $index") star_rate
+              p {{ product.pick.whyDrink }}
+            img.md-avatar(ng-src="{{ product.pick.reviewerPhoto }}")
+        md-list(flex="100",ng-if="isPick(product)")
+          md-list-item.md-3-line
+            .md-list-item-text
+              h3 Pairing
+              p {{ product.pick.pairsWith }}
+        md-list(flex="100",ng-if="isPick(product)")
+          md-list-item.md-2-line
+            .md-list-item-text
+              small.grey
+                | Review &amp; pairing data provided by kwäf: only good wine. Visit them at&nbsp;
+                a(href="http://kwaf.ca",target="_blank") kwaf.ca

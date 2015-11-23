@@ -1,0 +1,1 @@
+angular.module('elsie.common', ['ui.router']);

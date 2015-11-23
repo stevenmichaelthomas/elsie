@@ -1,0 +1,8 @@
+.splash.welcome
+  .overlay
+  .container(layout="column", layout-align="center center", flex="100")
+    .inside(flex="60",layout="column",layout-align="center center")
+      img.logo(ng-click="shown = false",src="img/logo_white.png")
+    .buttons(flex="20",layout="row",layout-align="center center",layout-wrap)
+      md-button.md-accent.md-raised(ng-click="go('signup')",flex="70") Sign up
+      md-button.md-raised(ng-click="go('login')",flex="70") Log in

@@ -1,0 +1,15 @@
+md-toolbar(ng-class="{ 'md-theme-search' : search }",class="action-bar {{ theme }}",ng-show="show")
+  .md-toolbar-tools
+    md-button.md-icon-button.left-button(ng-click="toggleMenu()", ng-class="{ visible: set.menu }")
+      md-icon menu
+    md-button.md-icon-button.left-button(ng-click="back()", ng-class="{ visible: set.back }")
+      md-icon arrow_back
+    h2(ng-class="{ visible: set.title }",ng-hide="search")
+      span(ng-if="set.title") {{ set.title }}
+    img.elsie-logo.md-avatar(ng-class="{ visible: set.logo }",src="img/logo_white.png")
+    md-button.md-icon-button.right-button.right-button-2(ng-click="go('watchlist')", ng-class="{ visible: set.locating }")
+      md-icon location_searching
+    md-button.md-icon-button.right-button(ng-click="go('watchlist')", ng-class="{ visible: set.watchlist }")
+      md-icon favorite
+    md-button.md-icon-button.right-button(ng-click="go('search')", ng-class="{ visible: set.search }")
+      md-icon search

@@ -1,0 +1,16 @@
+.splash.signup
+  .container(layout="row", layout-wrap, layout-align="start center")
+    md-input-container.md-primary.md-default(flex="35",flex-offset="15")
+      label First name
+      input(type="text",ng-model="user.firstName")
+    md-input-container.md-primary.md-default(flex="35")
+      label Last name
+      input(type="text",ng-model="user.lastName")
+    md-input-container.md-primary.md-default(flex="70",flex-offset="15")
+      label Email address
+      input(type="email",ng-model="user.email")
+    md-input-container.md-primary.md-default(flex="70",flex-offset="15")
+      label Password
+      input(type="password",ng-model="user.password")
+    div(flex="100",layout="row",layout-align="center center")
+      md-button.md-primary.md-raised(ng-click="login()",flex="70") Sign up

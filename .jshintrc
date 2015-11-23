@@ -1,0 +1,21 @@
+{
+  "curly": true,
+  "eqeqeq": true,
+  "immed": true,
+  "indent": 2,
+  "latedef": true,
+  "laxcomma": true,
+  "newcap": true,
+  "noarg": true,
+  "quotmark": "true",
+  "undef": true,
+  "unused": false,
+  "sub": true,
+  "browser": true,
+  "predef": [
+    "angular",
+    "console",
+    "cordova",
+    "verge"
+  ]
+}
