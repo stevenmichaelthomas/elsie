@@ -120,7 +120,6 @@ input:active {
 }
 
 button.md-button {
-  border-radius: 45px;
   background-color: transparent;
   &.md-fab {
     &.fab-bottom-right {
@@ -134,9 +133,6 @@ button.md-button {
     md-icon {
       color: $purple;
     }
-  }
-  .md-ripple-container {
-    border-radius: 45px;
   }
 }
 
@@ -186,6 +182,17 @@ md-list-item {
   }
   &.md-2-line .md-list-item-text p {
     font-weight: 400;
+  }
+  &.md-no-proxy h3 {
+    color: $charcoal;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    margin: 0 0 0px 0;
+    line-height: 1.2em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   &.md-2-line .md-list-item-text,
   &.md-2-line > .md-no-style .md-list-item-text, 

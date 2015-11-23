@@ -64,7 +64,7 @@ angular.module('elsie.home')
       Watchlist.load();
     }, 1000);
     $timeout(function(){
-      Picks.latest().then(function(picks){
+      Picks.all().then(function(picks){
         angular.forEach(picks, function(p, i){
           Products.one(p.productNumber).then(function(one){
             one.pick = p;

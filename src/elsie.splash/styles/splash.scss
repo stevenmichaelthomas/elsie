@@ -26,6 +26,12 @@
     margin: 0 auto;
     outline: none;
   }
+  button.md-button {
+    border-radius: 45px;
+    .md-ripple-container {
+      border-radius: 45px;
+    }
+  }
   &.welcome {
     background-color: $purple;
     background-image: url('../img/splash.png');

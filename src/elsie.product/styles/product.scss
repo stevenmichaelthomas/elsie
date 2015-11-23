@@ -52,7 +52,7 @@
     background-color: transparent;
   }
   md-content.lower {
-    height: 100%;
+    min-height: 100%;
     .head {
       margin-top: 30px;
       h3.title,
@@ -61,23 +61,26 @@
       }
     }
     md-list {
+      margin-top: 10px;
+      border-top: 1px $grey solid;
       md-list-item {
         padding: 0 8px;
-        &:first-child {
-          border-top: 1px $grey solid;
-          padding-top: 10px;
-        }
-        &:last-child {
-          border-bottom: 1px $grey solid;
-          padding-bottom: 10px;
-        }
         img.md-avatar {
           margin-right: 10px;
         }
       }
     }
+    md-list-item {
+      > button.md-button {
+        padding: 0;
+        border-radius: 0;
+      }
+    }
     md-list-item.long {
-      padding: 16px;
+      padding: 16px 8px;
+      h3 {
+        margin-bottom: 10px;
+      }
     }
     .rating {
       display: block;

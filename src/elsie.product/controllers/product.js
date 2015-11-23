@@ -9,18 +9,6 @@ angular.module('elsie.product')
       $scope.isWatched = false;
     }
   };
-  $scope.findNearby = function(product) {
-    if ($scope.mode === 'stores'){
-      $scope.mode = 'detail';
-      return;
-    }
-    $scope.storesLoading = true;
-    Products.atNearbyStores(product).then(function(data){
-      $scope.product.stores = data.stores;
-      $scope.mode = 'stores';
-      $scope.storesLoading = false;
-    });
-  };
   $scope.loadStore = function(store) {
     Stores.select(store);
     Navigator.go('store');
@@ -50,15 +38,19 @@ angular.module('elsie.product')
       'background-position-y': '-220%',
       'background-image': 'url(' + $scope.product.image_url + ')'
     };
-    $scope.mode = 'detail';
     if (Watchlist.checkForProduct($scope.product)){
       $scope.isWatched = true;
     }
+    $scope.storesLoading = true;
     $scope.tags = (function(){
       return $scope.product.tags.split(" ");
     })();
     $timeout(function(){
       $scope.image['background-position-y'] = '-88%';
+      Products.atNearbyStores($scope.product).then(function(data){
+        $scope.product.stores = data.stores;
+        $scope.storesLoading = false;
+      });
     }, 500);
   })();
 }]);
