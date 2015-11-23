@@ -1,4 +1,4 @@
-$purple: #39c0b3;
+$purple: #44beb3;
 $purple-light: #5ee0d1;
 $pink: #f0625f;
 $pink-light: #ef9a9a;
@@ -161,6 +161,14 @@ md-list-item {
     border-radius: 50%;
     box-sizing: content-box; 
   }
+  .kwaf-pick {
+    background-color: $pink;
+    color: white;
+    border-radius: 15px;
+    margin-right: 3px;
+    font-size: 0.7em;
+    padding: 2px 10px;
+  }
   .stat {
     h2 {
       margin: 18px 0 0;
@@ -290,7 +298,7 @@ md-card {
     }
   }
   &.folded {
-    transition: all 2s;
+    transition: all $transition;
     transform: scale3d(1,0,1);
     &.unfolded {
       transform: scale3d(1,1,1);

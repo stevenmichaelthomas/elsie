@@ -14,6 +14,9 @@ angular.module('elsie.home')
   };
   $scope.search = function(query) {
     return Products.search(query).then(function(result){
+      angular.forEach(result, function(res, i){
+        res.pick = Picks.check(res);
+      });
       $scope.results.products = result;
       Cache.update($scope.results);
       return $scope.results.products;

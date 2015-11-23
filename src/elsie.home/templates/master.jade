@@ -6,7 +6,7 @@ doctype
       input(type="text",placeholder="Search products and LCBO locations",ng-model="query",ng-change="search(query)",ng-model-options="{ debounce: 300 }",ng-focus="focused = true",ng-blur="focused = false")
       md-button.md-icon-button.hide(ng-class="{ visible: query }",ng-click="clear()")
         md-icon close
-      h5.light.hint.md-accent(ng-if="!query") Try "Gooderham &amp; Worts" or "Saison"
+      h5.light.hint.white(ng-if="!query") Try "Gooderham &amp; Worts" or "Saison"
       //.explore-trigger(ng-if="!picksMode",ng-click="showPicks()")
         small.white Need some inspiration?
         br
@@ -18,7 +18,9 @@ doctype
             img.md-avatar(ng-src="{{ product.image_thumb_url }}")
             .md-list-item-text
               h3 {{ product.name }}
-              p {{ product.producer_name }}
+              p 
+                span.kwaf-pick(ng-show="product.pick.rating") kwäf
+                span {{ product.producer_name }}
     .explore(flex="100")
       md-card.folded(ng-class="{ 'unfolded' : picks.length > 0 }")
         md-card-content
