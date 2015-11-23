@@ -180,8 +180,9 @@ md-list-item {
       margin-bottom: 10px !important;
     }
   }
-  &.md-2-line .md-list-item-text p {
-    font-weight: 400;
+  .md-stat {
+    color: $pink;
+    float: right;
   }
   &.md-no-proxy h3 {
     color: $charcoal;
@@ -236,6 +237,20 @@ md-tabs {
 
 md-chips {
   margin-top: 10px;
+  .md-chips {
+    padding-left: 0;
+    md-chip {
+      &.md-accent {
+        margin-top: 0;
+        text-transform: uppercase;
+        font-size: 0.8em;
+        line-height: 2em;
+        height: auto;
+        color: white;
+        background-color: $pink;
+      }
+    }
+  }
 }
 
 md-sidenav {
@@ -275,7 +290,7 @@ md-card {
     }
   }
   &.folded {
-    transition: all $transition;
+    transition: all 2s;
     transform: scale3d(1,0,1);
     &.unfolded {
       transform: scale3d(1,1,1);

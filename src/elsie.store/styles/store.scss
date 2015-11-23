@@ -1,47 +1,12 @@
-.store.single {
+.product.store {
   background-color: white;
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position-x: center;
-  background-position-y: top;
+  background-position-y: -130%;
   position: absolute;
   top: $bump;
   left: 0;
   bottom: 0;
   right: 0;
-  .image {
-    height: 244px;
-  }
-  md-toolbar.lower {
-    @include gradient(rgba(0,0,0,0), rgba(0,0,0,0.4));
-    margin-top: -148px;
-    padding-top: 64px;
-    height: 128px;
-    color: white;
-    .md-toolbar-tools {
-      //align-items: flex-start;
-      //flex-direction: column;
-      display: block;
-      overflow: hidden;
-      .md-title {
-        font-weight: 600;
-        white-space: nowrap;
-      }
-      h5 {
-        margin: 0;
-      }
-    }
-  }
-  a.md-button.md-default-theme.md-fab, .md-button.md-default-theme.md-fab {
-    position: absolute;
-    right: 20px;
-    top: 210px;
-  }
-  md-content.upper {
-    overflow: hidden;
-    background-color: transparent;
-  }
-  md-content.lower {
-    //
-  }
 }

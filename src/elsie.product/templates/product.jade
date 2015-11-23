@@ -7,15 +7,13 @@ doctype
   md-button.md-fab(aria-label="Add to Watchlist",ng-click="toggleWatch(product)")
     md-icon(ng-if="isWatched") favorite
     md-icon(ng-if="!isWatched") favorite_border
-  //md-button.md-icon-button.md-raised(aria-label="Search for Stores",ng-click="findNearby(product)",ng-disabled="storesLoading",ng-class="{ 'md-primary' : mode === 'stores' }")
-    md-icon(ng-show="!storesLoading") store
-    md-progress-circular(md-mode="indeterminate",ng-show="storesLoading",md-diameter="24")
   md-content.lower.md-default.md-primary-bg
     div(flex="row",layout-wrap)
       .head(flex="80",flex-offset="10")
         h3.title.black.light {{ product.name }}
         h5.title.grey.light {{ product.producer_name }}
-        md-chip.md-accent(ng-show="isPick(product)") kwäf pick
+        md-chips
+          md-chip.md-accent(ng-show="isPick(product)") kwäf pick
       div(flex="90",flex-offset="5",layout="row",layout-wrap)
         md-list(flex="50")
           md-list-item.md-2-line(ng-if="product.varietal")
@@ -52,7 +50,9 @@ doctype
               p 
                 span {{ product.stores[0].address_line_1 }}
                 br
-                span {{ product.stores[0].distance_in_meters | distance }}
+                span {{ product.stores[0].distance_in_meters | distance }} away
+            .md-stat
+              p {{ product.stores[0].quantity }} units
         md-list(flex="100",ng-if="product.tasting_note")
           md-list-item.md-3-line.long
             .md-list-item-text
@@ -69,9 +69,9 @@ doctype
               p {{ product.pick.whyDrink }}
             img.md-avatar(ng-src="{{ product.pick.reviewerPhoto }}")
         md-list(flex="100",ng-if="isPick(product)")
-          md-list-item.md-3-line.long
+          md-list-item.md-3-line
             .md-list-item-text
-              h4.pink Pairing
+              h3 Pairing
               p {{ product.pick.pairsWith }}
         md-list(flex="100",ng-if="isPick(product)")
           md-list-item.md-2-line
@@ -79,51 +79,3 @@ doctype
               small.grey
                 | Review &amp; pairing data provided by kwäf: only good wine. Visit them at&nbsp;
                 a(href="http://kwaf.ca",target="_blank") kwaf.ca
-    //md-list(ng-show="mode === 'detail'")
-      md-list-item.md-2-line(ng-if="product.varietal")
-        .md-list-item-text
-          h3 {{ product.varietal }}
-          p type
-      md-list-item.md-2-line(ng-if="product.product_no")
-        .md-list-item-text
-          h3 {{ product.product_no }}
-          p product number
-      md-list-item.md-2-line
-        .md-list-item-text
-          h3 {{ product.price_in_cents / 100 | currency : $ : 2  }}
-          p price
-      md-list-item.md-2-line
-        .md-list-item-text
-          h3 {{ product.package }}
-          p unit package
-      md-divider(ng-if="product.pick.whyDrink")
-      md-list-item.md-3-line.long(ng-if="product.pick.whyDrink")
-        .md-list-item-text
-          h3 {{ product.pick.reviewer }}
-          h4.pink Sommelier at kwäf
-          span.rating
-            md-icon.material-icons.md-default-theme.md-accent(ng-repeat="star in getRating(product.pick.rating) track by $index") star_rate
-          p {{ product.pick.whyDrink }}
-        img.md-avatar(ng-src="{{ product.pick.reviewerPhoto }}")
-      md-divider(ng-if="product.description && !product.pick.whyDrink")
-      md-list-item.md-3-line.long(ng-if="product.description && !product.pick.whyDrink")
-        .md-list-item-text
-          p {{ product.description }}
-      md-divider(ng-if="product.pick.whyDrink && product.pick.pairsWith")
-      md-list-item.md-3-line.long(ng-if="product.pick.pairsWith")
-        .md-list-item-text
-          h4.pink Pairing
-          p {{ product.pick.pairsWith }}
-      md-divider(ng-if="product.pick.pairsWith")
-      md-list-item.md-2-line(ng-if="product.pick.pairsWith")
-        .md-list-item-text
-          small.grey
-            | Review &amp; pairing data provided by kwäf: only good wine. Visit them at&nbsp;
-            a(href="http://kwaf.ca",target="_blank") kwaf.ca
-    //md-list(ng-show="mode === 'stores'")
-      md-list-item.md-2-line(ng-repeat="store in product.stores",ng-click="loadStore(store)")
-        .md-list-item-text
-          h3 {{ store.name }}
-          p {{ store.quantity }} units, {{ store.distance_in_meters | distance }} away
-//.kwaf-ribbon(ng-if="isPick(product)")
-  span kwäf pick

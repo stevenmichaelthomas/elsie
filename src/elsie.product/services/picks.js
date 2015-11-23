@@ -12,26 +12,7 @@ angular.module('elsie.product')
       
   return {
     latest: function(){
-      var deferred = $q.defer();
-      if (cache.picks.length === 0){
-        var req = url() + '/picks?sort=id%20DESC';
-        var process = $http.get(req).then(function(result){
-          if (result.status === 200){
-            cache.picks = result.data.slice(0,5);
-            angular.forEach(cache.picks, function(p,i){
-              cache.picksHash[p.productNumber] = p;
-            });
-            deferred.resolve(cache.picks);
-          } else {
-            Dialog.showConnectionError();
-            return [];
-          }
-        });
-        Scheduler.queue(process);
-      } else {
-        deferred.resolve(cache.picks);
-      }
-      return deferred.promise;
+      return cache.picks.slice(0,5);
     },
     all: function(){
       var deferred = $q.defer();
