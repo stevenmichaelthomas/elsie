@@ -1,7 +1,7 @@
 /* global $ */
 angular.module('elsie.home')
 .controller('HomeCtrl', function($scope, $timeout, Navigator, Products, Stores, Cache, Actions, Picks, Watchlist, Locator, Bump) {
-  $scope.welcome = 'Let\'s get started.';
+  $scope.welcome = 'Lovely day for a scotch.';
   $scope.query = '';
   $scope.flex = {
     search: 95,
@@ -13,12 +13,14 @@ angular.module('elsie.home')
     $scope.query = '';
   };
   $scope.search = function(query) {
+    $scope.searching = true;
     return Products.search(query).then(function(result){
       angular.forEach(result, function(res, i){
         res.pick = Picks.check(res);
       });
       $scope.results.products = result;
       Cache.update($scope.results);
+      $scope.searching = false;
       return $scope.results.products;
     });
   };
@@ -55,7 +57,7 @@ angular.module('elsie.home')
   });
   (function(){
     Actions.show();
-    Actions.theme('transparent-dark');
+    Actions.theme('purple');
     Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, locating: true });
     if (Navigator.lastState() && Navigator.lastState().name === 'product' || Navigator.lastState() && Navigator.lastState().name === 'store'){
       Actions.backGoesHome(true);

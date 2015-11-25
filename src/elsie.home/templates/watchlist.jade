@@ -1,14 +1,8 @@
 doctype
 .watchlist
   md-content
-    md-progress-circular.md-accent(md-mode="indeterminate",ng-show="!watchlist")
-    md-list(ng-show="error")
-      md-list-item
-        p {{ error.data }}
-    md-list(ng-show="watchlist && watchlist.length === 0 && !error")
-      md-list-item
-        p You haven't added anything to your watchlist yet.
-    md-list(ng-show="watchlist && watchlist.length > 0")
+    md-progress-circular.md-accent(md-mode="indeterminate",ng-show="!watchlist && session")
+    md-list.standalone(ng-show="watchlist && watchlist.length > 0")
       md-list-item.md-2-line(ng-repeat="product in watchlist",ng-click="loadProduct(product)")
         img.md-avatar(ng-src="{{ product.image_thumb_url }}")
         .md-list-item-text
@@ -17,3 +11,16 @@ doctype
         .stat
           h2.light.pink {{ product.inventory_count | pretty }}
           small.pink Stocked
+    .full(layout="column", layout-align="center center")
+      div(flex,ng-if="error",layout="column", layout-align="center center")
+        img.watchlist-image(src="img/watchlist.png")
+        p.message {{ error.data }}
+        md-button.md-primary(ng-click="go('welcome')") Okay
+      div(flex,ng-if="!session",layout="column", layout-align="center center")
+        img.watchlist-image(src="img/watchlist.png")
+        p.message Please sign in to use this feature - it's free!
+        md-button.md-primary(ng-click="go('welcome')") Okay
+      div(flex,ng-if="watchlist && watchlist.length === 0 && !error && session",layout="column", layout-align="center center")
+        img.watchlist-image(src="img/watchlist.png")
+        p.message You haven't added anything to your watchlist yet! Let's fix that.
+        md-button.md-primary(ng-click="go('home')") Search for products

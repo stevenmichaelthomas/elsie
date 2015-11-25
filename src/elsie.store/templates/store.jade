@@ -4,7 +4,9 @@ doctype
     .image
     md-toolbar.lower
       .md-toolbar-tools
-  md-button.md-fab(aria-label="Add to Watchlist",ng-click="makeHome(store)")
+  md-button.md-fab(aria-label="Add to Watchlist",ng-click="showSessionMessage()",ng-if="!session")
+    md-icon home
+  md-button.md-fab(aria-label="Add to Watchlist",ng-click="makeHome(store)",ng-if="session")
     md-icon home
   md-content.lower.md-default.md-primary-bg
     div(flex="row",layout-wrap)

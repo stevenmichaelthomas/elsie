@@ -31,8 +31,8 @@ function($q, Session, $injector, $location, LCBO) {
   function handle401(res) {
     if(res.status === 401) {
       Session.clear();
-      setBufferedLocation();
-      $injector.get('$state').go('welcome');
+      // setBufferedLocation();
+      // $injector.get('$state').go('welcome');
     }
   }
 
@@ -42,15 +42,11 @@ function($q, Session, $injector, $location, LCBO) {
 
   function addAuthHeader(req) {
     req.timeout = 5000;
-    if(!authOrFileUrl(req.url) && !Session.active()) {
-      req.status = 401;
-      return $q.reject(req);
-    }
-    else {
+    if(Session.active()) {
       var token = Session.get('token');
       if(token) { req.headers.Authorization = 'Bearer '+ token; }
-      return req;
     }
+    return req;
   }
 
   return {
@@ -59,7 +55,6 @@ function($q, Session, $injector, $location, LCBO) {
     }
   , responseError: function(res) {
       handle401(res);
-      //handle408(res);
       return $q.reject(res);
     }
 

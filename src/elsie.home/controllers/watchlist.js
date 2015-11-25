@@ -1,10 +1,14 @@
 angular.module('elsie.home')
-.controller('WatchlistCtrl', function($scope, $timeout, Navigator, Watchlist, Products, Actions) {
+.controller('WatchlistCtrl', ['$scope', '$timeout', 'Navigator', 'Watchlist', 'Products', 'Actions', 'elsie.session',
+  function($scope, $timeout, Navigator, Watchlist, Products, Actions, Session) {
   $scope.loadProduct = function(product){
     if (product && product.product_no){
       Products.select(product);
       Navigator.go('product', 'forward');
     }
+  };
+  $scope.go = function(destination){
+    Navigator.go(destination);
   };
   (function(){
     Actions.theme('purple');
@@ -14,7 +18,7 @@ angular.module('elsie.home')
     } else {
       Actions.backGoesHome(false);
     }
-    $timeout(function(){
+    $scope.loadWatchlist = function() {
       Watchlist.load().then(function(data){
         if (data.status && data.status === -1){
           $scope.watchlist = [];
@@ -23,6 +27,12 @@ angular.module('elsie.home')
         }
         $scope.watchlist = data;
       });
-    }, 500);
+    };
+    if (Session.active()) {
+      $scope.session = true;
+      $timeout(function(){
+        $scope.loadWatchlist();
+      }, 500);
+    }    
   })();
-});
+}]);

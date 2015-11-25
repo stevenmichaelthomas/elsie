@@ -7,7 +7,14 @@ angular.module('elsie.splash').factory('elsie.auth',
     }
 
     return {
-      login: function(payload) {
+      facebook: function(token) {
+        return $http.post(url('facebook'), { access_token: token })
+          .then(function(response) {
+            return response.data;
+          });
+      }
+
+    , login: function(payload) {
         return $http.post(url('login'), payload)
           .then(function(response) {
             return response.data;
