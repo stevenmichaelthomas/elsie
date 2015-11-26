@@ -17,7 +17,7 @@ doctype
         md-chips
           md-chip.md-accent(ng-show="isPick(product)") kwäf pick
       div(flex="90",flex-offset="5",layout="row",layout-wrap)
-        md-list(flex="50")
+        md-list.key-facts(flex="50")
           md-list-item.md-2-line(ng-if="product.varietal || product.tertiary_category || product.secondary_category")
             img.md-avatar(src="img/icon_varietal.png")
             .md-list-item-text
@@ -28,7 +28,7 @@ doctype
             .md-list-item-text
               h3 {{ product.price_in_cents / 100 | currency : $ : 2  }}
               p Price
-        md-list(flex="50")
+        md-list.key-facts(flex="50")
           md-list-item.md-2-line(ng-if="product.product_no")
             img.md-avatar(src="img/icon_number.png")
             .md-list-item-text
@@ -63,12 +63,12 @@ doctype
         md-list(flex="100",ng-if="isPick(product)")
           md-list-item.md-3-line
             .md-list-item-text
+              img.reviewer(ng-src="{{ product.pick.reviewerPhoto }}")
               h3 {{ product.pick.reviewer }}
               h4.pink Sommelier at kwäf
               span.rating
                 md-icon.material-icons.md-default-theme.md-accent(ng-repeat="star in getRating(product.pick.rating) track by $index") star_rate
               p {{ product.pick.whyDrink }}
-            img.md-avatar(ng-src="{{ product.pick.reviewerPhoto }}")
         md-list(flex="100",ng-if="isPick(product)")
           md-list-item.md-3-line
             .md-list-item-text

@@ -11,11 +11,11 @@ doctype
   md-content.lower.md-default.md-primary-bg
     div(flex="row",layout-wrap)
       .head(flex="90",flex-offset="5")
-        h3.title.black.light {{ store.name }}
+        h2.title.black.light {{ store.name }}
         h5.title.grey.light {{ store.address_line_1 }}
         md-chips
           md-chip.md-accent Open
-      md-list(flex="90",flex-offset="5")
+      md-list.key-facts(flex="90",flex-offset="5")
         md-list-item.md-3-line
           img.md-avatar(src="img/icon_location.png")
           .md-list-item-text
@@ -34,37 +34,37 @@ doctype
           .md-list-item-text
             h3 Hours
             div(layout="row")
-              div(flex="50")
+              div(flex="55")
                 p Monday
-              div(flex="50",layout-align="right center")
+              div(flex="45",layout-align="right center")
                 p {{ store.monday_open | prettyHour }} - {{ store.monday_close | prettyHour }}
             div(layout="row")
-              div(flex="50")
+              div(flex="55")
                 p Tuesday
-              div(flex="50",layout-align="right center")
+              div(flex="45",layout-align="right center")
                 p {{ store.tuesday_open | prettyHour }} - {{ store.tuesday_close | prettyHour }}
             div(layout="row")
-              div(flex="50")
+              div(flex="55")
                 p Wednesday
-              div(flex="50",layout-align="right center")
+              div(flex="45",layout-align="right center")
                 p {{ store.wednesday_open | prettyHour }} - {{ store.wednesday_close | prettyHour }}
             div(layout="row")
-              div(flex="50")
+              div(flex="55")
                 p Thursday
-              div(flex="50",layout-align="right center")
+              div(flex="45",layout-align="right center")
                 p {{ store.thursday_open | prettyHour }} - {{ store.thursday_close | prettyHour }}
             div(layout="row")
-              div(flex="50")
+              div(flex="55")
                 p Friday
-              div(flex="50",layout-align="right center")
+              div(flex="45",layout-align="right center")
                 p {{ store.friday_open | prettyHour }} - {{ store.friday_close | prettyHour }}
             div(layout="row")
-              div(flex="50")
+              div(flex="55")
                 p Saturday
-              div(flex="50",layout-align="right center")
+              div(flex="45",layout-align="right center")
                 p {{ store.saturday_open | prettyHour }} - {{ store.saturday_close | prettyHour }}
             div(layout="row")
-              div(flex="50")
+              div(flex="55")
                 p Sunday
-              div(flex="50",layout-align="right center")
+              div(flex="45",layout-align="right center")
                 p {{ store.sunday_open | prettyHour }} - {{ store.sunday_close | prettyHour }}
