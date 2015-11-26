@@ -26,9 +26,15 @@ angular.module('elsie.common')
       };
       $scope.$on('session.init', function(event, data){
         $scope.user = data.account;
+        $scope.session = true;
+      });
+      $scope.$on('session.end', function(event, data){
+        delete $scope.user;
+        $scope.session = false;
       });
       if (Session.active()){
         $scope.user = Session.get('account');
+        $scope.session = true;
       }
     }
   };

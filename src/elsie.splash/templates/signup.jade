@@ -12,5 +12,6 @@
     md-input-container.md-primary.md-default(flex="70",flex-offset="15")
       label Password
       input(type="password",ng-model="user.password")
-    div(flex="100",layout="row",layout-align="center center")
+    div(flex="100",layout="row",layout-align="center center",layout-wrap)
       md-button.md-primary.md-raised(ng-click="login()",flex="70") Sign up
+      md-button.md-accent(ng-click="go('login')",flex="70") Have an account? Log in

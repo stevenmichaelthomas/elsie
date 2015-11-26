@@ -5,7 +5,7 @@ $pink-light: #ef9a9a;
 $charcoal: #342f2c;
 $white: #FFFFFF;
 $grey-light: #ffffff;
-$grey: #cccccc;
+$grey: rgba(204,204,204,0.5);
 $cream: #f3f3f3;
 
 &.white {
@@ -16,6 +16,9 @@ $cream: #f3f3f3;
 }
 &.grey {
   color: rgba(0, 0, 0, 0.54);
+}
+&.accent {
+  color: $pink;
 }
 
 $bump: 22px;
@@ -77,7 +80,7 @@ p {
     color: $pink;
     font-size: 1em;
     text-align: center;
-    padding: 0 80px;
+    padding: 0 70px;
   }
 }
 
@@ -115,6 +118,13 @@ a:visited {
   right: 0;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+img.user-image {
+  width: 36px;
+  border-radius: 100px;
+  border: 2px rgba(255, 255, 255, 0.35) solid;
+  margin-right: 8px;
 }
 
 .fancy-title {
@@ -185,6 +195,9 @@ md-list.standalone {
     box-shadow: 0px 3px 0 rgba(0, 0, 0, 0.12);
     background-color: white;
     border-radius: 4px;
+    > button {
+      padding-right: 10px;
+    }
     > .md-avatar {
       height: auto;
     }
@@ -232,17 +245,16 @@ md-list-item {
       font-size: 0.65em;
     }
   }
-  &.long {
-    .md-avatar {
-      margin-top: 0;
-    }
-    h4 {
-      margin-bottom: 10px !important;
-    }
-  }
   .md-stat {
     color: $pink;
     float: right;
+    margin-top: 10px;
+    &.low {
+      p {
+        margin-bottom: 0;
+        margin-top: 40px;
+      }
+    }
   }
   &.md-no-proxy h3 {
     color: $charcoal;

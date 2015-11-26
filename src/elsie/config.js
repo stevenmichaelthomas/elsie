@@ -1,24 +1,32 @@
 angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsie.templates', 'elsie.common', 'elsie.splash', 'elsie.home', 'elsie.product', 'elsie.search', 'elsie.store'])
 
-.run(['$http', '$rootScope', '$state', '$templateCache', 'Analytics', 'Dialog', 'elsie.httpAuth', 'elsie.session', function($http, $rootScope, $state, $templateCache, Analytics, Dialog, HttpAuth, Session) {
+.run(['$http', '$rootScope', '$state', '$templateCache', 'Analytics', 'Dialog', 'elsie.httpAuth', 'elsie.session', 'Locator', function($http, $rootScope, $state, $templateCache, Analytics, Dialog, HttpAuth, Session, Locator) {
 
   function onDeviceReady() {
     if (navigator && navigator.splashscreen){
       navigator.splashscreen.hide();
     }
+    Locator.ready();
+    Locator.refresh();
     Analytics.incrementRunNumber();
     if (Analytics.runNumber() === 3){
       var message = 'If you enjoy Elsie, you can help others find out about her by leaving a review in the app store.';
       var actions = [
         { label: 'Don\'t ask again' },
-        { label: 'Leave a review', action: 'url', url: 'http://www.windowsphone.com/s?appid=d1040ef2-5d48-4962-9a5b-e20c01fe1760' }
+        { label: 'Leave a review', action: 'url', url: 'https://itunes.apple.com/app/elsie/id951372469?ls=1&mt=8' }
       ];
       var title = 'Please consider a review';
       Dialog.show(message, actions, title);    
     }
   }
+
+  function onResume() {
+    Locator.refresh();
+  }
   
   document.addEventListener('deviceready', onDeviceReady, false);
+  document.addEventListener('resume', onResume, false);
+
   window.addEventListener('keyboardWillShow', function(){
     window.scrollTo(0,0);
   });

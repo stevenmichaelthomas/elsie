@@ -75,7 +75,7 @@
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="HideKeyboardFormAccessoryBar" value="true"/>
-  <preference name="KeyboardShrinksView" value="false"/>
+  <preference name="KeyboardShrinksView" value="false" />
   <preference name="SplashScreenDelay" value="3000"/>
   <feature name="Keyboard">
     <param name="ios-package" value="IonicKeyboard" onload="true"/>

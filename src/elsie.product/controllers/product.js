@@ -1,6 +1,6 @@
 /* global $ */
 angular.module('elsie.product')
-.controller('ProductCtrl', ['$scope', 'Navigator', 'Products', 'Stores', 'Watchlist', 'Actions', 'Picks', 'Bump', 'elsie.session', '$timeout', function ($scope, Navigator, Products, Stores, Watchlist, Actions, Picks, Bump, Session, $timeout) {
+.controller('ProductCtrl', ['$scope', 'Navigator', 'Products', 'Stores', 'Watchlist', 'Actions', 'Picks', 'Bump', 'Map', 'elsie.session', '$timeout', function ($scope, Navigator, Products, Stores, Watchlist, Actions, Picks, Bump, Map, Session, $timeout) {
   $scope.toggleWatch = function(product){
     var toggle = Watchlist.changeProductStatus(product);
     if (toggle === 'added') {
@@ -58,7 +58,11 @@ angular.module('elsie.product')
       Products.atNearbyStores($scope.product).then(function(data){
         $scope.product.stores = data.stores;
         $scope.storesLoading = false;
+        $scope.map = {
+          'background-image': 'url(' + Map.small($scope.product.stores[0].latitude, $scope.product.stores[0].longitude) + ')'
+        };
       });
+      console.log($scope.map);
     }, 750);
   })();
 }]);

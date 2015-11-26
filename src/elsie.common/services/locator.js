@@ -2,11 +2,16 @@ angular.module('elsie.common')
 .factory('Locator', function($q, Scheduler, Dialog) {
 
   var location = {};
+  var ready = false;
+  var running = false;
   var _sync = function(){
     localStorage["Elsie_cachedLocation"] = JSON.stringify(location);
   };
       
   return {
+    ready: function() {
+      ready = true;
+    },
     initialize: function(){
       if (!localStorage["Elsie_cachedLocation"]){
         location = {
@@ -26,6 +31,7 @@ angular.module('elsie.common')
       var deferred = $q.defer();
       var process = deferred.promise;
       var onSuccess = function(position) {
+        running = false;
         var newLocation = {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
@@ -35,6 +41,7 @@ angular.module('elsie.common')
         deferred.resolve();
       };
       var onError = function() {
+        running = false;
         var message = 'Elsie couldn\'t get your location. She won\'t be able to provide you with accurate information until she has it.';
         var actions = [
           { label: 'Cancel' },
@@ -44,7 +51,12 @@ angular.module('elsie.common')
         Dialog.show(message, actions, title);
         deferred.resolve();
       };
-      navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 20000 });
+      if (!ready || running) {
+        deferred.reject();
+      } else {
+        running = true;
+        navigator.geolocation.getCurrentPosition(onSuccess, onError, { timeout: 20000 });
+      }
       Scheduler.queue(process);
       return process;
     }

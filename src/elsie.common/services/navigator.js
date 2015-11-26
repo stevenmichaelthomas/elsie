@@ -1,5 +1,5 @@
 angular.module('elsie.common')
-.factory('Navigator', function($state, $history){
+.factory('Navigator', ['$state', '$history', 'elsie.session', function($state, $history, Session){
 
   var cache = {
     lastState: null,
@@ -32,4 +32,4 @@ angular.module('elsie.common')
     },
   };
 
-});
+}]);

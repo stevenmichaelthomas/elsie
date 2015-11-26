@@ -12,7 +12,7 @@ doctype
   md-content.lower.md-default.md-primary-bg
     div(flex="row",layout-wrap)
       .head(flex="90",flex-offset="5")
-        h3.title.black.light {{ product.name }}
+        h2.title.black.light {{ product.name }}
         h5.title.grey.light {{ product.producer_name }}
         md-chips
           md-chip.md-accent(ng-show="isPick(product)") kwäf pick
@@ -42,11 +42,9 @@ doctype
                 span {{ product.package_unit_volume_in_milliliters  }}ml
               p Package
         md-list(flex="100")
-          md-list-item
-            .md-list-item-text
-              h3 Nearest Stocked Location
+          h4.light.black Nearest Stocked Location
           md-progress-circular.md-accent(md-mode="indeterminate",ng-show="storesLoading")
-          md-list-item.no-button-pad.md-3-line(ng-show="!storesLoading",ng-click="loadStore(product.stores[0])")
+          md-list-item.no-button-pad.md-3-line(ng-show="!storesLoading",ng-click="loadStore(product.stores[0])",md-no-ink)
             .md-list-item-text
               h3 {{ product.stores[0].name }}
               p 
@@ -55,14 +53,15 @@ doctype
                 span {{ product.stores[0].distance_in_meters | distance }} away
             .md-stat
               p {{ product.stores[0].quantity }} units
+          .map(ng-style="map",ng-click="loadStore(product.stores[0])",md-no-ink)
         md-list(flex="100",ng-if="product.tasting_note")
-          md-list-item.md-3-line.long
+          md-list-item.md-3-line
             .md-list-item-text
               h3 Tasting Note
               p {{ product.tasting_note }}
         md-divider(ng-if="product.pick.whyDrink")
         md-list(flex="100",ng-if="isPick(product)")
-          md-list-item.md-3-line.long
+          md-list-item.md-3-line
             .md-list-item-text
               h3 {{ product.pick.reviewer }}
               h4.pink Sommelier at kwäf
@@ -77,7 +76,7 @@ doctype
               p {{ product.pick.pairsWith }}
         md-list(flex="100",ng-if="isPick(product)")
           md-list-item.md-2-line
-            .md-list-item-text
+            .md-list-item-text.no-margin
               small.grey
                 | Review &amp; pairing data provided by kwäf: only good wine. Visit them at&nbsp;
                 a(href="http://kwaf.ca",target="_blank") kwaf.ca

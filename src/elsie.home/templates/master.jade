@@ -3,13 +3,13 @@ doctype
   md-content(layout="row",layout-wrap,ng-class="{ locked: locked }")
     .search(layout="column",layout-align="center center",ng-class="{ expanded: query, focused: focused }",flex="100")
       .main(flex="80",layout="column",layout-align="center center")
-        h2.white(ng-if="!query") {{ welcome }}
+        h2.white(ng-if="!query") {{ welcome.text }}
         input(type="text",placeholder="Search products and LCBO locations",ng-model="query",ng-change="search(query)",ng-model-options="{ debounce: 300 }",ng-focus="focused = true",ng-blur="focused = false")
         md-button.md-icon-button.hide(ng-class="{ visible: query }",ng-click="clear()")
           md-icon close
         h5.light.hint.white(ng-if="!query") Try "Pinot Noir" or "Saison"
-      .explore-trigger(flex="10",flex-offset="5",ng-if="!query")
-        h4.white Let us help you get started
+      .explore-trigger(flex="10",ng-if="!query")
+        h4.white Need some inspiration?
         md-icon.white keyboard_arrow_down
     .results(ng-if="query",layout-fill)
       md-content(flex="100")
@@ -31,9 +31,11 @@ doctype
           img.md-avatar(ng-src="{{ product.image_thumb_url }}")
           .md-list-item-text
             h3 {{ product.name }}
-            p {{ product.producer_name }}
-            small {{ product.product_no }} &#183; {{ product.secondary_category }} &#183; {{ product.alcohol_content | percentage }}
-          .stat
-            h2.light.pink {{ product.pick.rating }}
-            //md-icon star_rate
-            small.pink Stars
+            p 
+              | {{ product.producer_name }}
+              br
+              | {{ product.secondary_category }} &#183; {{ product.alcohol_content | percentage }}
+          .md-stat.low
+            p
+              | {{ product.pick.rating }} 
+              md-icon.md-accent star_rate

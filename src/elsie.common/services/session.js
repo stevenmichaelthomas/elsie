@@ -1,6 +1,6 @@
 angular.module('elsie.common').factory('elsie.session',
-['elsie.store',
-function(Store) {
+['elsie.store', '$rootScope',
+function(Store, $rootScope) {
 
   var _storeKey = 'elsie.session';
 
@@ -30,6 +30,7 @@ function(Store) {
     }
 
   , clear: function() {
+      $rootScope.$broadcast('session.end');
       Store.remove(_storeKey);
     }
 

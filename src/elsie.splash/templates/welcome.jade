@@ -4,8 +4,7 @@
     .inside(flex="55",layout="column",layout-align="center center")
       img.logo(ng-click="shown = false",src="img/logo_white.png")
     .buttons(flex="30",layout="row",layout-align="center center",layout-wrap)
-      md-button.md-accent.md-raised(ng-click="go('signup')",flex="70") Sign up
-      md-button.md-raised(ng-click="go('login')",flex="70") Log in
-      md-button.md-accent.facebook.md-raised(ng-click="facebook()",flex="70") Use Facebook
-      md-button(ng-click="go('home')") Continue without an account
+      md-button.md-accent.facebook.md-raised.no-border(ng-click="facebook()",flex="70") Sign in with Facebook
+      md-button(ng-click="go('signup')",flex="70") Sign in with email
+      md-button.no-border(ng-click="go('home')") Continue without account
 

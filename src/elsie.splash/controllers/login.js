@@ -1,5 +1,5 @@
 angular.module('elsie.splash')
-.controller('LoginCtrl', ['$scope', '$rootScope', '$state', 'elsie.auth', 'Actions', function($scope, $rootScope, $state, Auth, Actions){
+.controller('LoginCtrl', ['$scope', '$rootScope', '$state', 'elsie.auth', 'Actions', 'Navigator', function($scope, $rootScope, $state, Auth, Actions, Navigator){
   $scope.login = function(){
     Auth.login($scope.user).then(function(res) {
       $rootScope.$broadcast('session.init', res);
@@ -7,6 +7,9 @@ angular.module('elsie.splash')
       $scope.error.visible = true;
       $scope.error.message = "Login failed. Reason: " + error.message;
     });
+  };
+  $scope.go = function(destination){
+    Navigator.go(destination);
   };
   (function(){
     Actions.theme('transparent');

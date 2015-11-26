@@ -48,15 +48,19 @@
     .buttons {
       width: 100%;
       button.md-button {
-        border: none;
         box-shadow: none;
+        color: white;
+        border: 1px white solid;
+        &.no-border {
+          border: none;
+        }
       }
     }
   }
   &.login, &.signup {
     background-color: $grey-light;
     .container {
-      margin-top: 30%;
+      margin-top: 25%;
       height: 35%;
     }
     button.md-button {

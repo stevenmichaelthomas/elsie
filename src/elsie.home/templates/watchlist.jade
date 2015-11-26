@@ -6,11 +6,12 @@ doctype
       md-list-item.md-2-line(ng-repeat="product in watchlist",ng-click="loadProduct(product)")
         img.md-avatar(ng-src="{{ product.image_thumb_url }}")
         .md-list-item-text
-          h3 {{ product.name }}
-          p {{ product.package }}
-        .stat
-          h2.light.pink {{ product.inventory_count | pretty }}
-          small.pink Stocked
+            h3 {{ product.name }}
+            p 
+              | {{ product.producer_name }}
+              br
+              span {{ product.secondary_category }} &#183; {{ product.alcohol_content | percentage }} &#183;
+              span.accent &nbsp;{{ product.inventory_count | pretty }} units
     .full(layout="column", layout-align="center center")
       div(flex,ng-if="error",layout="column", layout-align="center center")
         img.watchlist-image(src="img/watchlist.png")
@@ -22,5 +23,5 @@ doctype
         md-button.md-primary(ng-click="go('welcome')") Okay
       div(flex,ng-if="watchlist && watchlist.length === 0 && !error && session",layout="column", layout-align="center center")
         img.watchlist-image(src="img/watchlist.png")
-        p.message You haven't added anything to your watchlist yet! Let's fix that.
+        p.message You haven't added anything to your watchlist yet!
         md-button.md-primary(ng-click="go('home')") Search for products
