@@ -1,7 +1,7 @@
 /* global $ */
 angular.module('elsie.home')
-.controller('HomeCtrl', ['$scope', '$timeout', 'Navigator', 'Products', 'Stores', 'Cache', 'Actions', 'Picks', 'Watchlist', 'Locator', 'Bump', 'Greetings', 'elsie.session', '$window',
-  function($scope, $timeout, Navigator, Products, Stores, Cache, Actions, Picks, Watchlist, Locator, Bump, Greetings, Session, $window) {
+.controller('HomeCtrl', ['$scope', '$timeout', 'Navigator', 'Products', 'Stores', 'Cache', 'Actions', 'Picks', 'Watchlist', 'Locator', 'Bump', 'Greetings', 'elsie.session',
+  function($scope, $timeout, Navigator, Products, Stores, Cache, Actions, Picks, Watchlist, Locator, Bump, Greetings, Session) {
   $scope.query = '';
   $scope.flex = {
     search: 95,
@@ -13,6 +13,29 @@ angular.module('elsie.home')
     $scope.query = '';
   };
   $scope.search = function(query) {
+    if ($scope.results.mode === 'products') {
+      $scope.searchProducts(query);
+    } else if ($scope.results.mode === 'stores') {
+      $scope.searchStores(query);
+    }
+  };
+  $scope.selectProduct = function(product){
+    if (product && product.product_no){
+      Products.select(product);
+      Navigator.go('product');
+    }
+  };
+  $scope.searchStores = function(query) {
+    $scope.searching = true;
+    return Stores.search(query).then(function(result){
+      $scope.results.stores = result;
+      Cache.update($scope.results);
+      $scope.searching = false;
+      return $scope.results.stores;
+    });
+  };
+  $scope.searchProducts = function(query) {
+    console.log('searchProducts');
     $scope.searching = true;
     return Products.search(query).then(function(result){
       angular.forEach(result, function(res, i){
@@ -24,38 +47,39 @@ angular.module('elsie.home')
       return $scope.results.products;
     });
   };
-  $scope.selectProduct = function(product){
-    if (product && product.product_no){
-      Products.select(product);
-      Navigator.go('product');
-    }
-  };
-  $scope.searchStores = function(query) {
-    return Stores.search(query).then(function(result){
-      $scope.results.stores = result;
-      Cache.update($scope.results);
-      return $scope.results.stores;
-    });
-  };
   $scope.selectStore = function(store){
     if (store && store.name){
       Stores.select(store);
       Navigator.go('store');
     }
   };
+  $scope.modeSelect = function(mode){
+    if (mode === 'products') {
+      $scope.searchProducts($scope.query);
+    } else if (mode === 'stores') {
+      $scope.searchStores($scope.query);
+    }
+    $scope.focused = true;
+    $scope.results.mode = mode;
+  };
   $scope.$watch('results.mode', function(){
     Cache.update($scope.results);
   });
-  $scope.$watch('query', function(val){
-    if (val !== "") {
-      $window.scrollTo(0,0);
-      Actions.hide();
-      $scope.locked = true;
-    } else {
-      Actions.show();
-      $scope.locked = false;
-    }
-  });
+  $scope.focus = function() {
+    Actions.hide();
+    $scope.locked = true;
+    $scope.expanded = true;
+    $scope.results.active = true;
+    Cache.update($scope.results);
+  };
+  $scope.unfocus = function() {
+    $scope.clear();
+    Actions.show();
+    $scope.locked = false;
+    $scope.expanded = false;
+    $scope.results.active = false;
+    Cache.update($scope.results);
+  };
   (function(){
     Actions.show();
     Actions.theme('purple');
@@ -67,6 +91,9 @@ angular.module('elsie.home')
     }
     $scope.welcome = Greetings.english();
     $scope.results = Cache.get();
+    if ($scope.results.active) {
+      $scope.focus();
+    }
     $timeout(function(){
       if (Session.active()){
         Watchlist.load();

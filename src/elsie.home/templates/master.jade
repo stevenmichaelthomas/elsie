@@ -1,27 +1,35 @@
 doctype
 .home
   md-content(layout="row",layout-wrap,ng-class="{ locked: locked }")
-    .search(layout="column",layout-align="center center",ng-class="{ expanded: query, focused: focused }",flex="100")
+    .search(layout="column",layout-align="center center",ng-class="{ expanded: expanded, focused: focused }",flex="100")
       .main(flex="80",layout="column",layout-align="center center")
-        h2.white(ng-if="!query") {{ welcome.text }}
-        input(type="text",placeholder="Search products and LCBO locations",ng-model="query",ng-change="search(query)",ng-model-options="{ debounce: 300 }",ng-focus="focused = true",ng-blur="focused = false")
-        md-button.md-icon-button.hide(ng-class="{ visible: query }",ng-click="clear()")
+        h2.white(ng-if="!expanded") {{ welcome.text }}
+        input(type="text",placeholder="Search products and LCBO locations",ng-model="query",ng-change="search(query)",ng-model-options="{ debounce: 300 }",ng-focus="focus()")
+        md-button.md-icon-button.hide(ng-class="{ visible: expanded }",ng-click="unfocus()")
           md-icon close
-        h5.light.hint.white(ng-if="!query") Try "Pinot Noir" or "Saison"
-      .explore-trigger(flex="10",ng-if="!query")
+        h5.light.hint.white(ng-if="!expanded") Try "Pinot Noir" or "Saison"
+      .explore-trigger(flex="10",ng-if="!expanded")
         h4.white Need some inspiration?
         md-icon.white keyboard_arrow_down
-    .results(ng-if="query",layout-fill)
+    .results(ng-if="expanded",layout-fill)
       md-content(flex="100")
-        md-progress-linear.md-accent(md-mode="indeterminate",ng-show="searching")
-        md-list(ng-show="!searching")
-          md-list-item.md-2-line(ng-repeat="product in results.products",ng-click="selectProduct(product)")
-            img.md-avatar(ng-src="{{ product.image_thumb_url }}")
-            .md-list-item-text
-              h3 {{ product.name }}
-              p 
-                span.kwaf-pick(ng-show="product.pick.rating") kwäf
-                span {{ product.producer_name }}
+        md-progress-linear.md-accent(md-mode="indeterminate",ng-class="{ visible: searching }")
+        md-tabs(md-dynamic-height,md-stretch-tabs="always",md-swipe-content="true")
+          md-tab(label="Products",md-on-select="modeSelect('products')")
+            md-list(ng-show="!searching")
+              md-list-item.md-2-line(ng-repeat="product in results.products",ng-click="selectProduct(product)")
+                img.md-avatar(ng-src="{{ product.image_thumb_url }}")
+                .md-list-item-text
+                  h3 {{ product.name }}
+                  p 
+                    span.kwaf-pick(ng-show="product.pick.rating") kwäf
+                    span {{ product.producer_name }}
+          md-tab(label="Stores",md-on-select="modeSelect('stores')")
+            md-list(ng-show="!searching")
+              md-list-item.md-2-line(ng-repeat="store in results.stores",ng-click="selectStore(store)")
+                .md-list-item-text.md-3-line
+                  h3 {{ store.name }}
+                  p {{ store.address_line_1 }} &#183; {{ store.city }}
     .explore(flex="100")
       .fancy-title
         img(src="img/icon_circle_wine.png")

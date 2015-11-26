@@ -6,6 +6,10 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
     if (navigator && navigator.splashscreen){
       navigator.splashscreen.hide();
     }
+    window.addEventListener('Keyboard.onshow', function(){
+      console.log('onshow detected');
+      window.scrollTo(0,0);
+    });
     Locator.ready();
     Locator.refresh();
     Analytics.incrementRunNumber();
@@ -26,10 +30,6 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
   
   document.addEventListener('deviceready', onDeviceReady, false);
   document.addEventListener('resume', onResume, false);
-
-  window.addEventListener('keyboardWillShow', function(){
-    window.scrollTo(0,0);
-  });
 
   $rootScope.$on('session.init', function(event, data) {
     Session.init(data);

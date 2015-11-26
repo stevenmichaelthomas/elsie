@@ -4,7 +4,8 @@ angular.module('elsie.search')
   var cache = {
     products: [],
     stores: [],
-    mode: 'product'
+    mode: 'products',
+    active: false
   };
       
   return {

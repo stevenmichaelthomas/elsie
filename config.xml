@@ -78,7 +78,7 @@
   <preference name="KeyboardShrinksView" value="false" />
   <preference name="SplashScreenDelay" value="3000"/>
   <feature name="Keyboard">
-    <param name="ios-package" value="IonicKeyboard" onload="true"/>
+    <param name="ios-package" value="CDVKeyboard" onload="true" />
   </feature>
   <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
 </widget>
