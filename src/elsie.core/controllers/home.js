@@ -149,7 +149,7 @@ angular.module('elsie.core')
   $scope.goExplore = function() {
     Velocity(document.getElementById('picks'), 
       'scroll', {
-      duration: 150,
+      duration: 350,
       offset: -56,
       container: document.getElementById('md-content')
     });
