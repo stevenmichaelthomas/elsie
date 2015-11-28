@@ -1,14 +1,16 @@
 /* global $ */
-angular.module('elsie.common').directive('scrollPosition', function() {
+angular.module('elsie.common').directive('scrollPosition', function(Bump) {
   return {
     scope: {
       scroll: '=scrollPosition'
     },
     link: function(scope, element, attrs) {
       var handler = function() {
-        scope.scroll = $(element).scrollTop();
+        var scrollVal = element[0].getBoundingClientRect().top - Bump;
+        scope.scroll = -scrollVal;
       };
-      element.on('scroll', scope.$apply.bind(scope, handler));
+      var parent = document.getElementById(attrs.scrollParent);
+      angular.element(parent).on('scroll', scope.$apply.bind(scope, handler));
       handler();
     }
   };

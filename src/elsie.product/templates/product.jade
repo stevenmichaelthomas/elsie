@@ -4,9 +4,7 @@ doctype
     .image
     md-toolbar.lower
       .md-toolbar-tools
-  md-button.md-fab(aria-label="Add to Watchlist",ng-click="go('watchlist')",ng-show="!session")
-    md-icon favorite
-  md-button.md-fab(aria-label="Add to Watchlist",ng-click="toggleWatch(product)",ng-show="session")
+  md-button.md-fab#md-fab(aria-label="Add to Watchlist",ng-click="toggleWatch(product)")
     md-icon(ng-if="isWatched") favorite
     md-icon(ng-if="!isWatched") favorite_border
   md-content.lower.md-default.md-primary-bg
@@ -14,8 +12,8 @@ doctype
       .head(flex="90",flex-offset="5")
         h2.title.black.light {{ product.name }}
         h5.title.grey.light {{ product.producer_name }}
-        md-chips
-          md-chip.md-accent(ng-show="isPick(product)") kwäf pick
+        md-chips(ng-show="isPick(product)")
+          md-chip.md-accent kwäf pick
       div(flex="90",flex-offset="5",layout="row",layout-wrap)
         md-list.key-facts(flex="50")
           md-list-item.md-2-line(ng-if="product.varietal || product.tertiary_category || product.secondary_category")

@@ -29,14 +29,14 @@
     overflow-y: auto;
   }
   .explore-trigger {
-    transition: opacity $transition;
-    opacity: 1;
+    position: absolute;
+    bottom: 30px;
+    width: 200px;
+    left: 50%;
+    margin-left: -100px;
     text-align: center;
     h4 {
       margin: 8px auto;
-    }
-    &.invisible {
-      opacity: 0;
     }
   }
   .explore {
@@ -49,22 +49,22 @@
   .search {
     height: 100%;
     padding: 0;
-    transition: height $transition;
     > .main {
       width: 100%;
+      max-height: none;
     }
-    &.expanded {
-      height: 42px;
-      > .main {
-        height: 100%;
-        max-height: none;
-      }
-      input[type="text"] {
-        width: 100%;
-        margin: 0;
-        box-shadow: none;
-      }
-    }
+    // &.expanded {
+    //   height: 42px;
+    //   > .main {
+    //     height: 100%;
+    //     max-height: none;
+    //   }
+    //   input[type="text"] {
+    //     width: 100%;
+    //     margin: 0;
+    //     box-shadow: none;
+    //   }
+    // }
     input[type="text"] {
       border: none;
       border-radius: 0;
@@ -76,7 +76,7 @@
       width: 85%;
       margin-top: 1px;
       margin-bottom: 20px;
-      min-height: 42px;
+      height: 42px;
     }
     h5.hint {
       margin-top: 0;
@@ -89,10 +89,6 @@
       min-height: 0;
       padding: 0;
       display: block !important;
-      -webkit-transition: all $transition;
-      -webkit-transform: scale(0,0);
-      transform: scale(0,0);
-      transition: all $transition;
       position: absolute;
       z-index: 200;
       top: 4px;

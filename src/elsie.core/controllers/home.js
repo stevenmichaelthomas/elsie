@@ -1,4 +1,4 @@
-/* global $ */
+/* global Velocity */
 /* global Keyboard */
 angular.module('elsie.core')
 .controller('HomeCtrl', ['$scope', '$timeout', 'Navigator', 'Products', 'Stores', 'Cache', 'Actions', 'Picks', 'Watchlist', 'Locator', 'Bump', 'Greetings', 'elsie.session',
@@ -20,14 +20,20 @@ angular.module('elsie.core')
     var viewport = window.innerHeight + 20;
     var tabsArea = viewport - 40;
     tabsArea = tabsArea + 'px';
-    console.log('setting to ', tabsArea);
-    $('md-tabs').height(tabsArea);
+    Velocity(document.getElementById('tabs'), {
+        height: tabsArea
+    }, {
+      duration: 350
+    });
   };
   $scope.clear = function(){
     $scope.results.query = '';
-    $('#search').blur();
+    document.getElementById('search').blur();
   };
   $scope.search = function(query) {
+    if (!query || query === ''){
+      return;
+    }
     if ($scope.results.mode === 0) {
       $scope.searchProducts(query);
     } else if ($scope.results.mode === 1) {
@@ -70,34 +76,83 @@ angular.module('elsie.core')
     }
   };
   $scope.modeSelect = function(mode){
-    if (mode === 0) {
-      $scope.searchProducts($scope.results.query);
-    } else if (mode === 1) {
-      $scope.searchStores($scope.results.query);
-    }
     $scope.results.mode = mode;
+    $scope.search($scope.results.query);
     $scope.setTabsHeight();
   };
   $scope.focus = function() {
+    var title = document.getElementById('search-title');
+    var hint = document.getElementById('search-hint');
+    var picks = document.getElementById('picks');
+    title.style.display = 'none';
+    hint.style.display = 'none';
+    picks.style.display = 'none';
+
     Actions.hide();
+    
     $scope.locked = true;
     $scope.expanded = true;
+
+    Velocity(document.getElementById('search'), {
+      width: '100%',
+      marginBottom: 0
+    }, {
+      duration: 200
+    });
+
+    Velocity(document.getElementById('search-container'), {
+      height: '42px'
+    }, {
+      duration: 200
+    });
+    
     $scope.results.active = true;
   };
   $scope.unfocus = function() {
     if ($scope.searching) {
       return;
     }
+
+    var title = document.getElementById('search-title');
+    var hint = document.getElementById('search-hint');
+    var picks = document.getElementById('picks');
+    title.style.display = 'block';
+    hint.style.display = 'block';
+    
     $scope.clear();
     $scope.locked = false;
     $scope.expanded = false;
+
+    Velocity(document.getElementById('search'), {
+      width: '85%',
+      marginBottom: '20px'
+    }, {
+      duration: 200
+    });
+    
+    Velocity(document.getElementById('search-container'), {
+      height: '100%'
+    }, {
+      duration: 200
+    });
+    
     $scope.results.active = false;
+    
     $timeout(function(){
       Actions.show();
-    }, 300);
+    }, 500);
+    
+    $timeout(function(){
+      picks.style.display = 'block';
+    }, 1000);
   };
   $scope.goExplore = function() {
-    $('.home > md-content').animate({ scrollTop: $scope.deviceHeight - 40 }, 'fast');
+    Velocity(document.getElementById('picks'), 
+      'scroll', {
+      duration: 150,
+      offset: -56,
+      container: document.getElementById('md-content')
+    });
   };
   $scope.$watch('position', function(val){
     // deviceHeight from bottom
@@ -112,6 +167,11 @@ angular.module('elsie.core')
       $scope.fadeTrigger = true;
     } else {
       $scope.fadeTrigger = false;
+    }
+  });
+  $scope.$watch('results.query', function (val) {
+    if (val !== ''){
+      $scope.search(val);
     }
   });
   (function(){
@@ -137,17 +197,13 @@ angular.module('elsie.core')
     if ($scope.results.active) {
       $scope.focus();
     }
-
-    // $timeout(function(){
-    //   $scope.setTabsHeight();
-    // }, 500);
     
     // Watchlist
-    // $timeout(function(){
-    //   if (Session.active()){
-    //     Watchlist.load();
-    //   }
-    // }, 1000);
+    $timeout(function(){
+      if (Session.active()){
+        Watchlist.load();
+      }
+    }, 2000);
 
     // Keyboard
     $timeout(function(){

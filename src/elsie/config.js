@@ -1,5 +1,5 @@
 /* global Keyboard */
-angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsie.templates', 'elsie.common', 'elsie.splash', 'elsie.core', 'elsie.product', 'elsie.search', 'elsie.store'])
+angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'angular-velocity', 'elsie.templates', 'elsie.common', 'elsie.splash', 'elsie.core', 'elsie.product', 'elsie.search', 'elsie.store'])
 
 .run(['$http', '$rootScope', '$state', '$templateCache', 'Analytics', 'Dialog', 'elsie.httpAuth', 'elsie.session', 'Locator', function($http, $rootScope, $state, $templateCache, Analytics, Dialog, HttpAuth, Session, Locator) {
 

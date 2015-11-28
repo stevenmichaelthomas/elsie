@@ -8,6 +8,28 @@ $grey-light: #ffffff;
 $grey: rgba(204,204,204,0.5);
 $cream: #f3f3f3;
 
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url(../img/Material-Icons.ttf) format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+}
+
+
 &.white {
   color: $grey-light; 
 }
@@ -296,6 +318,11 @@ md-list-item.md-2-line .md-list-item-text h3, md-list-item.md-2-line > .md-no-st
 
 md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
   min-height: 0;
+}
+
+md-tab-item.md-tab.ng-scope.ng-isolate-scope.md-ink-ripple {
+  max-width: 160px !important;
+  color: $pink;
 }
 
 md-chips {

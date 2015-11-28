@@ -27,7 +27,7 @@ angular.module('elsie.splash')
         }
       );
     };
-    Actions.theme('transparent');
+    Actions.hide();
     Actions.search(false);
     Actions.set({ menu: false, back: false, logo: false });
     Actions.backGoesHome(false);

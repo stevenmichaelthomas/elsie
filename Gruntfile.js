@@ -100,6 +100,13 @@ module.exports = function(grunt) {
         src: ['angular-ui-router/release/*.js'],
         dest: 'www/js/lib'
       },
+      angularVelocity: {
+        expand: true,
+        flatten: true,
+        cwd: 'bower_components',
+        src: ['angular-velocity/*.js'],
+        dest: 'www/js/lib'
+      },
       store: {
         expand: true,
         flatten: true,
@@ -112,6 +119,13 @@ module.exports = function(grunt) {
         flatten: true,
         cwd: 'bower_components',
         src: ['jquery/dist/*.*'],
+        dest: 'www/js/lib'
+      },
+      velocity: {
+        expand: true,
+        flatten: true,
+        cwd: 'bower_components',
+        src: ['velocity/*.*'],
         dest: 'www/js/lib'
       },
       js: {

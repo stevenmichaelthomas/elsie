@@ -1,7 +1,10 @@
-/* global $ */
+/* global Velocity */
 angular.module('elsie.product')
 .controller('ProductCtrl', ['$scope', 'Navigator', 'Products', 'Stores', 'Watchlist', 'Actions', 'Picks', 'Bump', 'Map', 'elsie.session', '$timeout', function ($scope, Navigator, Products, Stores, Watchlist, Actions, Picks, Bump, Map, Session, $timeout) {
   $scope.toggleWatch = function(product){
+    if (!$scope.session) {
+      Navigator.go('watchlist');
+    }
     var toggle = Watchlist.changeProductStatus(product);
     if (toggle === 'added') {
       $scope.isWatched = true;
@@ -14,6 +17,7 @@ angular.module('elsie.product')
     Navigator.go('store');
   };
   $scope.isPick = function(product) {
+    console.log('isPick?', Object.keys(product.pick).length);
     if (Object.keys(product.pick).length > 0) {
       return true;
     } else {
@@ -27,12 +31,11 @@ angular.module('elsie.product')
     Navigator.go(destination);
   };
   $scope.content = {
-    'height' : $(window).innerHeight() - 56 - Bump + 'px'
+    'height' : window.innerHeight - 56 - Bump + 'px'
   };
   (function(){
     Actions.show();
     Actions.theme('transparent');
-    Actions.search(false);
     Actions.set({ menu: false, back: true, logo: false });
     Actions.backGoesHome(false);
 
@@ -62,7 +65,12 @@ angular.module('elsie.product')
           'background-image': 'url(' + Map.small($scope.product.stores[0].latitude, $scope.product.stores[0].longitude) + ')'
         };
       });
-      console.log($scope.map);
     }, 750);
+
+    $timeout(function(){
+      Velocity(document.getElementById('md-fab'), 
+        'callout.pulse');
+    }, 1250);
+
   })();
 }]);
