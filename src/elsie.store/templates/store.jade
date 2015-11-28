@@ -14,7 +14,7 @@ doctype
         h2.title.black.light {{ store.name }}
         h5.title.grey.light {{ store.address_line_1 }}
         md-chips
-          md-chip.md-accent Open
+          md-chip.md-accent {{ status(store) }}
       md-list.key-facts(flex="90",flex-offset="5")
         md-list-item.md-3-line
           img.md-avatar(src="img/icon_location.png")
@@ -24,6 +24,8 @@ doctype
               span {{ store.address_line_1 }}
               br
               span {{ store.city }}, Ontario {{ store.postal_code }}
+          .md-stat
+              p {{ store.distance_in_meters | distance }}
         md-list-item.md-2-line
           img.md-avatar(src="img/icon_phone.png")
           .md-list-item-text
@@ -33,37 +35,37 @@ doctype
         md-list-item.md-3-line.long
           .md-list-item-text
             h3 Hours
-            div(layout="row")
+            div(layout="row",ng-class="{ highlighted: today() === 'monday' }")
               div(flex="55")
                 p Monday
               div(flex="45",layout-align="right center")
                 p {{ store.monday_open | prettyHour }} - {{ store.monday_close | prettyHour }}
-            div(layout="row")
+            div(layout="row",ng-class="{ highlighted: today() === 'tuesday' }")
               div(flex="55")
                 p Tuesday
               div(flex="45",layout-align="right center")
                 p {{ store.tuesday_open | prettyHour }} - {{ store.tuesday_close | prettyHour }}
-            div(layout="row")
+            div(layout="row",ng-class="{ highlighted: today() === 'wednesday' }")
               div(flex="55")
                 p Wednesday
               div(flex="45",layout-align="right center")
                 p {{ store.wednesday_open | prettyHour }} - {{ store.wednesday_close | prettyHour }}
-            div(layout="row")
+            div(layout="row",ng-class="{ highlighted: today() === 'thursday' }")
               div(flex="55")
                 p Thursday
               div(flex="45",layout-align="right center")
                 p {{ store.thursday_open | prettyHour }} - {{ store.thursday_close | prettyHour }}
-            div(layout="row")
+            div(layout="row",ng-class="{ highlighted: today() === 'friday' }")
               div(flex="55")
                 p Friday
               div(flex="45",layout-align="right center")
                 p {{ store.friday_open | prettyHour }} - {{ store.friday_close | prettyHour }}
-            div(layout="row")
+            div(layout="row",ng-class="{ highlighted: today() === 'saturday' }")
               div(flex="55")
                 p Saturday
               div(flex="45",layout-align="right center")
                 p {{ store.saturday_open | prettyHour }} - {{ store.saturday_close | prettyHour }}
-            div(layout="row")
+            div(layout="row",ng-class="{ highlighted: today() === 'sunday' }")
               div(flex="55")
                 p Sunday
               div(flex="45",layout-align="right center")

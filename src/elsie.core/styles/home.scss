@@ -11,20 +11,6 @@
       overflow: visible;
     }
   }
-  .explore-trigger {
-    text-align: center;
-    h4 {  
-      margin: 8px auto;
-    }
-  }
-  // .explore {
-  //   padding-top: 15px;
-  //   background-color: $purple;
-  //   position: absolute;
-  //   bottom: 0;
-  //   left: 0;
-  //   right: 0;
-  // }
   .results {
     background-color: white;
     md-progress-linear {
@@ -42,24 +28,41 @@
     }
     overflow-y: auto;
   }
+  .explore-trigger {
+    transition: opacity $transition;
+    opacity: 1;
+    text-align: center;
+    h4 {
+      margin: 8px auto;
+    }
+    &.invisible {
+      opacity: 0;
+    }
+  }
   .explore {
     max-height: none;
     background-color: $cream;
     color: $pink;
     box-shadow: 0 0 50px rgba(34, 34, 34, 0.24);
+    padding-bottom: 20px;
   }
   .search {
-    transition: padding $transition;
     height: 100%;
+    padding: 0;
+    transition: height $transition;
     > .main {
       width: 100%;
     }
     &.expanded {
-      padding: 0;
       height: 42px;
+      > .main {
+        height: 100%;
+        max-height: none;
+      }
       input[type="text"] {
         width: 100%;
-        margin: 1px 0 0;
+        margin: 0;
+        box-shadow: none;
       }
     }
     input[type="text"] {
@@ -71,15 +74,16 @@
       display: block;
       padding: 12px 15px;
       width: 85%;
+      margin-top: 1px;
       margin-bottom: 20px;
-      min-height: 41px;
+      min-height: 42px;
     }
     h5.hint {
       margin-top: 0;
     }
     .md-icon-button {
       width: 10%;
-      height: 20px;
+      height: 30px;
       line-height: 18px;
       border-radius: 0;
       min-height: 0;
@@ -91,10 +95,16 @@
       transition: all $transition;
       position: absolute;
       z-index: 200;
-      top: 10px;
+      top: 4px;
       right: 5px;
+      md-progress-circular {
+        position: relative;
+        top: -34px;
+        left: -34px;
+      }
       md-icon {
         color: $purple;
+        margin-top: 4px;
       }
       &.visible {
         -webkit-transform: scale(1,1);

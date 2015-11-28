@@ -39,6 +39,7 @@ $z-index-control-super: 40;
 
 body {
   font-family: 'Roboto';
+  overflow: hidden;
 }
 
 * {
@@ -293,18 +294,8 @@ md-list-item.md-2-line .md-list-item-text h3, md-list-item.md-2-line > .md-no-st
   font-weight: 400;
 }
 
-md-tabs {
-  &.full {
-    margin-top: $bump;
-    position: absolute;
-    top: 63px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    &.no-bump {
-      margin-top: 0;
-    }
-  }
+md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
+  min-height: 0;
 }
 
 md-chips {
@@ -382,8 +373,8 @@ md-tab-item {
 @import 'action-bar';
 @import '../../elsie.product/styles/product';
 @import '../../elsie.store/styles/store';
-@import '../../elsie.home/styles/home';
-@import '../../elsie.home/styles/watchlist';
-@import '../../elsie.home/styles/explore';
+@import '../../elsie.core/styles/home';
+@import '../../elsie.core/styles/watchlist';
+@import '../../elsie.core/styles/settings';
 @import '../../elsie.search/styles/search';
 @import '../../elsie.splash/styles/splash';

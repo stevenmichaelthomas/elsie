@@ -7,7 +7,7 @@ div
       h2.white {{ user.firstName }} {{ user.lastName }}
   md-content(layout-padding)
     md-list
-      md-list-item.md-with-secondary(md-ink-ripple,ng-show="session")
+      md-list-item.md-with-secondary(md-ink-ripple,ng-show="session",ng-click="go('settings')")
         md-icon settings
         p.black Settings
       md-list-item.md-with-secondary(md-ink-ripple,ng-click="go('welcome')",ng-show="!session")

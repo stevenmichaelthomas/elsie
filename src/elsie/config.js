@@ -1,4 +1,5 @@
-angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsie.templates', 'elsie.common', 'elsie.splash', 'elsie.home', 'elsie.product', 'elsie.search', 'elsie.store'])
+/* global Keyboard */
+angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsie.templates', 'elsie.common', 'elsie.splash', 'elsie.core', 'elsie.product', 'elsie.search', 'elsie.store'])
 
 .run(['$http', '$rootScope', '$state', '$templateCache', 'Analytics', 'Dialog', 'elsie.httpAuth', 'elsie.session', 'Locator', function($http, $rootScope, $state, $templateCache, Analytics, Dialog, HttpAuth, Session, Locator) {
 
@@ -6,10 +7,6 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
     if (navigator && navigator.splashscreen){
       navigator.splashscreen.hide();
     }
-    window.addEventListener('Keyboard.onshow', function(){
-      console.log('onshow detected');
-      window.scrollTo(0,0);
-    });
     Locator.ready();
     Locator.refresh();
     Analytics.incrementRunNumber();
@@ -79,6 +76,12 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'elsi
       templateUrl: 'templates/master.html',
       controller: 'HomeCtrl',
       priority: 2
+    })
+    .state('settings', {
+      url: '/settings',
+      templateUrl: 'templates/settings.html',
+      controller: 'SettingsCtrl',
+      priority: 1
     })
     .state('watchlist', {
       url: '/watchlist',

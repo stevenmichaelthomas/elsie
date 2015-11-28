@@ -9,4 +9,14 @@
   left: 0;
   bottom: 0;
   right: 0;
+  md-list {
+    .md-list-item-text {
+      .highlighted p {
+        color: $pink;
+      }
+    }
+  }
+  md-chips md-chip.md-accent {
+    text-transform: capitalize;
+  }
 }

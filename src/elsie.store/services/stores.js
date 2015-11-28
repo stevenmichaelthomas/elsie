@@ -49,13 +49,13 @@ angular.module('elsie.store')
     var minutes_since_midnight = (now.getHours() * 60) + now.getMinutes();
     var result;
     if (todaysHours.open === null || todaysHours.closed === null){
-      result = "closed today";
+      result = "closed";
       return result;
     }
     if (minutes_since_midnight >= todaysHours.open && minutes_since_midnight <= todaysHours.close) {
-      result = "open right now";
+      result = "open";
     } else {
-      result = "closed right now";
+      result = "closed";
     }
     return result;
   };
@@ -156,6 +156,9 @@ angular.module('elsie.store')
       });
       Scheduler.queue(process);
       return process;
+    },
+    today: function(){
+      return _today();
     },
     hours: function(store){
       return _hours(store);

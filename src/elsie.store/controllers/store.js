@@ -7,6 +7,8 @@ angular.module('elsie.store')
     Actions.set({ menu: false, back: true, logo: false });
     Actions.backGoesHome(false);
     $scope.store = Stores.selected();
+    $scope.status = Stores.status;
+    $scope.today = Stores.today;
     $scope.image = {
       'background-image': 'url(' + Map.large($scope.store.latitude, $scope.store.longitude) + ')'
     };

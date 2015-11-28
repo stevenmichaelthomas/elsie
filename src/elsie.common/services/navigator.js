@@ -10,7 +10,6 @@ angular.module('elsie.common')
     go: function(destination){
       cache.movingBackward = false;
       cache.lastState = $state.current;
-      console.log('state ' + $state.current.name + ' saved');
       $state.go(destination);
     },
     back: function(){

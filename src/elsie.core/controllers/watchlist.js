@@ -1,4 +1,4 @@
-angular.module('elsie.home')
+angular.module('elsie.core')
 .controller('WatchlistCtrl', ['$scope', '$timeout', 'Navigator', 'Watchlist', 'Products', 'Actions', 'elsie.session',
   function($scope, $timeout, Navigator, Watchlist, Products, Actions, Session) {
   $scope.loadProduct = function(product){

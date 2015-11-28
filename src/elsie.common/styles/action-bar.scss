@@ -6,6 +6,11 @@ md-toolbar.action-bar {
   z-index: $z-index-control-main;
   background-color: $purple;
   color: $white;
+  // &.purple {
+  //   border-bottom: 1px solid rgba(0,0,0,0.1);
+  // }
+  -webkit-transition: background-color $transition;
+  transition: background-color $transition;
   &.light {
     background-color: $white;
   }
