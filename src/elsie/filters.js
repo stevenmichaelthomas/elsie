@@ -33,12 +33,14 @@ angular.module('elsie')
 })
 .filter('prettyHour', function() {
   return function(msm) {
-    console.log('msm', msm);
     var msmTo24time = function(m) {
       var hour = m / 60;
       var mins = m % 60;
       if (mins.toString().length === 1){
         mins = mins.toString() + '0';
+      }
+      if (hour.toString().indexOf('.') === 1) {
+        hour = hour - 0.5;
       }
       return [hour, mins];
     };
@@ -46,7 +48,6 @@ angular.module('elsie')
     var h24  = time[0];
     var h12  = (0 === h24 ? 12 : (h24 > 12 ? (h24 - 10) - 2 : h24));
     var ampm = (h24 >= 12 ? 'pm' : 'am');
-    console.log(h12 + ':' + time[1] + ampm);
     return h12 + ':' + time[1] + ampm;
   };
 });
