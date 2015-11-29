@@ -7,11 +7,8 @@ md-toolbar.action-bar {
   z-index: $z-index-control-main;
   background-color: $purple;
   color: $white;
-  // &.purple {
-  //   border-bottom: 1px solid rgba(0,0,0,0.1);
-  // }
-  -webkit-transition: background-color opacity $transition;
-  transition: background-color opacity $transition;
+  -webkit-transition: background-color $transition, opacity $transition;
+  transition: background-color $transition, opacity $transition;
   &.hidden {
     opacity: 0;
   }

@@ -30,10 +30,23 @@ angular.module('elsie.product')
   $scope.go = function(destination){
     Navigator.go(destination);
   };
+  $scope.$watch('position', function(val){
+    // deviceHeight from bottom
+    if (val > 180) {
+      Actions.theme('purple');
+      Actions.set({ title: $scope.product.name, menu: false, back: true, search: false, watchlist: false, locating: false, logo: false });
+    } else {
+      Actions.theme('transparent');
+      Actions.set({ menu: false, back: true, logo: false });
+    }
+  });
   $scope.content = {
     'height' : window.innerHeight - 56 - Bump + 'px'
   };
   (function(){
+    $scope.position = 0;
+    $scope.deviceHeight = window.innerHeight;
+
     Actions.show();
     Actions.theme('transparent');
     Actions.set({ menu: false, back: true, logo: false });
@@ -69,7 +82,9 @@ angular.module('elsie.product')
 
     $timeout(function(){
       Velocity(document.getElementById('md-fab'), 
-        'callout.pulse');
+        'transition.expandIn', 500);
+      Velocity(document.getElementById('md-fab'), 
+        'callout.pulse', 500);
     }, 1250);
 
   })();

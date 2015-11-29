@@ -9,7 +9,7 @@ doctype
           md-progress-circular.md-accent(md-mode="indeterminate",ng-show="searching",md-diameter="20")
           md-icon(ng-show="!searching") close
         h5.light.hint.white#search-hint.velocity-transition-opposites-fadeIn Try "Pinot Noir" or "Saison"
-        .explore-trigger.velocity-opposites-transition-slideUpIn(data-velocity-opts="{ duration: 350 }",ng-show="!expanded && picks",ng-click="goExplore()")
+        .explore-trigger(ng-class="{ visible: !expanded && picks.length > 4 }",ng-click="goExplore()")
           h4.white Need some inspiration?
           md-icon.white keyboard_arrow_down
     .results(ng-show="expanded && results.active",layout-fill)

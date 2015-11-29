@@ -35,6 +35,11 @@
     left: 50%;
     margin-left: -100px;
     text-align: center;
+    transition: opacity $transition;
+    opacity: 0;
+    &.visible {
+      opacity: 1;
+    }
     h4 {
       margin: 8px auto;
     }
