@@ -1,8 +1,8 @@
 /* global Velocity */
 /* global Keyboard */
 angular.module('elsie.core')
-.controller('HomeCtrl', ['$scope', '$timeout', 'Navigator', 'Barcode', 'Products', 'Stores', 'Cache', 'Actions', 'Picks', 'Watchlist', 'Locator', 'Bump', 'Greetings', 'Hints', 'Dialog', 'elsie.session',
-  function($scope, $timeout, Navigator, Barcode, Products, Stores, Cache, Actions, Picks, Watchlist, Locator, Bump, Greetings, Hints, Dialog, Session) {
+.controller('HomeCtrl', ['$scope', '$timeout', 'Navigator', 'Barcode', 'Products', 'Stores', 'Cache', 'Actions', 'Picks', 'Watchlist', 'Locator', 'Bump', 'Greetings', 'Hints', 'Dialog', 'elsie.session', 'Settings',
+  function($scope, $timeout, Navigator, Barcode, Products, Stores, Cache, Actions, Picks, Watchlist, Locator, Bump, Greetings, Hints, Dialog, Session, Settings) {
   var keyboardEventBindings = function() {
     Keyboard.onshow = function () {
       window.scrollTo(0,0);
@@ -34,9 +34,7 @@ angular.module('elsie.core')
     document.getElementById('search').blur();
   };
   $scope.scanBarcode = function(){
-    console.log('scanning...');
     Barcode.scan().then(function(data){
-      console.log('scanner returned: ', data);
       $scope.selectProduct(data.text);
     });
   };
@@ -87,7 +85,6 @@ angular.module('elsie.core')
           Dialog.show(message, actions, title);
           return;
         }
-        console.log('selecting product', data);
         Products.select(data);
         Navigator.go('product');
       });
@@ -99,6 +96,9 @@ angular.module('elsie.core')
       Stores.select(store);
       Navigator.go('store');
     }
+  };
+  $scope.isHome = function(store) {
+    return Settings.isHome(store);
   };
   $scope.modeSelect = function(mode){
     $scope.results.mode = mode;
@@ -232,6 +232,13 @@ angular.module('elsie.core')
         Watchlist.load();
       }
     }, 2000);
+
+    // Settings
+    $timeout(function(){
+      if (Session.active()){
+        Settings.get();
+      }
+    }, 3000);
 
     // Keyboard
     $timeout(function(){

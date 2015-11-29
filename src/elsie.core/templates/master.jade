@@ -31,9 +31,11 @@ doctype
           md-tab(label="Stores",md-on-select="modeSelect(1)")
             md-list(ng-show="!searching")
               md-list-item.md-2-line(ng-repeat="store in results.stores",ng-click="selectStore(store)")
-                .md-list-item-text.md-3-line
+                .md-list-item-text
                   h3 &#35;{{ store.store_no }} {{ store.name }}
-                  p {{ store.address_line_1 }} &#183; {{ store.city }}
+                  p 
+                    span.kwaf-pick(ng-show="isHome(store)") home
+                    span {{ store.address_line_1 }} &#183; {{ store.city }}
     .explore.velocity-transition-opposites-fadeIn#picks(flex="100",ng-show="picks.length > 4")
       .fancy-title
         img(src="img/icon_circle_wine.png")

@@ -10,13 +10,48 @@ angular.module('elsie.common')
   var settings = {
     get: function() {
       return $http.get(url()).then(function(response){
-        return response.data;
+        cache = response.data;
+        return cache;
       });
     },
     update: function(payload) {
       return $http.put(url(), payload).then(function(response){
-        return response.data;
+        cache = response.data;
+        return cache;
       });
+    },
+    setHomeStore: function(store) {
+      var settings = {};
+      if (!cache.settings){
+        return this.get().then(function(){
+          settings = cache.settings;
+          if (!settings){
+            settings = {};
+          }
+          settings.store = store;
+          return $http.put(url(), { settings: settings }).then(function(response){
+            cache = response.data;
+            return cache.settings;
+          });
+        });
+      } else {
+        settings = cache.settings;
+        settings.store = store;
+        return $http.put(url(), { settings: settings }).then(function(response){
+          cache = response.data;
+          return cache.settings;
+        });
+      }
+    },
+    isHome: function(store) {
+      if (!cache.settings || !cache.settings.store) {
+        return false;
+      }
+      if (store.store_no === cache.settings.store.store_no) {
+        return true;
+      } else {
+        return false;
+      }
     },
     cache: function() {
       return cache;

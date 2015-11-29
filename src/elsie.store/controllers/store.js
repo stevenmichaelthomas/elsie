@@ -1,7 +1,28 @@
+/* global Velocity */
 angular.module('elsie.store')
-.controller('StoreCtrl', function ($scope, $state, Stores, Map, Actions) {
+.controller('StoreCtrl', ['$scope', '$state', '$timeout', 'Stores', 'Map', 'Actions', 'elsie.session', 'Settings', 'Dialog', function ($scope, $state, $timeout, Stores, Map, Actions, Session, Settings, Dialog) {
   $scope.call = function(number){
     window.location.href = 'tel:' + number;
+  };
+  $scope.setHomeStore = function(store) {
+    if (!Session.active()){
+      var message = 'With an account, you can set this store as your home store to quickly check product availability.';
+      var actions = [
+        { label: 'OK' }
+      ];
+      var title = 'Can\'t do that yet';
+      Dialog.show(message, actions, title);
+      return;
+    }
+    Settings.setHomeStore(store).then(function(data){
+      var message = $scope.store.name + ' has been set as your home store.';
+      var actions = [
+        { label: 'OK' }
+      ];
+      var title = 'Home store set';
+      Dialog.show(message, actions, title);
+      $scope.settings = data;
+    });
   };
   $scope.$watch('position', function(val){
     // deviceHeight from bottom
@@ -29,5 +50,11 @@ angular.module('elsie.store')
     $scope.image = {
       'background-image': 'url(' + Map.large($scope.store.latitude, $scope.store.longitude) + ')'
     };
+
+    $timeout(function(){
+      Velocity(document.getElementById('md-fab'), 
+        'transition.expandIn', 500);
+    }, 1250);
+
   })();
-});
+}]);

@@ -17,7 +17,6 @@ angular.module('elsie.product')
     Navigator.go('store');
   };
   $scope.isPick = function(product) {
-    console.log('isPick?', Object.keys(product.pick).length);
     if (Object.keys(product.pick).length > 0) {
       return true;
     } else {
