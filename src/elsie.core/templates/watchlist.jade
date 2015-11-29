@@ -3,7 +3,7 @@ doctype
   md-content
     md-progress-circular.md-accent(md-mode="indeterminate",ng-show="!watchlist && session")
     md-list.standalone(ng-show="watchlist && watchlist.length > 0")
-      md-list-item.md-2-line.velocity-transition-slideUpIn(data-velocity-opts="{ stagger: 150, duration: 350 }",ng-repeat="product in watchlist",ng-click="loadProduct(product)")
+      md-list-item.md-2-line.velocity-transition-slideUpIn(data-velocity-opts="{ stagger: 125, duration: 350 }",ng-repeat="product in watchlist",ng-click="loadProduct(product)")
         img.md-avatar(ng-src="{{ product.image_thumb_url }}")
         .md-list-item-text
             h3 {{ product.name }}

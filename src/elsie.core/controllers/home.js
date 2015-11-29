@@ -81,14 +81,14 @@ angular.module('elsie.core')
     $scope.setTabsHeight();
   };
   $scope.focus = function() {
+    Actions.hide();
+
     var title = document.getElementById('search-title');
     var hint = document.getElementById('search-hint');
     var picks = document.getElementById('picks');
     title.style.display = 'none';
     hint.style.display = 'none';
     picks.style.display = 'none';
-
-    Actions.hide();
     
     $scope.locked = true;
     $scope.expanded = true;

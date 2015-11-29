@@ -1,5 +1,8 @@
 angular.module('elsie.store')
 .controller('StoreCtrl', function ($scope, $state, Stores, Map, Actions) {
+  $scope.call = function(number){
+    window.location.href = 'tel:' + number;
+  };
   $scope.$watch('position', function(val){
     // deviceHeight from bottom
     if (val > 180) {

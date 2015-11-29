@@ -9,6 +9,7 @@
     </author>
   <content src="index.html"/>
   <access origin="*"/>
+  <access origin="tel:*" launch-external="yes" />
   <platform name="windows">
     <icon src="artwork/windows/logo.png" width="150" height="150"/>
     <icon src="artwork/windows/smalllogo.png" width="30" height="30"/>
