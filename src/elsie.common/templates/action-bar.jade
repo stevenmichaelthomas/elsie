@@ -11,5 +11,5 @@ md-toolbar(class="action-bar {{ theme }}",ng-show="show")
       md-icon location_searching
     md-button.md-icon-button.right-button(ng-click="go('watchlist')", ng-class="{ visible: set.watchlist }")
       md-icon favorite
-    md-button.md-icon-button.right-button(ng-click="go('search')", ng-class="{ visible: set.search }")
-      md-icon search
+    md-button.md-icon-button.right-button(ng-click="refreshWatchlist()", ng-class="{ visible: set.watchlistRefresh }")
+      md-icon refresh

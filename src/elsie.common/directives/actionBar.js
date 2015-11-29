@@ -1,5 +1,5 @@
 angular.module('elsie.common')
-.directive('actionBar', ['Navigator', 'Actions', '$mdSidenav', function(Navigator, Actions, $mdSidenav) {
+.directive('actionBar', ['Navigator', 'Actions', 'Watchlist', '$mdSidenav', '$rootScope', function(Navigator, Actions, Watchlist, $mdSidenav, $rootScope) {
   return {
     replace: true,
     scope: {
@@ -25,6 +25,12 @@ angular.module('elsie.common')
       };
       $scope.go = function(destination, direction){
         Navigator.go(destination, direction);
+      };
+      $scope.refreshWatchlist = function(){
+        $rootScope.$broadcast('WATCHLIST_REFRESH_START');
+        Watchlist.refreshWatchlistData().then(function(){
+          $rootScope.$broadcast('WATCHLIST_REFRESH_COMPLETE');
+        });
       };
       (function init(){
         //

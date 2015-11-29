@@ -10,9 +10,16 @@ angular.module('elsie.core')
   $scope.go = function(destination){
     Navigator.go(destination);
   };
+  $scope.$on('WATCHLIST_REFRESH_START', function(){
+    $scope.loading = true;
+  });
+  $scope.$on('WATCHLIST_REFRESH_COMPLETE', function(){
+    $scope.watchlist = Watchlist.cache();
+    $scope.loading = false;
+  });
   (function(){
     Actions.theme('purple');
-    Actions.set({ title: 'Watchlist', menu: false, back: true, search: false, watchlist: false });
+    Actions.set({ title: 'Watchlist', menu: false, back: true, search: false, watchlist: false, watchlistRefresh: true });
     if (Navigator.lastState() && Navigator.lastState().name === 'product' || Navigator.lastState() && Navigator.lastState().name === 'store'){
       Actions.backGoesHome(true);
     } else {

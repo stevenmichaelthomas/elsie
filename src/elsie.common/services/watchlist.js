@@ -92,7 +92,7 @@ angular.module('elsie.common')
       var deferred = $q.defer();
       if (cache.watchlist.length > 0 && _cacheIsExpired()){
         for (var p = 0; p < cache.watchlist.length; p++){
-          Products.atNearbyStores(cache.watchlist[p].id);
+          Products.atNearbyStores(cache.watchlist[p]);
         }
         Scheduler.run().then(function(){
           cache.lastUpdate = new Date().getTime();
@@ -102,6 +102,9 @@ angular.module('elsie.common')
         deferred.resolve();
       }
       return deferred.promise; 
+    },
+    cache: function() {
+      return cache.watchlist;
     }
   };
       
