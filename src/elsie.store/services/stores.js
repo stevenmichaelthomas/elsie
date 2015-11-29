@@ -1,5 +1,5 @@
 angular.module('elsie.store')
-.factory('Stores', function($http, ELSIEAPI, Scheduler, Dialog) {
+.factory('Stores', function($http, ELSIEAPI, Scheduler, Dialog, Locator) {
 
   var url = function() {
     return ELSIEAPI;
@@ -116,7 +116,7 @@ angular.module('elsie.store')
       return cache.selected;
     },
     search: function(query) {
-      var req = url() + '/stores?q=' + query;
+      var req = url() + '/stores?lat=' + Locator.current().latitude +'&lon=' + Locator.current().longitude + '&q=' + query;
       var process = $http.get(req).then(function(response){
         if (response.status === 200){
           cache.query = response.data.result;

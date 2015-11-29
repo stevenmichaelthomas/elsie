@@ -24,7 +24,7 @@ doctype
               span {{ store.address_line_1 }}
               br
               span {{ store.city }}, Ontario {{ store.postal_code }}
-          .md-stat
+          .md-stat(ng-if="store.distance_in_meters")
               p {{ store.distance_in_meters | distance }}
         md-list-item.md-2-line
           img.md-avatar(src="img/icon_phone.png")
