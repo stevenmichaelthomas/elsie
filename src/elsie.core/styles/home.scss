@@ -58,18 +58,6 @@
       width: 100%;
       max-height: none;
     }
-    // &.expanded {
-    //   height: 42px;
-    //   > .main {
-    //     height: 100%;
-    //     max-height: none;
-    //   }
-    //   input[type="text"] {
-    //     width: 100%;
-    //     margin: 0;
-    //     box-shadow: none;
-    //   }
-    // }
     input[type="text"] {
       border: none;
       border-radius: 0;
@@ -83,9 +71,12 @@
       margin-bottom: 20px;
       height: 42px;
     }
+    #search-hint {
+      text-align: center;
+    }
     h5.hint {
       margin-top: 0;
-      margin-bottom: 100px;
+      margin-bottom: 80px;
     }
     .md-icon-button {
       width: 10%;

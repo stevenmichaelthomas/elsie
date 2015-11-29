@@ -321,7 +321,8 @@ md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
 }
 
 md-tab-item.md-tab.ng-scope.ng-isolate-scope.md-ink-ripple {
-  max-width: 160px !important;
+  max-width: none !important;
+  min-width: 160px !important;
   color: $pink;
 }
 
