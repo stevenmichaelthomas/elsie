@@ -12,6 +12,7 @@ angular.module('elsie.splash')
     Navigator.go(destination);
   };
   (function(){
+    Actions.show();
     Actions.theme('transparent');
     Actions.search(false);
     Actions.set({ menu: false, back: true, logo: false });

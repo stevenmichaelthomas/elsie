@@ -81,6 +81,7 @@ angular.module('elsie.core')
     $scope.setTabsHeight();
   };
   $scope.focus = function() {
+    Actions.theme('hidden');
     Actions.hide();
 
     var title = document.getElementById('search-title');
@@ -140,6 +141,7 @@ angular.module('elsie.core')
     
     $timeout(function(){
       Actions.show();
+      Actions.theme('purple');
     }, 500);
     
     $timeout(function(){
