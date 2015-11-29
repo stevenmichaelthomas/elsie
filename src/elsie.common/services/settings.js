@@ -1,5 +1,5 @@
 angular.module('elsie.common')
-.factory('Settings', ['$http', '$q', 'Products', 'Scheduler', 'elsie.session', 'ELSIEAPI', function($http, $q, Products, Scheduler, Session, ELSIEAPI) {
+.factory('Settings', ['$http', '$q', 'Scheduler', 'elsie.session', 'ELSIEAPI', function($http, $q, Scheduler, Session, ELSIEAPI) {
 
   var cache = {};
 
@@ -19,6 +19,13 @@ angular.module('elsie.common')
         cache = response.data;
         return cache;
       });
+    },
+    home: function() {
+      if (cache.settings && cache.settings.store) {
+        return cache.settings.store;
+      } else {
+        return;
+      }
     },
     setHomeStore: function(store) {
       var settings = {};

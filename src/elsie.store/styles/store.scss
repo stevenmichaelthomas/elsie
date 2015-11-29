@@ -8,7 +8,13 @@
   top: $bump;
   left: 0;
   bottom: 0;
-  right: 0;//
+  right: 0;
+  @media only screen 
+  and (min-device-width : 375px) 
+  and (max-device-width : 667px) 
+  and (orientation : portrait) {
+  background-position-y: -28%;
+  }
   @media only screen 
   and (min-device-width : 414px) 
   and (max-device-width : 736px) 

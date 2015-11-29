@@ -1,6 +1,6 @@
 /* global Velocity */
 angular.module('elsie.product')
-.controller('ProductCtrl', ['$scope', 'Navigator', 'Products', 'Stores', 'Watchlist', 'Actions', 'Picks', 'Bump', 'Map', 'elsie.session', '$timeout', function ($scope, Navigator, Products, Stores, Watchlist, Actions, Picks, Bump, Map, Session, $timeout) {
+.controller('ProductCtrl', ['$scope', 'Navigator', 'Products', 'Stores', 'Watchlist', 'Actions', 'Picks', 'Bump', 'Map', 'elsie.session', 'Settings', '$timeout', function ($scope, Navigator, Products, Stores, Watchlist, Actions, Picks, Bump, Map, Session, Settings, $timeout) {
   $scope.toggleWatch = function(product){
     if (!$scope.session) {
       Navigator.go('watchlist');
@@ -13,8 +13,15 @@ angular.module('elsie.product')
     }
   };
   $scope.loadStore = function(store) {
-    Stores.select(store);
-    Navigator.go('store');
+    if (store.id) {
+      Stores.select(store);
+      Navigator.go('store');
+    } else if (store.store_id) {
+      Stores.one(store.store_id).then(function(data){
+        Stores.select(data);
+        Navigator.go('store');
+      });
+    }
   };
   $scope.isPick = function(product) {
     if (Object.keys(product.pick).length > 0) {
@@ -51,6 +58,8 @@ angular.module('elsie.product')
     Actions.set({ menu: false, back: true, logo: false });
     Actions.backGoesHome(false);
 
+    $scope.home = Settings.home();
+
     $scope.product = Products.selected();
     $scope.product.pick = Picks.check($scope.product);
 
@@ -67,6 +76,7 @@ angular.module('elsie.product')
     }
 
     $scope.storesLoading = true;
+    $scope.homeLoading = true;
 
     $timeout(function(){
       $scope.image['background-position-y'] = '-88%';
@@ -76,6 +86,13 @@ angular.module('elsie.product')
         $scope.map = {
           'background-image': 'url(' + Map.small($scope.product.stores[0].latitude, $scope.product.stores[0].longitude) + ')'
         };
+      });
+      Products.atHomeStore($scope.product).then(function(data){
+        console.log('data', data);
+        if (data) {
+          $scope.product.home = data;
+        }
+        $scope.homeLoading = false;
       });
     }, 750);
 

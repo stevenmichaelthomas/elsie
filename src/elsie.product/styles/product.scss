@@ -14,6 +14,12 @@
   .image {
     height: 244px;
     @media only screen 
+    and (min-device-width : 375px) 
+    and (max-device-width : 667px) 
+    and (orientation : portrait) {
+      height: 284px;
+    }
+    @media only screen 
     and (min-device-width : 414px) 
     and (max-device-width : 736px) 
     and (orientation : portrait) {
@@ -82,6 +88,9 @@
     md-list {
       border-top: 1px $grey solid;
       padding: 25px 5px;
+      &.naked {
+        padding: 0 5px;
+      }
       &.key-facts {
         padding: 20px 0;
         md-list-item {

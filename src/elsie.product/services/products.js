@@ -1,5 +1,5 @@
 angular.module('elsie.product')
-.factory('Products', function($http, ELSIEAPI, Locator, Dialog, Scheduler) {
+.factory('Products', function($http, $q, ELSIEAPI, Locator, Dialog, Scheduler, Settings) {
 
   var url = function() {
     return ELSIEAPI;
@@ -50,6 +50,28 @@ angular.module('elsie.product')
       });
       Scheduler.queue(process);
       return process;
+    },
+    atHomeStore: function(product){
+      var store = Settings.home();
+      var deferred = $q.defer();
+      if (store) {
+        var req = url() + '/stores/' + store.id + '/products/' + product.id + '/inventory';
+        var process = $http.get(req).then(function(result){
+          if (result.status === 200){
+            cache.product.home = result.data.result;
+            deferred.resolve(cache.product.home);
+            return cache.product.home;
+          } else {
+            deferred.reject();
+            Dialog.showConnectionError();
+            return {};
+          }
+        });
+        Scheduler.queue(process);
+      } else {
+        deferred.resolve();
+      }
+      return deferred.promise;
     },
     atNearbyStores: function(product){
       var req = url() + '/products/' + product.id + '/stores?lat=' + Locator.current().latitude + '&lon=' + Locator.current().longitude;

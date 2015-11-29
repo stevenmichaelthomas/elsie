@@ -96,9 +96,11 @@ angular.module('elsie.common')
         }
         Scheduler.run().then(function(){
           cache.lastUpdate = new Date().getTime();
+          _syncWatchlist();
           deferred.resolve();
         });
       } else {
+        _syncWatchlist();
         deferred.resolve();
       }
       return deferred.promise; 
