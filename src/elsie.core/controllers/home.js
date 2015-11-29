@@ -1,24 +1,27 @@
 /* global Velocity */
 /* global Keyboard */
 angular.module('elsie.core')
-.controller('HomeCtrl', ['$scope', '$timeout', 'Navigator', 'Products', 'Stores', 'Cache', 'Actions', 'Picks', 'Watchlist', 'Locator', 'Bump', 'Greetings', 'elsie.session',
-  function($scope, $timeout, Navigator, Products, Stores, Cache, Actions, Picks, Watchlist, Locator, Bump, Greetings, Session) {
+.controller('HomeCtrl', ['$scope', '$timeout', 'Navigator', 'Barcode', 'Products', 'Stores', 'Cache', 'Actions', 'Picks', 'Watchlist', 'Locator', 'Bump', 'Greetings', 'Hints', 'Dialog', 'elsie.session',
+  function($scope, $timeout, Navigator, Barcode, Products, Stores, Cache, Actions, Picks, Watchlist, Locator, Bump, Greetings, Hints, Dialog, Session) {
   var keyboardEventBindings = function() {
     Keyboard.onshow = function () {
       window.scrollTo(0,0);
-      $scope.setTabsHeight();
+      $scope.setTabsHeight(true);
     };
     Keyboard.onhide = function () {
       window.scrollTo(0,0);
-      $scope.setTabsHeight();
+      $scope.setTabsHeight(false);
     };
     Keyboard.onshowing = function () {
       window.scrollTo(0,0);
     };
   };
-  $scope.setTabsHeight = function(){
+  $scope.setTabsHeight = function(keyboardUp){
     var viewport = window.innerHeight + 20;
     var tabsArea = viewport - 40;
+    if (!keyboardUp) {
+      tabsArea = tabsArea - 40;
+    }
     tabsArea = tabsArea + 'px';
     Velocity(document.getElementById('tabs'), {
         height: tabsArea
@@ -29,6 +32,13 @@ angular.module('elsie.core')
   $scope.clear = function(){
     $scope.results.query = '';
     document.getElementById('search').blur();
+  };
+  $scope.scanBarcode = function(){
+    console.log('scanning...');
+    Barcode.scan().then(function(data){
+      console.log('scanner returned: ', data);
+      $scope.selectProduct(data.text);
+    });
   };
   $scope.search = function(query) {
     if (!query || query === ''){
@@ -66,6 +76,21 @@ angular.module('elsie.core')
     if (product && product.product_no){
       Products.select(product);
       Navigator.go('product');
+    } else if (product) {
+      Products.one(product).then(function(data){
+        if (!data) {
+          var message = 'Elsie couldn\'t find that product at the LCBO. Try a text search!';
+          var actions = [
+            { label: 'OK' }
+          ];
+          var title = 'Hmm...';
+          Dialog.show(message, actions, title);
+          return;
+        }
+        console.log('selecting product', data);
+        Products.select(data);
+        Navigator.go('product');
+      });
     }
   };
   $scope.selectStore = function(store){
@@ -182,6 +207,7 @@ angular.module('elsie.core')
 
     // Greeting
     $scope.welcome = Greetings.english();
+    $scope.hint = Hints.english();
 
     // Action bar
     Actions.show();

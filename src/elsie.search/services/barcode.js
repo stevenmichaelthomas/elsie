@@ -1,5 +1,5 @@
 angular.module('elsie.search')
-.factory('Barcode', function($http, LCBOAPI, Scheduler, Dialog) {
+.factory('Barcode', function($http, $q, LCBOAPI, Scheduler, Dialog) {
 
   var url = function(){
     return LCBOAPI;
@@ -7,10 +7,11 @@ angular.module('elsie.search')
       
   return {
     scan: function() {
+      var deferred = $q.defer();
       cordova.plugins.barcodeScanner.scan(
         function (result) {
           if (!result.cancelled){
-            return result;
+            deferred.resolve(result);
           }
         }, 
         function (error) {
@@ -20,8 +21,10 @@ angular.module('elsie.search')
           ];
           var title = 'Barcode scan error';
           Dialog.show(message, actions, title);
+          deferred.reject();
         }
       );
+      return deferred.promise;
     }
   };
 

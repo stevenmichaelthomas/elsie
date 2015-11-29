@@ -3,12 +3,16 @@ doctype
   md-content#md-content(layout="row",layout-wrap,ng-class="{ locked: locked }")
     .search#search-container(layout="column",layout-align="center center",flex="100",scroll-position="position",scroll-parent="md-content")
       .main(layout="column",layout-align="center center")
-        h2.white#search-title.velocity-transition-opposites-fadeIn {{ welcome.text }}
+        h2.white#search-title {{ welcome.text }}
         input#search(type="text",placeholder="Search products and LCBO locations",ng-model="results.query",ng-focus="focus()",ng-model-options="{debounce: 350}")
         md-button.md-icon-button(ng-show="expanded",ng-click="unfocus()",md-no-ink)
           md-progress-circular.md-accent(md-mode="indeterminate",ng-show="searching",md-diameter="20")
           md-icon(ng-show="!searching") close
-        h5.light.hint.white#search-hint.velocity-transition-opposites-fadeIn Try "Pinot Noir" or "Saison"
+        #search-hint 
+          h5.light.hint.white {{ hint.text }}
+          md-button.white(ng-click="scanBarcode()")
+            md-icon.white camera
+            span &nbsp;Scan a barcode
         .explore-trigger(ng-class="{ visible: !expanded && picks.length > 4 }",ng-click="goExplore()")
           h4.white Need some inspiration?
           md-icon.white keyboard_arrow_down
