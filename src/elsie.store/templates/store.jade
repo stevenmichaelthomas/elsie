@@ -5,7 +5,8 @@ doctype
     md-toolbar.lower
       .md-toolbar-tools
   md-button.md-fab#md-fab(aria-label="Add to Watchlist",ng-click="setHomeStore(store)")
-    md-icon home
+    md-icon(ng-if="isHome(store)") home
+    md-icon(ng-if="!isHome(store)",md-svg-src="img/icon_home_outline.svg")
   md-content.lower.md-default.md-primary-bg
     div(flex="row",layout-wrap)
       .head(flex="90",flex-offset="5")

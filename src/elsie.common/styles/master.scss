@@ -275,6 +275,9 @@ md-list-item {
     color: $pink;
     float: right;
     margin-top: 10px;
+    p {
+      margin: 0;
+    }
     &.low {
       p {
         margin-bottom: 0;

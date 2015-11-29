@@ -4,6 +4,9 @@ angular.module('elsie.store')
   $scope.call = function(number){
     window.location.href = 'tel:' + number;
   };
+  $scope.isHome = function(store) {
+    return Settings.isHome(store);
+  };
   $scope.setHomeStore = function(store) {
     if (!Session.active()){
       var message = 'With an account, you can set this store as your home store to quickly check product availability.';
@@ -14,15 +17,28 @@ angular.module('elsie.store')
       Dialog.show(message, actions, title);
       return;
     }
-    Settings.setHomeStore(store).then(function(data){
-      var message = $scope.store.name + ' has been set as your home store.';
-      var actions = [
-        { label: 'OK' }
-      ];
-      var title = 'Home store set';
-      Dialog.show(message, actions, title);
-      $scope.settings = data;
-    });
+    if (!$scope.isHome(store)) {
+      Settings.setHomeStore(store).then(function(data){
+        var message = $scope.store.name + ' has been set as your home store.';
+        var actions = [
+          { label: 'OK' }
+        ];
+        var title = 'Home store set';
+        Dialog.show(message, actions, title);
+        $scope.settings = data;
+      });
+    } else {
+      Settings.unsetHomeStore().then(function(data){
+        var message = 'Your home store has been unset.';
+        var actions = [
+          { label: 'OK' }
+        ];
+        var title = 'Home store unset';
+        Dialog.show(message, actions, title);
+        $scope.settings = data;
+      });
+    }
+    
   };
   $scope.$watch('position', function(val){
     // deviceHeight from bottom

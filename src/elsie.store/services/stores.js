@@ -130,7 +130,7 @@ angular.module('elsie.store')
       return process;
     },
     one: function(id){
-      var req = url + '/stores/' + id;
+      var req = url() + '/stores/' + id;
       return $http.get(req).then(function(result){
         if (result.status === 200){
           cache.selected = result.data;

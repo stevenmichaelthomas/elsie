@@ -27,6 +27,29 @@ angular.module('elsie.common')
         return;
       }
     },
+    unsetHomeStore: function(store) {
+      var settings = {};
+      if (!cache.settings){
+        return this.get().then(function(){
+          settings = cache.settings;
+          if (!settings){
+            settings = {};
+          }
+          settings.store = {};
+          return $http.put(url(), { settings: settings }).then(function(response){
+            cache = response.data;
+            return cache.settings;
+          });
+        });
+      } else {
+        settings = cache.settings;
+        settings.store = {};
+        return $http.put(url(), { settings: settings }).then(function(response){
+          cache = response.data;
+          return cache.settings;
+        });
+      }
+    },
     setHomeStore: function(store) {
       var settings = {};
       if (!cache.settings){

@@ -18,7 +18,7 @@ angular.module('elsie.product')
       Navigator.go('store');
     } else if (store.store_id) {
       Stores.one(store.store_id).then(function(data){
-        Stores.select(data);
+        Stores.select(data.result);
         Navigator.go('store');
       });
     }
@@ -88,7 +88,6 @@ angular.module('elsie.product')
         };
       });
       Products.atHomeStore($scope.product).then(function(data){
-        console.log('data', data);
         if (data) {
           $scope.product.home = data;
         }
