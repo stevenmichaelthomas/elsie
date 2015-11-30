@@ -14,6 +14,13 @@ angular.module('elsie.splash').factory('elsie.auth',
           });
       }
 
+    , facebookLink: function(token, account) {
+        return $http.post(url('facebook/link'), { access_token: token, account: account })
+          .then(function(response) {
+            return response.data;
+          });
+      }
+
     , login: function(payload) {
         return $http.post(url('login'), payload)
           .then(function(response) {

@@ -1,23 +1,28 @@
 .settings
   md-content(layout="row",layout-wrap)
-    div(layout="column",flex="90",flex-offset="5")
-      h3.light.black Profile
+    md-progress-circular.md-accent(md-mode="indeterminate",ng-show="!loaded")
+    div(layout="column",flex="90",flex-offset="5",ng-show="loaded")
+      h5.section-title.light.md-accent.upcase Profile
       md-input-container
         label First name
         input(type="text",ng-model="profile.firstName")
       md-input-container
         label Last name
         input(type="text",ng-model="profile.lastName")
-    div(layout="column",flex="90",flex-offset="5")
-      h3.light.black Facebook
+    md-divider(ng-show="loaded")
+    div(layout="column",flex="90",flex-offset="5",ng-show="loaded")
+      h5.section-title.light.md-accent.upcase Facebook
       h4.light.black Status:&nbsp;
         span(ng-if="facebook") Connected
         span(ng-if="!facebook") Not connected
-      p(ng-if="!facebook") Elsie uses Facebook to connect you with friends to share suggested products with.
-    div(layout="column",flex="90",flex-offset="5")
-      h3.light.black Notifications
+      md-button(ng-if="!facebook",ng-click="link()") Connect
+      //p(ng-if="!facebook") Elsie uses Facebook to connect you with friends to share suggested products with.
+    //md-divider(ng-show="loaded")
+    //div(layout="column",flex="90",flex-offset="5",ng-show="loaded")
+      h5.section-title.light.md-accent.upcase Notifications
       md-checkbox(ng-model="settings.notifications") Enabled
-    div(layout="column",flex="90",flex-offset="5")
-      h3.light.black Home Store
+    md-divider(ng-show="loaded")
+    div(layout="column",flex="90",flex-offset="5",ng-show="loaded")
+      h5.section-title.light.md-accent.upcase Home Store
       h4.light.black(ng-if="settings.home") {{ home.name }}
       h4.light.black(ng-if="!settings.home") Not set
