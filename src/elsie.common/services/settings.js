@@ -27,6 +27,12 @@ angular.module('elsie.common')
         return;
       }
     },
+    updateProfile: function(profile) {
+      return $http.put(url(), { firstName: profile.firstName, lastName: profile.lastName, email: profile.email }).then(function(response){
+        cache = response.data;
+        return cache;
+      });
+    },
     unsetHomeStore: function(store) {
       var settings = {};
       if (!cache.settings){

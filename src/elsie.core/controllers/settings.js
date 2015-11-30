@@ -1,6 +1,19 @@
 /* global facebookConnectPlugin */
 angular.module('elsie.core')
-.controller('SettingsCtrl', ['$scope', 'Settings', 'Actions', 'elsie.auth', 'elsie.session', 'Dialog', 'Stores', 'Navigator', function($scope, Settings, Actions, Auth, Session, Dialog, Stores, Navigator) {
+.controller('SettingsCtrl', ['$scope', '$mdDialog', '$mdToast', 'Settings', 'Actions', 'elsie.auth', 'elsie.session', 'Dialog', 'Stores', 'Navigator', function($scope, $mdDialog, $mdToast, Settings, Actions, Auth, Session, Dialog, Stores, Navigator) {
+  var ProfileCtrl = function($scope, $mdDialog) {
+    // Assigned from construction <code>locals</code> options...
+    $scope.closeDialog = function() {
+      // Easily hides most recent dialog shown...
+      // no specific instance reference is needed.
+      $mdDialog.hide();
+    };
+  };
+  var syncProfile = function() {
+    Settings.updateProfile($scope.profile).then(function(){
+      $mdToast.showSimple('Profile updated!'); 
+    });
+  };
   var fbLoginSuccess = function(data) {
     var account = Session.get('id');
     facebookConnectPlugin.getAccessToken(function(token) {
@@ -39,10 +52,20 @@ angular.module('elsie.core')
   $scope.loadHomeStore = function() {
     var store = Settings.home();
     Stores.one(store.id).then(function(data){
-      console.log('data', data);
-      console.log('store fed', store);
       Stores.select(data.result);
       Navigator.go('store');
+    });
+  };
+  $scope.editProfile = function($event) {
+    $mdDialog.show({
+      targetEvent: $event,
+      templateUrl: 'templates/_profile.html',
+      controller: ProfileCtrl,
+      onRemoving: syncProfile,
+      scope: $scope,
+      preserveScope: true,
+      clickOutsideToClose: true,
+      hasBackdrop: false
     });
   };
   (function init(){
@@ -50,6 +73,7 @@ angular.module('elsie.core')
     Actions.set({ title: 'Settings', menu: false, back: true, search: false, watchlist: false, logo: false });
     Settings.get().then(function(data){
       $scope.profile = {
+        email: data.email,
         firstName: data.firstName,
         lastName: data.lastName
       };

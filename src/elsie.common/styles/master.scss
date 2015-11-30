@@ -203,6 +203,12 @@ button.md-button {
   }
 }
 
+md-dialog {
+  md-dialog-content {
+    padding: 40px 20px;
+  }
+}
+
 md-icon.md-default-theme {
   color: rgba(255, 255, 255, 0.870588);
   &.md-primary {

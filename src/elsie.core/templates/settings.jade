@@ -2,7 +2,7 @@
   md-content(layout="row",layout-wrap)
     md-progress-circular.md-accent(md-mode="indeterminate",ng-show="!loaded")
     md-list(flex="90",flex-offset="5",ng-show="loaded")
-      md-list-item.md-2-line
+      md-list-item.md-2-line(ng-click="editProfile($event)")
         .md-list-item-text
           h3 Profile
           p {{ profile.firstName }} {{ profile.lastName }}
