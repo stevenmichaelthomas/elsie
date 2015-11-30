@@ -1,6 +1,6 @@
 /* global facebookConnectPlugin */
 angular.module('elsie.core')
-.controller('SettingsCtrl', ['$scope', 'Settings', 'Actions', 'elsie.auth', 'elsie.session', 'Dialog', function($scope, Settings, Actions, Auth, Session, Dialog) {
+.controller('SettingsCtrl', ['$scope', 'Settings', 'Actions', 'elsie.auth', 'elsie.session', 'Dialog', 'Stores', 'Navigator', function($scope, Settings, Actions, Auth, Session, Dialog, Stores, Navigator) {
   var fbLoginSuccess = function(data) {
     var account = Session.get('id');
     facebookConnectPlugin.getAccessToken(function(token) {
@@ -26,12 +26,24 @@ angular.module('elsie.core')
     });
   };
   $scope.link = function() {
+    if ($scope.facebook) {
+      return;
+    }
     facebookConnectPlugin.login(['email','public_profile','user_friends'],
       fbLoginSuccess,
       function (error) { 
         console.log(error);
       }
     );
+  };
+  $scope.loadHomeStore = function() {
+    var store = Settings.home();
+    Stores.one(store.id).then(function(data){
+      console.log('data', data);
+      console.log('store fed', store);
+      Stores.select(data.result);
+      Navigator.go('store');
+    });
   };
   (function init(){
     Actions.theme('purple');
