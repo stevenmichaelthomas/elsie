@@ -18,7 +18,7 @@ angular.module('elsie.product')
       var deferred = $q.defer();
       if (cache.picks.length === 0){
         var req = url() + '/picks?sort=id%20DESC';
-        var process = $http.get(req).then(function(result){
+        var process = $http.get(req, { timeout: 5000 }).then(function(result){
           if (result.status === 200){
             cache.picks = result.data;
             angular.forEach(cache.picks, function(p,i){

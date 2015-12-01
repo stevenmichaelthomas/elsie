@@ -1,5 +1,5 @@
 angular.module('elsie.store')
-.factory('Stores', function($http, ELSIEAPI, Scheduler, Dialog, Locator) {
+.factory('Stores', function($http, $mdToast, ELSIEAPI, Scheduler, Dialog, Locator) {
 
   var url = function() {
     return ELSIEAPI;
@@ -117,7 +117,7 @@ angular.module('elsie.store')
     },
     search: function(query) {
       var req = url() + '/stores?lat=' + Locator.current().latitude +'&lon=' + Locator.current().longitude + '&q=' + query;
-      var process = $http.get(req).then(function(response){
+      var process = $http.get(req, { timeout: 5000 }).then(function(response){
         if (response.status === 200){
           cache.query = response.data.result;
           return cache.query;
@@ -130,8 +130,9 @@ angular.module('elsie.store')
       return process;
     },
     one: function(id){
+      $mdToast.showSimple('Looking up store #' + id + '...'); 
       var req = url() + '/stores/' + id;
-      return $http.get(req).then(function(result){
+      return $http.get(req, { timeout: 5000 }).then(function(result){
         if (result.status === 200){
           cache.selected = result.data;
           return cache.selected;
@@ -146,7 +147,7 @@ angular.module('elsie.store')
         return;
       }
       var req = url() + '/products?q=' + query + '&store_id=' + store.id;
-      var process = $http.get(req).then(function(result){
+      var process = $http.get(req, { timeout: 5000 }).then(function(result){
         if (result.status === 200){
           return result.data;
         } else {

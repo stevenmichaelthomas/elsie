@@ -15,7 +15,7 @@ angular.module('elsie.core')
     });
   };
   var fbLoginSuccess = function(data) {
-    var account = Session.get('id');
+    var account = Session.get('account').id;
     facebookConnectPlugin.getAccessToken(function(token) {
       Auth.facebookLink(token, account).then(function(res) {
         Settings.get().then(function(data){

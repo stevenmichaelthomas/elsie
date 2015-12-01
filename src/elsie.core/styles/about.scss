@@ -1,0 +1,16 @@
+.about {
+  background-color: $purple;
+  padding-top: 20%;
+  box-sizing: border-box;
+  p {
+    color: white;
+    text-align: center;
+    font-size: 0.9em;
+    a,
+    a:link,
+    a:visited {
+      color: white;
+      font-weight: 500;
+    }
+  }
+}

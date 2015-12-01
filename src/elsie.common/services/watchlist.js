@@ -1,5 +1,5 @@
 angular.module('elsie.common')
-.factory('Watchlist', ['$http', '$q', 'Products', 'Scheduler', 'elsie.session', 'ELSIEAPI', function($http, $q, Products, Scheduler, Session, ELSIEAPI) {
+.factory('Watchlist', ['$http', '$q', '$mdToast', 'Products', 'Scheduler', 'elsie.session', 'ELSIEAPI', function($http, $q, $mdToast, Products, Scheduler, Session, ELSIEAPI) {
 
   var cache = {
     lastUpdate: 0,
@@ -24,8 +24,11 @@ angular.module('elsie.common')
   };
 
   var _syncWatchlist = function() {
+    $mdToast.showSimple('Syncing your watchlist...'); 
     return $http.put(url(), {
       cellar: cache.watchlist
+    }, { timeout: 7500 }).then(function(){
+      $mdToast.showSimple('Watchlist synced.'); 
     });
   };
 
@@ -91,19 +94,47 @@ angular.module('elsie.common')
     refreshWatchlistData: function(){
       var deferred = $q.defer();
       if (cache.watchlist.length > 0 && _cacheIsExpired()){
+        var check = function(p){
+          var stub = p + 1;
+          if (stub === cache.watchlist.length) {
+            cache.lastUpdate = new Date().getTime();
+            _syncWatchlist();
+            deferred.resolve();
+          }
+        };
+        var update = function(p){
+          Products.one(cache.watchlist[p].id).then(function(data){
+            cache.watchlist[p] = data;
+            check(p);
+          });
+        };
         for (var p = 0; p < cache.watchlist.length; p++){
-          Products.atNearbyStores(cache.watchlist[p]);
+          update(p);
         }
-        Scheduler.run().then(function(){
-          cache.lastUpdate = new Date().getTime();
-          _syncWatchlist();
-          deferred.resolve();
-        });
       } else {
         _syncWatchlist();
         deferred.resolve();
       }
       return deferred.promise; 
+    },
+    checkForLegacyWatchlistData: function() {
+      if (localStorage["Elsie_watchlistProducts"]){
+        var retrievedItmes = JSON.parse(localStorage["Elsie_watchlistProducts"]);
+        if (retrievedItmes.length > 0) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    },
+    loadLegacyWatchlistData: function() {
+      if (!localStorage["Elsie_watchlistProducts"]) {
+        return;
+      }
+      var localWatchlist = JSON.parse(localStorage["Elsie_watchlistProducts"]);
+      return localWatchlist;
     },
     cache: function() {
       return cache.watchlist;

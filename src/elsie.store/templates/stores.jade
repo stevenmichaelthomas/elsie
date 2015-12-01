@@ -1,0 +1,11 @@
+.standard
+  md-content
+    md-progress-circular.md-accent(md-mode="indeterminate",ng-show="!loaded")
+    md-list.standalone(ng-show="loaded")
+      md-list-item.md-2-line.velocity-transition-slideUpIn(data-velocity-opts="{ stagger: 125, duration: 350 }",ng-repeat="store in product.stores",ng-click="loadStore(store)")
+        .md-list-item-text
+          h3 &#35;{{ store.store_no }} {{ store.name }}
+          p 
+            span.kwaf-pick(ng-show="wisHome(store)") home
+            span {{ store.address_line_1 }} &#183; {{ store.city }}
+            span.accent &nbsp;&#183;&nbsp;{{ store.quantity | pretty }} units

@@ -1,5 +1,5 @@
 angular.module('elsie.common')
-.factory('Greetings', function() {
+.factory('Greetings', ['elsie.session', function(Session) {
 
   var greetings = {
     en: [
@@ -11,6 +11,13 @@ angular.module('elsie.common')
     ]
   };
 
+  if (Session.active()) {
+    var name = Session.get('account').firstName;
+    greetings.en.push({ text: 'Hey there, ' + name + '!' });
+    greetings.en.push({ text: name + ', you look great today.' });
+    greetings.en.push({ text: 'How can I help, ' + name + '?' });
+  }
+
   return {
     english: function() {
       var item = greetings.en[Math.floor(Math.random() * greetings.en.length)];
@@ -18,4 +25,4 @@ angular.module('elsie.common')
     }
   };
 
-});
+}]);

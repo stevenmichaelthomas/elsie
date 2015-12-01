@@ -1,8 +1,28 @@
 /* global Velocity */
+/* global launchnavigator */
 angular.module('elsie.store')
 .controller('StoreCtrl', ['$scope', '$state', '$timeout', 'Stores', 'Map', 'Actions', 'elsie.session', 'Settings', 'Dialog', function ($scope, $state, $timeout, Stores, Map, Actions, Session, Settings, Dialog) {
   $scope.call = function(number){
-    window.location.href = 'tel:' + number;
+    number = number.replace(/\D/g,'');
+    console.log(number);
+    window.open('tel:' + number, '_system');
+  };
+  $scope.navigate = function(lat, lon){
+    launchnavigator.navigate(
+      [lat, lon],
+      null,
+      function(){
+        //success
+      },
+      function(error){
+        //error
+      },
+      {
+        preferGoogleMaps: true,
+        transportMode: 'driving',
+        enableDebug: false,
+        disableAutoGeolocation: false
+    });
   };
   $scope.isHome = function(store) {
     return Settings.isHome(store);

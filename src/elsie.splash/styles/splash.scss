@@ -56,6 +56,20 @@
         }
       }
     }
+    small {
+      color: white;
+      font-size: 0.7em;
+      text-align: center;
+      opacity: 0.8;
+      display: block;
+      margin: 0 10%;
+      a,
+      a:link,
+      a:active {
+        color: white;
+        font-weight: 500;
+      }
+    }
   }
   &.login, &.signup {
     background-color: $grey-light;

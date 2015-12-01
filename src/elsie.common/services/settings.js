@@ -1,5 +1,5 @@
 angular.module('elsie.common')
-.factory('Settings', ['$http', '$q', 'Scheduler', 'elsie.session', 'ELSIEAPI', function($http, $q, Scheduler, Session, ELSIEAPI) {
+.factory('Settings', ['$http', '$q', '$mdToast', 'Scheduler', 'elsie.session', 'ELSIEAPI', function($http, $q, $mdToast, Scheduler, Session, ELSIEAPI) {
 
   var cache = {};
 
@@ -9,13 +9,13 @@ angular.module('elsie.common')
 
   var settings = {
     get: function() {
-      return $http.get(url()).then(function(response){
+      return $http.get(url(), { timeout: 5000 }).then(function(response){
         cache = response.data;
         return cache;
       });
     },
     update: function(payload) {
-      return $http.put(url(), payload).then(function(response){
+      return $http.put(url(), payload, { timeout: 5000 }).then(function(response){
         cache = response.data;
         return cache;
       });
@@ -28,12 +28,13 @@ angular.module('elsie.common')
       }
     },
     updateProfile: function(profile) {
-      return $http.put(url(), { firstName: profile.firstName, lastName: profile.lastName, email: profile.email }).then(function(response){
+      return $http.put(url(), { firstName: profile.firstName, lastName: profile.lastName }, { timeout: 5000 }).then(function(response){
         cache = response.data;
         return cache;
       });
     },
     unsetHomeStore: function(store) {
+      $mdToast.showSimple('Removing your home store...'); 
       var settings = {};
       if (!cache.settings){
         return this.get().then(function(){
@@ -42,7 +43,7 @@ angular.module('elsie.common')
             settings = {};
           }
           settings.store = {};
-          return $http.put(url(), { settings: settings }).then(function(response){
+          return $http.put(url(), { settings: settings }, { timeout: 5000 }).then(function(response){
             cache = response.data;
             return cache.settings;
           });
@@ -50,13 +51,14 @@ angular.module('elsie.common')
       } else {
         settings = cache.settings;
         settings.store = {};
-        return $http.put(url(), { settings: settings }).then(function(response){
+        return $http.put(url(), { settings: settings }, { timeout: 5000 }).then(function(response){
           cache = response.data;
           return cache.settings;
         });
       }
     },
     setHomeStore: function(store) {
+      $mdToast.showSimple('Updating your home store...'); 
       var settings = {};
       if (!cache.settings){
         return this.get().then(function(){
@@ -65,7 +67,7 @@ angular.module('elsie.common')
             settings = {};
           }
           settings.store = store;
-          return $http.put(url(), { settings: settings }).then(function(response){
+          return $http.put(url(), { settings: settings }, { timeout: 5000 }).then(function(response){
             cache = response.data;
             return cache.settings;
           });
@@ -73,7 +75,7 @@ angular.module('elsie.common')
       } else {
         settings = cache.settings;
         settings.store = store;
-        return $http.put(url(), { settings: settings }).then(function(response){
+        return $http.put(url(), { settings: settings }, { timeout: 5000 }).then(function(response){
           cache = response.data;
           return cache.settings;
         });

@@ -3,8 +3,14 @@
   .container(layout="column", layout-align="center center", flex="100")
     .inside(flex="55",layout="column",layout-align="center center")
       img.logo(ng-click="shown = false",src="img/logo_white.png")
-    .buttons(flex="25",layout="row",layout-align="center center",layout-wrap)
+    .buttons(flex="30",layout="row",layout-align="center center",layout-wrap)
       md-button.md-accent.facebook.md-raised.no-border(ng-click="facebook()",flex="70") Sign in with Facebook
       md-button(ng-click="go('signup')",flex="70") Sign in with email
       md-button.no-border(ng-click="go('home')") Continue without account
+      small 
+        | By using this app, you consent to our&nbsp;
+        a(href="http://heyelsie.com/privacy.html",target="_blank") Privacy Policy
+        | &nbsp;and&nbsp;
+        a(href="http://heyelsie.com/terms.html",target="_blank") Terms of Service
+        | .
 

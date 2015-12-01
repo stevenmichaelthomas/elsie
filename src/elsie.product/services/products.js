@@ -25,7 +25,7 @@ angular.module('elsie.product')
     },
     search: function(query) {
       var req = url() + '/products?q=' + query;
-      var process = $http.get(req).then(function(response){
+      var process = $http.get(req, { timeout: 5000 }).then(function(response){
         if (response.status === 200){
           cache.products = response.data.result;
           return cache.products;
@@ -39,7 +39,7 @@ angular.module('elsie.product')
     },
     one: function(id){
       var req = url() + '/products/' + id;
-      var process = $http.get(req).then(function(response){
+      var process = $http.get(req, { timeout: 5000 }).then(function(response){
         if (response.status === 200){
           cache.product = response.data.result;
           return cache.product;
@@ -56,7 +56,7 @@ angular.module('elsie.product')
       var deferred = $q.defer();
       if (store) {
         var req = url() + '/stores/' + store.id + '/products/' + product.id + '/inventory';
-        var process = $http.get(req).then(function(result){
+        var process = $http.get(req, { timeout: 5000 }).then(function(result){
           if (result.status === 200){
             cache.product.home = result.data.result;
             deferred.resolve(cache.product.home);
@@ -75,7 +75,7 @@ angular.module('elsie.product')
     },
     atNearbyStores: function(product){
       var req = url() + '/products/' + product.id + '/stores?lat=' + Locator.current().latitude + '&lon=' + Locator.current().longitude;
-      var process = $http.get(req).then(function(result){
+      var process = $http.get(req, { timeout: 5000 }).then(function(result){
         if (result.status === 200){
           cache.product = result.data.product;
           cache.product.stores = result.data.result;
@@ -94,7 +94,7 @@ angular.module('elsie.product')
         var pageNumber = 1;
       }
       var req = url() + '/products?order=released_on&per_page=100&page=' + page;
-      var process = $http.get(req).then(function(result){
+      var process = $http.get(req, { timeout: 5000 }).then(function(result){
         if (result.status === 200){
           cache.releases = JSON.parse(result.responseText).result;
           return cache.releases;

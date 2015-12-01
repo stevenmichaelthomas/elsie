@@ -7,6 +7,9 @@ angular.module('elsie.core')
     Keyboard.onshow = function () {
       window.scrollTo(0,0);
       $scope.setTabsHeight(true);
+      $timeout(function(){
+        window.scrollTo(0,0);
+      },500);
     };
     Keyboard.onhide = function () {
       window.scrollTo(0,0);
@@ -184,7 +187,7 @@ angular.module('elsie.core')
   $scope.$watch('position', function(val){
     // deviceHeight from bottom
     if (val > $scope.deviceHeight) {
-      Actions.set({ title: 'kwäf picks', menu: true, back: false, search: false, watchlist: true, locating: false, logo: false });
+      Actions.set({ title: 'kwäf Picks', menu: true, back: false, search: false, watchlist: true, locating: false, logo: false });
     } else {
       Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, locating: false, logo: true });
     }

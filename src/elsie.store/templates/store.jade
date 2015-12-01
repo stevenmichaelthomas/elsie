@@ -15,7 +15,7 @@ doctype
         md-chips
           md-chip.md-accent {{ status(store) }}
       md-list.key-facts(flex="90",flex-offset="5")
-        md-list-item.md-3-line
+        md-list-item.md-3-line.no-button-pad(ng-click="navigate(store.latitude, store.longitude)")
           img.md-avatar(src="img/icon_location.png")
           .md-list-item-text
             h3 Directions
@@ -25,7 +25,7 @@ doctype
               span {{ store.city }}, Ontario {{ store.postal_code }}
           .md-stat(ng-if="store.distance_in_meters")
               p {{ store.distance_in_meters | distance }}
-        md-list-item.md-2-line
+        md-list-item.md-2-line.no-button-pad(ng-click="call(store.telephone)")
           img.md-avatar(src="img/icon_phone.png")
           .md-list-item-text
             h3 {{ store.telephone }}

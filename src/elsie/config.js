@@ -77,10 +77,22 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'angu
       controller: 'HomeCtrl',
       priority: 2
     })
+    .state('picks', {
+      url: '/picks',
+      controller: 'PicksCtrl',
+      templateUrl: 'templates/picks.html',
+      priority: 3
+    })
     .state('settings', {
       url: '/settings',
       templateUrl: 'templates/settings.html',
       controller: 'SettingsCtrl',
+      priority: 1
+    })
+    .state('about', {
+      url: '/about',
+      templateUrl: 'templates/about.html',
+      controller: 'AboutCtrl',
       priority: 1
     })
     .state('watchlist', {
@@ -95,11 +107,17 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'angu
       templateUrl: 'templates/product.html',
       priority: 4
     })
+    .state('storesWithProduct', {
+      url: '/product/stores',
+      controller: 'StoresWithProductCtrl',
+      templateUrl: 'templates/stores.html',
+      priority: 5
+    })
     .state('store', {
       url: '/store',
       controller: 'StoreCtrl',
       templateUrl: 'templates/store.html',
-      priority: 5
+      priority: 6
     })
     .state('welcome', {
       url: '/welcome',

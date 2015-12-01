@@ -4,7 +4,9 @@ angular.module('elsie.common')
   var greetings = {
     en: [
       { text: 'Try "Pinot Noir" or "Saison"' },
-      { text: 'Try "Dunkel" or "Single malt"' }
+      { text: 'Try "Dunkel" or "Single malt"' },
+      { text: 'Try "Christmas" or "Ontario Craft"' },
+      { text: 'Try "Niagara" or "Cider"' }
     ]
   };
 
