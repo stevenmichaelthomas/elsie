@@ -70,7 +70,7 @@ doctype
             .md-list-item-text
               img.reviewer(ng-src="{{ product.pick.reviewerPhoto }}")
               h3 {{ product.pick.reviewer }}
-              h4.pink Sommelier at kwäf
+              h4.pink Expert at kwäf
               span.rating
                 md-icon.material-icons.md-default-theme.md-accent(ng-repeat="star in getRating(product.pick.rating) track by $index") star_rate
               p {{ product.pick.whyDrink }}

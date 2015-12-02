@@ -42,6 +42,7 @@ function($q, Session, $injector, $location, LCBO) {
 
   function addAuthHeader(req) {
     req.timeout = 5000;
+    // req.headers['X-Requested-With'] = 'Elsie_iOS';
     if(Session.active()) {
       var token = Session.get('token');
       if(token) { req.headers.Authorization = 'Bearer '+ token; }
