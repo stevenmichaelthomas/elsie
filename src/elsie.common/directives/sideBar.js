@@ -1,5 +1,5 @@
 angular.module('elsie.common')
-.directive('sideBar', ['Navigator', 'elsie.session', 'Actions', '$mdSidenav', function(Navigator, Session, Actions, $mdSidenav) {
+.directive('sideBar', ['Navigator', 'elsie.session', 'Actions', '$mdSidenav', '$timeout', function(Navigator, Session, Actions, $mdSidenav, $timeout) {
   return {
     replace: true,
     scope: {},
@@ -7,7 +7,9 @@ angular.module('elsie.common')
     link: function($scope, $element, $attrs) {
       $scope.go = function(destination){
         $mdSidenav('menu').close();
-        Navigator.go(destination);
+        $timeout(function(){
+          Navigator.go(destination);
+        }, 350);
       };
       $scope.close = function () {
         $mdSidenav('menu').close();
@@ -20,9 +22,11 @@ angular.module('elsie.common')
         }
       };
       $scope.logout = function(){
-        Session.clear();
         $mdSidenav('menu').close();
-        Navigator.go('welcome', 'back');
+        $timeout(function(){
+          Session.clear();
+          Navigator.go('welcome', 'back');
+        }, 350);
       };
       $scope.$on('session.init', function(event, data){
         $scope.user = data.account;

@@ -2,7 +2,7 @@
   md-content
     md-progress-circular.md-accent(md-mode="indeterminate",ng-show="!loaded")
     md-list.standalone(ng-if="loaded")
-      md-list-item.md-2-line.velocity-transition-slideUpIn(data-velocity-opts="{ stagger: 125, duration: 350, delay: 500 }",ng-repeat="product in picks",ng-click="loadProduct(product)")
+      md-list-item.md-2-line.velocity-transition-slideUpIn(md-no-ink,data-velocity-opts="{ stagger: 125, duration: 350, delay: 500 }",ng-repeat="product in picks",ng-click="loadProduct(product)")
         img.md-avatar(ng-src="{{ product.image_thumb_url }}")
         .md-list-item-text
           h3 {{ product.name }}

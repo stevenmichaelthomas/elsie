@@ -1,6 +1,6 @@
 /* global facebookConnectPlugin */
 angular.module('elsie.splash')
-.controller('WelcomeCtrl', ['$scope', '$rootScope', 'Actions', 'elsie.session', 'elsie.auth', '$state', function($scope, $rootScope, Actions, Session, Auth, $state){
+.controller('WelcomeCtrl', ['$scope', '$rootScope', 'Actions', 'elsie.session', 'elsie.auth', '$state', '$mdToast', function($scope, $rootScope, Actions, Session, Auth, $state, $mdToast){
   (function(){
     if (Session.active()){
       console.log('session is active, going home');
@@ -16,7 +16,7 @@ angular.module('elsie.splash')
           $scope.error.message = 'Facebook Auth failed. Reason: ' + error.message;
         });
       }, function(err) {
-        console.log('Could not get access token: ' + err);
+        $mdToast.showSimple('There was a problem authenticating with Facebook.');
       });
     };
     $scope.facebook = function(){
