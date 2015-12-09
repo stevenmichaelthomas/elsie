@@ -1,6 +1,6 @@
 angular.module('elsie.splash').factory('elsie.auth',
-  ['$http', 'ELSIEAPI',
-  function($http, apiUrl) {
+  ['$http', 'ELSIEAPI', '$mdToast',
+  function($http, apiUrl, $mdToast) {
 
     function url(path) {
       return apiUrl + '/auth/'+ path;
@@ -8,9 +8,12 @@ angular.module('elsie.splash').factory('elsie.auth',
 
     return {
       facebook: function(token) {
+        $mdToast.showSimple('Logging in...');
         return $http.post(url('facebook'), { access_token: token })
           .then(function(response) {
             return response.data;
+          }, function() {
+            $mdToast.showSimple('There was a problem authenticating with Facebook.');
           });
       }
 
@@ -22,9 +25,12 @@ angular.module('elsie.splash').factory('elsie.auth',
       }
 
     , login: function(payload) {
+        $mdToast.showSimple('Logging in...');
         return $http.post(url('login'), payload)
           .then(function(response) {
             return response.data;
+          }, function() {
+            $mdToast.showSimple('Login error. Check your credentials and try again!');
           });
       }
 
@@ -32,6 +38,8 @@ angular.module('elsie.splash').factory('elsie.auth',
         return $http.post(url('signup'), payload)
           .then(function(response) {
             return response.data;
+          }, function() {
+            $mdToast.showSimple('Signup error. Did you miss a field?');
           });
       }
     };

@@ -64,7 +64,6 @@ angular.module('elsie.product')
     $scope.product.pick = Picks.check($scope.product);
 
     $scope.image = {
-      'background-position-y': '-220%',
       'background-image': 'url(' + $scope.product.image_url + ')'
     };
 
@@ -98,8 +97,10 @@ angular.module('elsie.product')
     $timeout(function(){
       Velocity(document.getElementById('md-fab'), 
         'transition.expandIn', 500);
-      Velocity(document.getElementById('md-fab'), 
-        'callout.pulse', 500);
+      // Velocity(document.getElementById('product'), 
+      //     { backgroundPositionY: '-88%' }, 500);
+      //Velocity(document.getElementById('md-fab'), 
+      //  'callout.pulse', 500);
     }, 1250);
 
   })();

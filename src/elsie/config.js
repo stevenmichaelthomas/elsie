@@ -14,7 +14,7 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'angu
       var message = 'If you enjoy Elsie, you can help others find out about her by leaving a review in the app store.';
       var actions = [
         { label: 'Don\'t ask again' },
-        { label: 'Leave a review', action: 'url', url: 'https://itunes.apple.com/app/elsie/id951372469?ls=1&mt=8' }
+        { label: 'Leave a review', action: 'url', url: 'https://play.google.com/store/apps/details?id=com.tailoredux.elsie' }
       ];
       var title = 'Please consider a review';
       Dialog.show(message, actions, title);    

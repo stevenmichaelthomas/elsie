@@ -7,16 +7,16 @@ div
       h2.white {{ user.firstName }} {{ user.lastName }}
   md-content(layout-padding)
     md-list
-      md-list-item.md-with-secondary(md-ink-ripple,ng-show="session",ng-click="go('settings')")
+      md-list-item.md-with-secondary(md-no-ink,ng-show="session",ng-click="go('settings')")
         md-icon settings
         p.black Settings
-      md-list-item.md-with-secondary(md-ink-ripple,ng-click="go('welcome')",ng-show="!session")
+      md-list-item.md-with-secondary(md-no-ink,ng-click="go('welcome')",ng-show="!session")
         md-icon account_circle
         p.black Sign in
-      md-list-item.md-with-secondary(md-ink-ripple,ng-click="logout()",ng-show="session")
+      md-list-item.md-with-secondary(md-no-ink,ng-click="logout()",ng-show="session")
         md-icon power_settings_new
         p.black Log out
       md-divider
-      md-list-item.md-with-secondary(md-ink-ripple,ng-click="go('about')")
+      md-list-item.md-with-secondary(md-no-ink,ng-click="go('about')")
         md-icon info
         p.black About

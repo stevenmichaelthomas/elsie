@@ -21,7 +21,7 @@ doctype
         md-tabs#tabs(md-stretch-tabs="always",md-selected="results.mode")
           md-tab(label="Products",md-on-select="modeSelect(0)")
             md-list(ng-show="!searching")
-              md-list-item.md-2-line(ng-repeat="product in results.products",ng-click="selectProduct(product)")
+              md-list-item.md-2-line(md-no-ink,ng-repeat="product in results.products",ng-click="selectProduct(product)")
                 img.md-avatar(ng-src="{{ product.image_thumb_url }}")
                 .md-list-item-text
                   h3 {{ product.name }}
@@ -30,7 +30,7 @@ doctype
                     span {{ product.producer_name }}
           md-tab(label="Stores",md-on-select="modeSelect(1)")
             md-list(ng-show="!searching")
-              md-list-item.md-2-line(ng-repeat="store in results.stores",ng-click="selectStore(store)")
+              md-list-item.md-2-line(md-no-ink,ng-repeat="store in results.stores",ng-click="selectStore(store)")
                 .md-list-item-text
                   h3 &#35;{{ store.store_no }} {{ store.name }}
                   p 
@@ -41,7 +41,7 @@ doctype
         img(src="img/icon_circle_wine.png")
         h4.md-accent.centered Latest kwäf wine picks
       md-list.standalone
-        md-list-item.md-2-line(ng-repeat="product in picks",ng-click="selectProduct(product)")
+        md-list-item.md-2-line(md-no-ink,ng-repeat="product in picks",ng-click="selectProduct(product)")
           img.md-avatar(ng-src="{{ product.image_thumb_url }}")
           .md-list-item-text
             h3 {{ product.name }}

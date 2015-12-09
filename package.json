@@ -33,5 +33,9 @@
   "bugs": {
     "url": "https://github.com/dougestey/elsie/issues"
   },
-  "homepage": "https://github.com/dougestey/elsie"
+  "homepage": "https://github.com/dougestey/elsie",
+  "cordovaPlugins": [],
+  "cordovaPlatforms": [
+    "android"
+  ]
 }
