@@ -12,7 +12,7 @@ $cream: #f3f3f3;
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: local('Material Icons'), local('MaterialIcons-Regular'), url(../img/Material-Icons.woff2) format('woff2');
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url(../img/Material-Icons.ttf) format('ttf');
 }
 
 .material-icons {
@@ -50,7 +50,7 @@ $cream: #f3f3f3;
   color: $pink;
 }
 
-$bump: 24px;
+$bump: 22px;
 
 $transition: 0.35s;
 $transition-function: cubic-bezier(.36, .66, .04, 1) !default; // thanks, driftyco!

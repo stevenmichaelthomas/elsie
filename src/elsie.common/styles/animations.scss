@@ -27,9 +27,9 @@ md-sidenav.md-closed-remove {
 // // Handle initial properties of the leaving state
 #main.direction-forward [ui-view].ng-leave,
 #main.direction-back [ui-view].ng-leave {
-//  -webkit-transform: translate3d(0, 0, 0);
-//  transform: translate3d(0, 0, 0);
-  opacity: 1;
+ -webkit-transform: translate3d(0, 0, 0);
+ transform: translate3d(0, 0, 0);
+  // opacity: 1;
 }
 
 #main.direction-forward [ui-view].ng-leave {
@@ -42,36 +42,36 @@ md-sidenav.md-closed-remove {
 
 // Handle final properties of the leaving state
 #main.direction-forward [ui-view].ng-leave.ng-leave-active {
-  // -webkit-transform: translate3d(-33%, 0, 0);
-  // transform: translate3d(-33%, 0, 0);
-  opacity: 0;
+  -webkit-transform: translate3d(-33%, 0, 0);
+  transform: translate3d(-33%, 0, 0);
+  // opacity: 0;
 }
 
 #main.direction-back [ui-view].ng-leave.ng-leave-active {
-  // -webkit-transform: translate3d(100%, 0, 0);
-  // transform: translate3d(100%, 0, 0);
-  opacity: 0;
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+  // opacity: 0;
 }
 
 // Handle initial properties of the entering state
 #main.direction-forward [ui-view].ng-enter {
   z-index: $z-index-view-above;
-  // -webkit-transform: translate3d(100%, 0, 0);
-  // transform: translate3d(100%, 0, 0);
-  opacity: 0;
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+  // opacity: 0;
 }
 
 #main.direction-back [ui-view].ng-enter {
   z-index: $z-index-view-below;
-  // -webkit-transform: translate3d(-33%, 0, 0);
-  // transform: translate3d(-33%, 0, 0);
-  opacity: 0;
+  -webkit-transform: translate3d(-33%, 0, 0);
+  transform: translate3d(-33%, 0, 0);
+  // opacity: 0;
 }
 
 // Handle final properties of the entering state
 #main.direction-forward [ui-view].ng-enter.ng-enter-active,
 #main.direction-back [ui-view].ng-enter.ng-enter-active {
-  // -webkit-transform: translate3d(0, 0, 0);
-  // transform: translate3d(0, 0, 0);
-  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  // opacity: 1;
 }

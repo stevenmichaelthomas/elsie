@@ -110,10 +110,10 @@ angular.module('elsie.product')
     $timeout(function(){
       Velocity(document.getElementById('md-fab'), 
         'transition.expandIn', 500);
-      // Velocity(document.getElementById('product'), 
-      //     { backgroundPositionY: '-88%' }, 500);
-      //Velocity(document.getElementById('md-fab'), 
-      //  'callout.pulse', 500);
+      Velocity(document.getElementById('product'), 
+          { backgroundPositionY: '-88%' }, 500);
+      Velocity(document.getElementById('md-fab'), 
+       'callout.pulse', 500);
     }, 1250);
 
   })();
