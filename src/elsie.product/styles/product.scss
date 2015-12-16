@@ -44,20 +44,15 @@
       }
     }
   }
-  button.md-button.md-fab {
+  button.md-button.md-fab#md-fab {
     opacity: 0;
+  }
+  #product-dial {
+    margin-top: -35px;
     position: absolute;
     right: 20px;
-    margin-top: -30px;
-  }
-  button.md-button.md-icon-button {
-    position: absolute;
-    right: 32px;
-    margin-top: 36px;
-    z-index: 20;
-    md-progress-circular {
-      margin-top: -26px;
-      margin-left: -26px;
+    button.md-fab.md-mini md-icon {
+      color: $pink;
     }
   }
   md-content.upper {
