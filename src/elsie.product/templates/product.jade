@@ -4,9 +4,20 @@ doctype
     .image
     md-toolbar.lower
       .md-toolbar-tools
-  md-button.md-fab#md-fab(aria-label="Add to Watchlist",ng-click="toggleWatch(product)")
-    md-icon(ng-if="isWatched") favorite
-    md-icon(ng-if="!isWatched") favorite_border
+  #product-dial(layout="row",layout-align="center center")
+    md-fab-speed-dial.md-scale(md-direction="left",)
+      md-fab-trigger
+        md-button.md-fab#md-fab
+          md-icon menu
+      md-fab-actions
+        md-button.md-fab.md-raised.md-mini(aria-label="Favourite",ng-click="toggleWatch(product)")
+          md-icon(ng-if="isWatched") favorite
+          md-icon(ng-if="!isWatched") favorite_border
+        md-button.md-fab.md-raised.md-mini(aria-label="Suggest",ng-click="suggestProduct(product)")
+          md-icon send
+    //md-button.md-fab#md-fab(aria-label="Add to Watchlist",ng-click="toggleWatch(product)")
+      md-icon(ng-if="isWatched") favorite
+      md-icon(ng-if="!isWatched") favorite_border
   md-content.lower.md-default.md-primary-bg
     div(flex="row",layout-wrap)
       .head(flex="90",flex-offset="5")
