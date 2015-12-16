@@ -1,7 +1,7 @@
 /* global Keyboard */
 angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'angular-velocity', 'elsie.templates', 'elsie.common', 'elsie.splash', 'elsie.core', 'elsie.product', 'elsie.search', 'elsie.store'])
 
-.run(['$http', '$rootScope', '$state', '$templateCache', 'Analytics', 'Dialog', 'elsie.httpAuth', 'elsie.session', 'Locator', function($http, $rootScope, $state, $templateCache, Analytics, Dialog, HttpAuth, Session, Locator) {
+.run(['$http', '$rootScope', '$state', '$templateCache', 'GCM', 'Analytics', 'Dialog', 'elsie.httpAuth', 'elsie.session', 'Locator', function($http, $rootScope, $state, $templateCache, GCM, Analytics, Dialog, HttpAuth, Session, Locator) {
 
   function onDeviceReady() {
     if (navigator && navigator.splashscreen){
@@ -9,6 +9,9 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'angu
     }
     Locator.ready();
     Locator.refresh();
+    if (Session.active()){
+      GCM.initialize();
+    }
     Analytics.incrementRunNumber();
     if (Analytics.runNumber() === 3){
       var message = 'If you enjoy Elsie, you can help others find out about her by leaving a review in the app store.';
@@ -19,10 +22,12 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'angu
       var title = 'Please consider a review';
       Dialog.show(message, actions, title);    
     }
+    window.GcmPushPlugin.setApplicationIconBadgeNumber({ 'badge': 0 });
   }
 
   function onResume() {
     Locator.refresh();
+    window.GcmPushPlugin.setApplicationIconBadgeNumber({ 'badge': 0 });
   }
   
   document.addEventListener('deviceready', onDeviceReady, false);
@@ -31,6 +36,7 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'angu
   $rootScope.$on('session.init', function(event, data) {
     Session.init(data);
     $state.go('home');
+    GCM.initialize();
   });
 
   $rootScope.$on('$stateChangeStart', function(e, to) {
