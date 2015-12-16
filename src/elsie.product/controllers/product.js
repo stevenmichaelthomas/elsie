@@ -1,6 +1,6 @@
 /* global Velocity */
 angular.module('elsie.product')
-.controller('ProductCtrl', ['$scope', 'Navigator', 'Products', 'Stores', 'Watchlist', 'Actions', 'Picks', 'Bump', 'Map', 'elsie.session', 'Settings', '$timeout', function ($scope, Navigator, Products, Stores, Watchlist, Actions, Picks, Bump, Map, Session, Settings, $timeout) {
+.controller('ProductCtrl', ['$scope', 'Navigator', 'Products', 'Stores', 'Watchlist', 'Actions', 'Picks', 'Bump', 'Map', 'elsie.session', 'Settings', 'Friends', '$timeout', '$mdBottomSheet', function ($scope, Navigator, Products, Stores, Watchlist, Actions, Picks, Bump, Map, Session, Settings, Friends, $timeout, $mdBottomSheet) {
   $scope.toggleWatch = function(product){
     if (!$scope.session) {
       Navigator.go('watchlist');
@@ -10,6 +10,19 @@ angular.module('elsie.product')
       $scope.isWatched = true;
     } else if (toggle === 'removed') {
       $scope.isWatched = false;
+    }
+  };
+  $scope.suggestProduct = function(product){
+    if (Friends.enabled()){
+      Friends.get().then(function(response){
+        $scope.friends = response;
+        console.log($scope.friends);
+        $mdBottomSheet.show({
+          templateUrl: 'templates/friends.html'
+        });
+      });
+    } else {
+      // dispatch dialog about fb account not linked
     }
   };
   $scope.loadStore = function(store) {
