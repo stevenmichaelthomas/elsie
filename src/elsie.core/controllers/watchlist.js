@@ -48,6 +48,7 @@ angular.module('elsie.core')
   (function(){
     Actions.theme('purple');
     Actions.set({ title: 'Watchlist', menu: false, back: true, search: false, watchlist: false, watchlistRefresh: true });
+    Actions.show();
     if (Navigator.lastState() && Navigator.lastState().name === 'product' || Navigator.lastState() && Navigator.lastState().name === 'store'){
       Actions.backGoesHome(true);
     } else {

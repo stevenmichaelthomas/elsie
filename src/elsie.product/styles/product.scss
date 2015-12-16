@@ -12,7 +12,7 @@
   @include transition-timing-function($transition-function);
   transition: background-position-y $transition;
   .image {
-    height: 244px;
+    height: 254px;
     @media only screen 
     and (min-device-width : 375px) 
     and (max-device-width : 667px) 
@@ -151,7 +151,6 @@
   display: block;
   background: #79A70A;
   background: linear-gradient($purple 0%, $purple-light 100%);
-  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
   position: absolute;
   top: 18 + $bump;
   right: -21px;

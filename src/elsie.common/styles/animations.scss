@@ -1,4 +1,4 @@
-[ui-view] {
+#main [ui-view] {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -6,23 +6,30 @@
   right: 0;
   background-color: white;
   overflow: hidden;
+  transition: transform $transition, opacity $transition;
+  @include transition-timing-function($transition-function);
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0,0,0);
+}
+
+md-sidenav.md-closed-add,
+md-sidenav.md-closed-remove {
+    -webkit-transition: all .4s cubic-bezier(0.25, .8, .25, 1) !important;
+    transition: all .4s cubic-bezier(0.25, .8, .25, 1) !important;
 }
 
 // // Common transition properties
-[ui-view].ng-enter, 
-[ui-view].ng-leave {
-  -webkit-transition: all $transition;
-  transition: all $transition;
-  // -webkit-transition-delay: 0.001s;
-  // transition-delay: 0.001s;
-  @include transition-timing-function($transition-function);
-}
+// [ui-view].ng-enter, 
+// [ui-view].ng-leave {
+  
+// }
 
 // // Handle initial properties of the leaving state
 #main.direction-forward [ui-view].ng-leave,
 #main.direction-back [ui-view].ng-leave {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+ -webkit-transform: translate3d(0, 0, 0);
+ transform: translate3d(0, 0, 0);
+  // opacity: 1;
 }
 
 #main.direction-forward [ui-view].ng-leave {
@@ -37,11 +44,13 @@
 #main.direction-forward [ui-view].ng-leave.ng-leave-active {
   -webkit-transform: translate3d(-33%, 0, 0);
   transform: translate3d(-33%, 0, 0);
+  // opacity: 0;
 }
 
 #main.direction-back [ui-view].ng-leave.ng-leave-active {
   -webkit-transform: translate3d(100%, 0, 0);
   transform: translate3d(100%, 0, 0);
+  // opacity: 0;
 }
 
 // Handle initial properties of the entering state
@@ -49,12 +58,14 @@
   z-index: $z-index-view-above;
   -webkit-transform: translate3d(100%, 0, 0);
   transform: translate3d(100%, 0, 0);
+  // opacity: 0;
 }
 
 #main.direction-back [ui-view].ng-enter {
   z-index: $z-index-view-below;
   -webkit-transform: translate3d(-33%, 0, 0);
   transform: translate3d(-33%, 0, 0);
+  // opacity: 0;
 }
 
 // Handle final properties of the entering state
@@ -62,4 +73,5 @@
 #main.direction-back [ui-view].ng-enter.ng-enter-active {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
+  // opacity: 1;
 }

@@ -213,8 +213,6 @@ angular.module('elsie.core')
     $scope.hint = Hints.english();
 
     // Action bar
-    Actions.show();
-    Actions.theme('purple');
     Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, locating: true, logo: true });
     if (Navigator.lastState() && Navigator.lastState().name === 'product' || Navigator.lastState() && Navigator.lastState().name === 'store'){
       Actions.backGoesHome(true);
@@ -227,6 +225,9 @@ angular.module('elsie.core')
     angular.copy(Cache.get(), $scope.results);
     if ($scope.results.active) {
       $scope.focus();
+    } else {
+      Actions.theme('purple');
+      Actions.show();
     }
     
     // Watchlist

@@ -12,7 +12,7 @@ $cream: #f3f3f3;
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: local('Material Icons'), local('MaterialIcons-Regular'), url(../img/Material-Icons.ttf) format('truetype');
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url(../img/Material-Icons.ttf) format('ttf');
 }
 
 .material-icons {
@@ -29,6 +29,13 @@ $cream: #f3f3f3;
   direction: ltr;
 }
 
+// * {
+//   box-shadow: none !important;
+// }
+
+.md-whiteframe-4dp, .md-whiteframe-z2 {
+  box-shadow: none;
+}
 
 &.white {
   color: $grey-light; 
@@ -49,6 +56,7 @@ $transition: 0.35s;
 $transition-function: cubic-bezier(.36, .66, .04, 1) !default; // thanks, driftyco!
 
 $box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+$border-bottom: rgba(0, 0, 0, 0.12) solid;
 
 $z-index-view-below: 10;
 $z-index-view-above: 20;
@@ -228,7 +236,7 @@ md-list.standalone {
   background-color: none;
   md-list-item {
     margin: 10px;
-    box-shadow: 0px 3px 0 rgba(0, 0, 0, 0.12);
+    border-bottom: 3px $border-bottom;
     background-color: white;
     border-radius: 4px;
     > button {
