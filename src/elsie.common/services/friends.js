@@ -2,7 +2,11 @@
 angular.module('elsie.common')
 .factory('Friends', ['$q', '$mdToast', '$http', 'ELSIEAPI', 'elsie.session', function($q, $mdToast, $http, ELSIEAPI, Session) {
     
-  return {
+  var url = function(path) {
+    return ELSIEAPI + '/users/' + Session.get('account').id + '/' + path;
+  };
+
+  var service = {
     enabled: function(){
       if (!Session.active()) {
         return false;
@@ -18,7 +22,9 @@ angular.module('elsie.common')
       if (id) {
         facebookConnectPlugin.api(id + '/friends', ['user_friends'],
           function (result) {
-            deferred.resolve(result.data);
+            service.fulfill(result.data).then(function(response){
+              deferred.resolve(response.data);
+            });
           },
           function (error) {
             deferred.reject(error);
@@ -27,7 +33,19 @@ angular.module('elsie.common')
         deferred.reject();
       }
       return deferred.promise;
+    },
+    fulfill: function(friends){
+      return $http.post(url('friends'), { friends: friends });
+    },
+    suggest: function(product, friend){
+      var suggestion = {
+        productNumber: product.product_no,
+        facebookId: friend.facebookId
+      };
+      return $http.post(url('suggestions'), suggestion);
     }
   };
+
+  return service;
 
 }]);
