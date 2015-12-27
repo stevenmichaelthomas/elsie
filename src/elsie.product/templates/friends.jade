@@ -1,2 +1,13 @@
-md-bottom-sheet
-  h5 sup
+md-bottom-sheet.md-grid(layout="column",ng-cloak)
+  h5 Suggest this product
+  md-virtual-repeat-container(md-orient-horizontal)
+    .item(md-virtual-repeat="friend in friends")
+      md-button.md-grid-item-content(ng-click="selectFriend(friend)")
+        img.md-avatar(ng-src="{{ friend.avatarUrl }}")
+        div.md-grid-text {{ friend.firstName }}
+//    md-list(flex,layout="row",layout-align="center center")
+      md-list-item(ng-repeat="friend in friends")
+        md-button.md-grid-item-content(ng-click="selectFriend(friend)")
+          img.md-avatar(ng-src="{{ friend.avatarUrl }}")
+          div.md-grid-text {{ friend.firstName }} {{ friend.lastName }}
+

@@ -65,7 +65,7 @@ angular.module('elsie.core')
       scope: $scope,
       preserveScope: true,
       clickOutsideToClose: true,
-      hasBackdrop: false
+      hasBackdrop: true
     });
   };
   (function init(){
