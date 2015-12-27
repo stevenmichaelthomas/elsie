@@ -1,5 +1,5 @@
 angular.module('elsie.common')
-.factory('GCM', ['$q', '$mdToast', '$http', 'ELSIEAPI', 'elsie.session', function($q, $mdToast, $http, ELSIEAPI, Session) {
+.factory('GCM', ['$q', '$mdToast', '$http', 'ELSIEAPI', 'elsie.session', 'Products', 'Navigator', function($q, $mdToast, $http, ELSIEAPI, Session, Products, Navigator) {
     
   var url = function(path) {
     return ELSIEAPI + '/users/' + Session.get('account').id + '/token';
@@ -14,11 +14,16 @@ angular.module('elsie.common')
   };
 
   var errorHandler = function(error) {
-    $mdToast.showSimple('Unable to enable notifications. Check your system settings.');
+    $mdToast.showSimple('Elsie can\'t enable notifications. Check your system settings.');
   };
 
   window.onNotification = function(notification){
-    $mdToast.showSimple(notification.body); 
+    console.log('notification', notification);
+    if (notification.product){
+      Products.one(notification.product).then(function(){
+        Navigator.go('product');
+      });
+    }
   };
 
   return {

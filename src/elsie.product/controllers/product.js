@@ -1,6 +1,10 @@
 /* global Velocity */
 angular.module('elsie.product')
 .controller('ProductCtrl', ['$scope', 'Navigator', 'Products', 'Stores', 'Watchlist', 'Actions', 'Picks', 'Bump', 'Map', 'elsie.session', 'Settings', 'Friends', '$timeout', '$mdBottomSheet', function ($scope, Navigator, Products, Stores, Watchlist, Actions, Picks, Bump, Map, Session, Settings, Friends, $timeout, $mdBottomSheet) {
+  $scope.selectFriend = function(friend){ 
+    Friends.suggest($scope.product, friend);
+    $mdBottomSheet.hide();
+  };
   $scope.toggleWatch = function(product){
     if (!$scope.session) {
       Navigator.go('watchlist');
@@ -14,11 +18,13 @@ angular.module('elsie.product')
   };
   $scope.suggestProduct = function(product){
     if (Friends.enabled()){
-      Friends.get().then(function(response){
-        $scope.friends = response;
-        console.log($scope.friends);
+      Friends.get().then(function(friends){
+        $scope.friends = friends;
         $mdBottomSheet.show({
-          templateUrl: 'templates/friends.html'
+          templateUrl: 'templates/friends.html',
+          scope: $scope,
+          preserveScope: true,
+          hasBackdrop: true
         });
       });
     } else {
