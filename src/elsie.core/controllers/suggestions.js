@@ -1,5 +1,5 @@
 angular.module('elsie.core')
-.controller('WatchlistCtrl', ['$scope', '$timeout', '$mdToast', 'Navigator', 'Suggestions', 'Products', 'Actions', 'elsie.session',
+.controller('SuggestionsCtrl', ['$scope', '$timeout', '$mdToast', 'Navigator', 'Suggestions', 'Products', 'Actions', 'elsie.session',
   function($scope, $timeout, $mdToast, Navigator, Suggestions, Products, Actions, Session) {
   $scope.loadProduct = function(product){
     if (product && product.product_no){

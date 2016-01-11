@@ -107,6 +107,12 @@ angular.module('elsie', ['ui.router', 'ngAnimate', 'ngAria', 'ngMaterial', 'angu
       controller: 'WatchlistCtrl',
       priority: 3
     })
+    .state('suggestions', {
+      url: '/suggestions',
+      templateUrl: 'templates/suggestions.html',
+      controller: 'SuggestionsCtrl',
+      priority: 3
+    })
     .state('product', {
       url: '/product',
       controller: 'ProductCtrl',
