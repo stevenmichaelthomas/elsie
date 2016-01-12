@@ -10,6 +10,14 @@ angular.module('elsie.core')
   $scope.go = function(destination){
     Navigator.go(destination);
   };
+  $scope.setTabsHeight = function(){
+    var viewport = window.innerHeight + 20;
+    var tabsArea = viewport - 40;
+    tabsArea = tabsArea + 'px';
+    $scope.tabsStyle = {
+      height: tabsArea
+    };
+  };
   $scope.loadInbox = function() {
     Suggestions.inbox().then(function(data){
       if (data.status && data.status === -1){

@@ -1,7 +1,7 @@
 doctype
 .watchlist
   md-content
-    md-tabs#tabs(md-stretch-tabs="always",md-selected="suggestions.mode")
+    md-tabs#tabs(md-stretch-tabs="always",md-selected="suggestions.mode",ng-style="tabsStyle")
       md-tab(label="Inbox",md-on-select="modeSelect(0)")
         md-progress-circular.md-accent(md-mode="indeterminate",ng-show="!inbox && session || loading")
         md-list.standalone(ng-show="inbox && inbox.length > 0 || !loading")
