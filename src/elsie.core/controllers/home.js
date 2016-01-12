@@ -187,9 +187,9 @@ angular.module('elsie.core')
   $scope.$watch('position', function(val){
     // deviceHeight from bottom
     if (val > $scope.deviceHeight) {
-      Actions.set({ title: 'kwäf Picks', menu: true, back: false, search: false, notifications: true, watchlist: true, locating: false, logo: false });
+      Actions.set({ title: 'kwäf Picks', menu: true, back: false, search: false, suggestions: true, watchlist: true, locating: false, logo: false });
     } else {
-      Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, notifications: true, locating: false, logo: true });
+      Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, suggestions: true, locating: false, logo: true });
     }
 
     // 200 from bottom
@@ -213,7 +213,7 @@ angular.module('elsie.core')
     $scope.hint = Hints.english();
 
     // Action bar
-    Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, notifications: false, locating: true, logo: true });
+    Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, suggestions: false, locating: true, logo: true });
     if (Navigator.lastState() && Navigator.lastState().name === 'product' || Navigator.lastState() && Navigator.lastState().name === 'store'){
       Actions.backGoesHome(true);
     } else {
@@ -274,7 +274,7 @@ angular.module('elsie.core')
     $timeout(function(){
       Locator.initialize();
       Locator.refresh().then(function(){
-        Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, notifications: true, locating: false, logo: true });
+        Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, suggestions: true, locating: false, logo: true });
       });
     }, 750);
 
