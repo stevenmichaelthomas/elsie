@@ -9,7 +9,7 @@ md-toolbar(class="action-bar {{ theme }}",ng-show="show")
     img.elsie-logo.md-avatar(ng-class="{ visible: set.logo }",src="img/logo_white.png")
     md-button.md-icon-button.right-button.right-button-2(ng-class="{ visible: set.locating }")
       md-icon location_searching
-    md-button.md-icon-button.right-button(ng-click="go('suggestions')", ng-class="{ visible: set.watchlist }")
+    md-button.md-icon-button.right-button.right-button-2(ng-click="go('suggestions')", ng-class="{ visible: set.suggestions }")
       md-icon notifications
     md-button.md-icon-button.right-button(ng-click="go('watchlist')", ng-class="{ visible: set.watchlist }")
       md-icon favorite

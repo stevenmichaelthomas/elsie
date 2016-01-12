@@ -274,7 +274,7 @@ angular.module('elsie.core')
     $timeout(function(){
       Locator.initialize();
       Locator.refresh().then(function(){
-        Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, locating: false, logo: true });
+        Actions.set({ title: '', menu: true, back: false, search: false, watchlist: true, notifications: true, locating: false, logo: true });
       });
     }, 750);
 
