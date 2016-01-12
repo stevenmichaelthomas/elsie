@@ -34,7 +34,7 @@ doctype
                     | {{ suggestion.product.producer_name }}
                     br
                     span {{ suggestion.product.secondary_category }} &#183; {{ suggestion.product.alcohol_content | percentage }} &#183;
-                    span.accent &nbsp;Suggested by {{ suggestion.creator_details.firstName }}
+                    span.accent &nbsp;Suggested to {{ suggestion.recipient_details.firstName }}
           .full(layout="column", ng-show="error || !session || outbox && outbox.length === 0 && !error && session",layout-align="center center")
             div(flex,ng-if="error",layout="column", layout-align="center center")
               img.watchlist-image(src="img/watchlist.png")

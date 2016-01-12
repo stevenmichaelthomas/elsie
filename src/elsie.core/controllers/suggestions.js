@@ -57,9 +57,7 @@ angular.module('elsie.core')
         return;
       }
       angular.forEach(data.data, function(suggestion){
-        suggestion.creator_details = {
-          firstName: 'You'
-        };
+        suggestion.recipient_details = Friends.fromCache(suggestion.recipient);
         Products.one(suggestion.productNumber).then(function(product){
           suggestion.product = product;
           $scope.outbox.push(suggestion);
