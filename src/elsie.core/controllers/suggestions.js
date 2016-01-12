@@ -18,7 +18,7 @@ angular.module('elsie.core')
       height: tabsArea
     };
   };
-  $scope.modeSelect = function(mode){
+  $scope.modeSelect = function(){
     $scope.setTabsHeight();
   };
   $scope.loadInbox = function() {
@@ -29,7 +29,7 @@ angular.module('elsie.core')
         return;
       }
       angular.forEach(data.data, function(suggestion){
-        suggestion.creator_details = Friends.fromCache(suggestion.creator);
+        suggestion.creator_details = Friends.fromCache(suggestion.creator) || { firstName: 'Elsie' };
         Products.one(suggestion.productNumber).then(function(product){
           suggestion.product = product;
           $scope.inbox.push(suggestion);
