@@ -59,6 +59,7 @@ angular.module('elsie.core')
     if (Session.active()) {
       $scope.session = true;
       $timeout(function(){
+        $scope.setTabsHeight();
         $scope.loadInbox();
         $scope.loadOutbox();
       }, 500);
