@@ -28,15 +28,15 @@ angular.module('elsie.core')
         $scope.error = data;
         return;
       }
-      angular.forEach(data.data, function(p, i){
-        Products.one(p.productNumber).then(function(one){
-          one.pick = p;
-          one.creator_details = Friends.fromCache(p.creator);
-          $scope.inbox.push(one);
+      angular.forEach(data.data, function(suggestion){
+        suggestion.creator_details = Friends.fromCache(suggestion.creator);
+        Products.one(suggestion.productNumber).then(function(product){
+          suggestion.product = product;
+          $scope.inbox.push(suggestion);
         });
         if ($scope.inbox.length === data.data.length){
           $scope.inboxReady = true;
-          console.log('inbox', $scope.outbox);
+          console.log('inbox', $scope.inbox);
           if ($scope.outboxReady) {
             $scope.loading = false;
           }
@@ -51,21 +51,21 @@ angular.module('elsie.core')
         $scope.error = data;
         return;
       }
-      angular.forEach(data.data, function(p, i){
-        Products.one(p.productNumber).then(function(one){
-          one.pick = p;
-          one.creator_details = {
-            firstName: 'You'
-          };
-          $scope.outbox.push(one);
-          if ($scope.outbox.length === data.data.length){
-            $scope.outboxReady = true;
-            console.log('outbox', $scope.outbox);
-            if ($scope.inboxReady) {
-              $scope.loading = false;
-            }
-          }
+      angular.forEach(data.data, function(suggestion){
+        suggestion.creator_details = {
+          firstName: 'You'
+        };
+        Products.one(suggestion.productNumber).then(function(product){
+          suggestion.product = product;
+          $scope.outbox.push(suggestion);
         });
+        if ($scope.outbox.length === data.data.length){
+          $scope.outboxReady = true;
+          console.log('outbox', $scope.outbox);
+          if ($scope.inboxReady) {
+            $scope.loading = false;
+          }
+        }
       });
     });
   };
