@@ -1,3 +1,4 @@
+/* global Velocity */
 angular.module('elsie.core')
 .controller('SuggestionsCtrl', ['$scope', '$timeout', '$mdToast', 'Navigator', 'Friends', 'Suggestions', 'Products', 'Actions', 'elsie.session',
   function($scope, $timeout, $mdToast, Navigator, Friends, Suggestions, Products, Actions, Session) {
@@ -12,14 +13,18 @@ angular.module('elsie.core')
   };
   $scope.setTabsHeight = function(){
     var viewport = window.innerHeight + 20;
-    var tabsArea = viewport - 40;
+    var tabsArea = viewport - 90;
     tabsArea = tabsArea + 'px';
-    $scope.tabsStyle = {
+    Velocity(document.getElementById('tabs'), {
       height: tabsArea
-    };
+    }, {
+      duration: 0
+    });
   };
   $scope.modeSelect = function(){
-    $scope.setTabsHeight();
+    $timeout(function(){
+      $scope.setTabsHeight();
+    }, 350);
   };
   $scope.loadInbox = function() {
     Suggestions.inbox().then(function(data){
