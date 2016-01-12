@@ -28,6 +28,7 @@ angular.module('elsie.core')
         $scope.error = data;
         return;
       }
+      console.log('inbox', data);
       angular.forEach(data, function(p, i){
         Products.one(p.productNumber).then(function(one){
           one.pick = p;
@@ -51,6 +52,7 @@ angular.module('elsie.core')
         $scope.error = data;
         return;
       }
+      console.log('outbox', data);
       angular.forEach(data, function(p, i){
         Products.one(p.productNumber).then(function(one){
           one.pick = p;
