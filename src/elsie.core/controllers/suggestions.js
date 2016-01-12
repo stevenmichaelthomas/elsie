@@ -28,14 +28,13 @@ angular.module('elsie.core')
         $scope.error = data;
         return;
       }
-      console.log('inbox', data);
-      angular.forEach(data, function(p, i){
+      angular.forEach(data.data, function(p, i){
         Products.one(p.productNumber).then(function(one){
           one.pick = p;
           one.creator_details = Friends.fromCache(p.creator);
           $scope.inbox.push(one);
         });
-        if ($scope.inbox.length === data.length){
+        if ($scope.inbox.length === data.data.length){
           $scope.inboxReady = true;
           console.log('inbox', $scope.outbox);
           if ($scope.outboxReady) {
@@ -52,15 +51,14 @@ angular.module('elsie.core')
         $scope.error = data;
         return;
       }
-      console.log('outbox', data);
-      angular.forEach(data, function(p, i){
+      angular.forEach(data.data, function(p, i){
         Products.one(p.productNumber).then(function(one){
           one.pick = p;
           one.creator_details = {
             firstName: 'You'
           };
           $scope.outbox.push(one);
-          if ($scope.outbox.length === data.length){
+          if ($scope.outbox.length === data.data.length){
             $scope.outboxReady = true;
             console.log('outbox', $scope.outbox);
             if ($scope.inboxReady) {
