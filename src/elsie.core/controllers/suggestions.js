@@ -1,6 +1,6 @@
 angular.module('elsie.core')
 .controller('SuggestionsCtrl', ['$scope', '$timeout', '$mdToast', 'Navigator', 'Suggestions', 'Products', 'Actions', 'elsie.session',
-  function($scope, $timeout, $mdToast, Navigator, Suggestions, Products, Actions, Session) {
+  function($scope, $timeout, $mdToast, Navigator, Friends, Suggestions, Products, Actions, Session) {
   $scope.loadProduct = function(product){
     if (product && product.product_no){
       Products.select(product);
@@ -23,34 +23,52 @@ angular.module('elsie.core')
   };
   $scope.loadInbox = function() {
     Suggestions.inbox().then(function(data){
+      $scope.inbox = [];
       if (data.status && data.status === -1){
-        $scope.inbox = [];
         $scope.error = data;
         return;
       }
-      $scope.loading = false;
-      $scope.inbox = data;
+      angular.forEach(data, function(p, i){
+        Products.one(p.productNumber).then(function(one){
+          one.pick = p;
+          one.creator_details = Friends.fromCache(p.creator);
+          $scope.inbox.push(one);
+        });
+        if ($scope.inbox.length === data.length){
+          $scope.inboxReady = true;
+          console.log('inbox', $scope.outbox);
+          if ($scope.outboxReady) {
+            $scope.loading = false;
+          }
+        }
+      });
     });
   };
   $scope.loadOutbox = function() {
     Suggestions.outbox().then(function(data){
+      $scope.outbox = [];
       if (data.status && data.status === -1){
-        $scope.outbox = [];
         $scope.error = data;
         return;
       }
-      $scope.loading = false;
-      $scope.outbox = data;
+      angular.forEach(data, function(p, i){
+        Products.one(p.productNumber).then(function(one){
+          one.pick = p;
+          one.creator_details = {
+            firstName: 'You'
+          };
+          $scope.outbox.push(one);
+          if ($scope.outbox.length === data.length){
+            $scope.outboxReady = true;
+            console.log('outbox', $scope.outbox);
+            if ($scope.inboxReady) {
+              $scope.loading = false;
+            }
+          }
+        });
+      });
     });
   };
-  // $scope.$on('INBOX_REFRESH_START', function(){
-  //   $scope.loading = true;
-  // });
-  // $scope.$on('INBOX_REFRESH_COMPLETE', function(){
-  //   $scope.inbox = Suggestions.cache().inbox;
-  //   $scope.loading = false;
-  //   $mdToast.showSimple('Suggestions refreshed!'); 
-  // });
   (function(){
     Actions.theme('purple');
     Actions.set({ title: 'Suggestions', menu: false, back: true, search: false, watchlist: false, watchlistRefresh: false });
@@ -64,9 +82,11 @@ angular.module('elsie.core')
       $scope.session = true;
       $timeout(function(){
         $scope.setTabsHeight();
-        $scope.loadInbox();
-        $scope.loadOutbox();
+        Friends.get().then(function(){
+          $scope.loadInbox();
+          $scope.loadOutbox();
+        });
       }, 500);
-    }    
+    }
   })();
 }]);

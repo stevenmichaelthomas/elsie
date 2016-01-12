@@ -6,6 +6,8 @@ angular.module('elsie.common')
     return ELSIEAPI + '/users/' + Session.get('account').id + '/' + path;
   };
 
+  var cache = {};
+
   var service = {
     enabled: function(){
       if (!Session.active()) {
@@ -23,6 +25,10 @@ angular.module('elsie.common')
         facebookConnectPlugin.api(id + '/friends', ['user_friends'],
           function (result) {
             service.fulfill(result.data).then(function(response){
+              cache = {};
+              angular.forEach(response.data, function(friend){
+                cache[friend.id] = friend;
+              });
               deferred.resolve(response.data);
             });
           },
@@ -43,6 +49,13 @@ angular.module('elsie.common')
         facebookId: friend.facebookId
       };
       return $http.post(url('suggestions'), suggestion);
+    },
+    fromCache: function(key){
+      if (cache[key]){
+        return cache[key];
+      } else {
+        return undefined;
+      }
     }
   };
 
