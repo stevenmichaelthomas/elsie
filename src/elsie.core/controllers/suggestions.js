@@ -18,6 +18,9 @@ angular.module('elsie.core')
       height: tabsArea
     };
   };
+  $scope.modeSelect = function(mode){
+    $scope.setTabsHeight();
+  };
   $scope.loadInbox = function() {
     Suggestions.inbox().then(function(data){
       if (data.status && data.status === -1){
@@ -25,7 +28,8 @@ angular.module('elsie.core')
         $scope.error = data;
         return;
       }
-      $scope.watchlist = data;
+      $scope.loading = false;
+      $scope.inbox = data;
     });
   };
   $scope.loadOutbox = function() {
@@ -35,17 +39,18 @@ angular.module('elsie.core')
         $scope.error = data;
         return;
       }
-      $scope.watchlist = data;
+      $scope.loading = false;
+      $scope.outbox = data;
     });
   };
-  $scope.$on('INBOX_REFRESH_START', function(){
-    $scope.loading = true;
-  });
-  $scope.$on('INBOX_REFRESH_COMPLETE', function(){
-    $scope.inbox = Suggestions.cache().inbox;
-    $scope.loading = false;
-    $mdToast.showSimple('Suggestions refreshed!'); 
-  });
+  // $scope.$on('INBOX_REFRESH_START', function(){
+  //   $scope.loading = true;
+  // });
+  // $scope.$on('INBOX_REFRESH_COMPLETE', function(){
+  //   $scope.inbox = Suggestions.cache().inbox;
+  //   $scope.loading = false;
+  //   $mdToast.showSimple('Suggestions refreshed!'); 
+  // });
   (function(){
     Actions.theme('purple');
     Actions.set({ title: 'Suggestions', menu: false, back: true, search: false, watchlist: false, watchlistRefresh: false });
@@ -55,7 +60,6 @@ angular.module('elsie.core')
     } else {
       Actions.backGoesHome(false);
     }
-    
     if (Session.active()) {
       $scope.session = true;
       $timeout(function(){
