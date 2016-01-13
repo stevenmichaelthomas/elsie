@@ -48,7 +48,7 @@ angular.module('elsie.core')
   };
   $scope.setTabsHeight = function(){
     var viewport = window.innerHeight + 20;
-    var tabsArea = viewport - 90;
+    var tabsArea = viewport - 98;
     tabsArea = tabsArea + 'px';
     Velocity(document.getElementById('tabs'), {
       height: tabsArea
