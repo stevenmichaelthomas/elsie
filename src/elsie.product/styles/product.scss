@@ -54,6 +54,12 @@
     button.md-fab.md-mini md-icon {
       color: $pink;
     }
+    md-fab-speed-dial md-fab-trigger button.md-button md-icon {
+      transition: 0.15s linear;
+    }
+    md-fab-speed-dial.md-is-open md-fab-trigger button.md-button md-icon {
+      transform: rotate(90deg);
+    }
   }
   md-content.upper {
     overflow: hidden;

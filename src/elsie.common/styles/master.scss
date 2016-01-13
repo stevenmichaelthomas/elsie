@@ -384,6 +384,7 @@ md-list-item.md-2-line .md-list-item-text h3, md-list-item.md-2-line > .md-no-st
 
 md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
   min-height: 0;
+  margin-top: -1px;
 }
 
 .suggestions md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) md-tabs-wrapper {
