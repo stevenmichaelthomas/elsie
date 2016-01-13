@@ -1,7 +1,42 @@
 /* global Velocity */
+/* global facebookConnectPlugin */
 angular.module('elsie.core')
-.controller('SuggestionsCtrl', ['$scope', '$timeout', '$mdToast', 'Navigator', 'Friends', 'Suggestions', 'Products', 'Actions', 'elsie.session',
-  function($scope, $timeout, $mdToast, Navigator, Friends, Suggestions, Products, Actions, Session) {
+.controller('SuggestionsCtrl', ['$scope', '$timeout', '$mdToast', 'Navigator', 'elsie.auth', 'Friends', 'Suggestions', 'Products', 'Actions', 'Settings', 'Dialog', 'elsie.session',
+  function($scope, $timeout, $mdToast, Navigator, Auth, Friends, Suggestions, Products, Actions, Settings, Dialog, Session) {
+  var fbLoginSuccess = function(data) {
+    var account = Session.get('account').id;
+    facebookConnectPlugin.getAccessToken(function(token) {
+      Auth.facebookLink(token, account).then(function(res) {
+        $mdToast.showSimple('Facebook account linked!');
+        $scope.disabled = false;
+      }, function(error){
+        var message = error.data.message;
+        var actions = [
+          { label: 'OK' }
+        ];
+        var title = 'Facebook Auth Error';
+        Dialog.show(message, actions, title);
+      });
+    }, function(error) {
+      var message = error;
+      var actions = [
+        { label: 'OK' }
+      ];
+      var title = 'Facebook Auth Error';
+      Dialog.show(message, actions, title);
+    });
+  };
+  $scope.link = function() {
+    if (!$scope.disabled) {
+      return;
+    }
+    facebookConnectPlugin.login(['email','public_profile','user_friends'],
+      fbLoginSuccess,
+      function (error) { 
+        $mdToast.showSimple(error); 
+      }
+    );
+  };
   $scope.loadProduct = function(product){
     if (product && product.product_no){
       Products.select(product);
@@ -41,7 +76,6 @@ angular.module('elsie.core')
         });
         if ($scope.inbox.length === data.data.length){
           $scope.inboxReady = true;
-          console.log('inbox', $scope.inbox);
           if ($scope.outboxReady) {
             $scope.loading = false;
           }
@@ -64,7 +98,6 @@ angular.module('elsie.core')
         });
         if ($scope.outbox.length === data.data.length){
           $scope.outboxReady = true;
-          console.log('outbox', $scope.outbox);
           if ($scope.inboxReady) {
             $scope.loading = false;
           }
@@ -81,8 +114,10 @@ angular.module('elsie.core')
     } else {
       Actions.backGoesHome(false);
     }
-    if (Session.active()) {
+    if (Session.active()){
       $scope.session = true;
+    }
+    if (Friends.enabled()) {
       $timeout(function(){
         $scope.setTabsHeight();
         Friends.get().then(function(){
@@ -90,6 +125,8 @@ angular.module('elsie.core')
           $scope.loadOutbox();
         });
       }, 500);
+    } else {
+      $scope.disabled = true;
     }
   })();
 }]);

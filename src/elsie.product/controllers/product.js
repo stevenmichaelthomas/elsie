@@ -1,8 +1,10 @@
 /* global Velocity */
 angular.module('elsie.product')
-.controller('ProductCtrl', ['$scope', 'Navigator', 'Products', 'Stores', 'Watchlist', 'Actions', 'Picks', 'Bump', 'Map', 'elsie.session', 'Settings', 'Friends', '$timeout', '$mdBottomSheet', function ($scope, Navigator, Products, Stores, Watchlist, Actions, Picks, Bump, Map, Session, Settings, Friends, $timeout, $mdBottomSheet) {
+.controller('ProductCtrl', ['$scope', 'Navigator', 'Products', 'Stores', 'Watchlist', 'Actions', 'Picks', 'Bump', 'Map', 'elsie.session', 'Settings', 'Friends', 'Dialog', '$timeout', '$mdToast', '$mdBottomSheet', function ($scope, Navigator, Products, Stores, Watchlist, Actions, Picks, Bump, Map, Session, Settings, Friends, Dialog, $timeout, $mdToast, $mdBottomSheet) {
   $scope.selectFriend = function(friend){ 
-    Friends.suggest($scope.product, friend);
+    Friends.suggest($scope.product, friend).then(function(){
+      $mdToast.showSimple('Suggestion sent! You\'re a great friend.'); 
+    });
     $mdBottomSheet.hide();
   };
   $scope.toggleWatch = function(product){
@@ -17,18 +19,31 @@ angular.module('elsie.product')
     }
   };
   $scope.suggestProduct = function(product){
-    if (Friends.enabled()){
-      Friends.get().then(function(friends){
-        $scope.friends = friends;
-        $mdBottomSheet.show({
-          templateUrl: 'templates/friends.html',
-          scope: $scope,
-          preserveScope: true,
-          hasBackdrop: true
-        });
-      });
+    var actions = [
+      { label: 'OK' }
+    ];
+    var title;
+    var message;
+    if (!Session.active()) {
+      title = 'Not logged in';
+      message = 'Sign up with a Facebook account to send &amp; receive product suggestions with your friends.';
+      Dialog.show(message, actions, title);
     } else {
-      // dispatch dialog about fb account not linked
+      if (Friends.enabled()){
+        Friends.get().then(function(friends){
+          $scope.friends = friends;
+          $mdBottomSheet.show({
+            templateUrl: 'templates/friends.html',
+            scope: $scope,
+            preserveScope: true,
+            hasBackdrop: true
+          });
+        });
+      } else {
+        title = 'No Facebook account linked';
+        message = 'Link your Facebook account in Settings to send &amp; receive product suggestions with your friends.';
+        Dialog.show(message, actions, title);
+      }
     }
   };
   $scope.loadStore = function(store) {

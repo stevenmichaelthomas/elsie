@@ -1,7 +1,16 @@
 doctype
-.watchlist
+.suggestions.watchlist
   md-content
-    md-tabs#tabs(md-stretch-tabs="always")
+    .full(layout="column", ng-show="disabled",layout-align="center center")
+      div(flex,layout="column",ng-show="session",layout-align="center center")
+        img.watchlist-image(src="img/watchlist.png")
+        p.message Link your Facebook account to send &amp; receive product suggestions with your friends.
+        md-button.md-primary(ng-click="link()") Make it so
+      div(flex,layout="column",ng-show="!session",layout-align="center center")
+        img.watchlist-image(src="img/watchlist.png")
+        p.message Sign up with a Facebook account to send &amp; receive product suggestions with your friends.
+        md-button.md-primary(ng-click="link()") Sign up
+    md-tabs#tabs(md-stretch-tabs="always",ng-if="!disabled")
       md-tab(md-on-select="modeSelect(0)")
         md-tab-label Inbox
         md-tab-body

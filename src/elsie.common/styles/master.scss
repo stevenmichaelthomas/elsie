@@ -386,6 +386,15 @@ md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
   min-height: 0;
 }
 
+.state-suggestions md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
+  md-tabs.md-default-theme md-tabs-wrapper, md-tabs md-tabs-wrapper {
+    background: $purple;
+    md-tab-item.md-tab.ng-scope.ng-isolate-scope.md-ink-ripple {
+      color: white;
+    }
+  }
+}
+
 md-tab-item.md-tab.ng-scope.ng-isolate-scope.md-ink-ripple {
   max-width: none !important;
   min-width: 160px !important;

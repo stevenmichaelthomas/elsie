@@ -45,7 +45,7 @@ angular.module('elsie.core')
     facebookConnectPlugin.login(['email','public_profile','user_friends'],
       fbLoginSuccess,
       function (error) { 
-        console.log(error);
+        $mdToast.showSimple(error); 
       }
     );
   };
